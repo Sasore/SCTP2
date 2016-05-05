@@ -1,0 +1,9 @@
+* Adicionar verificação do numero do prontuario na tela de cadastro de prontuário, no caso
+se já existe um prontuario com aquele número.
+
+* Adicionar verificação de nome(se já existe) na tela de pesquisar ou adicionar novo responsavel prontuario,
+
+* alterar o botao cancelar da tela de cadastro e busca de responsavel pelo prontuario para que ao clicar em cancelar ele volte
+para a tela de pesquisa de prontuario
+
+* em detalhes do paciente nao esta pegando o telefone do cara, provavelmente o campo telefone celular e fixo estao trocados
