@@ -6,6 +6,7 @@
 package sctp2.Cadastros;
 
 import java.awt.Color;
+import java.awt.Font;
 import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -19,9 +20,11 @@ public class Habitos extends javax.swing.JFrame {
     /**
      * Creates new form Habitos
      */
+    private int tamanhoFonte=15;
     public Habitos() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
+        Tamanhofonte(tamanhoFonte);
     }
 
     /**
@@ -37,6 +40,8 @@ public class Habitos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jBAumentaTamFOnte = new javax.swing.JButton();
+        jBDiminuiTamFOnte = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,10 +60,10 @@ public class Habitos extends javax.swing.JFrame {
         jcBebidaAlcoolicaFrequencia = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
         jCbebidaAlcoolicaTipodeBebida = new javax.swing.JComboBox();
-        jLabel10 = new javax.swing.JLabel();
         jTAlerta = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,24 +71,57 @@ public class Habitos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
-        jButton1.setText("<< Voltar");
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 51, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/left-arrow.png"))); // NOI18N
+        jButton1.setText("Voltar");
+        jButton1.setToolTipText("Voltar");
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 51, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/exit.png"))); // NOI18N
         jButton2.setText("Cancelar Cadastro");
+        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Avançar >>");
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(0, 51, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/right-arrow.png"))); // NOI18N
+        jButton3.setText("Próximo");
+        jButton3.setToolTipText("Próxima tela");
+        jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jBAumentaTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
+        jBAumentaTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467515709_icon-112-search-plus.png"))); // NOI18N
+        jBAumentaTamFOnte.setToolTipText("Aumenta o tamanho da fonte");
+        jBAumentaTamFOnte.setBorder(null);
+        jBAumentaTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAumentaTamFOnteActionPerformed(evt);
+            }
+        });
+
+        jBDiminuiTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
+        jBDiminuiTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467516016_icon-113-search-minus.png"))); // NOI18N
+        jBDiminuiTamFOnte.setToolTipText("Diminui tamanho da fonte");
+        jBDiminuiTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDiminuiTamFOnteActionPerformed(evt);
             }
         });
 
@@ -93,22 +131,31 @@ public class Habitos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(318, 318, 318)
-                .addComponent(jButton3)
-                .addGap(32, 32, 32))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(151, 151, 151)
+                .addComponent(jBAumentaTamFOnte)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(249, 249, 249)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,10 +167,12 @@ public class Habitos extends javax.swing.JFrame {
         jLabel1.setText("Hábitos que influenciam na Saúde Oral");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel2.setText("Tabaco:");
+        jLabel2.setText("Tabaco");
 
+        jCfuma.setForeground(new java.awt.Color(0, 51, 255));
         jCfuma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Não", "Sim" }));
         jCfuma.setSelectedItem("Selecione");
+        jCfuma.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         jCfuma.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCfumaItemStateChanged(evt);
@@ -141,9 +190,11 @@ public class Habitos extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Há quanto tempo: ");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Há quanto tempo");
 
         jCFumaHaQuantoTempo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Menos de um ano", "1 a 10 anos", "Mais de 10 anos" }));
+        jCFumaHaQuantoTempo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         jCFumaHaQuantoTempo.setEnabled(false);
         jCFumaHaQuantoTempo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -151,9 +202,11 @@ public class Habitos extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Quantidade por dia: ");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Quantidade por dia");
 
         jCFumoQuantidadePorDia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "1 a 10", "10 a 20", "Mais de 20" }));
+        jCFumoQuantidadePorDia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         jCFumoQuantidadePorDia.setEnabled(false);
         jCFumoQuantidadePorDia.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -161,9 +214,12 @@ public class Habitos extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Tipo de Cigarro");
 
+        jCTipodeCigarro.setForeground(new java.awt.Color(0, 51, 255));
         jCTipodeCigarro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Industrializado", "Palha", "Outro" }));
+        jCTipodeCigarro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         jCTipodeCigarro.setEnabled(false);
         jCTipodeCigarro.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -174,16 +230,20 @@ public class Habitos extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Bebida Alcólica");
 
+        jCBebidaAlcoolica.setForeground(new java.awt.Color(0, 51, 255));
         jCBebidaAlcoolica.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Não", "Sim" }));
+        jCBebidaAlcoolica.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         jCBebidaAlcoolica.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCBebidaAlcoolicaItemStateChanged(evt);
             }
         });
 
-        jLabel7.setText("Há quanto tempo: ");
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Há quanto tempo");
 
         jCBebidaAlcoolicaHaQuantoTempo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Menos de um ano", "1 a 10 anos", "Mais de 10 anos" }));
+        jCBebidaAlcoolicaHaQuantoTempo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         jCBebidaAlcoolicaHaQuantoTempo.setEnabled(false);
         jCBebidaAlcoolicaHaQuantoTempo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -191,7 +251,8 @@ public class Habitos extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Frequência:");
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Frequência");
 
         jcBebidaAlcoolicaFrequencia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Socialmente", "Semanalmente", "Diária" }));
         jcBebidaAlcoolicaFrequencia.setEnabled(false);
@@ -201,17 +262,17 @@ public class Habitos extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("Tipo de bebida: ");
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Tipo de bebida");
 
         jCbebidaAlcoolicaTipodeBebida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Destilada", "Fermentada", "Ambos" }));
+        jCbebidaAlcoolicaTipodeBebida.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         jCbebidaAlcoolicaTipodeBebida.setEnabled(false);
         jCbebidaAlcoolicaTipodeBebida.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCbebidaAlcoolicaTipodeBebidaItemStateChanged(evt);
             }
         });
-
-        jLabel10.setText("Fuma?");
 
         jTAlerta.setEditable(false);
         jTAlerta.setBackground(new java.awt.Color(255, 255, 255));
@@ -225,53 +286,52 @@ public class Habitos extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addGap(30, 30, 30)
-                        .addComponent(jCfuma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(44, 44, 44)
-                        .addComponent(jCBebidaAlcoolica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jCFumaHaQuantoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jCBebidaAlcoolicaHaQuantoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(jLabel8)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jcBebidaAlcoolicaFrequencia, 0, 131, Short.MAX_VALUE)
-                    .addComponent(jCFumoQuantidadePorDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel9))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCTipodeCigarro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCbebidaAlcoolicaTipodeBebida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(11, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jTAlerta)
-                        .addContainerGap())
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCfuma, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCBebidaAlcoolica, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(195, 195, 195)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jCFumaHaQuantoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(123, 123, 123)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jCFumoQuantidadePorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jcBebidaAlcoolicaFrequencia, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(189, 189, 189)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jCBebidaAlcoolicaHaQuantoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(80, 80, 80))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jCbebidaAlcoolicaTipodeBebida, 0, 146, Short.MAX_VALUE)
+                                            .addComponent(jCTipodeCigarro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(91, 91, 91))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(164, 164, 164)
+                                .addComponent(jTAlerta)
+                                .addContainerGap())))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,41 +339,59 @@ public class Habitos extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jCTipodeCigarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5))
-                            .addGap(94, 94, 94)
-                            .addComponent(jCbebidaAlcoolicaTipodeBebida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jCFumoQuantidadePorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jCFumaHaQuantoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jCfuma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel10)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jCBebidaAlcoolicaHaQuantoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7)
-                                .addComponent(jCBebidaAlcoolica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCfuma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(jcBebidaAlcoolicaFrequencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCFumoQuantidadePorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCTipodeCigarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCFumaHaQuantoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(jLabel9))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCBebidaAlcoolica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCBebidaAlcoolicaHaQuantoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcBebidaAlcoolicaFrequencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCbebidaAlcoolicaTipodeBebida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
                         .addComponent(jLabel8)))
-                .addGap(0, 193, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Arquivo");
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem2.setText("Menu Principal");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fechar.png"))); // NOI18N
         jMenuItem1.setText("Sair");
         jMenu1.add(jMenuItem1);
 
@@ -331,8 +409,9 @@ public class Habitos extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -439,6 +518,20 @@ public class Habitos extends javax.swing.JFrame {
         jCbebidaAlcoolicaTipodeBebida.setBackground(Color.gray);        // TODO add your handling code here:
     }//GEN-LAST:event_jCbebidaAlcoolicaTipodeBebidaItemStateChanged
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+this.setVisible(false);        // TODO add your handling code here:
+        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
+        acesso.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jBAumentaTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAumentaTamFOnteActionPerformed
+        Tamanhofonte(tamanhoFonte+1);        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAumentaTamFOnteActionPerformed
+
+    private void jBDiminuiTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiminuiTamFOnteActionPerformed
+        Tamanhofonte(tamanhoFonte-1);        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDiminuiTamFOnteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -475,6 +568,8 @@ public class Habitos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAumentaTamFOnte;
+    private javax.swing.JButton jBDiminuiTamFOnte;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -486,7 +581,6 @@ public class Habitos extends javax.swing.JFrame {
     private javax.swing.JComboBox jCbebidaAlcoolicaTipodeBebida;
     private javax.swing.JComboBox jCfuma;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -498,6 +592,7 @@ public class Habitos extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTAlerta;
@@ -561,5 +656,49 @@ public class Habitos extends javax.swing.JFrame {
             retorno = false;
         }
         return retorno;
+    }
+
+    private void Tamanhofonte(int tamanhoFonte) {
+    this.tamanhoFonte=tamanhoFonte;
+        System.out.println("tam "+tamanhoFonte);
+        if((this.tamanhoFonte<19) && (this.tamanhoFonte>15)){
+                jBDiminuiTamFOnte.setEnabled(true);
+                jBAumentaTamFOnte.setEnabled(true);
+                jButton1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jButton2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jButton3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jCBebidaAlcoolica.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jCBebidaAlcoolicaHaQuantoTempo.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jCFumaHaQuantoTempo.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jCFumoQuantidadePorDia.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jCTipodeCigarro.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jCbebidaAlcoolicaTipodeBebida.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jCfuma.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jLabel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jLabel4.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jLabel5.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jLabel6.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jLabel7.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jLabel8.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jLabel9.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jMenuBar1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jMenuItem1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jMenuItem1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+                jMenuItem2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            
+        }
+        
+        else
+            if(this.tamanhoFonte>=19){
+                jBDiminuiTamFOnte.setEnabled(true);
+                jBAumentaTamFOnte.setEnabled(false);
+            }
+        else
+        if(this.tamanhoFonte<=15){
+                jBDiminuiTamFOnte.setEnabled(false);
+                jBAumentaTamFOnte.setEnabled(true);
+                }
+        
     }
 }

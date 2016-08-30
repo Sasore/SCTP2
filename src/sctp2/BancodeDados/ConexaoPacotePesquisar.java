@@ -6,13 +6,14 @@
 package sctp2.BancodeDados;
 
 import com.mysql.jdbc.PreparedStatement;
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,7 +21,8 @@ import sctp2.ClassesdeControle.Anamnese;
 import sctp2.ClassesdeControle.DoencasSistemicas;
 import sctp2.ClassesdeControle.Habitos;
 import sctp2.ClassesdeControle.TratamentosNecessarios;
-import sctp2.Pesquisar.Paciente.HistoricoPaciente;
+import sctp2.Paciente.HistoricoPaciente;
+import sctp2.Paciente.HistoricoDetratamentos;
 import sctp2.Pesquisar.Pesquisar;
 import sctp2.Pesquisar.PesquisarProntuario;
 
@@ -214,7 +216,9 @@ public class ConexaoPacotePesquisar {
     }
 
     public ArrayList<Pesquisar> PesquisarProntuarioPacienteDetalhes(String valor) throws ClassNotFoundException {
-        String sql = "select id,resp_nome,resp_celular,resp_telefone_fixo from responsavelpeloprontuario where id like ?;";
+        String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, `telefoneFixo_ResponsavelPeloProntuario`, "
+                + "`nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario`"
+                + " FROM `responsavelpeloprontuario` where id like ?";
         Connection con = null;
         ArrayList<Pesquisar> ListarPesquisa;//array que recebera o resultado da pesquisa
         ListarPesquisa = new ArrayList<Pesquisar>();//criando novo array
@@ -226,9 +230,9 @@ public class ConexaoPacotePesquisar {
             while (rs.next()) {
                 Pesquisar pesquisarsmt = new Pesquisar();
                 pesquisarsmt.setCodigo(rs.getInt("id"));
-                pesquisarsmt.setNome(rs.getString("resp_nome"));
-                pesquisarsmt.setTelefone(rs.getString("resp_celular"));
-                pesquisarsmt.setTelefonefixo(rs.getString("resp_telefone_fixo"));
+                pesquisarsmt.setNome(rs.getString("nome_ResponsavelPeloProntuario"));
+                pesquisarsmt.setTelefone(rs.getString("celular_ResponsavelPeloProntuario"));
+                pesquisarsmt.setTelefonefixo(rs.getString("telefoneFixo_ResponsavelPeloProntuario"));
                 ListarPesquisa.add(pesquisarsmt);
             }
 
@@ -348,16 +352,18 @@ public class ConexaoPacotePesquisar {
     private String[] PesquisaResponsavelProtuario(int id) throws ClassNotFoundException {
         Connection con = null;
         String[] resposta = new String[3];
-        String sql = "select resp_nome,resp_celular,resp_telefone_fixo from responsavelpeloprontuario where id=?;";
+        String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, `telefoneFixo_ResponsavelPeloProntuario`, "
+                + "`nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario` "
+                + "FROM `responsavelpeloprontuario` WHERE `Id=?;";
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setInt(1, id);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {
-                resposta[0] = rs.getString("resp_nome");
-                resposta[1] = rs.getString("resp_celular");
-                resposta[2] = rs.getString("resp_telefone_fixo");
+                resposta[0] = rs.getString("nome_ResponsavelPeloProntuario");
+                resposta[1] = rs.getString("celular_ResponsavelPeloProntuario");
+                resposta[2] = rs.getString("telefoneFixo_ResponsavelPeloProntuario");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos ou verifique a conexao!");
@@ -629,9 +635,9 @@ public class ConexaoPacotePesquisar {
                 + "FROM `historicodopaciente` join paciente\n"
                 + "WHERE  paciente.pac_Cod=historicodopaciente.CodigoPaciente and `CodigoPaciente` =?;";
         Connection con = null;
-        sctp2.Pesquisar.Paciente.HistoricoPaciente pesquisarsmt = new sctp2.Pesquisar.Paciente.HistoricoPaciente();
-        ArrayList<sctp2.Pesquisar.Paciente.HistoricoPaciente> ListarPesquisa;
-        ListarPesquisa = new ArrayList<sctp2.Pesquisar.Paciente.HistoricoPaciente>();//criando novo array
+        sctp2.Paciente.HistoricoPaciente pesquisarsmt;
+        ArrayList<sctp2.Paciente.HistoricoPaciente> ListarPesquisa;
+        ListarPesquisa = new ArrayList<>();//criando novo array
         try {
 
             con = getConnection();
@@ -639,6 +645,7 @@ public class ConexaoPacotePesquisar {
             smt.setInt(1, codigopaciente);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {
+                pesquisarsmt = new sctp2.Paciente.HistoricoPaciente();
                 pesquisarsmt.setCodigopaciente(rs.getInt("CodigoPaciente"));
                 pesquisarsmt.setCodigotratamento(rs.getInt("codigotratamento"));
                 pesquisarsmt.setQueixa(rs.getString("Queixa"));
@@ -647,35 +654,37 @@ public class ConexaoPacotePesquisar {
                 pesquisarsmt.setResponsaveltratamento(rs.getString("Responsavel_tratamento"));
                 pesquisarsmt.setNomepaciente(rs.getString("paciente.pac_Nome"));
                 pesquisarsmt.setRgPaciente(rs.getString("Rg_Paciente"));
+                ListarPesquisa.add(pesquisarsmt);
             }
-            ListarPesquisa.add(pesquisarsmt);
-
         } catch (SQLException e) {
             Logger.getLogger(ConexaoPacotePesquisar.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             closeConnection(con);
         }
+
         return ListarPesquisa;
 
     }
 
-    public ArrayList<TratamentosNecessarios> PesquisarHistóricoTratamentos(String rg) throws ClassNotFoundException {
-        System.out.println("função PesquisarHistóricoTratamentos"+rg);
-        String sql = "SELECT `nec_Cod`, `nec_ProfilaxiaSimples`, `nec_referencia_rg`, `nec_RaspagemPolimentoCoronario`, `nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, `nec_Amalgama`, `nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`, `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, `nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`, `Historico_codigoTratamento` FROM `historiconecessidade` WHERE `nec_referencia_rg`=?";
+    public ArrayList<HistoricoDetratamentos> PesquisarHistóricoTratamentos(String rg) throws ClassNotFoundException {
+        String sql = "SELECT `nec_Cod`, `nec_ProfilaxiaSimples`, `nec_referencia_rg`, `nec_RaspagemPolimentoCoronario`, `nec_CirurgiaPeriodontal`, "
+                + "`nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, `nec_Amalgama`, `nec_Resina`, `nec_RMF`, "
+                + "`nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`, `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, "
+                + "`nec_Pontefixamaisque4elementos`, `nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`,"
+                + " `nec_DTM`, `nec_Estomatologia`, `Historico_codigoTratamento` FROM `historiconecessidade` WHERE `nec_referencia_rg`=?";
         Connection con = null;
-        sctp2.ClassesdeControle.TratamentosNecessarios pesquisarsmt = new sctp2.ClassesdeControle.TratamentosNecessarios();
-        ArrayList<sctp2.ClassesdeControle.TratamentosNecessarios> ListarPesquisa;
-        ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.TratamentosNecessarios>();//criando novo array
+        sctp2.Paciente.HistoricoDetratamentos pesquisarsmt;
+        ArrayList<sctp2.Paciente.HistoricoDetratamentos> ListarPesquisa;
+        ListarPesquisa = new ArrayList<>();//criando novo array
         try {
-
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, rg);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {
+                pesquisarsmt = new sctp2.Paciente.HistoricoDetratamentos();
                 pesquisarsmt.setCodigo(rs.getInt("nec_Cod"));
                 pesquisarsmt.setProfilaxiaSimples(rs.getInt("nec_ProfilaxiaSimples"));
-                System.out.println("profilaxia: " + rs.getInt("nec_ProfilaxiaSimples"));
                 pesquisarsmt.setRg(rs.getString("nec_referencia_rg"));
                 pesquisarsmt.setRaspagemEPoliCCoronario(rs.getInt("nec_RaspagemPolimentoCoronario"));
                 pesquisarsmt.setCirugiaPeridontal(rs.getInt("nec_CirurgiaPeriodontal"));
@@ -685,7 +694,7 @@ public class ConexaoPacotePesquisar {
                 pesquisarsmt.setAmalgama(rs.getInt("nec_Amalgama"));
                 pesquisarsmt.setResina(rs.getInt("nec_Resina"));
                 pesquisarsmt.setRmf(rs.getInt("nec_RMF"));
-                pesquisarsmt.setEndontiaUnirradicular( rs.getInt("nec_Endodontiauniebirradicular"));
+                pesquisarsmt.setEndontiaUnirradicular(rs.getInt("nec_Endodontiauniebirradicular"));
                 pesquisarsmt.setEndodontiaTrirradicular(rs.getInt("nec_EndodontiaTrirradicular"));
                 pesquisarsmt.setCoroaTotal(rs.getInt("nec_CoroaTotal"));
                 pesquisarsmt.setPonteFixa3Elementos(rs.getInt("nec_PonteFixa3Elementos"));
@@ -696,18 +705,18 @@ public class ConexaoPacotePesquisar {
                 pesquisarsmt.setProtese_ppr(rs.getInt("nec_ProtesePPR"));
                 pesquisarsmt.setProtese(rs.getInt("nec_Protese"));
                 pesquisarsmt.setTerrapiaOeriodDeSuporte(rs.getInt("nec_TerapiaPeriodontal"));
-                 pesquisarsmt.setEndodontiaBirradicular( rs.getInt("nec_EndodontiaBirradicular"));
-                 pesquisarsmt.setDtm(rs.getInt("nec_DTM"));
-                 pesquisarsmt.setEstomatologia(rs.getInt("nec_Estomatologia"));
-                 pesquisarsmt.setHistorico_codigoTratamento(rs.getInt("Historico_codigoTratamento"));
-            };
-            ListarPesquisa.add(pesquisarsmt);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexaoPacotePesquisar.class.getName()).log(Level.SEVERE, null, ex);
+                pesquisarsmt.setEndodontiaBirradicular(rs.getInt("nec_EndodontiaBirradicular"));
+                pesquisarsmt.setDtm(rs.getInt("nec_DTM"));
+                pesquisarsmt.setEstomatologia(rs.getInt("nec_Estomatologia"));
+                pesquisarsmt.setHistorico_codigoTratamento(rs.getInt("Historico_codigoTratamento"));
+                ListarPesquisa.add(pesquisarsmt);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ConexaoPacotePesquisar.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             closeConnection(con);
         }
-
         return ListarPesquisa;
+
     }
 }

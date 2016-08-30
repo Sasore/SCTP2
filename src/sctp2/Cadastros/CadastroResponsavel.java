@@ -6,6 +6,7 @@
 package sctp2.Cadastros;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ import sctp2.Pesquisar.Pesquisar;
  */
 public class CadastroResponsavel extends javax.swing.JFrame  {
 int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo cadastro é ou uma atualização de cadastro existente
+int tamanhoDaFonte=15;
     /**
      * Creates new form CadastroResponsavel
      * 
@@ -36,6 +38,7 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         jExcluir.setVisible(false);
         jNovoResponsavel.setVisible(false);
         jnotificacao2.setText("Cadastrar um novo responsável!");    
+        TamanhoDaFonte(tamanhoDaFonte);//define o tamanho da fonte no sistema
         
         
 
@@ -53,6 +56,11 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         jPanel1 = new javax.swing.JPanel();
         jSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jBAumentaTamFOnte = new javax.swing.JButton();
+        jBDiminuiTamFOnte = new javax.swing.JButton();
+        jEditar = new javax.swing.JButton();
+        jExcluir = new javax.swing.JButton();
+        jNovoResponsavel = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -64,9 +72,6 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         jID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jNovoResponsavel = new javax.swing.JButton();
-        jExcluir = new javax.swing.JButton();
-        jEditar = new javax.swing.JButton();
         jFTelefoneFixo = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -75,8 +80,17 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         jLabel4 = new javax.swing.JLabel();
         jnotificacao2 = new javax.swing.JTextField();
         jinformacaodoconteine = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        JNomeProfessor = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jCelularProfessor = new javax.swing.JFormattedTextField();
+        JTelefoneProfessor = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,17 +98,80 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
+        jSalvar.setBackground(new java.awt.Color(255, 255, 255));
+        jSalvar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jSalvar.setForeground(new java.awt.Color(0, 50, 255));
+        jSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/save5.png"))); // NOI18N
         jSalvar.setText("Salvar");
+        jSalvar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 50, 255), 1, true));
         jSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSalvarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("<<Voltar");
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 50, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/left-arrow.png"))); // NOI18N
+        jButton2.setText("Voltar");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jBAumentaTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
+        jBAumentaTamFOnte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jBAumentaTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467515709_icon-112-search-plus.png"))); // NOI18N
+        jBAumentaTamFOnte.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        jBAumentaTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAumentaTamFOnteActionPerformed(evt);
+            }
+        });
+
+        jBDiminuiTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
+        jBDiminuiTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467516016_icon-113-search-minus.png"))); // NOI18N
+        jBDiminuiTamFOnte.setToolTipText("Diminuit tamanho da fonte");
+        jBDiminuiTamFOnte.setBorder(null);
+        jBDiminuiTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDiminuiTamFOnteActionPerformed(evt);
+            }
+        });
+
+        jEditar.setBackground(new java.awt.Color(255, 255, 255));
+        jEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jEditar.setForeground(new java.awt.Color(0, 50, 255));
+        jEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/editar pqno.png"))); // NOI18N
+        jEditar.setText("Editar");
+        jEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditarActionPerformed(evt);
+            }
+        });
+
+        jExcluir.setBackground(new java.awt.Color(255, 255, 255));
+        jExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jExcluir.setForeground(new java.awt.Color(0, 50, 255));
+        jExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/excluir pequeno.png"))); // NOI18N
+        jExcluir.setText("Excluir");
+        jExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExcluirActionPerformed(evt);
+            }
+        });
+
+        jNovoResponsavel.setBackground(new java.awt.Color(255, 255, 255));
+        jNovoResponsavel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jNovoResponsavel.setForeground(new java.awt.Color(0, 50, 255));
+        jNovoResponsavel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/novo contato pequeno.png"))); // NOI18N
+        jNovoResponsavel.setText("Novo responsável");
+        jNovoResponsavel.setToolTipText("Cadastre um novo responsável");
+        jNovoResponsavel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNovoResponsavelActionPerformed(evt);
             }
         });
 
@@ -105,18 +182,38 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 886, Short.MAX_VALUE)
-                .addComponent(jSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBDiminuiTamFOnte)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jNovoResponsavel)
+                .addGap(111, 111, 111)
+                .addComponent(jSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jNovoResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                            .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -162,7 +259,7 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
             jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
-        jPesquisa.setText("Pesquisar responsável");
+        jPesquisa.setText("Clique para Pesquisar responsável");
         jPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPesquisaMouseClicked(evt);
@@ -179,7 +276,10 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone-pesquisa.png"))); // NOI18N
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/search1.png"))); // NOI18N
+        jButton3.setToolTipText("Pesquisar");
+        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -205,28 +305,6 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jNovoResponsavel.setText("Novo responsável");
-        jNovoResponsavel.setToolTipText("Cadastre um novo responsável");
-        jNovoResponsavel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNovoResponsavelActionPerformed(evt);
-            }
-        });
-
-        jExcluir.setText("Excluir");
-        jExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jExcluirActionPerformed(evt);
-            }
-        });
-
-        jEditar.setText("Editar");
-        jEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jEditarActionPerformed(evt);
-            }
-        });
-
         try {
             jFTelefoneFixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
@@ -243,7 +321,7 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         jLabel5.setText("Telefone Fixo:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Telefone Celular:  ");
+        jLabel3.setText("Celular:  ");
 
         try {
             jFTelefoneCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #-####-####")));
@@ -252,8 +330,9 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         }
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Nome do responsável: ");
+        jLabel4.setText("Nome:");
 
+        jnotificacao2.setEditable(false);
         jnotificacao2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jnotificacao2.setForeground(java.awt.Color.blue);
         jnotificacao2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -263,62 +342,103 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         jinformacaodoconteine.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jinformacaodoconteine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Responsável:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Professor Responsável: ");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setText("Nome:");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setText("Celular:  ");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel11.setText("Telefone Fixo:");
+
+        try {
+            jCelularProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            JTelefoneProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jnotificacao2, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel3)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addGap(35, 35, 35))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel7)
+                        .addGap(44, 44, 44)
+                        .addComponent(jnotificacao2, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jinformacaodoconteine, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(57, 57, 57)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jFTelefoneFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jFTelefoneCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nomeresponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(jNovoResponsavel))))
-                    .addComponent(jinformacaodoconteine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(nomeresponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JNomeProfessor)
+                                .addComponent(jCelularProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                                .addComponent(JTelefoneProfessor))))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 51, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jnotificacao2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jnotificacao2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(10, 10, 10)
                 .addComponent(jinformacaodoconteine)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomeresponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeresponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFTelefoneCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFTelefoneCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFTelefoneFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(30, 30, 30)
+                .addGap(66, 66, 66)
+                .addComponent(jLabel8)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jNovoResponsavel)
-                    .addComponent(jEditar)
-                    .addComponent(jExcluir))
+                    .addComponent(JNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCelularProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(JTelefoneProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -369,14 +489,24 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Menu");
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem2.setText("Menu Principal");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fechar.png"))); // NOI18N
         jMenuItem1.setText("Sair");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,12 +524,9 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +547,7 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
             jnotificacao2.setForeground(Color.red);
             jnotificacao2.setText("O campo Nome está vazio!");
         } else {
-            PassaValoresResponsavel();//passa os valore para classe de responsavel
+            PassaValoresResponsavel();//passa os valores para classe de responsavel
             sctp2.ClassesdeControle.Controle acesso = new sctp2.ClassesdeControle.Controle();
             if (idDoResponsavel != -1) {
                 try {
@@ -447,13 +574,9 @@ int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo ca
     }//GEN-LAST:event_jSalvarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int retorno;
-        retorno = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar o cadastro?");
-        if (retorno == 0) {
             this.setVisible(false);
             sctp2.Principal.principal mostratelaprincipal = new sctp2.Principal.principal();
             mostratelaprincipal.setVisible(true);
-        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jFTelefoneFixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTelefoneFixoActionPerformed
@@ -546,6 +669,20 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
     }
     }//GEN-LAST:event_jExcluirActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+this.setVisible(false);        // TODO add your handling code here:
+        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
+        acesso.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jBAumentaTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAumentaTamFOnteActionPerformed
+        TamanhoDaFonte(tamanhoDaFonte+1);
+    }//GEN-LAST:event_jBAumentaTamFOnteActionPerformed
+
+    private void jBDiminuiTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiminuiTamFOnteActionPerformed
+        TamanhoDaFonte(tamanhoDaFonte-1);        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDiminuiTamFOnteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -582,22 +719,33 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JNomeProfessor;
+    private javax.swing.JFormattedTextField JTelefoneProfessor;
+    private javax.swing.JButton jBAumentaTamFOnte;
+    private javax.swing.JButton jBDiminuiTamFOnte;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JFormattedTextField jCelularProfessor;
     private javax.swing.JButton jEditar;
     private javax.swing.JButton jExcluir;
     private javax.swing.JFormattedTextField jFTelefoneCelular;
     private javax.swing.JFormattedTextField jFTelefoneFixo;
     private javax.swing.JTextField jID;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JTextField jNotificacao;
     private javax.swing.JButton jNovoResponsavel;
     private javax.swing.JPanel jPanel1;
@@ -618,6 +766,9 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
         acesso.setTelefoneCelular(jFTelefoneCelular.getText());
         acesso.setTelefoneFixo(jFTelefoneFixo.getText());
         acesso.setIdResponsavel(idDoResponsavel);
+        acesso.setNomeProfessorResponsavel(JNomeProfessor.getText());
+        acesso.setTelefoneCelularProfessor(jCelularProfessor.getText());
+        acesso.setTelefoneCelularProfessor(jCelularProfessor.getText());
     }
 
     private void EfetuaPesquisa() throws ClassNotFoundException {//Esta função faza a pesquisa e popula a tabela com os nomes encontrados
@@ -712,4 +863,57 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
             if(resultado==2)System.out.println("cancelando....");
     
     }
+    //----------------------------------------------------------------------------
+
+    private void TamanhoDaFonte(int tamanhoDaFonte) {
+    
+        this.tamanhoDaFonte=tamanhoDaFonte;
+        System.out.println("tam "+tamanhoDaFonte);
+        if((this.tamanhoDaFonte<24) && (this.tamanhoDaFonte>15)){
+        jBDiminuiTamFOnte.setEnabled(true);
+        jBAumentaTamFOnte.setEnabled(true);
+        nomeresponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        JNomeProfessor.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jFTelefoneCelular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jCelularProfessor.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            JTelefoneProfessor.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jFTelefoneFixo.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            nomeresponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jFTelefoneCelular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jFTelefoneFixo.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jEditar.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jExcluir.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jNovoResponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jPesquisa.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jSalvar.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jNotificacao.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jnotificacao2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+            jTable1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        
+        jButton2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jButton3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jLabel11.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jLabel10.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jLabel9.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jLabel5.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jLabel4.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jLabel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        jLabel1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoDaFonte));
+        
+        }
+        else
+            if(this.tamanhoDaFonte>=27){
+                jBAumentaTamFOnte.setEnabled(false);
+                jBDiminuiTamFOnte.setEnabled(true);
+                
+            }
+        else
+        if(this.tamanhoDaFonte<=15){
+                jBDiminuiTamFOnte.setEnabled(false);
+                jBAumentaTamFOnte.setEnabled(true);
+                }
+    }
+    
+ 
 }

@@ -6,13 +6,13 @@
 package sctp2.Cadastros;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import sctp2.Pesquisar.Pesquisar;
-import sctp2.Pesquisar.PesquisarProntuarioEmprestado;
+import sctp2.Pesquisar.Prontuario;
 
 /**
  *
@@ -20,29 +20,39 @@ import sctp2.Pesquisar.PesquisarProntuarioEmprestado;
  */
 public class ResponsavelProntuario extends javax.swing.JFrame {
 Prontuario envia;
-PesquisarProntuarioEmprestado enviar;
+Prontuario enviar;
 private String codigo;//codigo do prontuario, ou seja o numero de cadastro fisico dele
 private String Idresponsavel;
 private int Codigojanela;//determina quem chamou esta tela, se for 1 foi a tela peesquisar prontuario
+private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela atual
 
     /**
      * Creates new form ResponsavelProntuario
      */
  public ResponsavelProntuario( String codigoP) {
         initComponents();
+        this.setLocation(50, WIDTH);
         sctp2.Cadastros.Prontuario acesso= new sctp2.Cadastros.Prontuario();
         codigo=codigoP;
         System.out.println("codigo"+codigo);
+         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
+         jPanelCadastrar.setVisible(false);
     }
  public ResponsavelProntuario( int janela, String nprontuario) {//int janel: qual janela chamou esta
         initComponents();
+        this.setLocation(50, WIDTH);
         Codigojanela=janela;
         codigo=nprontuario;
+        TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
+        jPanelCadastrar.setVisible(false);
 
     }
     public ResponsavelProntuario() {
         initComponents();
+        this.setLocation(50, WIDTH);
         sctp2.Cadastros.Prontuario acesso= new sctp2.Cadastros.Prontuario();
+        TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
+        jPanelCadastrar.setVisible(false);
     }
 
     /**
@@ -59,20 +69,33 @@ private int Codigojanela;//determina quem chamou esta tela, se for 1 foi a tela 
         jPesquisa = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        nomeresponsavel = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
+        jNotificacao = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jPanelCadastrar = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        nomeresponsavel = new javax.swing.JTextField();
         jFTelefoneFixo = new javax.swing.JFormattedTextField();
         jFTelefoneCelular = new javax.swing.JFormattedTextField();
-        jNotificacao = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        nomeProfessorResponsavel = new javax.swing.JTextField();
+        jFTelefoneFixoProfessor = new javax.swing.JFormattedTextField();
+        jFTelefoneCelularProfessor = new javax.swing.JFormattedTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jBAumentaTamFOnte = new javax.swing.JButton();
+        jBDiminuiTamFOnte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar responsável");
@@ -101,33 +124,29 @@ private int Codigojanela;//determina quem chamou esta tela, se for 1 foi a tela 
                 jPesquisaActionPerformed(evt);
             }
         });
+        jPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPesquisaKeyTyped(evt);
+            }
+        });
 
-        jButton1.setText("Pesquisar");
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/search3.gif"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 51, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
         jButton2.setText("Adicionar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Se o responsável ainda não estiver cadastrado, você pode cadastrá-lo logo abaixo");
-
-        jButton3.setText("Adicionar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Nome: ");
-
-        jLabel4.setText("Telefone fixo: ");
 
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 255), new java.awt.Color(204, 204, 204)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -161,31 +180,166 @@ private int Codigojanela;//determina quem chamou esta tela, se for 1 foi a tela 
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        jLabel5.setText("Celular: ");
-
-        try {
-            jFTelefoneFixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFTelefoneFixo.setToolTipText("Telefone fixo");
-
-        try {
-            jFTelefoneCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#-####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFTelefoneCelular.setToolTipText("Celular com 9 digito");
-
         jNotificacao.setEditable(false);
         jNotificacao.setBackground(new java.awt.Color(255, 255, 255));
         jNotificacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jNotificacao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jNotificacao.setBorder(null);
+        jNotificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNotificacaoActionPerformed(evt);
+            }
+        });
+
+        jTextPane1.setEditable(false);
+        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextPane1.setText("Pesquise pelo Aluno ou Professor antes de cadastrar um novo, caso ele não exista, você pode cadastrar um Aluno e seu Professor ou Apenas o Professor.");
+        jScrollPane2.setViewportView(jTextPane1);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Aluno /Responsável");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Professor:");
+
+        jLabel4.setText("Nome: ");
+
+        jLabel5.setText("Telefone: ");
+
+        jLabel6.setText("Celular:");
+
+        jLabel7.setText("Nome: ");
+
+        jLabel8.setText("Telefone: ");
+
+        jLabel9.setText("Celular:");
+
+        try {
+            jFTelefoneFixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFTelefoneCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFTelefoneFixoProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFTelefoneCelularProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(0, 51, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
+        jButton3.setText("Adicionar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelCadastrarLayout = new javax.swing.GroupLayout(jPanelCadastrar);
+        jPanelCadastrar.setLayout(jPanelCadastrarLayout);
+        jPanelCadastrarLayout.setHorizontalGroup(
+            jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastrarLayout.createSequentialGroup()
+                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCadastrarLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jFTelefoneCelularProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                            .addComponent(jFTelefoneFixoProfessor)
+                            .addComponent(nomeProfessorResponsavel)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCadastrarLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(33, 33, 33)
+                                .addComponent(nomeresponsavel))
+                            .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jFTelefoneFixo))
+                            .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(30, 30, 30)
+                                .addComponent(jFTelefoneCelular)))))
+                .addGap(240, 240, 240))
+        );
+        jPanelCadastrarLayout.setVerticalGroup(
+            jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(nomeresponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jFTelefoneFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jFTelefoneCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(nomeProfessorResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jFTelefoneFixoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFTelefoneCelularProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(9, 9, 9)
+                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jButton5.setText("Novo Aluno ");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Novo Professor");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,105 +347,115 @@ private int Codigojanela;//determina quem chamou esta tela, se for 1 foi a tela 
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPesquisa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nomeresponsavel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                                    .addComponent(jFTelefoneFixo)
-                                    .addComponent(jFTelefoneCelular)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 19, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(634, 634, 634))
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))))
+                .addGap(68, 68, 68)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jPanelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton6)))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeresponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jFTelefoneFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jFTelefoneCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
+                        .addGap(15, 15, 15)
+                        .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton5)
+                            .addComponent(jButton6))
+                        .addGap(5, 5, 5)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(96, Short.MAX_VALUE))))
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
 
-        jToggleButton1.setText("Cancelar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setForeground(new java.awt.Color(0, 50, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/exit.png"))); // NOI18N
+        jButton4.setText("Cancelar");
+        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 50, 255), 1, true));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jBAumentaTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
+        jBAumentaTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467515709_icon-112-search-plus.png"))); // NOI18N
+        jBAumentaTamFOnte.setToolTipText("Aumenta o tamanho da fonte da tela");
+        jBAumentaTamFOnte.setBorder(null);
+        jBAumentaTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAumentaTamFOnteActionPerformed(evt);
+            }
+        });
+
+        jBDiminuiTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467516016_icon-113-search-minus.png"))); // NOI18N
+        jBDiminuiTamFOnte.setToolTipText("Reduz o tamanho da fonte da tela");
+        jBDiminuiTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDiminuiTamFOnteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jBAumentaTamFOnte)
+                .addGap(18, 18, 18)
+                .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -300,44 +464,26 @@ private int Codigojanela;//determina quem chamou esta tela, se for 1 foi a tela 
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        if(Codigojanela==1){
-            this.setVisible(false);        // TODO add your handling code here:
-            try {
-                new sctp2.Pesquisar.PesquisarProntuarioEmprestado(codigo).setVisible(true);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else{
-        this.setVisible(false);        // TODO add your handling code here:
-sctp2.Cadastros.Prontuario acesso= new sctp2.Cadastros.Prontuario();
-acesso.setVisible(true);
-        }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPesquisaMouseClicked
 jPesquisa.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaMouseClicked
 
     private void jPesquisaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPesquisaMouseExited
-        // TODO add your handling code here:
+if(jPesquisa.getText().trim().equals("")) jPesquisa.setText("Digite o nome do responsável aqui!");        // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaMouseExited
 
     private void jPesquisaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPesquisaMouseReleased
@@ -348,7 +494,11 @@ if(jPesquisa.getText().trim().equals("")) jPesquisa.setText("Digite o nome do re
 //    boolean retorno = false;
 
 System.out.println("Codigo da janela " +Codigojanela);
-if(Codigojanela!=1)AdicionaNovoResponsavelChamaTelaProntuario();
+if(Codigojanela!=1)try {
+    AdicionaNovoResponsavelChamaTelaProntuario();
+} catch (ClassNotFoundException ex) {
+    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+}
 else
 if(Codigojanela==1)try {
     AdicionarResponsaveleChamaTelaPesquisarProntuario();
@@ -379,7 +529,11 @@ if(Codigojanela==1)try {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 System.out.println("Codigo da janela " +Codigojanela);
-        if(Codigojanela!=1)ChamaCadastroProntuario();
+        if(Codigojanela!=1)try {
+            ChamaCadastroProntuario();
+} catch (ClassNotFoundException ex) {
+    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+}
 else
     if(Codigojanela==1)try {
         ChamaTelaPesquisarProntuario();
@@ -390,7 +544,11 @@ else
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 System.out.println("Codigo da janela " +Codigojanela);
-        if(Codigojanela!=1)ChamaCadastroProntuario();
+        if(Codigojanela!=1)try {
+            ChamaCadastroProntuario();
+} catch (ClassNotFoundException ex) {
+    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+}
 else
     if(Codigojanela==1)try {
         ChamaTelaPesquisarProntuario();
@@ -399,6 +557,52 @@ else
 }
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jNotificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNotificacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNotificacaoActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(Codigojanela==1){
+            this.setVisible(false);        // TODO add your handling code here:
+            try {
+                new sctp2.Pesquisar.Prontuario(codigo).setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+        this.setVisible(false);        // TODO add your handling code here:
+sctp2.Cadastros.Prontuario acesso= new sctp2.Cadastros.Prontuario();
+acesso.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jBAumentaTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAumentaTamFOnteActionPerformed
+        TamanhoDaFonte(tamanhoFonte+1);        // TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAumentaTamFOnteActionPerformed
+
+    private void jBDiminuiTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiminuiTamFOnteActionPerformed
+TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDiminuiTamFOnteActionPerformed
+
+    private void jPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPesquisaKeyTyped
+if(jPesquisa.getText().trim().equals("Digite o nome do responsável aqui!")) jPesquisa.setText("");        // TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_jPesquisaKeyTyped
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+jPanelCadastrar.setVisible(true);
+nomeProfessorResponsavel.setVisible(true);
+jFTelefoneCelularProfessor.setVisible(true);
+jFTelefoneFixoProfessor.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+jPanelCadastrar.setVisible(true);
+nomeProfessorResponsavel.setVisible(false);
+jFTelefoneCelularProfessor.setVisible(false);
+jFTelefoneFixoProfessor.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -436,24 +640,37 @@ else
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAumentaTamFOnte;
+    private javax.swing.JButton jBDiminuiTamFOnte;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JFormattedTextField jFTelefoneCelular;
+    private javax.swing.JFormattedTextField jFTelefoneCelularProfessor;
     private javax.swing.JFormattedTextField jFTelefoneFixo;
+    private javax.swing.JFormattedTextField jFTelefoneFixoProfessor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jNotificacao;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelCadastrar;
     private javax.swing.JTextField jPesquisa;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextField nomeProfessorResponsavel;
     private javax.swing.JTextField nomeresponsavel;
     // End of variables declaration//GEN-END:variables
 
@@ -464,7 +681,7 @@ else
     acesso.setNomeresponsavel(nomeresponsavel.getText());
     acesso.setTelefoneFixo(jFTelefoneFixo.getText());
     acesso.setTelefoneCelular(jFTelefoneCelular.getText());
-    id=gravar.GravaresponsavelProntuario(nomeresponsavel.getText(), jFTelefoneCelular.getText(), jFTelefoneFixo.getText());
+    id=gravar.GravaresponsavelProntuario(nomeresponsavel.getText(), jFTelefoneCelular.getText(), jFTelefoneFixo.getText(),nomeProfessorResponsavel.getText(),jFTelefoneFixoProfessor.getText(),jFTelefoneCelularProfessor.getText());
     Idresponsavel=Integer.toString(id);
     }
     
@@ -497,7 +714,7 @@ else
         
     }
 
-    private void ChamaCadastroProntuario() {
+    private void ChamaCadastroProntuario() throws ClassNotFoundException {
             if(envia==null){//se for igual a null significa que nao existe nehuma chave para acessar a interface prontuario
         envia= new Prontuario();//nova chave para o objeto
     envia.setVisible(true);
@@ -511,7 +728,7 @@ else
 }
     }
 
-    private void AdicionaNovoResponsavelChamaTelaProntuario() {
+    private void AdicionaNovoResponsavelChamaTelaProntuario() throws ClassNotFoundException {
         try {
         PassaValoresResponsavel();
     } catch (ClassNotFoundException ex) {
@@ -538,7 +755,7 @@ if(envia==null){
         Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
     }
          if(enviar==null){
-    enviar= new PesquisarProntuarioEmprestado();
+    enviar= new Prontuario();
     enviar.setVisible(true);
     enviar.Recebe(codigo,nomeresponsavel.getText(),jFTelefoneFixo.getText(),jFTelefoneFixo.getText(),Idresponsavel);
     this.setVisible(false);
@@ -553,7 +770,7 @@ if(envia==null){
 
     private void ChamaTelaPesquisarProntuario() throws ClassNotFoundException {
         if(enviar==null){//se for igual a null significa que nao existe nehuma chave para acessar a interface prontuario
-        enviar= new PesquisarProntuarioEmprestado();//nova chave para o objeto
+        enviar= new Prontuario();//nova chave para o objeto
     enviar.setVisible(true);
     enviar.Recebe(codigo,(String)jTable1.getValueAt(jTable1.getSelectedRow(), 1),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 2),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
     this.setVisible(false);
@@ -563,6 +780,39 @@ if(envia==null){
     enviar.Recebe(codigo,(String)jTable1.getValueAt(jTable1.getSelectedRow(), 1),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 2),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 3),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
     this.setVisible(false);
     }
+    }
+
+    private void TamanhoDaFonte(int tamanhoFonte) {
+    this.tamanhoFonte=tamanhoFonte;
+        System.out.println("tam "+tamanhoFonte);
+        if((this.tamanhoFonte<20) && (this.tamanhoFonte>15)){
+        jBDiminuiTamFOnte.setEnabled(true);
+        jBAumentaTamFOnte.setEnabled(true);
+        jLabel2.setFont(new Font("Times new Roman",Font.TYPE1_FONT, tamanhoFonte));
+        jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jButton1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jPanel1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jNotificacao.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jButton2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jButton3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jButton4.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jFTelefoneCelular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jFTelefoneFixo.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jTable1.setFont(new Font("Times new Roman", Font.TYPE1_FONT, tamanhoFonte));
+        
+        
+        }
+        else
+            if(this.tamanhoFonte>=20){
+                jBAumentaTamFOnte.setEnabled(false);
+                jBDiminuiTamFOnte.setEnabled(true);
+                
+            }
+        else
+        if(this.tamanhoFonte<=15){
+                jBDiminuiTamFOnte.setEnabled(false);
+                jBAumentaTamFOnte.setEnabled(true);
+                }
     }
 
 }

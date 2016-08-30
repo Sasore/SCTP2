@@ -51,6 +51,8 @@ public class Anamnese {
         Anamnese.sofreAlgumaDoencaDescricao = sofreAlgumaDoencaDescricao;
     }
 
+   
+
     public static boolean isEmTratamentoMedico() {
         return emTratamentoMedico;
     }

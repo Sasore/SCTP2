@@ -5,6 +5,7 @@
  */
 package sctp2.Cadastros;
 
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,9 +20,11 @@ public class TratamentoNecessario extends javax.swing.JFrame {
     /**
      * Creates new form TratamentoNecessario
      */
+    private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela atual
     public TratamentoNecessario() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
+          TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
 
     }
 
@@ -38,6 +41,8 @@ public class TratamentoNecessario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jBAumentaTamFOnte = new javax.swing.JButton();
+        jBDiminuiTamFOnte = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -78,24 +83,56 @@ public class TratamentoNecessario extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(51, 102, 255));
 
-        jButton1.setText("<< Voltar");
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 51, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/left-arrow.png"))); // NOI18N
+        jButton1.setText("Voltar");
+        jButton1.setToolTipText("Tela anterior");
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 51, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/exit.png"))); // NOI18N
         jButton2.setText("Cancelar Cadastro");
+        jButton2.setToolTipText("Cancela o cadastro e retorna para a tela principal");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Finalizar");
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(0, 51, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/right-arrow.png"))); // NOI18N
+        jButton3.setText("Avançar ");
+        jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jBAumentaTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
+        jBAumentaTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467515709_icon-112-search-plus.png"))); // NOI18N
+        jBAumentaTamFOnte.setToolTipText("Aumentar o tamanho da fonte");
+        jBAumentaTamFOnte.setBorder(null);
+        jBAumentaTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAumentaTamFOnteActionPerformed(evt);
+            }
+        });
+
+        jBDiminuiTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467516016_icon-113-search-minus.png"))); // NOI18N
+        jBDiminuiTamFOnte.setToolTipText("Diminui o tamanho da fonte");
+        jBDiminuiTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDiminuiTamFOnteActionPerformed(evt);
             }
         });
 
@@ -104,23 +141,30 @@ public class TratamentoNecessario extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(451, 451, 451)
-                .addComponent(jButton2)
+                .addGap(19, 19, 19)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141)
+                .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 29, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -304,7 +348,7 @@ public class TratamentoNecessario extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -417,6 +461,7 @@ public class TratamentoNecessario extends javax.swing.JFrame {
 
         jMenu1.setText("Menu");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -426,6 +471,7 @@ public class TratamentoNecessario extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fechar.png"))); // NOI18N
         jMenuItem2.setText("Sair");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -477,16 +523,8 @@ public class TratamentoNecessario extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         SetaValoresTratamentoNecessario();
         this.setVisible(false);
-        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
+        sctp2.Cadastros.Prontuario acesso = new sctp2.Cadastros.Prontuario();
         acesso.setVisible(true);
-        sctp2.ClassesdeControle.Controle acesso1 = new sctp2.ClassesdeControle.Controle();
-        try {
-            acesso1.ProntuarioGrava();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jCRMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCRMFActionPerformed
@@ -510,6 +548,14 @@ public class TratamentoNecessario extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         System.exit(0);        // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jBAumentaTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAumentaTamFOnteActionPerformed
+        TamanhoDaFonte(tamanhoFonte+1);        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAumentaTamFOnteActionPerformed
+
+    private void jBDiminuiTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiminuiTamFOnteActionPerformed
+        TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDiminuiTamFOnteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -547,6 +593,8 @@ public class TratamentoNecessario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAumentaTamFOnte;
+    private javax.swing.JButton jBDiminuiTamFOnte;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -614,6 +662,55 @@ public class TratamentoNecessario extends javax.swing.JFrame {
         acesso.setProtesetotal(jCProteseTotal.isSelected()?1:0);
         acesso.setPpr(jCPPR.isSelected()?1:0);
 
+    }
+
+    private void TamanhoDaFonte(int tamanhoFonte) {
+        
+    this.tamanhoFonte=tamanhoFonte;
+        System.out.println("tam "+tamanhoFonte);
+        if((this.tamanhoFonte<20) && (this.tamanhoFonte>15)){
+        jBDiminuiTamFOnte.setEnabled(true);
+        jBAumentaTamFOnte.setEnabled(true);
+        jButton1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jPanel1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jButton2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jButton3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+         jCAmalga.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCCoroaTotal.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCDtm.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCEndodontiaBirradicular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCEndodontiaUnirradicular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCEndodontiaTrirradicular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCEstomatologia.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCExodontiaSimples.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCExodontia3Molar.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCExodontiaIncluso.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCPonteFixa3Elementos.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCPonteFixa4Elementos.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCponteFixaMaisque4Elementos.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCProtese.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCProtesePPR.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCRaspagemEPoliCoronario.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCResina.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCRMF.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCTerapiaPerioddeSuporte.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCProfilaxiaSimples.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCProteseTotal.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCPPR.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCCirugiaPeriodontal.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        
+        }
+        else
+            if(this.tamanhoFonte>=20){
+                jBAumentaTamFOnte.setEnabled(false);
+                jBDiminuiTamFOnte.setEnabled(true);
+                
+            }
+        else
+        if(this.tamanhoFonte<=15){
+                jBDiminuiTamFOnte.setEnabled(false);
+                jBAumentaTamFOnte.setEnabled(true);
+                }
     }
 
 }

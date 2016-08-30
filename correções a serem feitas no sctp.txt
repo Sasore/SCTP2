@@ -7,3 +7,6 @@ se já existe um prontuario com aquele número.
 para a tela de pesquisa de prontuario
 
 * em detalhes do paciente nao esta pegando o telefone do cara, provavelmente o campo telefone celular e fixo estao trocados
+* o colocar na lista negra do cadastro na ta funcionando
+
+* na tela de detalhes do paciente não exibe o telefone do paciente e o nome da janela é cadastro mudar pa detalhes

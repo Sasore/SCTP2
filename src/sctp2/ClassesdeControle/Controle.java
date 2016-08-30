@@ -260,11 +260,14 @@ public class Controle {
         String nome=acesso.getNomeresponsavel();
         String celular=acesso.getTelefoneCelular();
         String telefonefixo=acesso.getTelefoneFixo();
+        String nomeProfessor=acesso.getNomeProfessorResponsavel();
+        String celularProfessor=acesso.getTelefoneCelularProfessor();
+        String telefonefixoProfessor=acesso.getTelefoneFixoProfessor();
         //int retorno;
         //----------------------------------------------------------------
         
         //retorno=
-                conecta.GravaresponsavelProntuario(nome,celular,telefonefixo);
+                conecta.GravaresponsavelProntuario(nome,celular,telefonefixo,nomeProfessor,telefonefixoProfessor,celularProfessor);
         //if(retorno==true){
         sctp2.Principal.principal telaprincipal= new  sctp2.Principal.principal();
         //telaprincipal.setVisible(retorno);
@@ -280,11 +283,14 @@ public class Controle {
         String nome=acesso.getNomeresponsavel();
         String celular=acesso.getTelefoneCelular();
         String telefonefixo=acesso.getTelefoneFixo();
+        String nomeProfessor=acesso.getNomeProfessorResponsavel();
+        String celularProfessor=acesso.getTelefoneCelularProfessor();
+        String telefonefixoProfessor=acesso.getTelefoneFixoProfessor();
         int id=acesso.getIdResponsavel();
         boolean retorno;
         //----------------------------------------------------------------
         
-        retorno=conecta.AtualizaresponsavelProntuario(nome,celular,telefonefixo,id);
+        retorno=conecta.AtualizaresponsavelProntuario(nome,celular,telefonefixo,nomeProfessor,celularProfessor,telefonefixoProfessor,id);
         if(retorno==true){
      //   sctp2.Principal.principal telaprincipal= new  sctp2.Principal.principal();
         //telaprincipal.setVisible(retorno);
@@ -301,5 +307,89 @@ public class Controle {
             return 0;
         }
     }
+private boolean NovaAmnase() throws ClassNotFoundException {
+        Anamnese acesso = new Anamnese();
+        conexao conecta = new conexao();
+        Prontuario prontuario= new Prontuario();
+        //-----------------------------------
+        ArrayList<String> AnamneseList = new ArrayList<>();
+        boolean[] AnamneseVetor = new boolean[10];
+        int[] vetorAnamneseInteiro = new int[10];
+        Paciente PegaRG = new Paciente();
 
+        //--------------------------------------------------
+        AnamneseList.add(sctp2.ClassesdeControle.Anamnese.getPrincipalQueixa());//0
+        AnamneseList.add(acesso.getSofreAlgumaDoencaDescricao());//1
+        AnamneseList.add(acesso.getEmTratamentoMedicoDescricao());//2
+        AnamneseList.add(acesso.getPossuiAlergiasDescricao());//3
+        AnamneseList.add(acesso.getUsoDeAlgumaMedicacaoDescricao());//4
+        AnamneseList.add(acesso.getPossuiAlergiasDescricao());//5
+        AnamneseList.add(acesso.getJaFoiOperadoDescricao());//6
+        AnamneseList.add(acesso.getProblemasComHemorragiaDescricao());//7
+        AnamneseList.add(prontuario.getRgresponsavel());//8
+        AnamneseVetor[0] = acesso.isSofreAlgumaDoenca();
+        AnamneseVetor[1] = acesso.isEmTratamentoMedico();
+        AnamneseVetor[2] = acesso.isUsoDeAlgumaMedicacao();
+        AnamneseVetor[3] = acesso.isPossuiAlergias();
+        AnamneseVetor[4] = acesso.isJaFoiOperado();
+        AnamneseVetor[5] = acesso.isProblemasComHemorragia();
+        AnamneseVetor[6] = acesso.isProblemasComCicatrizacao();
+        AnamneseVetor[7] = acesso.isGravidez();
+        AnamneseVetor[8] = acesso.isProblemasComAnestesia();
+        for (int i = 0; i < 10; i++) {
+            vetorAnamneseInteiro[i] = boolToInt(AnamneseVetor[i]);//converte os dados booleanos para inteiro
+        }
+        conecta.NovaAnamnese(AnamneseList, vetorAnamneseInteiro);
+
+        return retorno;
+
+    }//fim da nova anamnese
+//--------------------------------------------
+private int NovotratamentosNecessarios() throws ClassNotFoundException {
+    //Esta função grava um novo tratamento necessário, ela normalmente será chamada quando o primeiro tratamento já estiver sido encerrado
+        TratamentosNecessarios acesso = new TratamentosNecessarios();
+        sctp2.BancodeDados.conexao conectar = new sctp2.BancodeDados.conexao();
+        int[] tratamentosNVetor = new int[23];
+        String rg = sctp2.ClassesdeControle.Prontuario.getRgresponsavel();
+        int retorno;
+
+        //-----------------------------------------------------------
+        tratamentosNVetor[0] = acesso.getAmalgama();
+        tratamentosNVetor[1] = acesso.getCirugiaPeridontal();
+        tratamentosNVetor[2] = acesso.getCoroaTotal();
+        tratamentosNVetor[3] = acesso.getDtm();
+        tratamentosNVetor[4] = acesso.getEndodontiaBirradicular();
+        tratamentosNVetor[5] = acesso.getEndontiaUnirradicular();
+        tratamentosNVetor[6] = acesso.getEndodontiaTrirradicular();
+        tratamentosNVetor[7] = acesso.getEstomatologia();
+        tratamentosNVetor[8] = acesso.getExodontia3Molar();
+        tratamentosNVetor[9] = acesso.getExodontiaIncluso();
+        tratamentosNVetor[10] = acesso.getProfilaxiaSimples();
+        tratamentosNVetor[11] = acesso.getPonteFixa3Elementos();
+        tratamentosNVetor[12] = acesso.getPonteFixa4Elementos();
+        tratamentosNVetor[13] = acesso.getPonteFixaMaisQue4Elementos();
+        tratamentosNVetor[14] = acesso.getProtese();
+        tratamentosNVetor[15] = acesso.getProtesetotal();
+        tratamentosNVetor[16] = acesso.getProtese_ppr();
+        tratamentosNVetor[17] = acesso.getPpr();
+        tratamentosNVetor[18] = acesso.getRaspagemEPoliCCoronario();
+        tratamentosNVetor[19] = acesso.getResina();
+        tratamentosNVetor[20] = acesso.getRmf();
+        tratamentosNVetor[21] = acesso.getTerrapiaOeriodDeSuporte();
+        tratamentosNVetor[22] = acesso.getExodontiaSimples();
+        retorno = conectar.NovoTratamentoNecessario(tratamentosNVetor, rg);
+        return retorno;
+    }
+
+//-----------------------------------------------
+    public void ProntuarioGravaNovoTratamento() throws ClassNotFoundException, SQLException {//Após um tratamento ser encerrado, esta função pode ser chamada para gerar um
+        String rg=new sctp2.ClassesdeControle.Prontuario().getRgresponsavel();
+        //-----------------------------------------
+        
+        NovaAmnase();//Esta função prepara os dados para serem gravados no banco de dados
+        NovotratamentosNecessarios();
+        sctp2.BancodeDados.conexao acesso=new sctp2.BancodeDados.conexao();
+        acesso.NovoTratamentodoPaciente(rg,0);//retira o paciente da alta
+        
+    }
 }

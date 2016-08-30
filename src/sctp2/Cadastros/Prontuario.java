@@ -6,6 +6,8 @@
 package sctp2.Cadastros;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ public class Prontuario extends javax.swing.JFrame {
     private static String nomeresponsavelGlobal="pepino";
     private static String FixoresponsavelGlobal="pepino";
     private static String CelularresponsavelGlobal="pepino";
+    private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela atual
 
     /**
      * Creates new form Prontuario
@@ -27,9 +30,8 @@ public class Prontuario extends javax.swing.JFrame {
     public Prontuario() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
-        NomeresponsavelProntuario.enable(false);
-        jTelefonefixo.enable(false);
-        JcelularoAluno.enable(false);
+        DesabilitaCampos();//Desabilita os campos que nao devem ser editados
+        TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
 
     }
 
@@ -48,6 +50,8 @@ public class Prontuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Voltar = new javax.swing.JButton();
         proximaetapa = new javax.swing.JButton();
+        jBAumentaTamFOnte = new javax.swing.JButton();
+        jBDiminuiTamFOnte = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -81,17 +85,46 @@ public class Prontuario extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
-        Voltar.setText("<< Voltar");
+        Voltar.setBackground(new java.awt.Color(255, 255, 255));
+        Voltar.setForeground(new java.awt.Color(0, 51, 255));
+        Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/left-arrow.png"))); // NOI18N
+        Voltar.setText("Voltar");
+        Voltar.setBorder(null);
         Voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VoltarActionPerformed(evt);
             }
         });
 
-        proximaetapa.setText("Próxima etapa  >>");
+        proximaetapa.setBackground(new java.awt.Color(255, 255, 255));
+        proximaetapa.setForeground(new java.awt.Color(0, 51, 255));
+        proximaetapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/save2.png"))); // NOI18N
+        proximaetapa.setText("Finalizar");
+        proximaetapa.setToolTipText("Grava os dados de todas as telas anteriores e encerra");
+        proximaetapa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
         proximaetapa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 proximaetapaActionPerformed(evt);
+            }
+        });
+
+        jBAumentaTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
+        jBAumentaTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467515709_icon-112-search-plus.png"))); // NOI18N
+        jBAumentaTamFOnte.setToolTipText("Aumenta o zoom da tela");
+        jBAumentaTamFOnte.setBorder(null);
+        jBAumentaTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAumentaTamFOnteActionPerformed(evt);
+            }
+        });
+
+        jBDiminuiTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
+        jBDiminuiTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467516016_icon-113-search-minus.png"))); // NOI18N
+        jBDiminuiTamFOnte.setToolTipText("Reduz o zoom da tela");
+        jBDiminuiTamFOnte.setBorder(null);
+        jBDiminuiTamFOnte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDiminuiTamFOnteActionPerformed(evt);
             }
         });
 
@@ -101,20 +134,25 @@ public class Prontuario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113)
+                .addComponent(jBAumentaTamFOnte)
+                .addGap(18, 18, 18)
+                .addComponent(jBDiminuiTamFOnte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(proximaetapa)
-                .addGap(48, 48, 48))
+                .addComponent(proximaetapa, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(proximaetapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(proximaetapa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -139,6 +177,7 @@ public class Prontuario extends javax.swing.JFrame {
         jLNomeAluno.setText("Nome do Professor/Aluno:");
 
         NomeresponsavelProntuario.setEditable(false);
+        NomeresponsavelProntuario.setBackground(new java.awt.Color(255, 255, 255));
         NomeresponsavelProntuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NomeresponsavelProntuarioKeyTyped(evt);
@@ -151,12 +190,13 @@ public class Prontuario extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(ProntuarioInformacoesAdicionais);
 
-        jComboStatusProntuario.setBackground(new java.awt.Color(204, 204, 204));
-        jComboStatusProntuario.setForeground(new java.awt.Color(51, 51, 51));
+        jComboStatusProntuario.setForeground(new java.awt.Color(0, 51, 255));
         jComboStatusProntuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponível", "Emprestado" }));
+        jComboStatusProntuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
         jButton1.setText("Adicionar....");
         jButton1.setToolTipText("Adicione um  responsável pelo prontuário");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -177,9 +217,11 @@ public class Prontuario extends javax.swing.JFrame {
         });
 
         jTelefonefixo.setEditable(false);
+        jTelefonefixo.setBackground(new java.awt.Color(255, 255, 255));
         jTelefonefixo.setToolTipText("Celular");
 
         JcelularoAluno.setEditable(false);
+        JcelularoAluno.setBackground(new java.awt.Color(255, 255, 255));
         JcelularoAluno.setToolTipText("Telefone fixo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -216,7 +258,7 @@ public class Prontuario extends javax.swing.JFrame {
                                     .addComponent(jCodigoResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                                     .addComponent(jComboStatusProntuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jNotificacao))
@@ -251,13 +293,14 @@ public class Prontuario extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
 
         jMenu1.setText("Menu");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,6 +309,7 @@ public class Prontuario extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fechar.png"))); // NOI18N
         jMenuItem2.setText("Sair do SCTP");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,17 +346,25 @@ public class Prontuario extends javax.swing.JFrame {
         if (retorno == false) {
             jNotificacao.setText(" Preencha os campos em vermelho");
         } else if (retorno == true) {
-            sctp2.Cadastros.Paciente acesso = new sctp2.Cadastros.Paciente();
+            sctp2.ClassesdeControle.Controle acesso1 = new sctp2.ClassesdeControle.Controle();
+        try {
+            PassaValores();
+            acesso1.ProntuarioGrava();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
+        }   sctp2.Principal.principal acesso = new sctp2.Principal.principal();
             acesso.setVisible(true);//exibe a tela de cadastro de paciente
             this.setVisible(false);// oculta a tela atual
-            PassaValores();
+            
             
         }
     }//GEN-LAST:event_proximaetapaActionPerformed
 
     private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
         this.setVisible(false);
-        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
+        sctp2.Cadastros.TratamentoNecessario acesso = new sctp2.Cadastros.TratamentoNecessario();
         acesso.setVisible(true);
 
     }//GEN-LAST:event_VoltarActionPerformed
@@ -352,6 +404,14 @@ public class Prontuario extends javax.swing.JFrame {
         this.setVisible(false);
         acesso.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jBAumentaTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAumentaTamFOnteActionPerformed
+        TamanhoDaFonte(tamanhoFonte+1);        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAumentaTamFOnteActionPerformed
+
+    private void jBDiminuiTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiminuiTamFOnteActionPerformed
+TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDiminuiTamFOnteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,6 +454,8 @@ public class Prontuario extends javax.swing.JFrame {
     private javax.swing.JTextField Nprontuario;
     private javax.swing.JTextPane ProntuarioInformacoesAdicionais;
     private javax.swing.JButton Voltar;
+    private javax.swing.JButton jBAumentaTamFOnte;
+    private javax.swing.JButton jBDiminuiTamFOnte;
     private javax.swing.JButton jButton1;
     private javax.swing.JTextField jCodigoResponsavel;
     private javax.swing.JComboBox jComboStatusProntuario;
@@ -425,7 +487,9 @@ public class Prontuario extends javax.swing.JFrame {
         acesso.setStatusProntuario((String) jComboStatusProntuario.getSelectedItem());
         acesso.setTelefoneResponsavelProntuario(JcelularoAluno.getText());
         acesso.setInformacoesProntuario(ProntuarioInformacoesAdicionais.getText());
-        acesso.setIdResponsavelProntuario(jCodigoResponsavel.getText());
+        if(jCodigoResponsavel.getText().trim().equals(""))acesso.setIdResponsavelProntuario("0");
+        else
+            if(jCodigoResponsavel.getText().trim().equals(""))acesso.setIdResponsavelProntuario(jCodigoResponsavel.getText());
 
     }
 
@@ -436,10 +500,10 @@ public class Prontuario extends javax.swing.JFrame {
             retorno = false;
         }
 
-        if (NomeresponsavelProntuario.getText().trim().equals("")) {
-            NomeresponsavelProntuario.setBorder(new LineBorder(Color.red));
-            retorno = false;
-        }
+//        if (NomeresponsavelProntuario.getText().trim().equals("")) {
+//            NomeresponsavelProntuario.setBorder(new LineBorder(Color.red));
+//            retorno = false;
+//        }
 
         return retorno;
 
@@ -452,4 +516,56 @@ public class Prontuario extends javax.swing.JFrame {
         jCodigoResponsavel.setText(idResponsavel);
     }
 
-}
+    private void TamanhoDaFonte(int tamanhoFonte) {
+        this.tamanhoFonte=tamanhoFonte;
+        System.out.println("tam "+tamanhoFonte);
+        if((this.tamanhoFonte<24) && (this.tamanhoFonte>15)){
+        jBDiminuiTamFOnte.setEnabled(true);
+        jBAumentaTamFOnte.setEnabled(true);
+        jLabel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jButton1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jCodigoResponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jComboStatusProntuario.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jLInformacoesAdicionais.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jLNomeAluno.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jLTelefoneAluno23.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jMenu1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jMenu3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jMenu3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jMenu4.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jMenuBar1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jMenuBar2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jMenuItem1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jMenuItem2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jPanel1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jPanel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jNotificacao.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jTelefonefixo.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        
+        
+        }
+        else
+            if(this.tamanhoFonte>=24){
+                jBAumentaTamFOnte.setEnabled(false);
+                jBDiminuiTamFOnte.setEnabled(true);
+                
+            }
+        else
+        if(this.tamanhoFonte<=15){
+                jBDiminuiTamFOnte.setEnabled(false);
+                jBAumentaTamFOnte.setEnabled(true);
+                }
+    }
+
+    private void DesabilitaCampos() {
+    //NomeresponsavelProntuario.enable(false);
+        //jTelefonefixo.enable(false);
+        //JcelularoAluno.enable(false);
+        NomeresponsavelProntuario.setForeground(Color.black);
+        jTelefonefixo.setForeground(Color.black);
+        JcelularoAluno.setForeground(Color.black);
+    }
+    }
+
+

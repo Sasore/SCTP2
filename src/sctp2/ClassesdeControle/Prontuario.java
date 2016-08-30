@@ -16,6 +16,7 @@ public class Prontuario {
     private static  String InformacoesProntuario;
     private static  String TelefoneResponsavelProntuario;
     private static  int IdResponsavelProntuario;
+    private static String rgresponsavel;
 
     public static void setIdResponsavelProntuario(String IdResponsavelProntuario) {
         int valor= Integer.parseInt(IdResponsavelProntuario);
@@ -69,6 +70,14 @@ public class Prontuario {
 
     public static int getIdResponsavelProntuario() {
         return IdResponsavelProntuario;
+    }
+
+    public static String getRgresponsavel() {
+        return rgresponsavel;
+    }
+
+    public static void setRgresponsavel(String rgresponsavel) {
+        Prontuario.rgresponsavel = rgresponsavel;
     }
 
             

@@ -325,18 +325,23 @@ public class conexao {
         return true;
     }
 
-    public int GravaresponsavelProntuario(String nome, String celular, String telefonefixo) throws ClassNotFoundException {
+    public int GravaresponsavelProntuario(String nome, String celular, String telefonefixo,String nomeProfessor, String telefoneFixoProfessor, String celularProfessor) throws ClassNotFoundException {
         Connection con = null;
         int id = 0;
         ResultSet rs;
 
-        String sql = ("insert into responsavelpeloprontuario(resp_nome,resp_celular,resp_telefone_fixo) values (?,?,?);");
+        String sql = ("INSERT INTO `responsavelpeloprontuario`(`Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, "
+                + "`telefoneFixo_ResponsavelPeloProntuario`, `nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, "
+                + "`celularProfessor_ResponsavelPeloProntuario`) VALUES (?,?,?,?,?,?,?)");
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, nome);
             smt.setString(2, celular);
             smt.setString(3, telefonefixo);
+            smt.setString(4, nomeProfessor);
+            smt.setString(5, telefoneFixoProfessor);
+            smt.setString(6, celularProfessor);
             smt.execute();
             retorno = true;
             System.out.println("Gravou Aluno/Responsavel");
@@ -361,16 +366,22 @@ public class conexao {
         return id;
     }
 
-    public boolean AtualizaresponsavelProntuario(String nome, String celular, String telefonefixo, int id) throws ClassNotFoundException {
+    public boolean AtualizaresponsavelProntuario(String nome, String celular, String telefonefixo, String nomeProfessor, String celularProfessor, String telefoneProfessor,int id) throws ClassNotFoundException {
         Connection con = null;
-        String sql = ("update  responsavelpeloprontuario set resp_nome=?,resp_celular=?,resp_telefone_fixo =? where id=?;");
+        String sql = ("UPDATE `"
+                + "responsavelpeloprontuario` SET `nome_ResponsavelPeloProntuario`=?,`celular_ResponsavelPeloProntuario`=?,`"
+                + "telefoneFixo_ResponsavelPeloProntuario`=?,`nomeProfessor_ResponsavelPeloProntuario`=?,"
+                + "`TelefoneProfessor_ResponsavelPeloProntuario`=?,`celularProfessor_ResponsavelPeloProntuario`=? WHERE `Id`=?");
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, nome);
             smt.setString(2, celular);
             smt.setString(3, telefonefixo);
-            smt.setInt(4, id);
+            smt.setString(4, nomeProfessor);
+            smt.setString(5, telefoneProfessor);            
+            smt.setString(6, celularProfessor);
+            smt.setInt(7, id);
             smt.executeUpdate();
             retorno = true;
             System.out.println("Atualizou Aluno/Responsavel");
@@ -623,4 +634,112 @@ public class conexao {
 
         return true;
     }
+    //-------------------------------------------FUNÇÕES DE ATUALIZAÇÃO--------------------------------------------------------------------------
+    public boolean NovaAnamnese(ArrayList<String> AnamneseList, int[] AnamneseVetor) throws ClassNotFoundException {
+//Esta função será chamada quando o paciente receber um novo tratamento (ou seja um tratamento ja´tera sido encerrado)
+        Connection con = null;
+        String sql2 = "UPDATE `saude` SET `sa_QueixaPrincipal`=?,`sa_Doenca`=?,`sa_QuaisDoencas`=?,\n" +
+"`sa_TratamentoMedico`=?,`sa_QuaisTratamentosMedicos`=?,`sa_Medicacao`=?,`sa_QuaisMedicacoes`=?,`sa_Alergia`=?,`sa_QuaisAlergias`=?,\n" +
+"`sa_Operado`=?,`sa_QuaisOperacoes`=?,`sa_ProblemaAnestesia`=?,`sa_ProblemaHemorragia`=?,\n" +
+"`sa_ProblemaCicatrizacao`=?,`sa_Gravidez`=?\n" +
+" WHERE `sa_ReferenciaRG`=?";
+        try {
+            con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql2);
+
+            smt.setString(1, AnamneseList.get(0));//principal Queixa
+            smt.setInt(2, AnamneseVetor[0]);//doença
+            smt.setString(3, AnamneseList.get(1));//descrição da doença
+            smt.setInt(4, AnamneseVetor[1]);//Tratamento medico
+            smt.setString(5, AnamneseList.get(2));//tratamento medico descrição
+            smt.setInt(6, AnamneseVetor[2]);//medicação
+            smt.setString(7, AnamneseList.get(4));//descrição da medicação
+            smt.setInt(8, AnamneseVetor[3]);//Alergia
+            smt.setString(9, AnamneseList.get(5));//descrição da alergia
+            smt.setInt(10, AnamneseVetor[4]);//operado
+            smt.setString(11, AnamneseList.get(6));//descrição da operação
+            smt.setInt(12, AnamneseVetor[8]);//anestesia
+            smt.setInt(13, AnamneseVetor[5]);//hemorragia
+            smt.setInt(14, AnamneseVetor[6]);//cicatrização
+            smt.setInt(15, AnamneseVetor[7]);//Gravidez
+            smt.setString(16, AnamneseList.get(8));//RG
+            smt.executeUpdate();
+            System.out.println("Gravou A Anamnese");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "(2) Não foi possível gravar no Banco de dados as informações da tela de cadastro de prontuario , tente novamente em breve.");
+            e.printStackTrace();
+        } finally {
+            closeConnection(con);
+        }
+
+        return retorno;
+    }//fim da atualização Anamenese
+    public int NovoTratamentoNecessario(int[] tratamentosNVetor, String rg) throws ClassNotFoundException {
+        Connection con = null;
+        int retorno=0;
+        String sql = ("UPDATE `necessidade` SET `nec_Amalgama`=?,`nec_CirurgiaPeriodontal`=?,`nec_CoroaTotal`=?,\n" +
+"`nec_DTM`=?,`nec_EndodontiaBirradicular`=?,`nec_Endodontiauniebirradicular`=?,`nec_EndodontiaTrirradicular`=?\n" +
+",`nec_Estomatologia`=?,`nec_ExodontiaMolar`=?,`nec_ExodontiaIncluso`=?,`nec_ProfilaxiaSimples`=?,\n" +
+"`nec_PonteFixa3Elementos`=?,`nec_Pontefixa4elementos`=?,`nec_Pontefixamaisque4elementos`=?\n" +
+",`nec_Protese`=?,`nec_ProteseTotalPar`=?,`nec_ProtesePPR`=?,`nec_PPR`=?,`nec_RaspagemPolimentoCoronario`=?,\n" +
+"`nec_Resina`=?,`nec_RMF`=?,`nec_TerapiaPeriodontal`=?,`nec_ExodontiaSimples`=?  WHERE `nec_referencia_rg`=?");
+        try {
+            con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setInt(1, tratamentosNVetor[0]);
+            smt.setInt(2, tratamentosNVetor[1]);
+            smt.setInt(3, tratamentosNVetor[2]);
+            smt.setInt(4, tratamentosNVetor[3]);
+            smt.setInt(5, tratamentosNVetor[4]);
+            smt.setInt(6, tratamentosNVetor[5]);
+            smt.setInt(7, tratamentosNVetor[6]);
+            smt.setInt(8, tratamentosNVetor[7]);
+            smt.setInt(9, tratamentosNVetor[8]);
+            smt.setInt(10, tratamentosNVetor[9]);
+            smt.setInt(11, tratamentosNVetor[10]);
+            smt.setInt(12, tratamentosNVetor[11]);
+            smt.setInt(13, tratamentosNVetor[12]);
+            smt.setInt(14, tratamentosNVetor[13]);
+            smt.setInt(15, tratamentosNVetor[14]);
+            smt.setInt(16, tratamentosNVetor[15]);
+            smt.setInt(17, tratamentosNVetor[16]);
+            smt.setInt(18, tratamentosNVetor[17]);
+            smt.setInt(19, tratamentosNVetor[18]);
+            smt.setInt(20, tratamentosNVetor[19]);
+            smt.setInt(21, tratamentosNVetor[20]);
+            smt.setInt(22, tratamentosNVetor[21]);
+            smt.setInt(23, tratamentosNVetor[22]);
+            smt.setString(24, rg);
+           retorno= smt.executeUpdate();
+            System.out.println("Gravou Tratamento");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "(2) Não foi possível gravar no Banco de dados as informações da tela de cadastro de tratamentos necessarios , tente novamente em breve.");
+            e.printStackTrace();
+        } finally {
+            closeConnection(con);
+        }
+       if(retorno>0) return 1;
+       else
+           return 0;
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void NovoTratamentodoPaciente(String rg,int status) throws ClassNotFoundException, SQLException {
+     Connection con = null;
+     String sql="UPDATE paciente set pac_Alta=?, `pac_inicio_tratamento`=CURDATE() where pac_RG=?";
+     try {
+            con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setInt(1, status);
+            smt.setString(2, rg);
+            smt.executeUpdate();
+    }catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "(2) Não foi possível gravar no Banco de dados as informações da tela de cadastro de tratamentos necessarios , tente novamente em breve.");
+            e.printStackTrace();
+        } finally {
+            closeConnection(con);
+        }
+}
 }

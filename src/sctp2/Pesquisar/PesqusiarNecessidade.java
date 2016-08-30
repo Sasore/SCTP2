@@ -23,7 +23,9 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
      */
     public PesqusiarNecessidade() {
         initComponents();
+        PesquisarPorNecessidade();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
+        
     }
 
     /**
@@ -128,6 +130,7 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
         jTNotificacao.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jTNotificacao.setForeground(new java.awt.Color(51, 102, 255));
         jTNotificacao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTNotificacao.setBorder(null);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -162,13 +165,17 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
-        jButton1.setText("Menu Principal");
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/left-arrow.png"))); // NOI18N
+        jButton1.setText("Voltar");
+        jButton1.setToolTipText("ir para menu principal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -192,8 +199,10 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu1.setText("Arquivo");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
+        jMenu1.setText("Menu");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,6 +211,7 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fechar.png"))); // NOI18N
         jMenuItem2.setText("Sair do SCTP");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,9 +273,9 @@ PesquisarPorNecessidade();        // TODO add your handling code here:
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         String id= (String) jTable1.getValueAt(jTable1.getSelectedRow(),0);
-                sctp2.Pesquisar.Paciente.DadosDoPaciente acesso;
+                sctp2.Paciente.DadosDoPaciente acesso;
         try {
-            acesso = new sctp2.Pesquisar.Paciente.DadosDoPaciente(id);
+            acesso = new sctp2.Paciente.DadosDoPaciente(id);
               acesso.setVisible(true);
             this.setVisible(false);
         } catch (ClassNotFoundException ex) {
