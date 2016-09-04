@@ -330,9 +330,9 @@ public class conexao {
         int id = 0;
         ResultSet rs;
 
-        String sql = ("INSERT INTO `responsavelpeloprontuario`(`Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, "
+        String sql = ("INSERT INTO `responsavelpeloprontuario`(`nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, "
                 + "`telefoneFixo_ResponsavelPeloProntuario`, `nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, "
-                + "`celularProfessor_ResponsavelPeloProntuario`) VALUES (?,?,?,?,?,?,?)");
+                + "`celularProfessor_ResponsavelPeloProntuario`) VALUES (?,?,?,?,?,?)");
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -346,7 +346,7 @@ public class conexao {
             retorno = true;
             System.out.println("Gravou Aluno/Responsavel");
             //------------a partir daqui a é feita uma pesquisa para saber qual o ID do responsavel que foi gravado----------------------------------------
-            sql = "select id from responsavelpeloprontuario where resp_nome=? and resp_celular=?;";
+            sql = "select id from responsavelpeloprontuario where nome_ResponsavelPeloProntuario=? and celular_ResponsavelPeloProntuario=?;";
             PreparedStatement smt2 = (PreparedStatement) con.prepareStatement(sql);
             smt2.setString(1, nome);
             smt2.setString(2, celular);

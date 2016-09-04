@@ -9,8 +9,15 @@ package sctp2.ClassesdeControle;
  *
  * @author Adriano
  */
-public  class responsavelprontuario {
+public class responsavelprontuario {
+
     private static int idResponsavel;
+    private static String nomeresponsavel;
+    private static String telefoneCelular;
+    private static String telefoneFixo;
+    private static String nomeProfessorResponsavel;
+    private static String telefoneCelularProfessor;
+    private static String telefoneFixoProfessor;
 
     public static int getIdResponsavel() {
         return idResponsavel;
@@ -19,12 +26,6 @@ public  class responsavelprontuario {
     public static void setIdResponsavel(int idResponsavel) {
         responsavelprontuario.idResponsavel = idResponsavel;
     }
-    private static String nomeresponsavel;
-    private static String telefoneCelular;
-    private static String telefoneFixo;
-    private static String nomeProfessorResponsavel;
-    private static String telefoneCelularProfessor;
-    private static String telefoneFixoProfessor;
 
     public static String getNomeProfessorResponsavel() {
         return nomeProfessorResponsavel;
@@ -37,6 +38,7 @@ public  class responsavelprontuario {
     public static String getTelefoneFixoProfessor() {
         return telefoneFixoProfessor;
     }
+
     public static String getNomeresponsavel() {
         return nomeresponsavel;
     }
@@ -72,5 +74,5 @@ public  class responsavelprontuario {
     public static void setTelefoneFixoProfessor(String telefoneFixoProfessor) {
         responsavelprontuario.telefoneFixoProfessor = telefoneFixoProfessor;
     }
-    
+
 }

@@ -5,6 +5,9 @@
  */
 package sctp2.Pesquisar;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 /**
  *
  * @author Adriano Local
@@ -49,7 +52,11 @@ public class PesquisarProntuario {
         } else {
             if (status == 1) {
                 return "Emprestado";
-            } else {
+            }else
+                if(status==2){
+                    return "Reservado";
+                }
+            else {
                 return "Indeterminado";
             }
         }
@@ -70,9 +77,43 @@ public class PesquisarProntuario {
         return informacoes;
     }
 
+    public int getIdUsuarioReservado() {
+        return idUsuarioReservado;
+    }
+
+    public int getCodigoProntuario() {
+        return codigoProntuario;
+    }
+
+    public Date getDataDevolução() {
+        return dataDevolução;
+    }
+
+    public Date getDataEmprestimo() {
+        return dataEmprestimo;
+    }
+    
+
     public static void setInformacoes(String informacoes) {
         PesquisarProntuario.informacoes = informacoes;
     }
+
+    public void setDataEmprestimo(Date dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
+    }
+
+    public void setDataDevolução(Date dataDevolução) {
+        this.dataDevolução = dataDevolução;
+    }
+
+    public void setCodigoProntuario(int codigoProntuario) {
+        this.codigoProntuario = codigoProntuario;
+    }
+
+    public void setIdUsuarioReservado(int idUsuarioReservado) {
+        this.idUsuarioReservado = idUsuarioReservado;
+    }
+    
     
     private static String nome;
     private static String telefone;
@@ -80,6 +121,10 @@ public class PesquisarProntuario {
     private static String prontuario;
     private static String paciente;
     private static String informacoes;
-    private static int status;
+    private Date     dataEmprestimo;
+    private Date     dataDevolução;
+    private int           codigoProntuario;
+    private static int    status;
+    private int          idUsuarioReservado;
 
 }

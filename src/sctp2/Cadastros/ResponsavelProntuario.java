@@ -12,39 +12,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import sctp2.Pesquisar.Pesquisar;
-import sctp2.Pesquisar.Prontuario;
 
 /**
  *
  * @author Adriano Local
+ * Esta Interface é chamada em vários locais diferentes do sistema, portanto ela foi projetada
+ de forma que identifique de qual interface ela foi invocada para que possa retornar para ela.
+ exemplo: se a tela de cadastro de paciente chamar esta tela , ela saberá que foi a tela pelos parâmetros que foram passados, pois a quantidade e o
+ tipo de parâmetro determina qual construtor será usado.
  */
 public class ResponsavelProntuario extends javax.swing.JFrame {
 Prontuario envia;
 Prontuario enviar;
 private String codigo;//codigo do prontuario, ou seja o numero de cadastro fisico dele
 private String Idresponsavel;
-private int Codigojanela;//determina quem chamou esta tela, se for 1 foi a tela peesquisar prontuario
 private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela atual
 
     /**
      * Creates new form ResponsavelProntuario
      */
- public ResponsavelProntuario( String codigoP) {
+ 
+ public ResponsavelProntuario(  String nprontuario) {//int janela: qual janela.componente chamou esta interface
         initComponents();
         this.setLocation(50, WIDTH);
-        sctp2.Cadastros.Prontuario acesso= new sctp2.Cadastros.Prontuario();
-        codigo=codigoP;
-        System.out.println("codigo"+codigo);
-         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
-         jPanelCadastrar.setVisible(false);
-    }
- public ResponsavelProntuario( int janela, String nprontuario) {//int janel: qual janela chamou esta
-        initComponents();
-        this.setLocation(50, WIDTH);
-        Codigojanela=janela;
         codigo=nprontuario;
         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
         jPanelCadastrar.setVisible(false);
+        
 
     }
     public ResponsavelProntuario() {
@@ -73,7 +67,7 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jTable1 = new javax.swing.JTable();
         jNotificacao = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jOutdoor = new javax.swing.JTextPane();
         jPanelCadastrar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -90,10 +84,10 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jFTelefoneFixoProfessor = new javax.swing.JFormattedTextField();
         jFTelefoneCelularProfessor = new javax.swing.JFormattedTextField();
         jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        jNovoAluno = new javax.swing.JButton();
+        jNovoProfessor = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         jBAumentaTamFOnte = new javax.swing.JButton();
         jBDiminuiTamFOnte = new javax.swing.JButton();
 
@@ -139,6 +133,7 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 51, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
         jButton2.setText("Adicionar");
@@ -191,10 +186,10 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
             }
         });
 
-        jTextPane1.setEditable(false);
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextPane1.setText("Pesquise pelo Aluno ou Professor antes de cadastrar um novo, caso ele não exista, você pode cadastrar um Aluno e seu Professor ou Apenas o Professor.");
-        jScrollPane2.setViewportView(jTextPane1);
+        jOutdoor.setEditable(false);
+        jOutdoor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jOutdoor.setText("Pesquise pelo Aluno ou Professor antes de cadastrar um novo, caso ele não exista, você pode cadastrar um Aluno e seu Professor ou Apenas o Professor.");
+        jScrollPane2.setViewportView(jOutdoor);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Aluno /Responsável");
@@ -202,32 +197,38 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Professor:");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Nome: ");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Telefone: ");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Celular:");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Nome: ");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Telefone: ");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Celular:");
 
         try {
-            jFTelefoneFixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+            jFTelefoneFixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFTelefoneCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+            jFTelefoneCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#-####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFTelefoneFixoProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+            jFTelefoneFixoProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -239,6 +240,7 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         }
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 51, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
         jButton3.setText("Adicionar");
@@ -253,27 +255,7 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jPanelCadastrarLayout.setHorizontalGroup(
             jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCadastrarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastrarLayout.createSequentialGroup()
                 .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelCadastrarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCadastrarLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jFTelefoneCelularProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                            .addComponent(jFTelefoneFixoProfessor)
-                            .addComponent(nomeProfessorResponsavel)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCadastrarLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,8 +270,28 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
                             .addGroup(jPanelCadastrarLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(30, 30, 30)
-                                .addComponent(jFTelefoneCelular)))))
-                .addGap(240, 240, 240))
+                                .addComponent(jFTelefoneCelular))))
+                    .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanelCadastrarLayout.createSequentialGroup()
+                                    .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel7))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jFTelefoneFixoProfessor, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jFTelefoneCelularProfessor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                                        .addComponent(nomeProfessorResponsavel)))))))
+                .addGap(26, 26, 26))
         );
         jPanelCadastrarLayout.setVerticalGroup(
             jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,89 +324,24 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
                 .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFTelefoneCelularProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
 
-        jButton5.setText("Novo Aluno ");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jNovoAluno.setText("Novo Aluno ");
+        jNovoAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jNovoAlunoActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Novo Professor");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jNovoProfessor.setText("Novo Professor");
+        jNovoProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jNovoProfessorActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
-                .addGap(68, 68, 68)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jPanelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6)))
-                .addGap(0, 26, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addGap(15, 15, 15)
-                        .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6))
-                        .addGap(5, 5, 5)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(96, Short.MAX_VALUE))))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setForeground(new java.awt.Color(0, 50, 255));
@@ -416,6 +353,74 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
                 jButton4ActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton1))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(68, 68, 68)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jNovoAluno)
+                        .addGap(18, 18, 18)
+                        .addComponent(jNovoProfessor))
+                    .addComponent(jPanelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
+                        .addGap(15, 15, 15)
+                        .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jNovoAluno)
+                            .addComponent(jNovoProfessor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
 
         jBAumentaTamFOnte.setBackground(new java.awt.Color(255, 255, 255));
         jBAumentaTamFOnte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1467515709_icon-112-search-plus.png"))); // NOI18N
@@ -440,13 +445,11 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(225, 225, 225)
                 .addComponent(jBAumentaTamFOnte)
                 .addGap(18, 18, 18)
                 .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(897, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,9 +457,8 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -483,7 +485,7 @@ jPesquisa.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaMouseClicked
 
     private void jPesquisaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPesquisaMouseExited
-if(jPesquisa.getText().trim().equals("")) jPesquisa.setText("Digite o nome do responsável aqui!");        // TODO add your handling code here:        // TODO add your handling code here:
+//if(jPesquisa.getText().trim().equals("")) jPesquisa.setText("Digite o nome do responsável aqui!");        // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaMouseExited
 
     private void jPesquisaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPesquisaMouseReleased
@@ -493,21 +495,14 @@ if(jPesquisa.getText().trim().equals("")) jPesquisa.setText("Digite o nome do re
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 //    boolean retorno = false;
 
-System.out.println("Codigo da janela " +Codigojanela);
-if(Codigojanela!=1)try {
-    AdicionaNovoResponsavelChamaTelaProntuario();
-} catch (ClassNotFoundException ex) {
-    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-}
-else
-if(Codigojanela==1)try {
-    AdicionarResponsaveleChamaTelaPesquisarProntuario();
-} catch (ClassNotFoundException ex) {
-    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-}
 
 
-    
+    try {
+        AdicionaNovoResponsavelChamaTelaProntuario();
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -528,34 +523,26 @@ if(Codigojanela==1)try {
     }//GEN-LAST:event_jPesquisaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-System.out.println("Codigo da janela " +Codigojanela);
-        if(Codigojanela!=1)try {
-            ChamaCadastroProntuario();
-} catch (ClassNotFoundException ex) {
-    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-}
-else
-    if(Codigojanela==1)try {
-        ChamaTelaPesquisarProntuario();
-} catch (ClassNotFoundException ex) {
-    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-}
+
+
+    try {
+        ChamaCadastroProntuario();
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-System.out.println("Codigo da janela " +Codigojanela);
-        if(Codigojanela!=1)try {
-            ChamaCadastroProntuario();
-} catch (ClassNotFoundException ex) {
-    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-}
-else
-    if(Codigojanela==1)try {
-        ChamaTelaPesquisarProntuario();
-} catch (ClassNotFoundException ex) {
-    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-}
+    try {
+        ChamaCadastroProntuario();
+        
+        
+        
         // TODO add your handling code here:
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jNotificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNotificacaoActionPerformed
@@ -563,19 +550,10 @@ else
     }//GEN-LAST:event_jNotificacaoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(Codigojanela==1){
-            this.setVisible(false);        // TODO add your handling code here:
-            try {
-                new sctp2.Pesquisar.Prontuario(codigo).setVisible(true);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else{
-        this.setVisible(false);        // TODO add your handling code here:
 sctp2.Cadastros.Prontuario acesso= new sctp2.Cadastros.Prontuario();
+this.setVisible(false);      
 acesso.setVisible(true);
-        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jBAumentaTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAumentaTamFOnteActionPerformed
@@ -590,19 +568,27 @@ TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:     
 if(jPesquisa.getText().trim().equals("Digite o nome do responsável aqui!")) jPesquisa.setText("");        // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaKeyTyped
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jNovoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNovoAlunoActionPerformed
 jPanelCadastrar.setVisible(true);
 nomeProfessorResponsavel.setVisible(true);
 jFTelefoneCelularProfessor.setVisible(true);
 jFTelefoneFixoProfessor.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+jLabel7.setVisible(true);
+jLabel8.setVisible(true);
+jLabel9.setVisible(true);
+jLabel3.setVisible(true);
+    }//GEN-LAST:event_jNovoAlunoActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jNovoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNovoProfessorActionPerformed
 jPanelCadastrar.setVisible(true);
 nomeProfessorResponsavel.setVisible(false);
 jFTelefoneCelularProfessor.setVisible(false);
 jFTelefoneFixoProfessor.setVisible(false);
-    }//GEN-LAST:event_jButton6ActionPerformed
+jLabel7.setVisible(false);
+jLabel8.setVisible(false);
+jLabel9.setVisible(false);
+jLabel3.setVisible(false);
+    }//GEN-LAST:event_jNovoProfessorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -646,8 +632,6 @@ jFTelefoneFixoProfessor.setVisible(false);
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JFormattedTextField jFTelefoneCelular;
     private javax.swing.JFormattedTextField jFTelefoneCelularProfessor;
     private javax.swing.JFormattedTextField jFTelefoneFixo;
@@ -662,6 +646,9 @@ jFTelefoneFixoProfessor.setVisible(false);
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jNotificacao;
+    private javax.swing.JButton jNovoAluno;
+    private javax.swing.JButton jNovoProfessor;
+    private javax.swing.JTextPane jOutdoor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelCadastrar;
@@ -669,7 +656,6 @@ jFTelefoneFixoProfessor.setVisible(false);
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextField nomeProfessorResponsavel;
     private javax.swing.JTextField nomeresponsavel;
     // End of variables declaration//GEN-END:variables
@@ -681,6 +667,9 @@ jFTelefoneFixoProfessor.setVisible(false);
     acesso.setNomeresponsavel(nomeresponsavel.getText());
     acesso.setTelefoneFixo(jFTelefoneFixo.getText());
     acesso.setTelefoneCelular(jFTelefoneCelular.getText());
+    acesso.setNomeProfessorResponsavel(nomeProfessorResponsavel.getText());
+    acesso.setTelefoneFixoProfessor(jFTelefoneFixoProfessor.getText());
+    acesso.setTelefoneCelularProfessor(jFTelefoneCelularProfessor.getText());
     id=gravar.GravaresponsavelProntuario(nomeresponsavel.getText(), jFTelefoneCelular.getText(), jFTelefoneFixo.getText(),nomeProfessorResponsavel.getText(),jFTelefoneFixoProfessor.getText(),jFTelefoneCelularProfessor.getText());
     Idresponsavel=Integer.toString(id);
     }
@@ -715,17 +704,11 @@ jFTelefoneFixoProfessor.setVisible(false);
     }
 
     private void ChamaCadastroProntuario() throws ClassNotFoundException {
-            if(envia==null){//se for igual a null significa que nao existe nehuma chave para acessar a interface prontuario
-        envia= new Prontuario();//nova chave para o objeto
+     sctp2.Cadastros.Prontuario envia= new sctp2.Cadastros.Prontuario();
     envia.setVisible(true);
-    envia.Recebe(codigo,(String)jTable1.getValueAt(jTable1.getSelectedRow(), 1),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 2),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+    envia.Recebe(codigo, (String)jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
     this.setVisible(false);
-}else
-{   envia.setVisible(true);
-    envia.setState(Prontuario.NORMAL);
-    envia.Recebe(codigo,(String)jTable1.getValueAt(jTable1.getSelectedRow(), 1),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 2),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 3),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-    this.setVisible(false);
-}
+
     }
 
     private void AdicionaNovoResponsavelChamaTelaProntuario() throws ClassNotFoundException {
@@ -735,52 +718,15 @@ jFTelefoneFixoProfessor.setVisible(false);
         Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
     }
 sctp2.ClassesdeControle.Controle acesso= new sctp2.ClassesdeControle.Controle();
-if(envia==null){
+
     envia= new Prontuario();
     envia.setVisible(true);
     envia.Recebe(codigo,nomeresponsavel.getText(),jFTelefoneFixo.getText(),jFTelefoneFixo.getText(),Idresponsavel);
-    this.setVisible(false);
-}else
-{   envia.setVisible(true);
-    envia.setState(Prontuario.NORMAL);
-    envia.Recebe(codigo,nomeresponsavel.getText(),jFTelefoneFixo.getText(),jFTelefoneFixo.getText(),Idresponsavel);
-    this.setVisible(false);
-}
-    }
+    this.setVisible(false);//envia os dados adicionados para a internface Prontuario e fecha esta tela
 
-    private void AdicionarResponsaveleChamaTelaPesquisarProntuario() throws ClassNotFoundException {
-         try {
-        PassaValoresResponsavel();
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
-    }
-         if(enviar==null){
-    enviar= new Prontuario();
-    enviar.setVisible(true);
-    enviar.Recebe(codigo,nomeresponsavel.getText(),jFTelefoneFixo.getText(),jFTelefoneFixo.getText(),Idresponsavel);
-    this.setVisible(false);
-}else
-{   enviar.setVisible(true);
-    enviar.setState(Prontuario.NORMAL);
-    enviar.Recebe(codigo,nomeresponsavel.getText(),jFTelefoneFixo.getText(),jFTelefoneFixo.getText(),Idresponsavel);
-    this.setVisible(false);
-}
 
     }
 
-    private void ChamaTelaPesquisarProntuario() throws ClassNotFoundException {
-        if(enviar==null){//se for igual a null significa que nao existe nehuma chave para acessar a interface prontuario
-        enviar= new Prontuario();//nova chave para o objeto
-    enviar.setVisible(true);
-    enviar.Recebe(codigo,(String)jTable1.getValueAt(jTable1.getSelectedRow(), 1),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 2),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-    this.setVisible(false);
-}else
-{   enviar.setVisible(true);
-    enviar.setState(Prontuario.NORMAL);
-    enviar.Recebe(codigo,(String)jTable1.getValueAt(jTable1.getSelectedRow(), 1),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 2),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 3),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-    this.setVisible(false);
-    }
-    }
 
     private void TamanhoDaFonte(int tamanhoFonte) {
     this.tamanhoFonte=tamanhoFonte;
@@ -814,5 +760,7 @@ if(envia==null){
                 jBAumentaTamFOnte.setEnabled(true);
                 }
     }
+
+    
 
 }

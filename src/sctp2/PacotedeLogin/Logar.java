@@ -47,6 +47,11 @@ public class Logar extends javax.swing.JFrame {
                 jNomeMouseClicked(evt);
             }
         });
+        jNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNomeActionPerformed(evt);
+            }
+        });
 
         jSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -70,7 +75,7 @@ public class Logar extends javax.swing.JFrame {
         jBEntrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBEntrar.setForeground(new java.awt.Color(255, 255, 255));
         jBEntrar.setText("Entrar");
-        jBEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEntrarActionPerformed(evt);
@@ -160,50 +165,11 @@ public class Logar extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jBEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBEntrarKeyPressed
-        boolean retornoCampoVazio;
-        retornoCampoVazio = VerificaCamposVazio();
-        if (retornoCampoVazio == false) {
-            conexao acesso = new conexao();//chamada a função de login do banco de dados
-            Boolean retorno;
-            try {
-                retorno = acesso.logar(jNome.getText(), jSenha.getText());
-                if (retorno == true) {
-                    sctp2.Principal.principal abrir = new sctp2.Principal.principal();//instancia a chamada a tela principal se o login estiver correto
-                    abrir.setVisible(true);
-                    this.setVisible(false);
-                } else {
-                    if (retorno == false) {
-                        JOptionPane.showMessageDialog(rootPane, "O Nome de Usuário ou a senha está errada, tente novamente!");
-                    }
-                    System.out.println("falha ao logar");
-                }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Logar.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+       logar();
     }//GEN-LAST:event_jBEntrarKeyPressed
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-        boolean retornoCampoVazio;
-        retornoCampoVazio = VerificaCamposVazio();
-        if (retornoCampoVazio == false) {
-            conexao acesso = new conexao();//chamada a função de login do banco de dados
-            Boolean retorno;
-            try {
-                retorno = acesso.logar(jNome.getText(), jSenha.getText());
-                if (retorno == true) {
-                    sctp2.Principal.principal abrir = new sctp2.Principal.principal();//instancia a chamada a tela principal se o login estiver correto
-                    abrir.setVisible(true);
-                    this.setVisible(false);
-                } else {
-                    if (retorno == false) {
-                        JOptionPane.showMessageDialog(rootPane, "O Nome de Usuário ou a senha digitados está errado, tente novamente!");
-                    }
-                }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Logar.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+logar();
     }//GEN-LAST:event_jBEntrarActionPerformed
 
     private void jSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSenhaKeyPressed
@@ -211,26 +177,7 @@ public class Logar extends javax.swing.JFrame {
     }//GEN-LAST:event_jSenhaKeyPressed
 
     private void jSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSenhaActionPerformed
-        boolean retornoCampoVazio;
-        retornoCampoVazio = VerificaCamposVazio();
-        if (retornoCampoVazio == false) {
-            conexao acesso = new conexao();//chamada a função de login do banco de dados
-            Boolean retorno;
-            try {
-                retorno = acesso.logar(jNome.getText(), jSenha.getText());
-                if (retorno == true) {
-                    sctp2.Principal.principal abrir = new sctp2.Principal.principal();//instancia a chamada a tela principal se o login estiver correto
-                    abrir.setVisible(true);
-                    this.setVisible(false);
-                } else {
-                    if (retorno == false) {
-                        JOptionPane.showMessageDialog(rootPane, "O Nome de Usuário ou a senha está errada, tente novamente!");
-                    }
-                }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Logar.class.getName()).log(Level.SEVERE, null, ex);
-            }         // TODO add your handling code here:
-        }
+logar();
     }//GEN-LAST:event_jSenhaActionPerformed
 
     private void jSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSenhaMouseClicked
@@ -240,6 +187,10 @@ public class Logar extends javax.swing.JFrame {
     private void jNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNomeMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jNomeMouseClicked
+
+    private void jNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNomeActionPerformed
+logar();        // TODO add your handling code here:
+    }//GEN-LAST:event_jNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,5 +245,28 @@ public class Logar extends javax.swing.JFrame {
         }
 
         return false;//os campos estão preenchidos
+    }
+
+    private void logar() {
+            boolean retornoCampoVazio;
+        retornoCampoVazio = VerificaCamposVazio();
+        if (retornoCampoVazio == false) {
+            conexao acesso = new conexao();//chamada a função de login do banco de dados
+            Boolean retorno;
+            try {
+                retorno = acesso.logar(jNome.getText(), jSenha.getText());
+                if (retorno == true) {
+                    sctp2.Principal.principal abrir = new sctp2.Principal.principal();//instancia a chamada a tela principal se o login estiver correto
+                    abrir.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    if (retorno == false) {
+                        JOptionPane.showMessageDialog(rootPane, "O Nome de Usuário ou a senha digitados está errado, tente novamente!");
+                    }
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Logar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
