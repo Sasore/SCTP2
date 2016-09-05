@@ -38,6 +38,7 @@ public class Prontuario extends javax.swing.JFrame {
         jPanel4.setVisible(false);
         jPanel3.setVisible(true);
         jPanel3.setVisible(false);
+        jCancelarReserva.setVisible(false);
 
     }
 
@@ -50,6 +51,7 @@ public class Prontuario extends javax.swing.JFrame {
         Pesquisar();
         jPanel3.setVisible(true);
         jPanel3.setVisible(false);
+        jCancelarReserva.setVisible(false);
     }
 
     /**
@@ -96,6 +98,14 @@ public class Prontuario extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jNotificacao = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jDescricaoProntuario = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        jTNprontuario = new javax.swing.JTextField();
+        jTPaciente = new javax.swing.JTextField();
+        jCancelarReserva = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -262,13 +272,13 @@ public class Prontuario extends javax.swing.JFrame {
                                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jCodigoResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(NomeresponsavelProntuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                            .addComponent(JcelularoAluno, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JcelularoAluno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                             .addComponent(jTelefoneFixo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jNomeProfessor, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTelefoneFixoProfessor, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCelularProfessor, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jCelularProfessor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NomeresponsavelProntuario, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(0, 167, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -341,7 +351,7 @@ public class Prontuario extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(51, 51, 51)
                         .addComponent(jButton4)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,33 +378,93 @@ public class Prontuario extends javax.swing.JFrame {
         jNotificacao.setForeground(new java.awt.Color(204, 0, 0));
         jNotificacao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jLabel6.setText("Descrição do Prontuário: ");
+
+        jDescricaoProntuario.setColumns(20);
+        jDescricaoProntuario.setRows(5);
+        jScrollPane2.setViewportView(jDescricaoProntuario);
+
+        jLabel8.setText("Prontuário: ");
+
+        jTNprontuario.setText("jTextField1");
+
+        jTPaciente.setText("jTextField1");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTNprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTNprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jCancelarReserva.setText("Cancelar Reserva");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTNotificacao, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTNotificacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jCancelarReserva)
+                                .addGap(27, 27, 27)
                                 .addComponent(jReservaProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(jBprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(510, 510, 510))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -418,18 +488,21 @@ public class Prontuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jReservaProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jBprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jReservaProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCancelarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
+                        .addGap(0, 0, 0)
                         .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
@@ -535,14 +608,20 @@ public class Prontuario extends javax.swing.JFrame {
             }
         }//fim do if de emprestado
         else if ("Disponível".equals(jTable1.getValueAt(jTable1.getSelectedRow(), 5))) {
-            System.out.println("ta disponivel");
-            new sctp2.Prontuarios.ResponsavelProntuario(1, jProntuario.getText()).setVisible(true);
+            try {
+                new sctp2.Prontuarios.ResponsavelProntuario(1, jProntuario.getText()).setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.setVisible(false);
 
         } else {
             if ("Reservado".equals(jTable1.getValueAt(jTable1.getSelectedRow(), 5))) {
-                System.out.println("ta reservado");
-                new sctp2.Prontuarios.ResponsavelProntuario(1, jProntuario.getText()).setVisible(true);
+                try {
+                    new sctp2.Prontuarios.ResponsavelProntuario(1, jProntuario.getText()).setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 this.setVisible(false);
 
             } else {
@@ -567,7 +646,11 @@ public class Prontuario extends javax.swing.JFrame {
     private void jReservaProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReservaProntuarioActionPerformed
 
         if ("Disponível".equals(jTable1.getValueAt(jTable1.getSelectedRow(), 5))) {
-            new sctp2.Prontuarios.ResponsavelProntuario(2, jProntuario.getText()).setVisible(true);
+            try {
+                new sctp2.Prontuarios.ResponsavelProntuario(2, jProntuario.getText()).setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.setVisible(false);
 
         } else {
@@ -601,8 +684,16 @@ public class Prontuario extends javax.swing.JFrame {
                 }
             else if (this.reservarOuEmprestrar == 1) {//=1 emprestar prontuário
                 try {
-                    if (ListarPesquisa.get(0).getStatus().equals("Reservado")) {
-                    }
+                    if(ListarPesquisa.get(0).getStatus().equals("Reservado")){
+                        System.out.println("Atualmente o ido responsavel é "+ListarPesquisa.get(0).getResponsavelProntuario());
+                        if(Integer.parseInt(jCodigoResponsavel.getText())!=(ListarPesquisa.get(0).getResponsavelProntuario())){
+                            //Este if verifica se a pessoa a qual será emprestada o prontuário é a mesma para o qual ele esta reservado
+                            JOptionPane.showMessageDialog(null, "Você está tentando emprestar o prontuário para uma pessoa diferente da que foi reservada, caso deseje realmente continuar, cancele a reserva antes!");
+                            jCancelarReserva.setVisible(true);
+                        }
+                        else{
+                            
+                    
                     retorno = acesso.EmprestaProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(dataIni), Date.valueOf(dataF));
                     if (retorno == true) {
                         jButton3.setEnabled(false);
@@ -611,11 +702,11 @@ public class Prontuario extends javax.swing.JFrame {
                         Pesquisar();
                         jNotificacao.setText("Prontuário Emprestado");
                     }
-                } catch (ClassNotFoundException ex) {
+                        }}} catch (ClassNotFoundException ex) {
                     Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }//fim do if emprestar prontuário
-            else if (this.reservarOuEmprestrar == 2) {
+                      }//fim do if emprestar prontuário
+            else if (this.reservarOuEmprestrar == 2) {//Reserva Prontuario
                 try {
                     retorno = acesso.ReservarProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(dataIni), Date.valueOf(dataF));
                     if (retorno) {
@@ -638,6 +729,7 @@ public class Prontuario extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jPanel3.setVisible(false);
         jPanel4.setVisible(false);
+        jCancelarReserva.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -684,15 +776,19 @@ public class Prontuario extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jCancelarReserva;
     private javax.swing.JTextField jCelularProfessor;
     private javax.swing.JTextField jCodigoResponsavel;
     private com.toedter.calendar.JDateChooser jDateEmprestimoFim;
     private com.toedter.calendar.JDateChooser jDateEmprestimoInicio;
+    private javax.swing.JTextArea jDescricaoProntuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -703,10 +799,14 @@ public class Prontuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private java.awt.Panel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jProntuario;
     private javax.swing.JButton jReservaProntuario;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTNotificacao;
+    private javax.swing.JTextField jTNprontuario;
+    private javax.swing.JTextField jTPaciente;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTelefoneFixo;
     private javax.swing.JTextField jTelefoneFixoProfessor;
@@ -807,13 +907,11 @@ public class Prontuario extends javax.swing.JFrame {
 
     private void MostraDetalhesProntuario() {
         if(false==(ListarPesquisa.get(0).getStatus().equals("Disponivel"))){
-        System.out.println("mostrando deatla");
          jPanel3.setVisible(true);
         jPanel4.setVisible(true);
         label1.setText("Detalhes do Prontuário");
         label2.setText(ListarPesquisa.get(0).getStatus() + " para:");
         NomeresponsavelProntuario.setText(ListarPesquisa.get(0).getNome());
-        System.out.println("data "+ListarPesquisa.get(0).getDataEmprestimo());
         jDateEmprestimoInicio.setDate(ListarPesquisa.get(0).getDataEmprestimo());
         jDateEmprestimoFim.setDate(ListarPesquisa.get(0).getDataDevolução());
         jTelefoneFixo.setText(ListarPesquisa.get(0).getTelefoneFixo());
@@ -824,6 +922,9 @@ public class Prontuario extends javax.swing.JFrame {
         jCelularProfessor.setVisible(false);
         jButton3.setVisible(false);
         jButton4.setVisible(false);
+        jDescricaoProntuario.setText(ListarPesquisa.get(0).getInformacoes());
+        jTNprontuario.setText(ListarPesquisa.get(0).getProntuario());
+        jTPaciente.setText(ListarPesquisa.get(0).getPaciente());
     }
     }
     private boolean ComparaDataInicialComDataFinal(LocalDate dataIni, LocalDate dataF) {

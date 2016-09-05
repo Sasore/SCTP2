@@ -92,6 +92,14 @@ public class PesquisarProntuario {
     public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
+
+    public int getPront_AlunoEmprestado() {
+        return pront_AlunoEmprestado;
+    }
+
+    public int getResponsavelProntuario() {
+        return responsavelProntuario;
+    }
     
 
     public static void setInformacoes(String informacoes) {
@@ -113,6 +121,14 @@ public class PesquisarProntuario {
     public void setIdUsuarioReservado(int idUsuarioReservado) {
         this.idUsuarioReservado = idUsuarioReservado;
     }
+
+    public void setPront_AlunoEmprestado(int pront_AlunoEmprestado) {
+        this.pront_AlunoEmprestado = pront_AlunoEmprestado;
+    }
+
+    public void setResponsavelProntuario(int responsavelProntuario) {
+        this.responsavelProntuario = responsavelProntuario;
+    }
     
     
     private static String nome;
@@ -126,5 +142,7 @@ public class PesquisarProntuario {
     private int           codigoProntuario;
     private static int    status;
     private int          idUsuarioReservado;
+    private int          pront_AlunoEmprestado;
+    private int          responsavelProntuario;
 
 }

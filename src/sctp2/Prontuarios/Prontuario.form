@@ -149,11 +149,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" max="32767" attributes="0"/>
+                      <Component id="jLabel1" pref="716" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jTNotificacao" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jTNotificacao" alignment="0" min="-2" pref="691" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -161,12 +161,15 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" alignment="0" pref="691" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jCancelarReserva" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="jReservaProntuario" min="-2" pref="137" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jBprontuario" min="-2" pref="208" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane1" alignment="0" min="-2" pref="664" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -174,8 +177,11 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jNotificacao" min="-2" pref="661" max="-2" attributes="0"/>
-                  <EmptySpace pref="59" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jNotificacao" min="-2" pref="661" max="-2" attributes="0"/>
+                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jPanel4" max="32767" attributes="0"/>
                       <Component id="jPanel3" max="32767" attributes="0"/>
@@ -204,23 +210,23 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTNotificacao" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBprontuario" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="jReservaProntuario" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="61" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jBprontuario" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="jReservaProntuario" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jCancelarReserva" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="jNotificacao" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jNotificacao" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -399,13 +405,13 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jCodigoResponsavel" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="NomeresponsavelProntuario" alignment="0" pref="294" max="32767" attributes="0"/>
-                                  <Component id="JcelularoAluno" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JcelularoAluno" alignment="0" pref="332" max="32767" attributes="0"/>
                                   <Component id="jTelefoneFixo" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
                                   <Component id="jNomeProfessor" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTelefoneFixoProfessor" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jCelularProfessor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="NomeresponsavelProntuario" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="167" max="32767" attributes="0"/>
                           </Group>
@@ -546,7 +552,7 @@
                               <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="182" max="32767" attributes="0"/>
+                      <EmptySpace pref="220" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -633,6 +639,105 @@
               <Color blue="0" green="0" red="cc" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JPanel" name="jPanel5">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jTNprontuario" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace pref="60" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="476" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Component id="jTPaciente" min="-2" pref="288" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTNprontuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jTPaciente" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o do Prontu&#xe1;rio: "/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="jDescricaoProntuario">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Prontu&#xe1;rio: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTNprontuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jTextField1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTPaciente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jTextField1"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="jCancelarReserva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar Reserva"/>
           </Properties>
         </Component>
       </SubComponents>

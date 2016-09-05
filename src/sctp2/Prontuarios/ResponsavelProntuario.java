@@ -36,7 +36,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
     /**
      * Creates new form ResponsavelProntuario
      */
-    public ResponsavelProntuario(String codigoProntuario) {
+    public ResponsavelProntuario(String codigoProntuario) throws ClassNotFoundException {
         initComponents();
         this.setLocation(50, WIDTH);
         sctp2.Cadastros.Prontuario acesso = new sctp2.Cadastros.Prontuario();
@@ -44,24 +44,31 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
         jPanelCadastrar.setVisible(false);
         jOutdoor.setVisible(true);
+        jPesquisa.setText("");
+        EfetuaPesquisa();
+        
     }
 
-    public ResponsavelProntuario(int janela, String nprontuario) {//int janela: qual janela.componente chamou esta interface
+    public ResponsavelProntuario(int janela, String nprontuario) throws ClassNotFoundException {//int janela: qual janela.componente chamou esta interface
         initComponents();
         this.setLocation(50, WIDTH);
         Codigojanela = janela;
         codigo = nprontuario;
         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
         jPanelCadastrar.setVisible(false);
+        jPesquisa.setText("");
+        EfetuaPesquisa();
 
     }
 
-    public ResponsavelProntuario() {
+    public ResponsavelProntuario() throws ClassNotFoundException {
         initComponents();
         this.setLocation(50, WIDTH);
         sctp2.Cadastros.Prontuario acesso = new sctp2.Cadastros.Prontuario();
         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
         jPanelCadastrar.setVisible(false);
+        jPesquisa.setText("");
+        EfetuaPesquisa();
     }
 
     /**
@@ -668,7 +675,11 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ResponsavelProntuario().setVisible(true);
+                try {
+                    new ResponsavelProntuario().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -737,7 +748,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
                 valor.addRow(new String[]{Integer.toString(listaPesquisa.get(i).getCodigo()), listaPesquisa.get(i).getNome(), listaPesquisa.get(i).getTelefone(), listaPesquisa.get(i).getTelefonefixo()});
                 //System.out.println("valor ta linha: "+listaPesquisa.get(i).getNome()+" "+listaPesquisa.get(i).getTelefone()+" "+listaPesquisa.get(i).getTelefonefixo());
                 jNotificacao.setForeground(Color.blue);
-                jNotificacao.setText("Clique no nome desejado ou selecione e clique em adicionar responsável!");
+                jNotificacao.setText("Clique no nome desejado ou utilize o campo de pesquisa!");
             }
         }
     }

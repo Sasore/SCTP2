@@ -279,6 +279,8 @@ public class ConexaoPacotePesquisar {
                 pesquisarsmt.setStatus(rs.getInt("pront_Status"));
                 pesquisarsmt.setDataEmprestimo(rs.getDate("DataEmprestimo_Prontuario"));
                 pesquisarsmt.setDataDevolução(rs.getDate("DataDevolver_Prontuario"));
+                pesquisarsmt.setPront_AlunoEmprestado(rs.getInt("pront_AlunoEmprestado"));
+                pesquisarsmt.setResponsavelProntuario(rs.getInt("pront_responsavel_prontuario"));
 
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
@@ -297,7 +299,6 @@ public class ConexaoPacotePesquisar {
         } finally {
             closeConnection(con);
         }
-        System.out.println("retortnando do banco de dados o status"+ListarPesquisa.get(0).getStatus());
         return ListarPesquisa;
     }
 
@@ -767,4 +768,32 @@ public class ConexaoPacotePesquisar {
         return retorno;
         
     }
+
+    public boolean VerificaProntuariosAtrasados(String idResponsavel) throws ClassNotFoundException, SQLException {
+    String sql="SELECT "
+            + "`pront_cod`, `pront_Numero`, "
+            + "`referencia_RG_PAC`, `pront_Status`, "
+            + "`pront_AlunoEmprestado`, `pront_TelefoneAluno`, "
+            + "`pront_Informacoes`, `pront_responsavel_prontuario`, "
+            + "`reservadopara_Prontuario`, `DataEmprestimo_Prontuario`, "
+            + "`DataDevolver_Prontuario` "
+            + "FROM `prontuario` join responsavelpeloprontuario\n" 
+            +"on responsavelpeloprontuario.Id=prontuario.pront_responsavel_prontuario\n" 
+            +"WHERE `DataDevolver_Prontuario`>now()"
+            + " AND `pront_Status`=1"
+            + "And responsavelpeloprontuario.Id=?";
+    Connection con=null;
+    con=getConnection();
+    PreparedStatement smt=(PreparedStatement) con.prepareStatement(sql);
+    smt.setString(1, idResponsavel);
+    ResultSet rs=smt.executeQuery();
+    if(rs==null)System.out.println("usuario nao tem nada atrasado");
+    else{
+            System.out.println("usuario tem trem atrasado");
+    }
+    return true;
+    
+    
+    }
+
 }
