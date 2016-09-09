@@ -255,9 +255,9 @@ public class ConexaoPacotePesquisar {
         String sql = "SELECT "
                 + "`pront_cod`, `pront_Numero`, `referencia_RG_PAC`, `pront_Status`,"
                 + " `pront_AlunoEmprestado`, `pront_TelefoneAluno`, `pront_Informacoes`,DataEmprestimo_Prontuario,DataDevolver_Prontuario, "
-                + "`pront_responsavel_prontuario`, `reservadopara_Prontuario`, paciente.pac_Nome\n" 
-                + "FROM `prontuario` \n" 
-                + "JOIN paciente\n" 
+                + "`pront_responsavel_prontuario`, `reservadopara_Prontuario`, paciente.pac_Nome\n"
+                + "FROM `prontuario` \n"
+                + "JOIN paciente\n"
                 + "WHERE paciente.pac_RG=referencia_RG_PAC and prontuario.pront_Numero=?";
         Connection con = null;
         ArrayList<PesquisarProntuario> ListarPesquisa;//array que recebera o resultado da pesquisa
@@ -270,6 +270,7 @@ public class ConexaoPacotePesquisar {
             PesquisarProntuario pesquisarsmt = new PesquisarProntuario();
             while (rs.next()) {
                 String verificavazio = "";
+                pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
                 pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
                 pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
                 pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
@@ -394,7 +395,7 @@ public class ConexaoPacotePesquisar {
         String sql = "update prontuario set pront_Status=1,"
                 + " pront_responsavel_prontuario=?,DataEmprestimo_Prontuario=?,DataDevolver_Prontuario=?,"
                 + "pront_AlunoEmprestado='',pront_TelefoneAluno=''  where pront_numero=?;";
-        
+
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -741,13 +742,13 @@ public class ConexaoPacotePesquisar {
 
     public boolean ReservarProntuario(String prontuario, String idResponsavel, Date datainicio, Date dataFim) throws ClassNotFoundException {
         Connection con = null;
-        boolean retorno=false;
-        String sql="UPDATE `prontuario` SET `pront_Status`=2, `pront_AlunoEmprestado`='',`pront_TelefoneAluno`='',"
-                + "`pront_responsavel_prontuario`=?," 
+        boolean retorno = false;
+        String sql = "UPDATE `prontuario` SET `pront_Status`=2, `pront_AlunoEmprestado`='',`pront_TelefoneAluno`='',"
+                + "`pront_responsavel_prontuario`=?,"
                 + "`reservadopara_Prontuario`=?, `DataEmprestimo_Prontuario`=?, "
-                + "`DataDevolver_Prontuario`=?\n" 
+                + "`DataDevolver_Prontuario`=?\n"
                 + "WHERE `pront_Numero`=?";
-        try{
+        try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, idResponsavel);
@@ -763,37 +764,53 @@ public class ConexaoPacotePesquisar {
             e.printStackTrace();
         } finally {
             closeConnection(con);
-        }    
-        
+        }
+
         return retorno;
-        
+
     }
 
     public boolean VerificaProntuariosAtrasados(String idResponsavel) throws ClassNotFoundException, SQLException {
-    String sql="SELECT "
-            + "`pront_cod`, `pront_Numero`, "
-            + "`referencia_RG_PAC`, `pront_Status`, "
-            + "`pront_AlunoEmprestado`, `pront_TelefoneAluno`, "
-            + "`pront_Informacoes`, `pront_responsavel_prontuario`, "
-            + "`reservadopara_Prontuario`, `DataEmprestimo_Prontuario`, "
-            + "`DataDevolver_Prontuario` "
-            + "FROM `prontuario` join responsavelpeloprontuario\n" 
-            +"on responsavelpeloprontuario.Id=prontuario.pront_responsavel_prontuario\n" 
-            +"WHERE `DataDevolver_Prontuario`>now()"
-            + " AND `pront_Status`=1"
-            + "And responsavelpeloprontuario.Id=?";
-    Connection con=null;
-    con=getConnection();
-    PreparedStatement smt=(PreparedStatement) con.prepareStatement(sql);
-    smt.setString(1, idResponsavel);
-    ResultSet rs=smt.executeQuery();
-    if(rs==null)System.out.println("usuario nao tem nada atrasado");
-    else{
+        String sql = "SELECT "
+                + "`pront_cod`, `pront_Numero`, "
+                + "`referencia_RG_PAC`, `pront_Status`, "
+                + "`pront_AlunoEmprestado`, `pront_TelefoneAluno`, "
+                + "`pront_Informacoes`, `pront_responsavel_prontuario`, "
+                + "`reservadopara_Prontuario`, `DataEmprestimo_Prontuario`, "
+                + "`DataDevolver_Prontuario` "
+                + "FROM `prontuario` join responsavelpeloprontuario\n"
+                + "on responsavelpeloprontuario.Id=prontuario.pront_responsavel_prontuario\n"
+                + "WHERE `DataDevolver_Prontuario`>now()"
+                + " AND `pront_Status`=1"
+                + "And responsavelpeloprontuario.Id=?";
+        Connection con = null;
+        con = getConnection();
+        PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+        smt.setString(1, idResponsavel);
+        ResultSet rs = smt.executeQuery();
+        if (rs == null) {
+            System.out.println("usuario nao tem nada atrasado");
+        } else {
             System.out.println("usuario tem trem atrasado");
+        }
+        return true;
+
     }
-    return true;
-    
-    
+
+    public int CancelaReservaProntuario(int codigoProntuario) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE "
+                + "`prontuario` "
+                + "SET `pront_Status`=0,"
+                + "`reservadopara_Prontuario`=0,"
+                + "`DataEmprestimo_Prontuario`=NULL,"
+                + "`DataDevolver_Prontuario`=NULL "
+                + "WHERE `pront_cod`=?";
+        Connection con = null;
+        con = getConnection();
+        PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+        smt.setInt(1, codigoProntuario);
+        int retorno = smt.executeUpdate();
+        return retorno;
     }
 
 }

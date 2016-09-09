@@ -105,6 +105,7 @@ public class Prontuario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTNprontuario = new javax.swing.JTextField();
         jTPaciente = new javax.swing.JTextField();
+        jLStatus = new javax.swing.JLabel();
         jCancelarReserva = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -390,6 +391,8 @@ public class Prontuario extends javax.swing.JFrame {
 
         jTPaciente.setText("jTextField1");
 
+        jLStatus.setText("jLabel7");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -405,13 +408,15 @@ public class Prontuario extends javax.swing.JFrame {
                         .addComponent(jLabel6)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,12 +431,19 @@ public class Prontuario extends javax.swing.JFrame {
                             .addComponent(jTNprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jCancelarReserva.setText("Cancelar Reserva");
+        jCancelarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCancelarReservaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -452,7 +464,7 @@ public class Prontuario extends javax.swing.JFrame {
                                 .addComponent(jButton1))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jCancelarReserva)
-                                .addGap(27, 27, 27)
+                                .addGap(28, 28, 28)
                                 .addComponent(jReservaProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -490,18 +502,16 @@ public class Prontuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jBprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jReservaProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jCancelarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCancelarReserva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -542,7 +552,7 @@ public class Prontuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 562, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -659,56 +669,64 @@ public class Prontuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jReservaProntuarioActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-        ConexaoPacotePesquisar acesso = new ConexaoPacotePesquisar();
-        boolean retorno = false;
-        boolean retornoDataInicial = false;
-        boolean retornoDataFinal = false;
-        if (jDateEmprestimoInicio.getDate() == null || jDateEmprestimoFim.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "Os campos de data são obigatórios");
-        } else {
-            DateFormat formataData = DateFormat.getDateInstance();
-            String Datainicio = formataData.format(jDateEmprestimoInicio.getDate());//Converte em String
-            String Datafim = formataData.format(jDateEmprestimoFim.getDate());
-            LocalDate dataIni, dataF;//esta variaveis receberao da data no formato americado        
-            dataIni = ConverteData(Datainicio);//função para converter da data para o formato de banco de dados
-            dataF = ConverteData(Datafim);
-            retornoDataInicial = ComparaData(dataIni);//verifica se a data é menor do que a atual
-            retornoDataFinal = ComparaData(dataF);//verifica se a data é menor do que a atual
-            if (retornoDataInicial == true || retornoDataFinal == true) {
-                jNotificacao.setText("A data de empréstimo ou a data de devolução do prontuário são anteriores ao dia de hoje!");
-            }else
-                if(ComparaDataInicialComDataFinal(dataIni,dataF)==true){
-                    jNotificacao.setText("A data inicial não pode ser maior do que a data final!");
-                    
-                }
-            else if (this.reservarOuEmprestrar == 1) {//=1 emprestar prontuário
-                try {
-                    if(ListarPesquisa.get(0).getStatus().equals("Reservado")){
-                        System.out.println("Atualmente o ido responsavel é "+ListarPesquisa.get(0).getResponsavelProntuario());
-                        if(Integer.parseInt(jCodigoResponsavel.getText())!=(ListarPesquisa.get(0).getResponsavelProntuario())){
-                            //Este if verifica se a pessoa a qual será emprestada o prontuário é a mesma para o qual ele esta reservado
-                            JOptionPane.showMessageDialog(null, "Você está tentando emprestar o prontuário para uma pessoa diferente da que foi reservada, caso deseje realmente continuar, cancele a reserva antes!");
-                            jCancelarReserva.setVisible(true);
-                        }
-                        else{
-                            
-                    
-                    retorno = acesso.EmprestaProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(dataIni), Date.valueOf(dataF));
-                    if (retorno == true) {
+ConexaoPacotePesquisar acesso = new ConexaoPacotePesquisar();
+        LocalDate data1 = null ,data2;
+if(VerificaCampoDataVazia());
+else
+    if(ComparaDataInicialComDataFinal(ConverteDataBD(jDateEmprestimoInicio.getDate()),ConverteDataBD(jDateEmprestimoFim.getDate()))==true)jNotificacao.setText("A data Final deve ser maior do que a data inicial!");
+else
+        if (((ComparaData((ConverteDataBD(jDateEmprestimoInicio.getDate()))))||(ComparaData(ConverteDataBD(jDateEmprestimoFim.getDate()))))==true)jNotificacao.setText("A data de Emprestimo ou devolução é anterior ao dia de hoje!");
+else
+            if(this.reservarOuEmprestrar==1){//Emprestar prontuário
+        if(ListarPesquisa.get(0).getStatus().equals("Disponível")){
+            boolean retorno;
+            try {
+                retorno = acesso.EmprestaProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
+                if (retorno == true) {
                         jButton3.setEnabled(false);
                         jButton4.setText("Ocultar");
                         LimpaTabela();
                         Pesquisar();
                         jNotificacao.setText("Prontuário Emprestado");
                     }
-                        }}} catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                      }//fim do if emprestar prontuário
-            else if (this.reservarOuEmprestrar == 2) {//Reserva Prontuario
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
+}//fim da condição prontuário disponível
+            if(ListarPesquisa.get(0).getStatus().equals("Reservado")){
+                System.out.println("reservado");
+        //Verificar Se o responsável a ser emprestado é o mesmo que está reservado
+       if((Integer.parseInt(jCodigoResponsavel.getText())!=ListarPesquisa.get(0).getIdUsuarioReservado())&&(ComparaData(ConverteDataBD(jDateEmprestimoFim.getDate())))==false){
+        
+         JOptionPane.showMessageDialog(rootPane,"Você está tentando emprestar um prontuário reservado para uma pessoa diferente da qual ele foi reservado, caso deseje realmente continuar, cancele a reserva antes! ");
+         jCancelarReserva.setVisible(true);
+         }
+        else
+        {
+            boolean retorno;
+            try {
+                retorno = acesso.EmprestaProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
+                if (retorno == true) {
+                        jButton3.setEnabled(false);
+                        jButton4.setText("Ocultar");
+                        LimpaTabela();
+                        Pesquisar();
+                        jNotificacao.setText("Prontuário Emprestado");
+                    }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+           
+                
+        
+    }//fim da condição reservado
+            }
+            else if(this.reservarOuEmprestrar==2){
                 try {
-                    retorno = acesso.ReservarProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(dataIni), Date.valueOf(dataF));
+                   boolean retorno = acesso.ReservarProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
                     if (retorno) {
                         jButton3.setEnabled(false);
                         jButton4.setText("Ocultar");
@@ -719,11 +737,9 @@ public class Prontuario extends javax.swing.JFrame {
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             }
 
-        }// fim do else data menores do que o dia de hoje
-//fim do else data em branco
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -732,6 +748,36 @@ public class Prontuario extends javax.swing.JFrame {
         jCancelarReserva.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jCancelarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelarReservaActionPerformed
+int resposta=JOptionPane.showConfirmDialog(rootPane,"você deseja realmente cancelar esta reserva?");
+if(resposta==0){
+    ConexaoPacotePesquisar acesso = new ConexaoPacotePesquisar();
+    int retorno;
+    try {
+        
+        retorno = acesso.CancelaReservaProntuario(ListarPesquisa.get(0).getCodigoProntuario());
+        if (retorno ==1) {
+                        jCancelarReserva.setEnabled(false);
+                        jButton4.setText("Ocultar");
+                        LimpaTabela();
+                        Pesquisar();
+                        jNotificacao.setText("Reserva cancelada com sucesso!");
+                    }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao tentar cancelar a reserva, se o erro persistir peça ajuda ao Programador!.");
+            jNotificacao.setText("Não foi possível cancelar a reserva!");
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+    }
+                    }
+
+    
+    }//GEN-LAST:event_jCancelarReservaActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -782,6 +828,7 @@ public class Prontuario extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateEmprestimoFim;
     private com.toedter.calendar.JDateChooser jDateEmprestimoInicio;
     private javax.swing.JTextArea jDescricaoProntuario;
+    private javax.swing.JLabel jLStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -827,6 +874,7 @@ public class Prontuario extends javax.swing.JFrame {
         } else {
             if (ListarPesquisa.get(0).getStatus().equals("Disponível")) {
                 jBprontuario.setText("Emprestar Prontuário");
+                jReservaProntuario.setVisible(true);
             }
             if (ListarPesquisa.get(0).getStatus().equals("Emprestado")) {
                 jBprontuario.setText("Receber Prontuário");
@@ -891,13 +939,8 @@ public class Prontuario extends javax.swing.JFrame {
         jPanel3.setVisible(true);
     }
 
-    private LocalDate ConverteData(String data) {
-        //Esta função converte uma string data  formato aceito pelo banco de dados
-        String[] dataSeparada = data.split("/");
-        LocalDate dataConvertida = LocalDate.of(Integer.parseInt(dataSeparada[2]), Integer.parseInt(dataSeparada[1]), Integer.parseInt(dataSeparada[0]));
-        return dataConvertida;
-
-    }
+    
+    
 
     private boolean ComparaData(LocalDate data) {
         boolean retorno = data.isBefore(LocalDate.now());
@@ -925,11 +968,48 @@ public class Prontuario extends javax.swing.JFrame {
         jDescricaoProntuario.setText(ListarPesquisa.get(0).getInformacoes());
         jTNprontuario.setText(ListarPesquisa.get(0).getProntuario());
         jTPaciente.setText(ListarPesquisa.get(0).getPaciente());
+        if(ListarPesquisa.get(0).getStatus().equals("Reservado")){
+        jLStatus.setText("Atualmente reservado para "+ListarPesquisa.get(0).getNome()+" até o dia  "+ConverteDataBrasil(ListarPesquisa.get(0).getDataDevolução()));
+        }
+        else
+            if(ListarPesquisa.get(0).getStatus().equals("Disponível")){
+               jLStatus.setText("Atualmente Disponível para empréstimo");
+            }
+        else
+                if(ListarPesquisa.get(0).getStatus().equals("Emprestado")){
+                    jLStatus.setText("Emprestado para "+PesquisarProntuario.getNome()+" até o dia "+ConverteDataBrasil(ListarPesquisa.get(0).getDataDevolução()));
+                }
     }
     }
     private boolean ComparaDataInicialComDataFinal(LocalDate dataIni, LocalDate dataF) {
     if(dataIni.isAfter(dataF)==true)return true;
     else return false;
     }
+
+    private LocalDate ConverteDataBD(java.util.Date date) {
+     DateFormat formataData = DateFormat.getDateInstance();
+     String DataString = formataData.format(date);//Converte em String
+     String[] dataSeparada = DataString.split("/");
+        LocalDate dataConvertida = LocalDate.of(Integer.parseInt(dataSeparada[2]), Integer.parseInt(dataSeparada[1]), Integer.parseInt(dataSeparada[0]));
+        return dataConvertida;
+     
+    }
+    private String ConverteDataBrasil(java.util.Date date) {
+     DateFormat formataData = DateFormat.getDateInstance();
+     String DataString = formataData.format(date);//Converte em String
+     
+        return DataString;
+     
+    }
+
+    private boolean VerificaCampoDataVazia() {
+    if (jDateEmprestimoInicio.getDate() == null || jDateEmprestimoFim.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Os campos de data são obigatórios");
+            return true;
+        }
+    return false;
+    }
+
+    
 
 }

@@ -333,8 +333,9 @@ System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1FocusGained
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.setVisible(false);
         new sctp2.Prontuarios.Prontuario().setVisible(true);
+        this.setVisible(false);
+      
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
