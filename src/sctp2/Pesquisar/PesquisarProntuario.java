@@ -69,9 +69,11 @@ public class PesquisarProntuario {
     public static void setTelefoneFixo(String telefoneFixo) {
         PesquisarProntuario.telefoneFixo = telefoneFixo;
     }
+
     public static void setStatus(int status) {
         PesquisarProntuario.status = status;
     }
+     
 
     public static String getInformacoes() {
         return informacoes;

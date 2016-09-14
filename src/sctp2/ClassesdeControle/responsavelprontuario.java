@@ -9,7 +9,7 @@ package sctp2.ClassesdeControle;
  *
  * @author Adriano
  */
-public class responsavelprontuario {
+public class responsavelprontuario extends Prontuario{
 
     private static int idResponsavel;
     private static String nomeresponsavel;

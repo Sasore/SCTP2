@@ -5,18 +5,22 @@
  */
 package sctp2.ClassesdeControle;
 
+import java.sql.Date;
+
 /**
  *
  * @author Adriano
  */
 public class Prontuario {
-    private static  String NumeroProntuario;
-    private static  String NomeresponsavelProntuario;
-    private static  int StatusProntuario;
-    private static  String InformacoesProntuario;
-    private static  String TelefoneResponsavelProntuario;
-    private static  int IdResponsavelProntuario;
-    private static String rgresponsavel;
+    protected static  String NumeroProntuario;
+    protected static  String NomeresponsavelProntuario;
+    protected static  int StatusProntuario;
+    protected static  String InformacoesProntuario;
+    protected static  String TelefoneResponsavelProntuario;
+    protected static  int IdResponsavelProntuario;
+    protected static String rgPaciente;
+    protected static  Date  dataEmprestimo;
+    protected static  Date dataDevolucao;
 
     public static void setIdResponsavelProntuario(String IdResponsavelProntuario) {
         int valor= Integer.parseInt(IdResponsavelProntuario);
@@ -60,9 +64,28 @@ public class Prontuario {
         if(StatusProntuario.equals("Disponível"))this.StatusProntuario = 0;
         else
         if(StatusProntuario.equals("Emprestado"))this.StatusProntuario = 1;
+        else
+            if(StatusProntuario.equals("Reservado"))this.StatusProntuario=2;
         
         
     }
+
+    public static Date getDataEmprestimo() {
+        return dataEmprestimo;
+    }
+
+    public static void setDataEmprestimo(Date dataEmprestimo) {
+        Prontuario.dataEmprestimo = dataEmprestimo;
+    }
+
+    public static Date getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public static void setDataDevolucao(Date dataDevolucao) {
+        Prontuario.dataDevolucao = dataDevolucao;
+    }
+    
 
     public void setTelefoneResponsavelProntuario(String TelefoneResponsavelProntuario) {
         this.TelefoneResponsavelProntuario = TelefoneResponsavelProntuario;
@@ -73,11 +96,11 @@ public class Prontuario {
     }
 
     public static String getRgresponsavel() {
-        return rgresponsavel;
+        return rgPaciente;
     }
 
-    public static void setRgresponsavel(String rgresponsavel) {
-        Prontuario.rgresponsavel = rgresponsavel;
+    public static void setRgresponsavel(String rgPaciente) {
+        Prontuario.rgPaciente = rgPaciente;
     }
 
             

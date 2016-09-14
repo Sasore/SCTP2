@@ -12,9 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,6 +24,8 @@ import sctp2.Paciente.HistoricoPaciente;
 import sctp2.Paciente.HistoricoDetratamentos;
 import sctp2.Pesquisar.Pesquisar;
 import sctp2.Pesquisar.PesquisarProntuario;
+import sctp2.Prontuarios.Prontuario;
+import sctp2.ClassesdeControle.*;
 
 /**
  *
@@ -193,7 +193,7 @@ public class ConexaoPacotePesquisar {
                 + " FROM `responsavelpeloprontuario` WHERE `nome_ResponsavelPeloProntuario` LIKE ?;";
         Connection con = null;
         ArrayList<Pesquisar> ListarPesquisa;//array que recebera o resultado da pesquisa
-        ListarPesquisa = new ArrayList<Pesquisar>();//criando novo array
+        ListarPesquisa = new ArrayList<>();//criando novo array
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -208,6 +208,69 @@ public class ConexaoPacotePesquisar {
                 ListarPesquisa.add(pesquisarsmt);
             }
 
+        } catch (SQLException e) {
+            //System.out.println("Ocorreu um erro ao carrega a lista");
+            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos ou verifique a conexao!");
+            e.printStackTrace();
+
+        } finally {
+            closeConnection(con);
+        }
+        return ListarPesquisa;
+    }
+
+    //Esta função retorna todos os prontuários emprestados para uma pessoa
+    public ArrayList<sctp2.Pesquisar.ResponsavelProntuario> PesquisarTodosProntuariosResponsavel(String idResponsavel) throws ClassNotFoundException {
+        String sql = "SELECT \n"
+                + "t1.pront_cod, \n"
+                + "t1.pront_Numero, \n"
+                + "t1.referencia_RG_PAC,\n"
+                + "t1.pront_Status,\n"
+                + "t1.pront_AlunoEmprestado, \n"
+                + "t1.pront_TelefoneAluno, \n"
+                + "t1.pront_Informacoes, \n"
+                + "t1.pront_responsavel_prontuario, \n"
+                + "t1.reservadopara_Prontuario, \n"
+                + "t1.DataEmprestimo_Prontuario, \n"
+                + "t1.DataDevolver_Prontuario ,\n"
+                + "t2.Id,\n"
+                + "t2.nome_ResponsavelPeloProntuario,\n"
+                + "t2.celular_ResponsavelPeloProntuario,\n"
+                + "t2.telefoneFixo_ResponsavelPeloProntuario,\n"
+                + "t2.nomeProfessor_ResponsavelPeloProntuario,\n"
+                + "t2.TelefoneProfessor_ResponsavelPeloProntuario,\n"
+                + "t2.celularProfessor_ResponsavelPeloProntuario\n"
+                + "\n"
+                + "FROM `prontuario` AS t1\n"
+                + "INNER JOIN responsavelpeloprontuario AS t2\n"
+                + "ON t2.Id=t1.pront_responsavel_prontuario\n"
+                + "WHERE `pront_Status`='1' AND t2.Id=?";
+        Connection con = null;
+        ArrayList<sctp2.Pesquisar.ResponsavelProntuario> ListarPesquisa = new ArrayList<>();//array que recebera o resultado da pesquisa
+        
+        try {
+            con = getConnection();//criando variavel de conexao
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setString(1, idResponsavel);
+            ResultSet rs = smt.executeQuery();//efetuando a busca
+            while (rs.next()) {
+                sctp2.Pesquisar.ResponsavelProntuario responsavelsmt = new sctp2.Pesquisar.ResponsavelProntuario();
+                responsavelsmt.setNumeroProntuario(rs.getString("pront_Numero"));
+                responsavelsmt.setInformacoesProntuario(rs.getString("pront_Informacoes"));
+                responsavelsmt.setNomeresponsavelProntuario(rs.getString("pront_AlunoEmprestado"));
+                responsavelsmt.setStatusProntuario(rs.getString("pront_Status"));
+                responsavelsmt.setTelefoneResponsavelProntuario(rs.getString("pront_TelefoneAluno"));
+                responsavelsmt.setRgPaciente(rs.getString("referencia_RG_PAC"));
+                responsavelsmt.setIdResponsavel(rs.getInt("Id"));
+                responsavelsmt.setNomeresponsavel(rs.getString("nome_ResponsavelPeloProntuario"));
+                responsavelsmt.setTelefoneCelular(rs.getString("celular_ResponsavelPeloProntuario"));
+                responsavelsmt.setTelefoneFixo(rs.getString("telefoneFixo_ResponsavelPeloProntuario"));
+                responsavelsmt.setNomeProfessorResponsavel(rs.getString("nomeProfessor_ResponsavelPeloProntuario"));
+                responsavelsmt.setTelefoneCelularProfessor(rs.getString("celularProfessor_ResponsavelPeloProntuario"));
+                responsavelsmt.setTelefoneFixoProfessor(rs.getString("TelefoneProfessor_ResponsavelPeloProntuario"));
+                ListarPesquisa.add(responsavelsmt);
+            }
+            
         } catch (SQLException e) {
             //System.out.println("Ocorreu um erro ao carrega a lista");
             JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos ou verifique a conexao!");

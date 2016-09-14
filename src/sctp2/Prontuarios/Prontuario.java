@@ -134,6 +134,11 @@ public class Prontuario extends javax.swing.JFrame {
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/clipboard.png"))); // NOI18N
         jButton5.setText("Ver Prontuários por Aluno");
         jButton5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -554,7 +559,8 @@ public class Prontuario extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
         jMenu1.setText("Menu");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, 0));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente branco.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -564,7 +570,7 @@ public class Prontuario extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancelar pequeno.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1473476015_Close_Icon.png"))); // NOI18N
         jMenuItem2.setText("Sair");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -798,6 +804,7 @@ if(resposta==0){
                         LimpaTabela();
                         Pesquisar();
                         jNotificacao.setText("Reserva cancelada com sucesso!");
+                        jCancelarReserva.setVisible(false);
                     }
         else{
             JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao tentar cancelar a reserva, se o erro persistir peça ajuda ao Programador!.");
@@ -812,6 +819,11 @@ if(resposta==0){
 
     
     }//GEN-LAST:event_jCancelarReservaActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+new sctp2.Prontuarios.ProntuarioPorResponsavel().setVisible(true);
+this.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     
     /**
