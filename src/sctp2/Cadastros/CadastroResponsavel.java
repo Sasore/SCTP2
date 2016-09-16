@@ -10,11 +10,9 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.shape.Line;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import sctp2.Pesquisar.Pesquisar;
 
 /**
@@ -28,7 +26,7 @@ int tamanhoDaFonte=15;
      * Creates new form CadastroResponsavel
      * 
      */
-    public CadastroResponsavel() {
+    public CadastroResponsavel() throws ClassNotFoundException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
         jEditar.disable();
@@ -39,6 +37,7 @@ int tamanhoDaFonte=15;
         jNovoResponsavel.setVisible(false);
         jnotificacao2.setText("Cadastrar um novo responsável!");    
         TamanhoDaFonte(tamanhoDaFonte);//define o tamanho da fonte no sistema
+        EfetuaPesquisa();
         
         
 
@@ -88,6 +87,7 @@ int tamanhoDaFonte=15;
         jLabel11 = new javax.swing.JLabel();
         jCelularProfessor = new javax.swing.JFormattedTextField();
         JTelefoneProfessor = new javax.swing.JFormattedTextField();
+        jNotifcacao2 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -186,7 +186,7 @@ int tamanhoDaFonte=15;
                 .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBDiminuiTamFOnte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
                 .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +259,6 @@ int tamanhoDaFonte=15;
             jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
-        jPesquisa.setText("Clique para Pesquisar responsável");
         jPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPesquisaMouseClicked(evt);
@@ -414,9 +413,9 @@ int tamanhoDaFonte=15;
                 .addGap(10, 10, 10)
                 .addComponent(jinformacaodoconteine)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeresponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nomeresponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -442,28 +441,40 @@ int tamanhoDaFonte=15;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jNotifcacao2.setEditable(false);
+        jNotifcacao2.setBackground(new java.awt.Color(255, 255, 255));
+        jNotifcacao2.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jNotifcacao2.setForeground(new java.awt.Color(153, 0, 0));
+        jNotifcacao2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jNotifcacao2.setBorder(null);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                    .addComponent(jNotificacao))
-                .addGap(0, 0, 0)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jNotifcacao2, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                            .addComponent(jNotificacao))
+                        .addGap(0, 0, 0)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(34, 34, 34)
                 .addComponent(jID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,12 +502,14 @@ int tamanhoDaFonte=15;
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jNotifcacao2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
         );
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
         jMenu1.setText("Menu");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente.png"))); // NOI18N
         jMenuItem2.setText("Menu Principal");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -506,7 +519,7 @@ int tamanhoDaFonte=15;
         jMenu1.add(jMenuItem2);
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fechar.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1473476015_Close_Icon.png"))); // NOI18N
         jMenuItem1.setText("Sair");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -616,14 +629,17 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
     }//GEN-LAST:event_jPesquisaKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        //quando o usuario clicar em um dos nomes da tabela, ela irá seta seus detalhes nos campos de nome, telefone e fixo
+       //quando o usuario clicar em um dos nomes da tabela, ela irá seta seus detalhes nos campos de nome, telefone e fixo
+       jnotificacao2.setText("");
         int linha = jTable1.getSelectedRow();
-        Object valor = null;//valor recebera o valor da celular da tabela
-        valor = jTable1.getValueAt(linha, 0);
+        String idResponsavel = null;//valor recebera o valor da celula da tabela
+        idResponsavel = (String) jTable1.getValueAt(linha, 0);
+        System.out.println("valor: "+idResponsavel);
         sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
         ArrayList<Pesquisar> listaPesquisa;//array pra pegar o resultado da pesquisa
         try {
-            listaPesquisa = acesso.PesquisarProntuarioPacienteDetalhes((String) valor);
+            listaPesquisa = acesso.PesquisarProntuarioPacienteDetalhes(idResponsavel);
+            if(!listaPesquisa.isEmpty()){
             nomeresponsavel.setText(listaPesquisa.get(0).getNome());
             jFTelefoneCelular.setText(listaPesquisa.get(0).getTelefone());
             jFTelefoneFixo.setText(listaPesquisa.get(0).getTelefonefixo());
@@ -637,9 +653,11 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
             jEditar.setVisible(true);
             jExcluir.setVisible(true);
             jNovoResponsavel.setVisible(true);
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(CadastroResponsavel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
         
     }//GEN-LAST:event_jTable1MouseClicked
@@ -664,6 +682,8 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
     private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
     try {
         ExcluiResponsável();
+        jNotifcacao2.setText("Responsável Excluido!");
+        EfetuaPesquisa();
     } catch (ClassNotFoundException ex) {
         Logger.getLogger(CadastroResponsavel.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -713,7 +733,11 @@ this.setVisible(false);        // TODO add your handling code here:
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroResponsavel().setVisible(true);
+                try {
+                    new CadastroResponsavel().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CadastroResponsavel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -746,6 +770,7 @@ this.setVisible(false);        // TODO add your handling code here:
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JTextField jNotifcacao2;
     private javax.swing.JTextField jNotificacao;
     private javax.swing.JButton jNovoResponsavel;
     private javax.swing.JPanel jPanel1;
@@ -777,7 +802,7 @@ this.setVisible(false);        // TODO add your handling code here:
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         listaPesquisa = acesso.PesquisarResponsavelProntuario(jPesquisa.getText(),1);// o valor 1 define o tipo de pesquisa
         LimpaTela();
-        if (listaPesquisa.size() == 0) {
+        if (listaPesquisa.isEmpty()) {
             jNotificacao.setText("Sem resultados");
         } else {
 

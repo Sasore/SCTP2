@@ -104,7 +104,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton2" min="-2" pref="68" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                  <Component id="jButton5" min="-2" pref="224" max="-2" attributes="0"/>
+                  <Component id="jButton5" min="-2" pref="274" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -154,7 +154,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/clipboard.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ver Prontu&#xe1;rios por Aluno"/>
+            <Property name="text" type="java.lang.String" value="Ver Prontu&#xe1;rios por Respons&#xe1;vel"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                 <EmptyBorder/>
@@ -181,7 +181,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" pref="760" max="32767" attributes="0"/>
+                              <Component id="jLabel1" pref="759" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">

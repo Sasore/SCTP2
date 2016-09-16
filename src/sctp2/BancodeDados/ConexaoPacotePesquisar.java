@@ -188,9 +188,9 @@ public class ConexaoPacotePesquisar {
 
     public ArrayList<Pesquisar> PesquisarResponsavelProntuario(String text, int tipo) throws ClassNotFoundException {
         String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, "
-                + "`telefoneFixo_ResponsavelPeloProntuario`, `nomeProfessor_ResponsavelPeloProntuario`,"
-                + " `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario`"
-                + " FROM `responsavelpeloprontuario` WHERE `nome_ResponsavelPeloProntuario` LIKE ?;";
+                + "        `telefoneFixo_ResponsavelPeloProntuario`, `nomeProfessor_ResponsavelPeloProntuario`, "
+                + "         `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario` "
+                + "FROM `responsavelpeloprontuario` WHERE nome_ResponsavelPeloProntuario LIKE ?;";
         Connection con = null;
         ArrayList<Pesquisar> ListarPesquisa;//array que recebera o resultado da pesquisa
         ListarPesquisa = new ArrayList<>();//criando novo array
@@ -286,10 +286,9 @@ public class ConexaoPacotePesquisar {
         String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, "
                 + "`telefoneFixo_ResponsavelPeloProntuario`, `nomeProfessor_ResponsavelPeloProntuario`, "
                 + "`TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario`"
-                + " FROM `responsavelpeloprontuario` WHERE `nome_ResponsavelPeloProntuario` LIKE ?;";
+                + " FROM `responsavelpeloprontuario` WHERE `Id`=?;";
         Connection con = null;
-        ArrayList<Pesquisar> ListarPesquisa;//array que recebera o resultado da pesquisa
-        ListarPesquisa = new ArrayList<Pesquisar>();//criando novo array
+        ArrayList<Pesquisar> ListarPesquisa = new ArrayList<>();//array que recebera o resultado da pesquisa
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -299,14 +298,14 @@ public class ConexaoPacotePesquisar {
                 Pesquisar pesquisarsmt = new Pesquisar();
                 pesquisarsmt.setCodigo(rs.getInt("Id"));
                 pesquisarsmt.setNome(rs.getString("nome_ResponsavelPeloProntuario"));
-                pesquisarsmt.setTelefone(rs.getString("resp_celular"));
+                pesquisarsmt.setTelefone(rs.getString("celular_ResponsavelPeloProntuario"));
                 pesquisarsmt.setTelefonefixo(rs.getString("celular_ResponsavelPeloProntuario"));
                 ListarPesquisa.add(pesquisarsmt);
             }
 
         } catch (SQLException e) {
             //System.out.println("Ocorreu um erro ao carrega a lista");
-            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos ou verifique a conexao!");
+            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao Pesquisa o prontuário no banco de dados, tente novamente em alguns minutos ou verifique a conexao!");
             e.printStackTrace();
         } finally {
             closeConnection(con);

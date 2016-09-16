@@ -704,6 +704,7 @@ jLabel3.setVisible(false);
     }
 
     private void ChamaCadastroProntuario() throws ClassNotFoundException {
+        //Exibe os dados do responsavel
      sctp2.Cadastros.Prontuario envia= new sctp2.Cadastros.Prontuario();
     envia.setVisible(true);
     envia.Recebe(codigo, (String)jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));

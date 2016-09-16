@@ -866,7 +866,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
 
     private void jBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVoltarActionPerformed
 //        SetValoresPaciente();
-        sctp2.Pesquisar.PesquisarPaciente acesso = new sctp2.Pesquisar.PesquisarPaciente();
+        sctp2.Paciente.PesquisarPaciente acesso = new sctp2.Paciente.PesquisarPaciente();
         this.setVisible(false);
         acesso.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jBVoltarActionPerformed
@@ -909,7 +909,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
                 Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (retorno == true) {
-                sctp2.Pesquisar.PesquisarPaciente Vai = new sctp2.Pesquisar.PesquisarPaciente();
+                sctp2.Paciente.PesquisarPaciente Vai = new sctp2.Paciente.PesquisarPaciente();
                 Vai.setVisible(true);//chama a tela de pesquisar paciente
                 this.setVisible(false);
             } else if (retorno == false) {

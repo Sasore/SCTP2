@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sctp2.Pesquisar;
+package sctp2.Paciente;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import sctp2.Pesquisar.Pesquisar;
 
 /**
  *
@@ -89,6 +90,7 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         jTNotificacao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTNotificacao.setBorder(null);
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

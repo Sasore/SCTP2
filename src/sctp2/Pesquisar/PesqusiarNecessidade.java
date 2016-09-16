@@ -5,6 +5,7 @@
  */
 package sctp2.Pesquisar;
 
+import sctp2.Paciente.PesquisarPaciente;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;

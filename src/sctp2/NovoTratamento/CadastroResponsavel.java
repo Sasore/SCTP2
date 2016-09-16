@@ -433,7 +433,7 @@ private int tamanhoFonte=15;//DEFINE O TAMANHO DA FONTE DESTA TELA
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/menu.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
         jMenu1.setText("Menu");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
