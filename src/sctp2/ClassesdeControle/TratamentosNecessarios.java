@@ -8,6 +8,7 @@ package sctp2.ClassesdeControle;
 /**
  *
  * @author Adriano
+ * 
  */
 public class TratamentosNecessarios {
     private static  int codigo;
@@ -36,6 +37,10 @@ public class TratamentosNecessarios {
     private static  int rmf;
     private static  int resina;
     private static  int Historico_codigoTratamento;
+    private static int PonteFixa;
+    private static int PonteFixaMaisQueTresElementos;
+    private static int raspagemSub;
+    private static int raspagemSupra;
 
     public static int getCodigo() {
         return codigo;
@@ -61,8 +66,40 @@ public class TratamentosNecessarios {
         TratamentosNecessarios.dtm = dtm;
     }
 
+    public static int getRaspagemSub() {
+        return raspagemSub;
+    }
+
+    public static void setRaspagemSub(int raspagemSub) {
+        TratamentosNecessarios.raspagemSub = raspagemSub;
+    }
+
+    public static int getRaspagemSupra() {
+        return raspagemSupra;
+    }
+
+    public static void setRaspagemSupra(int raspagemSupra) {
+        TratamentosNecessarios.raspagemSupra = raspagemSupra;
+    }
+
     public static int getProfilaxiaSimples() {
         return profilaxiaSimples;
+    }
+
+    public static int getPonteFixa() {
+        return PonteFixa;
+    }
+
+    public static void setPonteFixa(int PonteFixa) {
+        TratamentosNecessarios.PonteFixa = PonteFixa;
+    }
+
+    public static int getPonteFixaMaisQueTresElementos() {
+        return PonteFixaMaisQueTresElementos;
+    }
+
+    public static void setPonteFixaMaisQueTresElementos(int PonteFixaMaisQueTresElementos) {
+        TratamentosNecessarios.PonteFixaMaisQueTresElementos = PonteFixaMaisQueTresElementos;
     }
 
     public static void setProfilaxiaSimples(int profilaxiaSimples) {

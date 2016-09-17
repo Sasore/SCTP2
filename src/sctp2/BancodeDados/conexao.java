@@ -285,7 +285,9 @@ public class conexao {
                 + "`nec_ExodontiaIncluso`,`nec_ProfilaxiaSimples`,`nec_PonteFixa3Elementos`,`nec_Pontefixa4elementos`,\n"
                 + "`nec_Pontefixamaisque4elementos`,`nec_Protese`,`nec_ProteseTotalPar`,`nec_ProtesePPR`,`nec_PPR`,\n"
                 + "`nec_RaspagemPolimentoCoronario`,`nec_Resina`,`nec_RMF`,\n"
-                + "`nec_TerapiaPeriodontal`,nec_ExodontiaSimples,`nec_referencia_rg`)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                + "`nec_TerapiaPeriodontal`,nec_ExodontiaSimples,`nec_PonteFixa`,`nec_PonteFixaMaisQueTresElementos`,"
+                + "`nec_RaspagemSub`, `nec_RaspagemSupra`,`nec_referencia_rg`)"
+                + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -312,7 +314,11 @@ public class conexao {
             smt.setInt(21, tratamentosNVetor[20]);
             smt.setInt(22, tratamentosNVetor[21]);
             smt.setInt(23, tratamentosNVetor[22]);
-            smt.setString(24, rg);
+            smt.setInt(24, tratamentosNVetor[23]);
+            smt.setInt(25, tratamentosNVetor[24]);
+            smt.setInt(26, tratamentosNVetor[25]);
+            smt.setInt(27, tratamentosNVetor[26]);
+            smt.setString(28, rg);
             smt.execute();
             System.out.println("Gravou Tratamento");
 
@@ -498,7 +504,8 @@ public class conexao {
         Connection con = null;
         Date inicioTratamento = null, fimTratamento = null;
         String queixa = null;
-        String sql = "select distinct pac_cod,pac_inicio_tratamento,pac_Fim_tratamento,paciente.pac_RG, saude.sa_QueixaPrincipal from paciente join prontuario,responsavelpeloprontuario,saude where \n"
+        String sql = "select distinct pac_cod,pac_inicio_tratamento,pac_Fim_tratamento,paciente.pac_RG, "
+                + "saude.sa_QueixaPrincipal from paciente join prontuario,responsavelpeloprontuario,saude where \n"
                 + "pac_cod=? and  saude.sa_ReferenciaRG=paciente.pac_RG \n"
                 + "and prontuario.referencia_RG_PAC=paciente.pac_RG;";
         try {
@@ -581,7 +588,16 @@ public class conexao {
 
     public boolean GravaNoHistoricoNecessidade(String rg, int numeroDoTratamento) throws ClassNotFoundException, SQLException {
         Connection con = null, con2;
-        String sql = "SELECT `nec_Cod`, `nec_ProfilaxiaSimples`, `nec_referencia_rg`, `nec_RaspagemPolimentoCoronario`, `nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, `nec_Amalgama`, `nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`, `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, `nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia` FROM `necessidade` WHERE `nec_referencia_rg`=?";
+        String sql = "SELECT `nec_Cod`, `nec_ProfilaxiaSimples`, `nec_referencia_rg`, "
+                              + "`nec_RaspagemPolimentoCoronario`, `nec_CirurgiaPeriodontal`, "
+                              + "`nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, "
+                              + "`nec_Amalgama`, `nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, "
+                              + "`nec_EndodontiaTrirradicular`, `nec_CoroaTotal`, `nec_PonteFixa3Elementos`, "
+                              + "`nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, `nec_PPR`,"
+                              + " `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`,"
+                              + " `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`, `nec_PonteFixa`,"
+                              + " `nec_PonteFixaMaisQueTresElementos`, `nec_RaspagemSub`, `nec_RaspagemSupra` "
+                + "FROM `necessidade` WHERE `nec_referencia_rg`=?";
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -590,14 +606,19 @@ public class conexao {
             while (rs.next()) {
                 //-------------------------------copia os dados do paciente na tabela necessidade para a tabela historico necessidade------------------------------------------------------------
                 con2 = getConnection();
-                String sql2 = "INSERT INTO `historiconecessidade`( `nec_ProfilaxiaSimples`, `nec_referencia_rg`, `nec_RaspagemPolimentoCoronario`, "
-                        + "`nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, `nec_Amalgama`, `nec_Resina`,"
-                        + " `nec_RMF`, `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`, `nec_PonteFixa3Elementos`, "
-                        + "`nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, `nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, "
-                        + "`nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`, `Historico_codigoTratamento`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                String sql2 = "INSERT INTO `historiconecessidade`( `nec_referencia_rg`, \n" +
+                                "`nec_ProfilaxiaSimples`, `nec_RaspagemPolimentoCoronario`, \n" +
+                                "`nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`,\n" +
+                                " `nec_ExodontiaIncluso`, `nec_Amalgama`, `nec_Resina`, `nec_RMF`,\n" +
+                                " `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`,\n" +
+                                " `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`,\n" +
+                                " `nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, \n" +
+                                " `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`, \n" +
+                                " `nec_PonteFixa`, `nec_PonteFixaMaisQueTresElementos`, `nec_RaspagemSub`, `nec_RaspagemSupra`, `Historico_codigoTratamento`) \n" +
+                                " VALUES (?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?, ?,?,?,?,?,?);";
                 PreparedStatement smt2 = (PreparedStatement) con.prepareStatement(sql2);
-                smt2.setInt(1, rs.getInt("nec_ProfilaxiaSimples"));
-                smt2.setString(2, rs.getString("nec_referencia_rg"));
+                smt2.setString(1, rg);
+                smt2.setString(2, rs.getString("nec_ProfilaxiaSimples"));
                 smt2.setInt(3, rs.getInt("nec_RaspagemPolimentoCoronario"));
                 smt2.setInt(4, rs.getInt("nec_CirurgiaPeriodontal"));
                 smt2.setInt(5, rs.getInt("nec_ExodontiaSimples"));
@@ -620,7 +641,11 @@ public class conexao {
                 smt2.setInt(22, rs.getInt("nec_EndodontiaBirradicular"));
                 smt2.setInt(23, rs.getInt("nec_DTM"));
                 smt2.setInt(24, rs.getInt("nec_Estomatologia"));
-                smt2.setInt(25, numeroDoTratamento);
+                smt2.setInt(25, rs.getInt("nec_PonteFixa"));
+                smt2.setInt(26, rs.getInt("nec_PonteFixaMaisQueTresElementos"));
+                smt2.setInt(27, rs.getInt("nec_RaspagemSub"));
+                smt2.setInt(28, rs.getInt("nec_RaspagemSupra"));
+                smt2.setInt(29, numeroDoTratamento);
                 smt2.execute();
                 System.out.println("gravou historico necessidade");
                 //-------------------------------------------------------------------------------------------------------
@@ -682,7 +707,7 @@ public class conexao {
 ",`nec_Estomatologia`=?,`nec_ExodontiaMolar`=?,`nec_ExodontiaIncluso`=?,`nec_ProfilaxiaSimples`=?,\n" +
 "`nec_PonteFixa3Elementos`=?,`nec_Pontefixa4elementos`=?,`nec_Pontefixamaisque4elementos`=?\n" +
 ",`nec_Protese`=?,`nec_ProteseTotalPar`=?,`nec_ProtesePPR`=?,`nec_PPR`=?,`nec_RaspagemPolimentoCoronario`=?,\n" +
-"`nec_Resina`=?,`nec_RMF`=?,`nec_TerapiaPeriodontal`=?,`nec_ExodontiaSimples`=?  WHERE `nec_referencia_rg`=?");
+"`nec_Resina`=?,`nec_RMF`=?,`nec_TerapiaPeriodontal`=?,`nec_ExodontiaSimples`=?,`nec_RaspagemSub`=?,`nec_RaspagemSupra`=?,`nec_PonteFixa`=?,`nec_PonteFixaMaisQueTresElementos`=?  WHERE `nec_referencia_rg`=?");
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -709,9 +734,13 @@ public class conexao {
             smt.setInt(21, tratamentosNVetor[20]);
             smt.setInt(22, tratamentosNVetor[21]);
             smt.setInt(23, tratamentosNVetor[22]);
-            smt.setString(24, rg);
+            smt.setInt(24, tratamentosNVetor[23]);
+            smt.setInt(25, tratamentosNVetor[24]);
+            smt.setInt(26, tratamentosNVetor[25]);
+            smt.setInt(27, tratamentosNVetor[26]);
+            smt.setString(28, rg);
            retorno= smt.executeUpdate();
-            System.out.println("Gravou Tratamento");
+            System.out.println("Atualizou Tratamento");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "(2) Não foi possível gravar no Banco de dados as informações da tela de cadastro de tratamentos necessarios , tente novamente em breve.");

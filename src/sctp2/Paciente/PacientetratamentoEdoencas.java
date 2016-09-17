@@ -483,7 +483,7 @@ new sctp2.Principal.principal().setVisible(true);
 sctp2.BancodeDados.ConexaoPacotePesquisar acesso= new sctp2.BancodeDados.ConexaoPacotePesquisar();
 ArrayList<sctp2.ClassesdeControle.TratamentosNecessarios> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.TratamentosNecessarios>();
 ListarPesquisa=acesso.NecessidadesdoPaciente(iDpaciente);//função que retorna quais necessidades do paciente
-    int[] tratamento= new int[23];
+    int[] tratamento= new int[27];
 
     tratamento[0]=ListarPesquisa.get(0).getProfilaxiaSimples();
     tratamento[1]=ListarPesquisa.get(0).getRaspagemEPoliCCoronario();
@@ -508,6 +508,11 @@ ListarPesquisa=acesso.NecessidadesdoPaciente(iDpaciente);//função que retorna 
     tratamento[20]=ListarPesquisa.get(0).getEndodontiaBirradicular();
     tratamento[21]=ListarPesquisa.get(0).getDtm();
     tratamento[22]=ListarPesquisa.get(0).getEstomatologia();
+    tratamento[23]=ListarPesquisa.get(0).getPonteFixa();
+    tratamento[24]=ListarPesquisa.get(0).getPonteFixaMaisQueTresElementos();
+    tratamento[25]=ListarPesquisa.get(0).getRaspagemSub();
+    tratamento[26]=ListarPesquisa.get(0).getRaspagemSupra();
+    
 
 DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
 if(  tratamento[0]==1)valor.addRow((new String[]{"Profilaxia Simples"}));
@@ -533,6 +538,10 @@ if(  tratamento[19]==1)valor.addRow((new String[]{"Terapia Periodontal "}));
 if(  tratamento[20]==1)valor.addRow((new String[]{" Endodontia Birradicular "}));
 if(  tratamento[21]==1)valor.addRow((new String[]{"DTM "}));
 if(  tratamento[22]==1)valor.addRow((new String[]{"Estomatologia"}));
+if(  tratamento[23]==1)valor.addRow((new String[]{"Ponte Fixa"}));
+if(  tratamento[24]==1)valor.addRow((new String[]{"Ponte Fixa Mais Que Três Elementos"}));
+if(  tratamento[25]==1)valor.addRow((new String[]{"Raspagem Sub"}));
+if(  tratamento[26]==1)valor.addRow((new String[]{"Raspagem Supra"}));
 
 
     }

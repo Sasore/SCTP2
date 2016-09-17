@@ -532,7 +532,8 @@ public class ConexaoPacotePesquisar {
                 + "`nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, `nec_Amalgama`,"
                 + " `nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`, "
                 + "`nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, `nec_PPR`, `nec_ProteseTotalPar`, "
-                + "`nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia` "
+                + "`nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`,"
+                + "`nec_PonteFixa`,`nec_PonteFixaMaisQueTresElementos`,`nec_RaspagemSub`, `nec_RaspagemSupra` "
                 + "FROM `necessidade` WHERE  nec_referencia_rg=?;";
         try {
             con = getConnection();//criando variavel de conexao
@@ -563,6 +564,10 @@ public class ConexaoPacotePesquisar {
                 pesquisarsmt.setProtese_ppr(rs.getInt("nec_ProtesePPR"));
                 pesquisarsmt.setProtese(rs.getInt("nec_Protese"));
                 pesquisarsmt.setTerrapiaOeriodDeSuporte(rs.getInt("nec_TerapiaPeriodontal"));
+                pesquisarsmt.setPonteFixa(rs.getInt("nec_PonteFixa"));
+                pesquisarsmt.setPonteFixaMaisQueTresElementos(rs.getInt("nec_PonteFixaMaisQueTresElementos"));
+                pesquisarsmt.setRaspagemSub(rs.getInt("nec_RaspagemSub"));
+                pesquisarsmt.setRaspagemSupra(rs.getInt("nec_RaspagemSupra"));
             };
             ListarPesquisa.add(pesquisarsmt);
         } catch (SQLException ex) {
@@ -749,11 +754,14 @@ public class ConexaoPacotePesquisar {
     }
 
     public ArrayList<HistoricoDetratamentos> PesquisarHistóricoTratamentos(String rg) throws ClassNotFoundException {
-        String sql = "SELECT `nec_Cod`, `nec_ProfilaxiaSimples`, `nec_referencia_rg`, `nec_RaspagemPolimentoCoronario`, `nec_CirurgiaPeriodontal`, "
-                + "`nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, `nec_Amalgama`, `nec_Resina`, `nec_RMF`, "
-                + "`nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`, `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, "
-                + "`nec_Pontefixamaisque4elementos`, `nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`,"
-                + " `nec_DTM`, `nec_Estomatologia`, `Historico_codigoTratamento` FROM `historiconecessidade` WHERE `nec_referencia_rg`=?";
+        String sql = "SELECT `nec_Cod`, `nec_referencia_rg`, `nec_ProfilaxiaSimples`, `nec_RaspagemPolimentoCoronario`,"
+                + " `nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`,"
+                + " `nec_Amalgama`, `nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, "
+                + "`nec_CoroaTotal`, `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, "
+                + "`nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`,"
+                + " `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`, `Historico_codigoTratamento`,"
+                + " `nec_PonteFixa`, `nec_PonteFixaMaisQueTresElementos`, `nec_RaspagemSub`, `nec_RaspagemSupra` "
+                + "FROM `historiconecessidade` WHERE `nec_referencia_rg`=?";
         Connection con = null;
         sctp2.Paciente.HistoricoDetratamentos pesquisarsmt;
         ArrayList<sctp2.Paciente.HistoricoDetratamentos> ListarPesquisa;
@@ -790,6 +798,10 @@ public class ConexaoPacotePesquisar {
                 pesquisarsmt.setEndodontiaBirradicular(rs.getInt("nec_EndodontiaBirradicular"));
                 pesquisarsmt.setDtm(rs.getInt("nec_DTM"));
                 pesquisarsmt.setEstomatologia(rs.getInt("nec_Estomatologia"));
+                pesquisarsmt.setPonteFixa(rs.getInt("nec_PonteFixa"));
+                pesquisarsmt.setPonteFixaMaisQueTresElementos(rs.getInt("nec_PonteFixaMaisQueTresElementos"));
+                pesquisarsmt.setRaspagemSub(rs.getInt("nec_RaspagemSub"));
+                pesquisarsmt.setRaspagemSupra(rs.getInt("nec_RaspagemSupra"));
                 pesquisarsmt.setHistorico_codigoTratamento(rs.getInt("Historico_codigoTratamento"));
                 ListarPesquisa.add(pesquisarsmt);
             }

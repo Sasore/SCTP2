@@ -36,6 +36,10 @@ public class HistoricoDetratamentos {
     private   int rmf;
     private   int resina;
     private   int Historico_codigoTratamento;
+    private   int PonteFixa;  
+    private int PonteFixaMaisQueTresElementos;
+    private int RaspagemSub;
+    private int RaspagemSupra;
 
     public int getHistorico_codigoTratamento() {
         return Historico_codigoTratamento;
@@ -243,6 +247,38 @@ public class HistoricoDetratamentos {
 
     public void setResina(int resina) {
         this.resina = resina;
+    }
+
+    public int getPonteFixa() {
+        return PonteFixa;
+    }
+
+    public void setPonteFixa(int PonteFixa) {
+        this.PonteFixa = PonteFixa;
+    }
+
+    public int getPonteFixaMaisQueTresElementos() {
+        return PonteFixaMaisQueTresElementos;
+    }
+
+    public void setPonteFixaMaisQueTresElementos(int PonteFixaMaisQueTresElementos) {
+        this.PonteFixaMaisQueTresElementos = PonteFixaMaisQueTresElementos;
+    }
+
+    public int getRaspagemSub() {
+        return RaspagemSub;
+    }
+
+    public void setRaspagemSub(int RaspagemSub) {
+        this.RaspagemSub = RaspagemSub;
+    }
+
+    public int getRaspagemSupra() {
+        return RaspagemSupra;
+    }
+
+    public void setRaspagemSupra(int RaspagemSupra) {
+        this.RaspagemSupra = RaspagemSupra;
     }
     
 }

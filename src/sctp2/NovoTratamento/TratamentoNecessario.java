@@ -5,6 +5,7 @@
  */
 package sctp2.NovoTratamento;
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -41,20 +42,20 @@ public class TratamentoNecessario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jCProfilaxiaSimples = new javax.swing.JCheckBox();
+        jPanel5 = new javax.swing.JPanel();
+        jCTerapiaPerioddeSuporte = new javax.swing.JCheckBox();
+        jCRaspagemSupra = new javax.swing.JCheckBox();
+        jCPonteFixa = new javax.swing.JCheckBox();
+        jCPonteFixaMaisQueTresElementos = new javax.swing.JCheckBox();
+        jCRMF = new javax.swing.JCheckBox();
+        jCRaspagemSub = new javax.swing.JCheckBox();
+        jCExodontia3Molar = new javax.swing.JCheckBox();
         jCExodontiaIncluso = new javax.swing.JCheckBox();
-        jCProtesePPR = new javax.swing.JCheckBox();
-        jCPonteFixa3Elementos = new javax.swing.JCheckBox();
-        jCPonteFixa4Elementos = new javax.swing.JCheckBox();
+        jCProfilaxiaSimples = new javax.swing.JCheckBox();
         jCponteFixaMaisque4Elementos = new javax.swing.JCheckBox();
         jCProteseTotal = new javax.swing.JCheckBox();
+        jCProtesePPR = new javax.swing.JCheckBox();
         jCPPR = new javax.swing.JCheckBox();
-        jCProtese = new javax.swing.JCheckBox();
-        jPanel5 = new javax.swing.JPanel();
-        jCRaspagemEPoliCoronario = new javax.swing.JCheckBox();
-        jCTerapiaPerioddeSuporte = new javax.swing.JCheckBox();
-        jCRMF = new javax.swing.JCheckBox();
-        jCResina = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jCCoroaTotal = new javax.swing.JCheckBox();
         jCEstomatologia = new javax.swing.JCheckBox();
@@ -64,8 +65,8 @@ public class TratamentoNecessario extends javax.swing.JFrame {
         jCEndodontiaBirradicular = new javax.swing.JCheckBox();
         jCEndodontiaUnirradicular = new javax.swing.JCheckBox();
         jCExodontiaSimples = new javax.swing.JCheckBox();
-        jCExodontia3Molar = new javax.swing.JCheckBox();
         jCEndodontiaTrirradicular = new javax.swing.JCheckBox();
+        jCResina = new javax.swing.JCheckBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -146,117 +147,64 @@ public class TratamentoNecessario extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jCProfilaxiaSimples.setBackground(new java.awt.Color(255, 255, 255));
-        jCProfilaxiaSimples.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCProfilaxiaSimples.setText("Profilaxia Simples");
-        jCProfilaxiaSimples.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jCProfilaxiaSimples.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCProfilaxiaSimplesActionPerformed(evt);
-            }
-        });
-
-        jCExodontiaIncluso.setBackground(new java.awt.Color(255, 255, 255));
-        jCExodontiaIncluso.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCExodontiaIncluso.setText("Exodontia Incluso");
-        jCExodontiaIncluso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCProtesePPR.setBackground(new java.awt.Color(255, 255, 255));
-        jCProtesePPR.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCProtesePPR.setText("Prótese + PPR");
-        jCProtesePPR.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCPonteFixa3Elementos.setBackground(new java.awt.Color(255, 255, 255));
-        jCPonteFixa3Elementos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCPonteFixa3Elementos.setText("Ponte Fixa 3 Elementos");
-        jCPonteFixa3Elementos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jCPonteFixa3Elementos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCPonteFixa3ElementosActionPerformed(evt);
-            }
-        });
-
-        jCPonteFixa4Elementos.setBackground(new java.awt.Color(255, 255, 255));
-        jCPonteFixa4Elementos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCPonteFixa4Elementos.setText("Ponte Fixa 4 Elementos");
-        jCPonteFixa4Elementos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCponteFixaMaisque4Elementos.setBackground(new java.awt.Color(255, 255, 255));
-        jCponteFixaMaisque4Elementos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCponteFixaMaisque4Elementos.setText("Ponte Fixa Mais que 4 Elementos");
-        jCponteFixaMaisque4Elementos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCProteseTotal.setBackground(new java.awt.Color(255, 255, 255));
-        jCProteseTotal.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCProteseTotal.setText("Prótese total (Par)");
-        jCProteseTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCPPR.setBackground(new java.awt.Color(255, 255, 255));
-        jCPPR.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCPPR.setText("PPR");
-        jCPPR.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCProtese.setBackground(new java.awt.Color(255, 255, 255));
-        jCProtese.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCProtese.setText("Prótese (1)");
-        jCProtese.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCExodontiaIncluso)
-                    .addComponent(jCProfilaxiaSimples)
-                    .addComponent(jCPonteFixa3Elementos)
-                    .addComponent(jCPonteFixa4Elementos)
-                    .addComponent(jCponteFixaMaisque4Elementos)
-                    .addComponent(jCProteseTotal)
-                    .addComponent(jCPPR)
-                    .addComponent(jCProtesePPR)
-                    .addComponent(jCProtese))
-                .addContainerGap(41, Short.MAX_VALUE))
+            .addGap(0, 318, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jCExodontiaIncluso)
-                .addGap(18, 18, 18)
-                .addComponent(jCProfilaxiaSimples)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCPonteFixa3Elementos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCPonteFixa4Elementos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCponteFixaMaisque4Elementos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCProtese)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCProteseTotal)
-                .addGap(3, 3, 3)
-                .addComponent(jCProtesePPR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCPPR)
-                .addGap(22, 22, 22))
+            .addGap(0, 355, Short.MAX_VALUE)
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jCRaspagemEPoliCoronario.setBackground(new java.awt.Color(255, 255, 255));
-        jCRaspagemEPoliCoronario.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCRaspagemEPoliCoronario.setText("Raspagem E Poli. Coronário");
-        jCRaspagemEPoliCoronario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         jCTerapiaPerioddeSuporte.setBackground(new java.awt.Color(255, 255, 255));
-        jCTerapiaPerioddeSuporte.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCTerapiaPerioddeSuporte.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCTerapiaPerioddeSuporte.setText("Terapia Period. de Suporte");
         jCTerapiaPerioddeSuporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jCRaspagemSupra.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCRaspagemSupra.setText("Raspagem Supra");
+
+        jCPonteFixa.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCPonteFixa.setText("Ponte Fixa");
+
+        jCPonteFixaMaisQueTresElementos.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCPonteFixaMaisQueTresElementos.setText("Ponte Fixa mais que três elementos");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCPonteFixaMaisQueTresElementos)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCRaspagemSupra)
+                            .addComponent(jCPonteFixa)))
+                    .addComponent(jCTerapiaPerioddeSuporte))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jCRaspagemSupra)
+                .addGap(18, 18, 18)
+                .addComponent(jCPonteFixa)
+                .addGap(18, 18, 18)
+                .addComponent(jCPonteFixaMaisQueTresElementos)
+                .addGap(32, 32, 32)
+                .addComponent(jCTerapiaPerioddeSuporte)
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+
         jCRMF.setBackground(new java.awt.Color(255, 255, 255));
-        jCRMF.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCRMF.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCRMF.setText("RMF");
         jCRMF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCRMF.addActionListener(new java.awt.event.ActionListener() {
@@ -265,47 +213,71 @@ public class TratamentoNecessario extends javax.swing.JFrame {
             }
         });
 
-        jCResina.setBackground(new java.awt.Color(255, 255, 255));
-        jCResina.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCResina.setText("Resina");
-        jCResina.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCRaspagemSub.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCRaspagemSub.setText("Raspagem Sub");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCTerapiaPerioddeSuporte)
-                    .addComponent(jCRaspagemEPoliCoronario)
-                    .addComponent(jCResina)
-                    .addComponent(jCRMF))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCRaspagemEPoliCoronario)
-                .addGap(0, 0, 0)
-                .addComponent(jCResina)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCRMF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCTerapiaPerioddeSuporte)
-                .addContainerGap(191, Short.MAX_VALUE))
-        );
+        jCExodontia3Molar.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCExodontia3Molar.setText("Exodontia  3º Molar");
+        jCExodontia3Molar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jCExodontiaIncluso.setBackground(new java.awt.Color(255, 255, 255));
+        jCExodontiaIncluso.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCExodontiaIncluso.setText("Exodontia Incluso");
+        jCExodontiaIncluso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jCProfilaxiaSimples.setBackground(new java.awt.Color(255, 255, 255));
+        jCProfilaxiaSimples.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCProfilaxiaSimples.setText("Profilaxia Simples");
+        jCProfilaxiaSimples.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCProfilaxiaSimples.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCProfilaxiaSimplesActionPerformed(evt);
+            }
+        });
+
+        jCponteFixaMaisque4Elementos.setBackground(new java.awt.Color(255, 255, 255));
+        jCponteFixaMaisque4Elementos.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCponteFixaMaisque4Elementos.setText("Ponte Fixa Mais que 4 Elementos");
+        jCponteFixaMaisque4Elementos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jCProteseTotal.setBackground(new java.awt.Color(255, 255, 255));
+        jCProteseTotal.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCProteseTotal.setText("Prótese total (Par)");
+        jCProteseTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jCProtesePPR.setBackground(new java.awt.Color(255, 255, 255));
+        jCProtesePPR.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCProtesePPR.setText("Prótese + PPR");
+        jCProtesePPR.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jCPPR.setBackground(new java.awt.Color(255, 255, 255));
+        jCPPR.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCPPR.setText("PPR");
+        jCPPR.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCExodontiaIncluso)
+                            .addComponent(jCProfilaxiaSimples)
+                            .addComponent(jCponteFixaMaisque4Elementos)
+                            .addComponent(jCProteseTotal)
+                            .addComponent(jCProtesePPR)
+                            .addComponent(jCPPR))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCExodontia3Molar))
                 .addGap(121, 121, 121)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCRMF)
+                    .addComponent(jCRaspagemSub))
                 .addGap(57, 57, 57))
         );
         jPanel7Layout.setVerticalGroup(
@@ -313,51 +285,77 @@ public class TratamentoNecessario extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCRMF)
+                            .addComponent(jCExodontia3Molar))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jCRaspagemSub)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jCExodontiaIncluso)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCProfilaxiaSimples)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCponteFixaMaisque4Elementos)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCProteseTotal)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCProtesePPR)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCPPR)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCCoroaTotal.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCCoroaTotal.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCCoroaTotal.setText("Coroa Total");
         jCCoroaTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCEstomatologia.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCEstomatologia.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCEstomatologia.setText("Estomatologia");
         jCEstomatologia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCDtm.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCDtm.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCDtm.setText("DTM");
         jCDtm.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCAmalga.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCAmalga.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCAmalga.setText("Amálgama");
         jCAmalga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCCirugiaPeriodontal.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCCirugiaPeriodontal.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCCirugiaPeriodontal.setText("Cirurgia Periodontal");
 
-        jCEndodontiaBirradicular.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCEndodontiaBirradicular.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCEndodontiaBirradicular.setText("Endodontia Birradicular");
         jCEndodontiaBirradicular.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCEndodontiaUnirradicular.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCEndodontiaUnirradicular.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCEndodontiaUnirradicular.setText("Endodontia Unirradicular");
         jCEndodontiaUnirradicular.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCExodontiaSimples.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCExodontiaSimples.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCExodontiaSimples.setText("Exodontia Simples");
         jCExodontiaSimples.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCExodontia3Molar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jCExodontia3Molar.setText("Exodontia  3º Molar");
-        jCExodontia3Molar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCEndodontiaTrirradicular.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jCEndodontiaTrirradicular.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jCEndodontiaTrirradicular.setText("Endodontia Trirradicular");
+
+        jCResina.setBackground(new java.awt.Color(255, 255, 255));
+        jCResina.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jCResina.setText("Resina");
+        jCResina.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -366,8 +364,8 @@ public class TratamentoNecessario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCResina)
                     .addComponent(jCEndodontiaTrirradicular)
-                    .addComponent(jCExodontia3Molar)
                     .addComponent(jCExodontiaSimples)
                     .addComponent(jCEstomatologia)
                     .addComponent(jCEndodontiaUnirradicular)
@@ -383,24 +381,24 @@ public class TratamentoNecessario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jCAmalga)
-                .addGap(9, 9, 9)
+                .addGap(10, 10, 10)
+                .addComponent(jCResina)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCCirugiaPeriodontal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCCoroaTotal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCDtm)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCEndodontiaBirradicular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCEndodontiaUnirradicular)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCEndodontiaTrirradicular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCEstomatologia)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCExodontiaSimples)
-                .addGap(13, 13, 13)
-                .addComponent(jCExodontia3Molar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -421,7 +419,7 @@ public class TratamentoNecessario extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(40, 40, 40)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 431, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -489,25 +487,23 @@ public class TratamentoNecessario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        SetaValoresTratamentoNecessario();
-//        this.setVisible(false);
-//        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
-//        acesso.setVisible(true);
-//        sctp2.ClassesdeControle.Controle acesso1 = new sctp2.ClassesdeControle.Controle();
-//        try {
-//           acesso1.ProntuarioGravaNovoTratamento();
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        SetaValoresTratamentoNecessario();
+        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
+        sctp2.ClassesdeControle.Controle acesso1 = new sctp2.ClassesdeControle.Controle();
+        try {
+           acesso1.ProntuarioGravaNovoTratamento();
+           acesso.setVisible(true);
+           this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jCRMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCRMFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCRMFActionPerformed
-
-    private void jCPonteFixa3ElementosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCPonteFixa3ElementosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCPonteFixa3ElementosActionPerformed
 
     private void jCProfilaxiaSimplesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCProfilaxiaSimplesActionPerformed
         // TODO add your handling code here:
@@ -575,14 +571,14 @@ public class TratamentoNecessario extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCExodontiaIncluso;
     private javax.swing.JCheckBox jCExodontiaSimples;
     private javax.swing.JCheckBox jCPPR;
-    private javax.swing.JCheckBox jCPonteFixa3Elementos;
-    private javax.swing.JCheckBox jCPonteFixa4Elementos;
+    private javax.swing.JCheckBox jCPonteFixa;
+    private javax.swing.JCheckBox jCPonteFixaMaisQueTresElementos;
     private javax.swing.JCheckBox jCProfilaxiaSimples;
-    private javax.swing.JCheckBox jCProtese;
     private javax.swing.JCheckBox jCProtesePPR;
     private javax.swing.JCheckBox jCProteseTotal;
     private javax.swing.JCheckBox jCRMF;
-    private javax.swing.JCheckBox jCRaspagemEPoliCoronario;
+    private javax.swing.JCheckBox jCRaspagemSub;
+    private javax.swing.JCheckBox jCRaspagemSupra;
     private javax.swing.JCheckBox jCResina;
     private javax.swing.JCheckBox jCTerapiaPerioddeSuporte;
     private javax.swing.JCheckBox jCponteFixaMaisque4Elementos;
@@ -614,18 +610,18 @@ public class TratamentoNecessario extends javax.swing.JFrame {
         acesso.setExodontiaSimples(jCExodontiaSimples.isSelected()?1:0);
         acesso.setExodontia3Molar(jCExodontia3Molar.isSelected()?1:0);
         acesso.setExodontiaIncluso(jCExodontiaIncluso.isSelected()?1:0);
-        acesso.setPonteFixa3Elementos(jCPonteFixa3Elementos.isSelected()?1:0);
-        acesso.setPonteFixa4Elementos(jCPonteFixa4Elementos.isSelected()?1:0);
         acesso.setPonteFixaMaisQue4Elementos(jCponteFixaMaisque4Elementos.isSelected()?1:0);
-        acesso.setProtese(jCProtese.isSelected()?1:0);
         acesso.setProtese_ppr(jCProtesePPR.isSelected()?1:0);
-        acesso.setRaspagemEPoliCCoronario(jCRaspagemEPoliCoronario.isSelected()?1:0);
         acesso.setResina(jCResina.isSelected()?1:0);
         acesso.setRmf(jCRMF.isSelected()?1:0);
         acesso.setTerrapiaOeriodDeSuporte(jCTerapiaPerioddeSuporte.isSelected()?1:0);
         acesso.setProfilaxiaSimples(jCProfilaxiaSimples.isSelected()?1:0);
         acesso.setProtesetotal(jCProteseTotal.isSelected()?1:0);
         acesso.setPpr(jCPPR.isSelected()?1:0);
+        acesso.setRaspagemSub(jCRaspagemSub.isSelected()?1:0);
+        acesso.setRaspagemSupra(jCRaspagemSupra.isSelected()?1:0);
+        acesso.setPonteFixa(jCPonteFixa.isSelected()?1:0);
+        acesso.setPonteFixaMaisQueTresElementos(jCPonteFixaMaisQueTresElementos.isSelected()?1:0);
 
     }
 

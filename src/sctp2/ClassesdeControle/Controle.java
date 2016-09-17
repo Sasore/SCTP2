@@ -8,7 +8,6 @@ package sctp2.ClassesdeControle;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import sctp2.BancodeDados.conexao;
-import sctp2.Cadastros.*;
 
 /**
  *
@@ -221,7 +220,7 @@ public class Controle {
     private boolean GravatratamentosNecessarios() throws ClassNotFoundException {
         TratamentosNecessarios acesso = new TratamentosNecessarios();
         sctp2.BancodeDados.conexao conectar = new sctp2.BancodeDados.conexao();
-        int[] tratamentosNVetor = new int[23];
+        int[] tratamentosNVetor = new int[27];
         sctp2.ClassesdeControle.Paciente PegaRg = new sctp2.ClassesdeControle.Paciente();
         String rg = PegaRg.getRg();
 
@@ -249,6 +248,10 @@ public class Controle {
         tratamentosNVetor[20] = acesso.getRmf();
         tratamentosNVetor[21] = acesso.getTerrapiaOeriodDeSuporte();
         tratamentosNVetor[22] = acesso.getExodontiaSimples();
+        tratamentosNVetor[23]=acesso.getPonteFixa();
+        tratamentosNVetor[24]=acesso.getPonteFixaMaisQueTresElementos();
+        tratamentosNVetor[25]=acesso.getRaspagemSub();
+        tratamentosNVetor[26]=acesso.getRaspagemSupra();
         retorno = conectar.GravaTratamentoNecessario(tratamentosNVetor, rg);
 
         return true;
@@ -349,7 +352,7 @@ private int NovotratamentosNecessarios() throws ClassNotFoundException {
     //Esta função grava um novo tratamento necessário, ela normalmente será chamada quando o primeiro tratamento já estiver sido encerrado
         TratamentosNecessarios acesso = new TratamentosNecessarios();
         sctp2.BancodeDados.conexao conectar = new sctp2.BancodeDados.conexao();
-        int[] tratamentosNVetor = new int[23];
+        int[] tratamentosNVetor = new int[27];
         String rg = sctp2.ClassesdeControle.Prontuario.getRgresponsavel();
         int retorno;
 
@@ -377,6 +380,10 @@ private int NovotratamentosNecessarios() throws ClassNotFoundException {
         tratamentosNVetor[20] = acesso.getRmf();
         tratamentosNVetor[21] = acesso.getTerrapiaOeriodDeSuporte();
         tratamentosNVetor[22] = acesso.getExodontiaSimples();
+        tratamentosNVetor[23] = acesso.getRaspagemSub();
+        tratamentosNVetor[24] = acesso.getRaspagemSupra();
+        tratamentosNVetor[25] = acesso.getPonteFixa();
+        tratamentosNVetor[26] = acesso.getPonteFixaMaisQueTresElementos();
         retorno = conectar.NovoTratamentoNecessario(tratamentosNVetor, rg);
         return retorno;
     }

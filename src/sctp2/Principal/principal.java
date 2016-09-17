@@ -6,6 +6,8 @@
 
 package sctp2.Principal;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sctp2.Cadastros.*;
 
 
@@ -315,9 +317,15 @@ System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-sctp2.Cadastros.CadastroResponsavel acesso= new sctp2.Cadastros.CadastroResponsavel();        // TODO add your handling code here:
-acesso.setVisible(true);
+sctp2.Cadastros.CadastroResponsavel acesso;
+        try {
+            acesso = new sctp2.Cadastros.CadastroResponsavel(); // TODO add your handling code here:
+            acesso.setVisible(true);
 this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

@@ -339,7 +339,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         jQueixaPrincipal.setText(ListarPesquisa.get(linha).getQueixa());
         LimpaTabela();//limpa a tabela de tratamentos
 //        //---------------------------Lista os tratamentos-------------------------------------------------------------------
-        int[] tratamento = new int[23];
+        int[] tratamento = new int[27];
         System.out.println("linha: " + linha);
         tratamento[0] = ListarTratamentos.get(linha).getProfilaxiaSimples();
         tratamento[1] = ListarTratamentos.get(linha).getRaspagemEPoliCCoronario();
@@ -364,6 +364,10 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         tratamento[20] = ListarTratamentos.get(linha).getEndodontiaBirradicular();
         tratamento[21] = ListarTratamentos.get(linha).getDtm();
         tratamento[22] = ListarTratamentos.get(linha).getEstomatologia();
+        tratamento[23] = ListarTratamentos.get(linha).getPonteFixa();
+        tratamento[24] = ListarTratamentos.get(linha).getPonteFixaMaisQueTresElementos();
+        tratamento[25] = ListarTratamentos.get(linha).getRaspagemSub();
+        tratamento[26] = ListarTratamentos.get(linha).getRaspagemSupra();
 
         DefaultTableModel valor = (DefaultTableModel) jTable2.getModel();//criando a chave valor para o objeto tabela
         if (tratamento[0] == 1) {
@@ -434,6 +438,18 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         }
         if (tratamento[22] == 1) {
             valor.addRow((new String[]{"Estomatologia"}));
+        }
+        if (tratamento[23] == 1) {
+            valor.addRow((new String[]{"Ponte fixa"}));
+        }
+        if (tratamento[24] == 1) {
+            valor.addRow((new String[]{"Ponte fixa mais que três elementos"}));
+        }
+        if (tratamento[25] == 1) {
+            valor.addRow((new String[]{"Raspagem Sub"}));
+        }
+        if (tratamento[26] == 1) {
+            valor.addRow((new String[]{"Raspagem Supra"}));
         }
 //----------------------------------------------------------------------------------------------
 
@@ -522,7 +538,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
                 String fimtratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(i).getFimtratamento());
                 valor.addRow((new String[]{iniciotratamento + " a " + fimtratamento}));
             }
-            jNotificacao.setText("Clique na data do tratamento na tabela da direita para ver os detalhes!");
+            jNotificacao.setText("Clique na data do tratamento na tabela 'Período do Tratamento' para ver os detalhes!");
         }
     }
 

@@ -12,10 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Prontuarios/Prontuario.java</file>
-            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Cadastros/CadastroResponsavel.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Paciente/DadosDoPaciente.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Paciente/PacientetratamentoEdoencas.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Paciente/HistoricoDoPaciente.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Cadastros/TratamentoNecessario.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Paciente/HistoricoDetratamentos.java</file>
             <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/BancodeDados/ConexaoPacotePesquisar.java</file>
-            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/NovoTratamento/CadastroResponsavel.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/BancodeDados/conexao.java</file>
         </group>
     </open-files>
 </project-private>
