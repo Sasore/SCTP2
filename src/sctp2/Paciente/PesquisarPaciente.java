@@ -26,6 +26,12 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
         notificacao();//função para personalizar o textfield de notificação
+                try {
+            PassaValoresPesquisa();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PesquisarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 		
 
     }

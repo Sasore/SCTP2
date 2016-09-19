@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -280,7 +281,7 @@ public class conexao {
         Connection con = null;
 
         String sql = ("insert into necessidade(\n"
-                + "`nec_Amalgama`,`nec_CirurgiaPeriodontal`,`nec_CoroaTotal`,`nec_DTM`,`nec_EndodontiaBirradicular`,\n"
+                + "`inicioTratamento_Necessidade`=CURDATE(),`nec_Amalgama`,`nec_CirurgiaPeriodontal`,`nec_CoroaTotal`,`nec_DTM`,`nec_EndodontiaBirradicular`,\n"
                 + "`nec_Endodontiauniebirradicular`,`nec_EndodontiaTrirradicular`,`nec_Estomatologia`,`nec_ExodontiaMolar`,\n"
                 + "`nec_ExodontiaIncluso`,`nec_ProfilaxiaSimples`,`nec_PonteFixa3Elementos`,`nec_Pontefixa4elementos`,\n"
                 + "`nec_Pontefixamaisque4elementos`,`nec_Protese`,`nec_ProteseTotalPar`,`nec_ProtesePPR`,`nec_PPR`,\n"
@@ -702,7 +703,7 @@ public class conexao {
     public int NovoTratamentoNecessario(int[] tratamentosNVetor, String rg) throws ClassNotFoundException {
         Connection con = null;
         int retorno=0;
-        String sql = ("UPDATE `necessidade` SET `nec_Amalgama`=?,`nec_CirurgiaPeriodontal`=?,`nec_CoroaTotal`=?,\n" +
+        String sql = ("UPDATE `necessidade` SET `inicioTratamento_Necessidade`=CURDATE(),`nec_Amalgama`=?,`nec_CirurgiaPeriodontal`=?,`nec_CoroaTotal`=?,\n" +
 "`nec_DTM`=?,`nec_EndodontiaBirradicular`=?,`nec_Endodontiauniebirradicular`=?,`nec_EndodontiaTrirradicular`=?\n" +
 ",`nec_Estomatologia`=?,`nec_ExodontiaMolar`=?,`nec_ExodontiaIncluso`=?,`nec_ProfilaxiaSimples`=?,\n" +
 "`nec_PonteFixa3Elementos`=?,`nec_Pontefixa4elementos`=?,`nec_Pontefixamaisque4elementos`=?\n" +

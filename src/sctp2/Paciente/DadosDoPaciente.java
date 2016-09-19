@@ -233,16 +233,15 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                    .addComponent(jRetiraListaNegra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbCancelaEdicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBSalvar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRetiraListaNegra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBVoltar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(jbCancelaEdicao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -761,7 +760,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)
@@ -969,27 +968,39 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jtelefonfixoprontuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int resposta = JOptionPane.showConfirmDialog(rootPane, "Confirma o encerramento deste tratamento?");
-        if (resposta == 0) {
-            sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
-            boolean retorno;
-            try {
-                retorno = acesso.EncerraTratamento(jrg.getText());
-                if (retorno == true) {
-                    jNotificao.setText("Tratamento Finalizado");
-                    jTratamento.setText("Tratamento Finalizado");
-                    jButton1.setEnabled(false);//desabilita o botao finalizar tratamento
-                    jButton1.setVisible(true);
-                    jNovoTratamento.setEnabled(true);
-                    GravaTratamentoNoHistorico();
-                }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+        FinalizarTratamento acesso;
+        try {
+            acesso = new FinalizarTratamento(rgPaciente);
+             acesso.setVisible(true);
+             this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+        
+//        int resposta = JOptionPane.showConfirmDialog(rootPane, "Confirma o encerramento deste tratamento?");
+//        if (resposta == 0) {
+//            sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+//            boolean retorno;
+//            try {
+//                retorno = acesso.EncerraTratamento(jrg.getText());
+//                if (retorno == true) {
+//                    jNotificao.setText("Tratamento Finalizado");
+//                    jTratamento.setText("Tratamento Finalizado");
+//                    jButton1.setEnabled(false);//desabilita o botao finalizar tratamento
+//                    jButton1.setVisible(true);
+//                    jNovoTratamento.setEnabled(true);
+//                    GravaTratamentoNoHistorico();
+//                }
+//            } catch (ClassNotFoundException ex) {
+//                Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

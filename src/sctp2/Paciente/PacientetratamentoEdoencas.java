@@ -174,7 +174,7 @@ public PacientetratamentoEdoencas(String idpaciente, String nome) throws ClassNo
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 102, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Tratamento:");
+        jLabel3.setText("Tratamento atual:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
