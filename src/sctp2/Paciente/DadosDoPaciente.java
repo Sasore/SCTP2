@@ -464,7 +464,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         jNovoTratamento.setBackground(new java.awt.Color(255, 255, 255));
         jNovoTratamento.setForeground(new java.awt.Color(0, 51, 255));
         jNovoTratamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/mais.png"))); // NOI18N
-        jNovoTratamento.setText("Novo Tratamento");
+        jNovoTratamento.setText("Adicionar  Tratamento");
         jNovoTratamento.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 255)));
         jNovoTratamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1192,7 +1192,7 @@ new sctp2.NovoTratamento.Prontuario(jrg.getText(),jNome.getText()).setVisible(tr
         statusdotratamento = ListarPesquisa.get(0).getPacienteAlta();//se o valor for 0 (zero)significa que esta em tratamento
         if (statusdotratamento == 0) {
             jTratamento.setText("Em tratamento");
-            jNovoTratamento.setEnabled(false);
+            jNovoTratamento.setEnabled(true);
         } else if (statusdotratamento == 1) {
             jTratamento.setText("Tratamento finalizado.");
             jButton1.setEnabled(false);

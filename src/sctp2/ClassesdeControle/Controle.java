@@ -352,38 +352,126 @@ private int NovotratamentosNecessarios() throws ClassNotFoundException {
     //Esta função grava um novo tratamento necessário, ela normalmente será chamada quando o primeiro tratamento já estiver sido encerrado
         TratamentosNecessarios acesso = new TratamentosNecessarios();
         sctp2.BancodeDados.conexao conectar = new sctp2.BancodeDados.conexao();
-        int[] tratamentosNVetor = new int[27];
+        String[] tratamentosNVetor = new String[24];
         String rg = sctp2.ClassesdeControle.Prontuario.getRgresponsavel();
         int retorno;
 
         //-----------------------------------------------------------
-        tratamentosNVetor[0] = acesso.getAmalgama();
-        tratamentosNVetor[1] = acesso.getCirugiaPeridontal();
-        tratamentosNVetor[2] = acesso.getCoroaTotal();
-        tratamentosNVetor[3] = acesso.getDtm();
-        tratamentosNVetor[4] = acesso.getEndodontiaBirradicular();
-        tratamentosNVetor[5] = acesso.getEndontiaUnirradicular();
-        tratamentosNVetor[6] = acesso.getEndodontiaTrirradicular();
-        tratamentosNVetor[7] = acesso.getEstomatologia();
-        tratamentosNVetor[8] = acesso.getExodontia3Molar();
-        tratamentosNVetor[9] = acesso.getExodontiaIncluso();
-        tratamentosNVetor[10] = acesso.getProfilaxiaSimples();
-        tratamentosNVetor[11] = acesso.getPonteFixa3Elementos();
-        tratamentosNVetor[12] = acesso.getPonteFixa4Elementos();
-        tratamentosNVetor[13] = acesso.getPonteFixaMaisQue4Elementos();
-        tratamentosNVetor[14] = acesso.getProtese();
-        tratamentosNVetor[15] = acesso.getProtesetotal();
-        tratamentosNVetor[16] = acesso.getProtese_ppr();
-        tratamentosNVetor[17] = acesso.getPpr();
-        tratamentosNVetor[18] = acesso.getRaspagemEPoliCCoronario();
-        tratamentosNVetor[19] = acesso.getResina();
-        tratamentosNVetor[20] = acesso.getRmf();
-        tratamentosNVetor[21] = acesso.getTerrapiaOeriodDeSuporte();
-        tratamentosNVetor[22] = acesso.getExodontiaSimples();
-        tratamentosNVetor[23] = acesso.getRaspagemSub();
-        tratamentosNVetor[24] = acesso.getRaspagemSupra();
-        tratamentosNVetor[25] = acesso.getPonteFixa();
-        tratamentosNVetor[26] = acesso.getPonteFixaMaisQueTresElementos();
+        int i=0;
+        
+        if( acesso.getAmalgama()==1){
+            tratamentosNVetor[i] ="`nec_Amalgama`";
+            i++;
+        }
+        if( acesso.getCirugiaPeridontal()==1){
+            tratamentosNVetor[i] ="`nec_CirurgiaPeriodontal`";
+            i++;
+        }
+        if(acesso.getCoroaTotal()==1){
+            tratamentosNVetor[i] = "`nec_CoroaTotal`";
+            i++;
+        }
+         if(acesso.getDtm()==1){
+             tratamentosNVetor[i] ="`nec_DTM`";
+             i++;
+         };
+         
+        if(acesso.getEndodontiaBirradicular()==1){
+            tratamentosNVetor[i] ="`nec_EndodontiaBirradicular`";
+            i++;
+        }
+        if(acesso.getEndontiaUnirradicular()==1){
+            tratamentosNVetor[i] ="`nec_Endodontiauniebirradicular`";
+            i++;
+        }
+        if(acesso.getEndodontiaTrirradicular()==1){
+        tratamentosNVetor[i] ="`nec_EndodontiaTrirradicular`";
+        i++;
+        }
+         if(acesso.getEstomatologia()==1){
+         tratamentosNVetor[i] =  "`nec_Estomatologia`";
+            i++;
+        }
+         if(acesso.getExodontia3Molar()==1){
+             tratamentosNVetor[i] ="`nec_ExodontiaMolar`";
+             i++;
+         }
+         if(acesso.getExodontiaIncluso()==1){
+            tratamentosNVetor[i] ="`nec_ExodontiaIncluso`";
+            i++;
+        }
+         if(acesso.getProfilaxiaSimples()==1){
+             tratamentosNVetor[i] ="`nec_ProfilaxiaSimples`";
+             i++;
+         }
+         if(acesso.getPonteFixa3Elementos()==1){
+            tratamentosNVetor[i] =  "`nec_PonteFixa3Elementos`";
+            i++;
+        }
+         if(acesso.getPonteFixa4Elementos()==1){
+           tratamentosNVetor[i] = "`nec_Pontefixa4elementos`";
+            i++;
+        }
+         if(acesso.getPonteFixaMaisQue4Elementos()==1){
+         tratamentosNVetor[i] =  "`nec_Pontefixamaisque4elementos`";
+            i++;
+        }
+        if(acesso.getProtese()==1){
+         tratamentosNVetor[i] =    "`nec_Protese`";
+            i++;
+        }
+         if(acesso.getProtesetotal()==1){
+             tratamentosNVetor[i] ="`nec_Protese`";
+             i++;
+         }
+         if(acesso.getProtese_ppr()==1){
+             tratamentosNVetor[i] ="`nec_ProtesePPR`";
+             i++;
+         }
+         if(acesso.getPpr()==1){
+         tratamentosNVetor[i] =   "`nec_PPR`";
+            i++;
+        }
+        if(acesso.getRaspagemEPoliCCoronario()==1){
+          tratamentosNVetor[i] =   "`nec_RaspagemPolimentoCoronario`";
+            i++;
+        }
+        if(acesso.getResina()==1){
+            tratamentosNVetor[i] =  "`nec_Resina` ";
+            i++;
+        }
+        if(acesso.getRmf()==1){
+            tratamentosNVetor[i] ="`nec_RMF`";
+            i++;
+        }
+         if(acesso.getTerrapiaOeriodDeSuporte()==1){
+             tratamentosNVetor[i] ="`nec_TerapiaPeriodontal`";
+             i++;
+         }
+         if(acesso.getExodontiaSimples()==1){
+           tratamentosNVetor[i] = "`nec_ExodontiaSimples`";
+            i++;
+        }
+         if(acesso.getRaspagemSub()==1){
+             tratamentosNVetor[i] ="`nec_RaspagemSub`";
+             i++;
+            
+        }
+         if(acesso.getRaspagemSupra()==1){
+          tratamentosNVetor[i] =  "`nec_RaspagemSupra`";
+            i++;
+        }
+            
+            if(acesso.getPonteFixa()==1){
+          tratamentosNVetor[i] =  "`nec_PonteFixa`";
+            i++;
+        }
+         if(acesso.getPonteFixaMaisQueTresElementos()==1){
+           tratamentosNVetor[i] = "`nec_PonteFixaMaisQueTresElementos`";
+            i++;
+        }
+         
+         
         retorno = conectar.NovoTratamentoNecessario(tratamentosNVetor, rg);
         return retorno;
     }

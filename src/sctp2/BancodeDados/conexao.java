@@ -700,50 +700,26 @@ public class conexao {
 
         return retorno;
     }//fim da atualização Anamenese
-    public int NovoTratamentoNecessario(int[] tratamentosNVetor, String rg) throws ClassNotFoundException {
+    public int NovoTratamentoNecessario(String[] tratamentosNVetor, String rg) throws ClassNotFoundException {
         Connection con = null;
-        int retorno=0;
-        String sql = ("UPDATE `necessidade` SET `inicioTratamento_Necessidade`=CURDATE(),`nec_Amalgama`=?,`nec_CirurgiaPeriodontal`=?,`nec_CoroaTotal`=?,\n" +
-"`nec_DTM`=?,`nec_EndodontiaBirradicular`=?,`nec_Endodontiauniebirradicular`=?,`nec_EndodontiaTrirradicular`=?\n" +
-",`nec_Estomatologia`=?,`nec_ExodontiaMolar`=?,`nec_ExodontiaIncluso`=?,`nec_ProfilaxiaSimples`=?,\n" +
-"`nec_PonteFixa3Elementos`=?,`nec_Pontefixa4elementos`=?,`nec_Pontefixamaisque4elementos`=?\n" +
-",`nec_Protese`=?,`nec_ProteseTotalPar`=?,`nec_ProtesePPR`=?,`nec_PPR`=?,`nec_RaspagemPolimentoCoronario`=?,\n" +
-"`nec_Resina`=?,`nec_RMF`=?,`nec_TerapiaPeriodontal`=?,`nec_ExodontiaSimples`=?,`nec_RaspagemSub`=?,`nec_RaspagemSupra`=?,`nec_PonteFixa`=?,`nec_PonteFixaMaisQueTresElementos`=?  WHERE `nec_referencia_rg`=?");
+        int retorno = 0;
+        //------------Criando o sql dinâmicamente-----------------------------------------------------------------
+        String sql = "UPDATE `necessidade` SET `inicioTratamento_Necessidade`= CURRENT_DATE() ";
+        for (int i = 0; i < tratamentosNVetor.length; i++) {
+            if (tratamentosNVetor[i] != null) {
+                
+                sql = sql + " ," + tratamentosNVetor[i] + "=1";
+            }
+        }
+        sql = sql + " where `nec_referencia_rg`='" + rg + "';";
+        //-------------------------fim da criação do SQL--------------------------------------------
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
-            smt.setInt(1, tratamentosNVetor[0]);
-            smt.setInt(2, tratamentosNVetor[1]);
-            smt.setInt(3, tratamentosNVetor[2]);
-            smt.setInt(4, tratamentosNVetor[3]);
-            smt.setInt(5, tratamentosNVetor[4]);
-            smt.setInt(6, tratamentosNVetor[5]);
-            smt.setInt(7, tratamentosNVetor[6]);
-            smt.setInt(8, tratamentosNVetor[7]);
-            smt.setInt(9, tratamentosNVetor[8]);
-            smt.setInt(10, tratamentosNVetor[9]);
-            smt.setInt(11, tratamentosNVetor[10]);
-            smt.setInt(12, tratamentosNVetor[11]);
-            smt.setInt(13, tratamentosNVetor[12]);
-            smt.setInt(14, tratamentosNVetor[13]);
-            smt.setInt(15, tratamentosNVetor[14]);
-            smt.setInt(16, tratamentosNVetor[15]);
-            smt.setInt(17, tratamentosNVetor[16]);
-            smt.setInt(18, tratamentosNVetor[17]);
-            smt.setInt(19, tratamentosNVetor[18]);
-            smt.setInt(20, tratamentosNVetor[19]);
-            smt.setInt(21, tratamentosNVetor[20]);
-            smt.setInt(22, tratamentosNVetor[21]);
-            smt.setInt(23, tratamentosNVetor[22]);
-            smt.setInt(24, tratamentosNVetor[23]);
-            smt.setInt(25, tratamentosNVetor[24]);
-            smt.setInt(26, tratamentosNVetor[25]);
-            smt.setInt(27, tratamentosNVetor[26]);
-            smt.setString(28, rg);
-           retorno= smt.executeUpdate();
+            retorno= smt.executeUpdate();
             System.out.println("Atualizou Tratamento");
-
-        } catch (SQLException e) {
+            
+        }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "(2) Não foi possível gravar no Banco de dados as informações da tela de cadastro de tratamentos necessarios , tente novamente em breve.");
             e.printStackTrace();
         } finally {
@@ -753,6 +729,9 @@ public class conexao {
        else
            return 0;
     }
+
+     
+    
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
 

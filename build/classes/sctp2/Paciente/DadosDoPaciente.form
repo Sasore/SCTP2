@@ -1232,7 +1232,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagens/mais.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Novo Tratamento"/>
+                <Property name="text" type="java.lang.String" value="Adicionar  Tratamento"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                     <MatteColorBorder>
