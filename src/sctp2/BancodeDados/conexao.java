@@ -482,13 +482,13 @@ public class conexao {
         return retorno;
     }
 
-    public boolean EncerraTratamento(String text) throws ClassNotFoundException {
+    public boolean FinalizaTratamento(String[]tratamentos,String rg) throws ClassNotFoundException {
         Connection con = null;
         String sql = ("UPDATE `paciente` SET `pac_Alta`=1, pac_Fim_tratamento=now() WHERE `pac_RG`=?;");
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
-            smt.setString(1, text);
+            smt.setString(1, rg);
             smt.executeUpdate();
             retorno = true;
             System.out.println("Encerrou tratamento");

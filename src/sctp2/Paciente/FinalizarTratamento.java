@@ -110,6 +110,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
+        jTable1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -126,6 +127,11 @@ public class FinalizarTratamento extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(90);
@@ -136,10 +142,10 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(375, 375, 375))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(274, 274, 274)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,10 +241,16 @@ System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     //   for(int i=0;i<jTable1.getRowCount()){
-       // System.out.println("linha 1 "+jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()));
-        //}
+        try {
+            FinalizaTratamento();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FinalizarTratamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -360,6 +372,33 @@ if(  tratamento[25]==1)valor.addRow((new String[]{"Raspagem Sub"}));
 if(  tratamento[26]==1)valor.addRow((new String[]{"Raspagem Supra"}));
 
     }
+
+    private void FinalizaTratamento() throws ClassNotFoundException {
+        conexao acesso= new conexao();
+        int tamanho=(jTable1.getRowCount());
+        int incrementa=0;
+        String[] tratamentosNVetor = new String[tamanho];
+        for(int i=0;i<tratamentosNVetor.length;i++)tratamentosNVetor[i]=null;
+    
+         for(int i=0;i< tamanho;i++){
+            final Object  valor=jTable1.getValueAt(i,1 );
+            
+             if(valor==null)    System.out.println("");
+             else
+                 if(valor.toString().isEmpty())System.out.println(" ");
+                 else
+                     //System.out.println("valor "+jTable1.getValueAt(i,0).toString());
+                       tratamentosNVetor[incrementa]=jTable1.getValueAt(i,0).toString();
+                       incrementa++;
+         }
+         acesso.FinalizaTratamento(tratamentosNVetor, rg);
+         
+        
+        
+        
+    
+    }
+
         
 }
     
