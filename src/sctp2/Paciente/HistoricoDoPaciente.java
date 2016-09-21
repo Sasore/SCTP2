@@ -21,12 +21,11 @@ import sctp2.ClassesdeControle.TratamentosNecessarios;
 public class HistoricoDoPaciente extends javax.swing.JFrame {
 
     ArrayList<sctp2.Paciente.HistoricoPaciente> ListarPesquisa;
-    ArrayList<HistoricoDetratamentos>ListarTratamentos;
+    ArrayList<HistoricoDetratamentos> ListarTratamentos;
 
     /**
      * Creates new form HistoricoDoPaciente
      */
-
     public HistoricoDoPaciente(int codigoPaciente, String rg) throws ClassNotFoundException, SQLException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
@@ -521,13 +520,13 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
 
     private void PesquisaHistorico(int codigoPaciente, String rg) throws ClassNotFoundException, SQLException {
         //--------------------------------------------------
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         //--------------------------------------------------
         ListarPesquisa = acesso.PesquisarHistórico(codigoPaciente);
-          ListarTratamentos=acesso.PesquisarHistóricoTratamentos(rg);
+        ListarTratamentos = acesso.PesquisarHistóricoTratamentos(rg);
         //-----------------------------------------------
-        
+
         //-----------------------------------------------
         if (ListarPesquisa.size() == 0) {
             jNotificacao.setText("Não há histórico para este usuário!");

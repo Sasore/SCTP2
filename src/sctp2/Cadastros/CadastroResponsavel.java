@@ -630,12 +630,12 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
        //quando o usuario clicar em um dos nomes da tabela, ela irá seta seus detalhes nos campos de nome, telefone e fixo
+       sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
        jnotificacao2.setText("");
         int linha = jTable1.getSelectedRow();
         String idResponsavel = null;//valor recebera o valor da celula da tabela
         idResponsavel = (String) jTable1.getValueAt(linha, 0);
         System.out.println("valor: "+idResponsavel);
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
         ArrayList<Pesquisar> listaPesquisa;//array pra pegar o resultado da pesquisa
         try {
             listaPesquisa = acesso.PesquisarProntuarioPacienteDetalhes(idResponsavel);
@@ -797,7 +797,7 @@ this.setVisible(false);        // TODO add your handling code here:
     }
 
     private void EfetuaPesquisa() throws ClassNotFoundException {//Esta função faza a pesquisa e popula a tabela com os nomes encontrados
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<Pesquisar> listaPesquisa;//array pra pegar o resultado da pesquisa
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         listaPesquisa = acesso.PesquisarResponsavelProntuario(jPesquisa.getText(),1);// o valor 1 define o tipo de pesquisa

@@ -734,7 +734,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
     }
 
     private void EfetuaPesquisa() throws ClassNotFoundException {//Esta função faza a pesquisa e popula a tabela com os nomes encontrados
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<Pesquisar> listaPesquisa;//array pra pegar o resultado da pesquisa
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         listaPesquisa = acesso.PesquisarResponsavelProntuario(jPesquisa.getText(), 2);

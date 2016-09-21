@@ -25,13 +25,14 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
     /**
      * Creates new form ProntuarioPorAluno
      */
-        ArrayList<sctp2.Pesquisar.ResponsavelProntuario> listarPesquisa= new ArrayList<>();
-        ArrayList<PesquisarProntuario> ListarProntuarioPaciente;//array que recebera o resultado da pesquisa
+    ArrayList<sctp2.Pesquisar.ResponsavelProntuario> listarPesquisa = new ArrayList<>();
+    ArrayList<PesquisarProntuario> ListarProntuarioPaciente;//array que recebera o resultado da pesquisa
+
     public ProntuarioPorResponsavel() throws ClassNotFoundException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
-            EfetuaPesquisa();
-        
+        EfetuaPesquisa();
+
     }
 
     /**
@@ -380,8 +381,8 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
     }//GEN-LAST:event_jPesquisaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-new sctp2.Prontuarios.Prontuario().setVisible(true);        // TODO add your handling code here:
-this.setVisible(false);
+        new sctp2.Prontuarios.Prontuario().setVisible(true);        // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -404,11 +405,11 @@ this.setVisible(false);
     }//GEN-LAST:event_jTableResultadoMouseClicked
 
     private void jTableProntuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProntuarioMouseClicked
-            try {
-                ExibeDetalhesProntuario(listarPesquisa.get(jTableProntuario.getSelectedRow()).getRgPaciente());
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ProntuarioPorResponsavel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            ExibeDetalhesProntuario(listarPesquisa.get(jTableProntuario.getSelectedRow()).getRgPaciente());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProntuarioPorResponsavel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jTableProntuarioMouseClicked
 
     /**
@@ -485,7 +486,7 @@ this.setVisible(false);
     // End of variables declaration//GEN-END:variables
 
     private void EfetuaPesquisa() throws ClassNotFoundException {
-    sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<Pesquisar> listaPesquisa;//array pra pegar o resultado da pesquisa
         DefaultTableModel valor = (DefaultTableModel) jTableResultado.getModel();//criando a chave valor para o objeto tabela
         listaPesquisa = acesso.PesquisarResponsavelProntuario(jPesquisa.getText(), 2);
@@ -496,7 +497,7 @@ this.setVisible(false);
 
             for (int i = 0; i < listaPesquisa.size(); i++) {
                 //System.out.println("::" + listaPesquisa.get(i).getNome());
-                valor.addRow(new String[]{Integer.toString(listaPesquisa.get(i).getCodigo()), listaPesquisa.get(i).getNome(),listaPesquisa.get(0).getRg() });
+                valor.addRow(new String[]{Integer.toString(listaPesquisa.get(i).getCodigo()), listaPesquisa.get(i).getNome(), listaPesquisa.get(0).getRg()});
                 //System.out.println("valor ta linha: "+listaPesquisa.get(i).getNome()+" "+listaPesquisa.get(i).getTelefone()+" "+listaPesquisa.get(i).getTelefonefixo());
                 jNotificacao.setForeground(Color.blue);
                 jNotificacao.setText("Clique no nome desejado ou utilize o campo de pesquisa!");
@@ -505,27 +506,29 @@ this.setVisible(false);
     }
 
     private void LimpaTabelaResultado() {
-          //limpa todos os campos
+        //limpa todos os campos
         jTableResultado.setSelectionBackground(Color.BLUE);//defini a cor de seleção da tabela para azul
         jTableResultado.setSelectionForeground(Color.white);
-        DefaultTableModel tabela,tabelaProntuario;
+        DefaultTableModel tabela, tabelaProntuario;
         tabela = (DefaultTableModel) jTableResultado.getModel();
         //********************************************
-    
+
     }
+
     private void LimpaTabelaProntuario() {
-          //limpa todos os campos
+        //limpa todos os campos
         jTableProntuario.setSelectionBackground(Color.BLUE);//defini a cor de seleção da tabela para azul
         jTableProntuario.setSelectionForeground(Color.white);
-        DefaultTableModel tabela,tabelaProntuario;
+        DefaultTableModel tabela, tabelaProntuario;
         tabela = (DefaultTableModel) jTableProntuario.getModel();
         tabelaProntuario = (DefaultTableModel) jTableProntuario.getModel();
         tabela.setNumRows(0);
         tabelaProntuario.setNumRows(0);
         //********************************************
-    
+
     }
-    private void LimpaDetalhesProntuario(){
+
+    private void LimpaDetalhesProntuario() {
         jNumeroProntuario.setText("");
         jDescricaoProntuario.setText("");
         jPaciente.setText("");
@@ -533,32 +536,31 @@ this.setVisible(false);
     }
 
     private void ExibeProntuários() throws ClassNotFoundException {
-    sctp2.BancodeDados.ConexaoPacotePesquisar acesso= new sctp2.BancodeDados.ConexaoPacotePesquisar();
-        String id=(String) jTableResultado.getValueAt(jTableResultado.getSelectedRow(),0);
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+        String id = (String) jTableResultado.getValueAt(jTableResultado.getSelectedRow(), 0);
         jTableProntuario.setBackground(Color.WHITE);
         LimpaTabelaProntuario();
         LimpaDetalhesProntuario();
-        listarPesquisa=acesso.PesquisarTodosProntuariosResponsavel(id);
-        if(listarPesquisa.isEmpty())jNotificacao2.setText("Não há prontuários emprestados para esta pessoa!");
-        else{
-            
+        listarPesquisa = acesso.PesquisarTodosProntuariosResponsavel(id);
+        if (listarPesquisa.isEmpty()) {
+            jNotificacao2.setText("Não há prontuários emprestados para esta pessoa!");
+        } else {
+
             DefaultTableModel valor = (DefaultTableModel) jTableProntuario.getModel();//criando a chave valor para o objeto tabela
             for (int i = 0; i < listarPesquisa.size(); i++) {
-                ListarProntuarioPaciente=acesso.PesquisarProntuariopelorg(listarPesquisa.get(i).getRgPaciente());
-               valor.addRow((new String[]{ listarPesquisa.get(i).getNumeroProntuario(),ListarProntuarioPaciente.get(0).getPaciente()}));
+                ListarProntuarioPaciente = acesso.PesquisarProntuariopelorg(listarPesquisa.get(i).getRgPaciente());
+                valor.addRow((new String[]{listarPesquisa.get(i).getNumeroProntuario(), ListarProntuarioPaciente.get(0).getPaciente()}));
                 jNotificacao2.setText("Clique no número do prontuario  para ver mais detalhes");
             }
         }
-        
-        
-        
+
     }
 
     private void ExibeDetalhesProntuario(String rgPaciente) throws ClassNotFoundException {
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso= new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<PesquisarProntuario> detalhesProntuario;
-        detalhesProntuario=acesso.PesquisarProntuariopelorg(rgPaciente);
-        System.out.println("rg "+rgPaciente);
+        detalhesProntuario = acesso.PesquisarProntuariopelorg(rgPaciente);
+        System.out.println("rg " + rgPaciente);
         jNumeroProntuario.setText(listarPesquisa.get(jTableProntuario.getSelectedRow()).getNumeroProntuario());
         jStatusProntuario.setText(detalhesProntuario.get(0).getStatus());
         jDescricaoProntuario.setText(detalhesProntuario.get(0).getInformacoes());

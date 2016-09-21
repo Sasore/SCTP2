@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import sctp2.BancodeDados.ConexaoPacotePesquisar;
+import sctp2.BancodeDados.conexao;
 
 /**
  *
@@ -422,7 +423,7 @@ PesquisarPorNecessidade();        // TODO add your handling code here:
     }
 
     private void PesquisarPorNecessidade() {
-        ConexaoPacotePesquisar acesso = new ConexaoPacotePesquisar();
+        conexao acesso = new conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         String necessidade = Necessidade();
         ArrayList<Pesquisar> ListarPesquisa = new ArrayList<Pesquisar>();

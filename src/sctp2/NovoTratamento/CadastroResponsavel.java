@@ -22,12 +22,14 @@ import sctp2.Pesquisar.Pesquisar;
  *
  * @author Adriano
  */
-public class CadastroResponsavel extends javax.swing.JFrame  {
-private int idDoResponsavel=-1;//esta variavel servirar para determinar se é um novo cadastro é ou uma atualização de cadastro existente
-private int tamanhoFonte=15;//DEFINE O TAMANHO DA FONTE DESTA TELA
+public class CadastroResponsavel extends javax.swing.JFrame {
+
+    private int idDoResponsavel = -1;//esta variavel servirar para determinar se é um novo cadastro é ou uma atualização de cadastro existente
+    private int tamanhoFonte = 15;//DEFINE O TAMANHO DA FONTE DESTA TELA
+
     /**
      * Creates new form CadastroResponsavel
-     * 
+     *
      */
     public CadastroResponsavel() {
         initComponents();
@@ -38,10 +40,8 @@ private int tamanhoFonte=15;//DEFINE O TAMANHO DA FONTE DESTA TELA
         jEditar.setVisible(false);
         jExcluir.setVisible(false);
         jNovoResponsavel.setVisible(false);
-        jnotificacao2.setText("Cadastrar um novo responsável!");    
-         TamanhoDaFonte(tamanhoFonte);//função que aumenta/diminui o tamanho da fonte da tela
-        
-        
+        jnotificacao2.setText("Cadastrar um novo responsável!");
+        TamanhoDaFonte(tamanhoFonte);//função que aumenta/diminui o tamanho da fonte da tela
 
     }
 
@@ -496,17 +496,15 @@ private int tamanhoFonte=15;//DEFINE O TAMANHO DA FONTE DESTA TELA
                 }
 
                 LimpaTela();//restaura valor padrao da variavel
-            } else {
-                if (idDoResponsavel == -1) {
-                    try {
-                        acesso.GravaResponsavelProntuario();
-                        LimpaTela();//restaura valor padrao da variavel
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(CadastroResponsavel.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    if (retorno == false) {
+            } else if (idDoResponsavel == -1) {
+                try {
+                    acesso.GravaResponsavelProntuario();
+                    LimpaTela();//restaura valor padrao da variavel
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CadastroResponsavel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (retorno == false) {
 
-                    }
                 }
             }
         }
@@ -551,19 +549,21 @@ private int tamanhoFonte=15;//DEFINE O TAMANHO DA FONTE DESTA TELA
     }//GEN-LAST:event_jPesquisaActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-System.exit(0);        // TODO add your handling code here:
+        System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPesquisaKeyTyped
-if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");        // TODO add your handling code here:
+        if (jPesquisa.getText().equals("Pesquisar responsável")) {
+            jPesquisa.setText("");        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jPesquisaKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         //quando o usuario clicar em um dos nomes da tabela, ela irá seta seus detalhes nos campos de nome, telefone e fixo
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         int linha = jTable1.getSelectedRow();
         Object valor = null;//valor recebera o valor da celular da tabela
         valor = jTable1.getValueAt(linha, 0);
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
         ArrayList<Pesquisar> listaPesquisa;//array pra pegar o resultado da pesquisa
         try {
             listaPesquisa = acesso.PesquisarProntuarioPacienteDetalhes((String) valor);
@@ -583,8 +583,8 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(CadastroResponsavel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditarActionPerformed
@@ -593,7 +593,7 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
         jFTelefoneCelular.setBorder(new LineBorder(Color.black));
         jFTelefoneFixo.setBorder(new LineBorder(Color.black));
         jLabel6.setText("Para Salvar clique no botão na faixa azul.");
-        
+
     }//GEN-LAST:event_jEditarActionPerformed
 
     private void jNovoResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNovoResponsavelActionPerformed
@@ -609,11 +609,11 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
     }//GEN-LAST:event_jNovoResponsavelActionPerformed
 
     private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
-    try {
-        ExcluiResponsável();
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(CadastroResponsavel.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            ExcluiResponsável();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastroResponsavel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jExcluirActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -621,11 +621,11 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jBDiminuiTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiminuiTamFOnteActionPerformed
-        TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:
+        TamanhoDaFonte(tamanhoFonte - 1);        // TODO add your handling code here:
     }//GEN-LAST:event_jBDiminuiTamFOnteActionPerformed
 
     private void jBAumentaTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAumentaTamFOnteActionPerformed
-        TamanhoDaFonte(tamanhoFonte+1);        // TODO add your handling code here:
+        TamanhoDaFonte(tamanhoFonte + 1);        // TODO add your handling code here:
     }//GEN-LAST:event_jBAumentaTamFOnteActionPerformed
 
     /**
@@ -707,10 +707,10 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
     }
 
     private void EfetuaPesquisa() throws ClassNotFoundException {//Esta função faza a pesquisa e popula a tabela com os nomes encontrados
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<Pesquisar> listaPesquisa;//array pra pegar o resultado da pesquisa
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
-        listaPesquisa = acesso.PesquisarResponsavelProntuario(jPesquisa.getText(),1);// o valor 1 define o tipo de pesquisa
+        listaPesquisa = acesso.PesquisarResponsavelProntuario(jPesquisa.getText(), 1);// o valor 1 define o tipo de pesquisa
         LimpaTela();
         if (listaPesquisa.size() == 0) {
             jNotificacao.setText("Sem resultados");
@@ -746,9 +746,9 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
         idDoResponsavel = -1;//valor padrão da variavel
         BloqueiaCampos(false);//bloqueia os botoes editar excluir
         nomeresponsavel.setBackground(Color.white);
-            jFTelefoneCelular.setBackground(Color.white);
-            jFTelefoneFixo.setBackground(Color.white);
-            jinformacaodoconteine.setText("");
+        jFTelefoneCelular.setBackground(Color.white);
+        jFTelefoneFixo.setBackground(Color.white);
+        jinformacaodoconteine.setText("");
     }
 
     private void BloqueiaCampos(boolean status) {
@@ -767,7 +767,7 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
             jNovoResponsavel.enable(false);
 
             //------------------------------------
-        } else
+        } else {
             if (status == true) {
                 nomeresponsavel.setEditable(true);
                 jFTelefoneCelular.setEditable(true);
@@ -775,68 +775,68 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
                 nomeresponsavel.setBackground(Color.white);
                 jFTelefoneCelular.setBackground(Color.white);
                 jFTelefoneFixo.setBackground(Color.white);
-               
 
-    
 //------------------------------------
-    
-    
-    }
-    
-    
+            }
+        }
+
     }
 
     private void ExcluiResponsável() throws ClassNotFoundException {
         int resultado;
-        resultado=JOptionPane.showConfirmDialog(rootPane, "Se você excluir este responsável, ele será desvinculado de todos os prontuários.");
-        if(resultado==0){
-            sctp2.BancodeDados.conexao acesso= new sctp2.BancodeDados.conexao();
+        resultado = JOptionPane.showConfirmDialog(rootPane, "Se você excluir este responsável, ele será desvinculado de todos os prontuários.");
+        if (resultado == 0) {
+            sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
             acesso.ExcluiresponsavelProntuario(idDoResponsavel);
             LimpaTela();
-            
+
+        } else {
+            if (resultado == 1) {
+                System.out.println("não excluindo....");
+            } else {
+                if (resultado == 2) {
+                    System.out.println("cancelando....");
+                }
+            }
         }
-        else
-            if(resultado==1)System.out.println("não excluindo....");
-        else
-            if(resultado==2)System.out.println("cancelando....");
-    
+
     }
 
     private void TamanhoDaFonte(int tamanhoFonte) {
-            this.tamanhoFonte=tamanhoFonte;
-        System.out.println("tam "+tamanhoFonte);
-        if((this.tamanhoFonte<24) && (this.tamanhoFonte>15)){
+        this.tamanhoFonte = tamanhoFonte;
+        System.out.println("tam " + tamanhoFonte);
+        if ((this.tamanhoFonte < 24) && (this.tamanhoFonte > 15)) {
             jBDiminuiTamFOnte.setEnabled(true);
-        jBAumentaTamFOnte.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jButton2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jButton3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jLabel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jEditar.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jExcluir.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jFTelefoneCelular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jFTelefoneFixo.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jnotificacao2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jNovoResponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jNotificacao.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        
-        jLabel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jLabel4.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jLabel5.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jLabel6.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        nomeresponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        }
-          else
-            if(this.tamanhoFonte>=24){
+            jBAumentaTamFOnte.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jButton2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jButton3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jLabel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jEditar.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jExcluir.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jFTelefoneCelular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jFTelefoneFixo.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jnotificacao2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jNovoResponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jNotificacao.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+
+            jLabel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jLabel4.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jLabel5.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jLabel6.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            nomeresponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        } else {
+            if (this.tamanhoFonte >= 24) {
                 jBAumentaTamFOnte.setEnabled(false);
                 jBDiminuiTamFOnte.setEnabled(true);
-                
-            }
-        else
-        if(this.tamanhoFonte<=15){
-                jBDiminuiTamFOnte.setEnabled(false);
-                jBAumentaTamFOnte.setEnabled(true);
+
+            } else {
+                if (this.tamanhoFonte <= 15) {
+                    jBDiminuiTamFOnte.setEnabled(false);
+                    jBAumentaTamFOnte.setEnabled(true);
                 }
+            }
+        }
     }
 }

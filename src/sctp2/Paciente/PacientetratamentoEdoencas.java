@@ -18,7 +18,9 @@ import sctp2.Pesquisar.Pesquisar;
  * @author Adriano Local
  */
 public class PacientetratamentoEdoencas extends javax.swing.JFrame {
-String iDpaciente;
+
+    String iDpaciente;
+
     /**
      * Creates new form PacientetratamentoEdoencas
      */
@@ -26,10 +28,11 @@ String iDpaciente;
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
     }
-public PacientetratamentoEdoencas(String idpaciente, String nome) throws ClassNotFoundException, SQLException {
+
+    public PacientetratamentoEdoencas(String idpaciente, String nome) throws ClassNotFoundException, SQLException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
-        iDpaciente=idpaciente;
+        iDpaciente = idpaciente;
         jNome.setText(nome);
         ListaTratamento();
         ListaDoencas();
@@ -37,6 +40,7 @@ public PacientetratamentoEdoencas(String idpaciente, String nome) throws ClassNo
         HabitosCigarro();
         HabitosBebida();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -393,21 +397,21 @@ public PacientetratamentoEdoencas(String idpaciente, String nome) throws ClassNo
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-    try {
-        new sctp2.Paciente.DadosDoPaciente(iDpaciente).setVisible(true);
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(PacientetratamentoEdoencas.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        this.setVisible(false);
+        try {
+            new sctp2.Paciente.DadosDoPaciente(iDpaciente).setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PacientetratamentoEdoencas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-this.setVisible(false);        // TODO add your handling code here:
-new sctp2.Principal.principal().setVisible(true);
+        this.setVisible(false);        // TODO add your handling code here:
+        new sctp2.Principal.principal().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -441,7 +445,7 @@ new sctp2.Principal.principal().setVisible(true);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PacientetratamentoEdoencas().setVisible(true);
-                
+
             }
         });
     }
@@ -480,137 +484,215 @@ new sctp2.Principal.principal().setVisible(true);
     // End of variables declaration//GEN-END:variables
 
     private void ListaTratamento() throws ClassNotFoundException, SQLException {
-sctp2.BancodeDados.ConexaoPacotePesquisar acesso= new sctp2.BancodeDados.ConexaoPacotePesquisar();
-ArrayList<sctp2.ClassesdeControle.TratamentosNecessarios> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.TratamentosNecessarios>();
-ListarPesquisa=acesso.NecessidadesdoPaciente(iDpaciente);//função que retorna quais necessidades do paciente
-    int[] tratamento= new int[27];
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+        ArrayList<sctp2.ClassesdeControle.TratamentosNecessarios> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.TratamentosNecessarios>();
+        ListarPesquisa = acesso.NecessidadesdoPaciente(iDpaciente);//função que retorna quais necessidades do paciente
+        int[] tratamento = new int[27];
 
-    tratamento[0]=ListarPesquisa.get(0).getProfilaxiaSimples();
-    tratamento[1]=ListarPesquisa.get(0).getRaspagemEPoliCCoronario();
-    tratamento[2]=ListarPesquisa.get(0).getCirugiaPeridontal();
-    tratamento[3]=ListarPesquisa.get(0).getExodontiaSimples();
-    tratamento[4]=ListarPesquisa.get(0).getExodontia3Molar();
-    tratamento[5]=ListarPesquisa.get(0).getExodontiaIncluso();
-    tratamento[6]=ListarPesquisa.get(0).getAmalgama();
-    tratamento[7]=ListarPesquisa.get(0).getResina();
-    tratamento[8]=ListarPesquisa.get(0).getRmf();
-    tratamento[9]=ListarPesquisa.get(0).getEndontiaUnirradicular();
-    tratamento[10]=ListarPesquisa.get(0).getEndodontiaTrirradicular();
-    tratamento[11]=ListarPesquisa.get(0).getCoroaTotal();
-    tratamento[12]=ListarPesquisa.get(0).getPonteFixa3Elementos();
-    tratamento[13]=ListarPesquisa.get(0).getPonteFixa4Elementos();
-    tratamento[14]=ListarPesquisa.get(0).getPonteFixaMaisQue4Elementos();
-    tratamento[15]=ListarPesquisa.get(0).getPpr();
-    tratamento[16]=ListarPesquisa.get(0).getProtesetotal();
-    tratamento[17]=ListarPesquisa.get(0).getProtese_ppr();
-    tratamento[18]=ListarPesquisa.get(0).getProtese();
-    tratamento[19]=ListarPesquisa.get(0).getTerrapiaOeriodDeSuporte();
-    tratamento[20]=ListarPesquisa.get(0).getEndodontiaBirradicular();
-    tratamento[21]=ListarPesquisa.get(0).getDtm();
-    tratamento[22]=ListarPesquisa.get(0).getEstomatologia();
-    tratamento[23]=ListarPesquisa.get(0).getPonteFixa();
-    tratamento[24]=ListarPesquisa.get(0).getPonteFixaMaisQueTresElementos();
-    tratamento[25]=ListarPesquisa.get(0).getRaspagemSub();
-    tratamento[26]=ListarPesquisa.get(0).getRaspagemSupra();
-    
+        tratamento[0] = ListarPesquisa.get(0).getProfilaxiaSimples();
+        tratamento[1] = ListarPesquisa.get(0).getRaspagemEPoliCCoronario();
+        tratamento[2] = ListarPesquisa.get(0).getCirugiaPeridontal();
+        tratamento[3] = ListarPesquisa.get(0).getExodontiaSimples();
+        tratamento[4] = ListarPesquisa.get(0).getExodontia3Molar();
+        tratamento[5] = ListarPesquisa.get(0).getExodontiaIncluso();
+        tratamento[6] = ListarPesquisa.get(0).getAmalgama();
+        tratamento[7] = ListarPesquisa.get(0).getResina();
+        tratamento[8] = ListarPesquisa.get(0).getRmf();
+        tratamento[9] = ListarPesquisa.get(0).getEndontiaUnirradicular();
+        tratamento[10] = ListarPesquisa.get(0).getEndodontiaTrirradicular();
+        tratamento[11] = ListarPesquisa.get(0).getCoroaTotal();
+        tratamento[12] = ListarPesquisa.get(0).getPonteFixa3Elementos();
+        tratamento[13] = ListarPesquisa.get(0).getPonteFixa4Elementos();
+        tratamento[14] = ListarPesquisa.get(0).getPonteFixaMaisQue4Elementos();
+        tratamento[15] = ListarPesquisa.get(0).getPpr();
+        tratamento[16] = ListarPesquisa.get(0).getProtesetotal();
+        tratamento[17] = ListarPesquisa.get(0).getProtese_ppr();
+        tratamento[18] = ListarPesquisa.get(0).getProtese();
+        tratamento[19] = ListarPesquisa.get(0).getTerrapiaOeriodDeSuporte();
+        tratamento[20] = ListarPesquisa.get(0).getEndodontiaBirradicular();
+        tratamento[21] = ListarPesquisa.get(0).getDtm();
+        tratamento[22] = ListarPesquisa.get(0).getEstomatologia();
+        tratamento[23] = ListarPesquisa.get(0).getPonteFixa();
+        tratamento[24] = ListarPesquisa.get(0).getPonteFixaMaisQueTresElementos();
+        tratamento[25] = ListarPesquisa.get(0).getRaspagemSub();
+        tratamento[26] = ListarPesquisa.get(0).getRaspagemSupra();
 
-DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
-if(  tratamento[0]==1)valor.addRow((new String[]{"Profilaxia Simples"}));
-if(  tratamento[1]==1)valor.addRow((new String[]{"Raspagem e Poli. Coronário "}));
-if(  tratamento[2]==1)valor.addRow((new String[]{"Cirugia Peridontal "}));
-if(  tratamento[3]==1)valor.addRow((new String[]{"Exodontia Simples"}));
-if(  tratamento[4]==1)valor.addRow((new String[]{"Exodontia 3º Molar"}));
-if(  tratamento[5]==1)valor.addRow((new String[]{"Exodontia Incluso"}));
-if(  tratamento[6]==1)valor.addRow((new String[]{"Amalgama "}));
-if(  tratamento[7]==1)valor.addRow((new String[]{"Resina "}));
-if(  tratamento[8]==1)valor.addRow((new String[]{"RMF"}));
-if(  tratamento[9]==1)valor.addRow((new String[]{"EndontiaUnirradicular"}));
-if(  tratamento[10]==1)valor.addRow((new String[]{"Endodontia Trirradicular"}));
-if(  tratamento[11]==1)valor.addRow((new String[]{"Coroa Total"}));
-if(  tratamento[12]==1)valor.addRow((new String[]{"PonteFixa 3 Elementos"}));
-if(  tratamento[13]==1)valor.addRow((new String[]{"PonteFixa 4 Elementos "}));
-if(  tratamento[14]==1)valor.addRow((new String[]{"PonteFixaMaisQue 4 Elementos "}));
-if(  tratamento[15]==1)valor.addRow((new String[]{"PPR "}));
-if(  tratamento[16]==1)valor.addRow((new String[]{"Protese total "}));
-if(  tratamento[17]==1)valor.addRow((new String[]{"Protese PPR "}));
-if(  tratamento[18]==1)valor.addRow((new String[]{"Protese "}));
-if(  tratamento[19]==1)valor.addRow((new String[]{"Terapia Periodontal "}));
-if(  tratamento[20]==1)valor.addRow((new String[]{" Endodontia Birradicular "}));
-if(  tratamento[21]==1)valor.addRow((new String[]{"DTM "}));
-if(  tratamento[22]==1)valor.addRow((new String[]{"Estomatologia"}));
-if(  tratamento[23]==1)valor.addRow((new String[]{"Ponte Fixa"}));
-if(  tratamento[24]==1)valor.addRow((new String[]{"Ponte Fixa Mais Que Três Elementos"}));
-if(  tratamento[25]==1)valor.addRow((new String[]{"Raspagem Sub"}));
-if(  tratamento[26]==1)valor.addRow((new String[]{"Raspagem Supra"}));
-
+        DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
+        if (tratamento[0] == 1) {
+            valor.addRow((new String[]{"Profilaxia Simples"}));
+        }
+        if (tratamento[1] == 1) {
+            valor.addRow((new String[]{"Raspagem e Poli. Coronário "}));
+        }
+        if (tratamento[2] == 1) {
+            valor.addRow((new String[]{"Cirugia Peridontal "}));
+        }
+        if (tratamento[3] == 1) {
+            valor.addRow((new String[]{"Exodontia Simples"}));
+        }
+        if (tratamento[4] == 1) {
+            valor.addRow((new String[]{"Exodontia 3º Molar"}));
+        }
+        if (tratamento[5] == 1) {
+            valor.addRow((new String[]{"Exodontia Incluso"}));
+        }
+        if (tratamento[6] == 1) {
+            valor.addRow((new String[]{"Amalgama "}));
+        }
+        if (tratamento[7] == 1) {
+            valor.addRow((new String[]{"Resina "}));
+        }
+        if (tratamento[8] == 1) {
+            valor.addRow((new String[]{"RMF"}));
+        }
+        if (tratamento[9] == 1) {
+            valor.addRow((new String[]{"EndontiaUnirradicular"}));
+        }
+        if (tratamento[10] == 1) {
+            valor.addRow((new String[]{"Endodontia Trirradicular"}));
+        }
+        if (tratamento[11] == 1) {
+            valor.addRow((new String[]{"Coroa Total"}));
+        }
+        if (tratamento[12] == 1) {
+            valor.addRow((new String[]{"PonteFixa 3 Elementos"}));
+        }
+        if (tratamento[13] == 1) {
+            valor.addRow((new String[]{"PonteFixa 4 Elementos "}));
+        }
+        if (tratamento[14] == 1) {
+            valor.addRow((new String[]{"PonteFixaMaisQue 4 Elementos "}));
+        }
+        if (tratamento[15] == 1) {
+            valor.addRow((new String[]{"PPR "}));
+        }
+        if (tratamento[16] == 1) {
+            valor.addRow((new String[]{"Protese total "}));
+        }
+        if (tratamento[17] == 1) {
+            valor.addRow((new String[]{"Protese PPR "}));
+        }
+        if (tratamento[18] == 1) {
+            valor.addRow((new String[]{"Protese "}));
+        }
+        if (tratamento[19] == 1) {
+            valor.addRow((new String[]{"Terapia Periodontal "}));
+        }
+        if (tratamento[20] == 1) {
+            valor.addRow((new String[]{" Endodontia Birradicular "}));
+        }
+        if (tratamento[21] == 1) {
+            valor.addRow((new String[]{"DTM "}));
+        }
+        if (tratamento[22] == 1) {
+            valor.addRow((new String[]{"Estomatologia"}));
+        }
+        if (tratamento[23] == 1) {
+            valor.addRow((new String[]{"Ponte Fixa"}));
+        }
+        if (tratamento[24] == 1) {
+            valor.addRow((new String[]{"Ponte Fixa Mais Que Três Elementos"}));
+        }
+        if (tratamento[25] == 1) {
+            valor.addRow((new String[]{"Raspagem Sub"}));
+        }
+        if (tratamento[26] == 1) {
+            valor.addRow((new String[]{"Raspagem Supra"}));
+        }
 
     }
 
     private void ListaDoencas() throws ClassNotFoundException {
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso= new sctp2.BancodeDados.ConexaoPacotePesquisar();
-ArrayList<sctp2.ClassesdeControle.DoencasSistemicas> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.DoencasSistemicas>();
-ListarPesquisa=acesso.DoencasdoPaciente(iDpaciente);//função que retorna quais necessidades do paciente
-    int[] doenca= new int[9];
-    doenca[0]=ListarPesquisa.get(0).getFebreReumatica();
-    doenca[1]=ListarPesquisa.get(0).getProblemasRenais();
-    doenca[2]=ListarPesquisa.get(0).getProblemasRespiratorios();
-    doenca[3]=ListarPesquisa.get(0).getReumatismo();
-    doenca[4]=ListarPesquisa.get(0).getDiabetes();
-    doenca[5]=ListarPesquisa.get(0).getHipertensaoArterial();
-    doenca[6]=ListarPesquisa.get(0).getProblemasCardiacos();
-    doenca[7]=ListarPesquisa.get(0).getProblemasGastricos();
-    doenca[8]=ListarPesquisa.get(0).getProblemasAlergicos();
-    DefaultTableModel valor = (DefaultTableModel) jTableDoencas.getModel();//criando a chave valor para o objeto tabela
-    if(  doenca[0]==1)valor.addRow((new String[]{"Febre Reumática"}));
-    if(  doenca[1]==1)valor.addRow((new String[]{"Problemas Renais"}));
-    if(  doenca[2]==1)valor.addRow((new String[]{"Problemas Respiratórios"}));
-    if(  doenca[3]==1)valor.addRow((new String[]{"Reumatismo"}));
-    if(  doenca[4]==1)valor.addRow((new String[]{"Diabetes"}));
-    if(  doenca[5]==1)valor.addRow((new String[]{"Hipertensão Arterial"}));
-    if(  doenca[6]==1)valor.addRow((new String[]{"Problemas cardíacos"}));
-    if(  doenca[7]==1)valor.addRow((new String[]{"Problemas Gástricos"}));
-    if(  doenca[8]==1)valor.addRow((new String[]{"Problemas Alérgicos"}));
-    
-    
-            
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+        ArrayList<sctp2.ClassesdeControle.DoencasSistemicas> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.DoencasSistemicas>();
+        ListarPesquisa = acesso.DoencasdoPaciente(iDpaciente);//função que retorna quais necessidades do paciente
+        int[] doenca = new int[9];
+        doenca[0] = ListarPesquisa.get(0).getFebreReumatica();
+        doenca[1] = ListarPesquisa.get(0).getProblemasRenais();
+        doenca[2] = ListarPesquisa.get(0).getProblemasRespiratorios();
+        doenca[3] = ListarPesquisa.get(0).getReumatismo();
+        doenca[4] = ListarPesquisa.get(0).getDiabetes();
+        doenca[5] = ListarPesquisa.get(0).getHipertensaoArterial();
+        doenca[6] = ListarPesquisa.get(0).getProblemasCardiacos();
+        doenca[7] = ListarPesquisa.get(0).getProblemasGastricos();
+        doenca[8] = ListarPesquisa.get(0).getProblemasAlergicos();
+        DefaultTableModel valor = (DefaultTableModel) jTableDoencas.getModel();//criando a chave valor para o objeto tabela
+        if (doenca[0] == 1) {
+            valor.addRow((new String[]{"Febre Reumática"}));
+        }
+        if (doenca[1] == 1) {
+            valor.addRow((new String[]{"Problemas Renais"}));
+        }
+        if (doenca[2] == 1) {
+            valor.addRow((new String[]{"Problemas Respiratórios"}));
+        }
+        if (doenca[3] == 1) {
+            valor.addRow((new String[]{"Reumatismo"}));
+        }
+        if (doenca[4] == 1) {
+            valor.addRow((new String[]{"Diabetes"}));
+        }
+        if (doenca[5] == 1) {
+            valor.addRow((new String[]{"Hipertensão Arterial"}));
+        }
+        if (doenca[6] == 1) {
+            valor.addRow((new String[]{"Problemas cardíacos"}));
+        }
+        if (doenca[7] == 1) {
+            valor.addRow((new String[]{"Problemas Gástricos"}));
+        }
+        if (doenca[8] == 1) {
+            valor.addRow((new String[]{"Problemas Alérgicos"}));
+        }
+
     }
 
     private void ListarAnamse() throws ClassNotFoundException, SQLException {
-sctp2.BancodeDados.ConexaoPacotePesquisar acesso= new sctp2.BancodeDados.ConexaoPacotePesquisar();
-ArrayList<sctp2.ClassesdeControle.Anamnese> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.Anamnese>();
-ListarPesquisa=acesso.ListarAnamnese(iDpaciente);//função que retorna quais necessidades do paciente
-boolean saude[]=new boolean [9];
-String saudeDescricao[]= new String[5];
-saude[0]=ListarPesquisa.get(0).isSofreAlgumaDoenca();
-saude[1]=ListarPesquisa.get(0).isEmTratamentoMedico();
-saude[2]=ListarPesquisa.get(0).isUsoDeAlgumaMedicacao();
-saude[3]=ListarPesquisa.get(0).isPossuiAlergias();
-saude[4]=ListarPesquisa.get(0).isJaFoiOperado();
-saude[5]=ListarPesquisa.get(0).isProblemasComCicatrizacao();
-saude[6]=ListarPesquisa.get(0).isGravidez();
-saude[7]=ListarPesquisa.get(0).isProblemasComAnestesia();
-saude[8]=ListarPesquisa.get(0).isProblemasComHemorragia();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+        ArrayList<sctp2.ClassesdeControle.Anamnese> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.Anamnese>();
+        ListarPesquisa = acesso.ListarAnamnese(iDpaciente);//função que retorna quais necessidades do paciente
+        boolean saude[] = new boolean[9];
+        String saudeDescricao[] = new String[5];
+        saude[0] = ListarPesquisa.get(0).isSofreAlgumaDoenca();
+        saude[1] = ListarPesquisa.get(0).isEmTratamentoMedico();
+        saude[2] = ListarPesquisa.get(0).isUsoDeAlgumaMedicacao();
+        saude[3] = ListarPesquisa.get(0).isPossuiAlergias();
+        saude[4] = ListarPesquisa.get(0).isJaFoiOperado();
+        saude[5] = ListarPesquisa.get(0).isProblemasComCicatrizacao();
+        saude[6] = ListarPesquisa.get(0).isGravidez();
+        saude[7] = ListarPesquisa.get(0).isProblemasComAnestesia();
+        saude[8] = ListarPesquisa.get(0).isProblemasComHemorragia();
 //----------------------
 //saudeDescricao[0]=ListarPesquisa.get(0).getPrincipalQueixa();
-saudeDescricao[0]=ListarPesquisa.get(0).getSofreAlgumaDoencaDescricao();
-saudeDescricao[1]=ListarPesquisa.get(0).getEmTratamentoMedicoDescricao();
-saudeDescricao[2]=ListarPesquisa.get(0).getUsoDeAlgumaMedicacaoDescricao();
-saudeDescricao[3]=ListarPesquisa.get(0).getPossuiAlergiasDescricao();
-saudeDescricao[4]=ListarPesquisa.get(0).getJaFoiOperadoDescricao();
-DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a chave valor para o objeto tabela
-    if(  saude[0]==true)valor.addRow((new String[]{"Doença: "+saudeDescricao[0]}));
-    if(  saude[1]==true)valor.addRow((new String[]{"Trat. Médico: "+saudeDescricao[1]}));
-    if(  saude[2]==true)valor.addRow((new String[]{"Medicação: "+saudeDescricao[2]}));
-    if(  saude[3]==true)valor.addRow((new String[]{"Alergia:"+saudeDescricao[3]}));
-    if(  saude[4]==true)valor.addRow((new String[]{"Operação: "+saudeDescricao[4]}));
-    jPrincipalQueixa.setText(ListarPesquisa.get(0).getPrincipalQueixa());
+        saudeDescricao[0] = ListarPesquisa.get(0).getSofreAlgumaDoencaDescricao();
+        saudeDescricao[1] = ListarPesquisa.get(0).getEmTratamentoMedicoDescricao();
+        saudeDescricao[2] = ListarPesquisa.get(0).getUsoDeAlgumaMedicacaoDescricao();
+        saudeDescricao[3] = ListarPesquisa.get(0).getPossuiAlergiasDescricao();
+        saudeDescricao[4] = ListarPesquisa.get(0).getJaFoiOperadoDescricao();
+        DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a chave valor para o objeto tabela
+        if (saude[0] == true) {
+            valor.addRow((new String[]{"Doença: " + saudeDescricao[0]}));
+        }
+        if (saude[1] == true) {
+            valor.addRow((new String[]{"Trat. Médico: " + saudeDescricao[1]}));
+        }
+        if (saude[2] == true) {
+            valor.addRow((new String[]{"Medicação: " + saudeDescricao[2]}));
+        }
+        if (saude[3] == true) {
+            valor.addRow((new String[]{"Alergia:" + saudeDescricao[3]}));
+        }
+        if (saude[4] == true) {
+            valor.addRow((new String[]{"Operação: " + saudeDescricao[4]}));
+        }
+        jPrincipalQueixa.setText(ListarPesquisa.get(0).getPrincipalQueixa());
 
     }
 
     private void HabitosCigarro() throws ClassNotFoundException, SQLException {
         //Esta função exibe os dados de consumo de cigarro, o ifs abaixo sao para concatenar todas as informações em uma única frase
         //
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<sctp2.ClassesdeControle.Habitos> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.Habitos>();
         ListarPesquisa = acesso.ListarHabitosCigarro(iDpaciente);//função que retorna quais necessidades do paciente
         if (ListarPesquisa.get(0).getFuma() == 1) {
@@ -623,14 +705,10 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " 1 a 10 cigarros ");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha)");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros)");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha)");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros)");
                     }
                 }
                 //-------------------------------------
@@ -638,14 +716,10 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " de 10 a 20 cigarros \n");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha)");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros)");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha)");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros)");
                     }
                 }
                 //-------------------------------------
@@ -653,14 +727,10 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " mais de 20  cigarros\n ");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha)");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros)");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha)");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros)");
                     }
                 }
 
@@ -672,14 +742,10 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " de 1 a 10 cigarros ");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha)");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros)");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha)");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros)");
                     }
                 }
                 //-------------------------------------
@@ -687,14 +753,10 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " de 10 a 20 cigarros \n ");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha)");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros)");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha)");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros)");
                     }
                 }
                 //-------------------------------------
@@ -702,14 +764,10 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " mais 20 cigarros \n");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha)");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros)");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha)");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros)");
                     }
                 }
 
@@ -721,14 +779,10 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " de 1 a 10 cigarros ");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha)");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros)");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha)");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros)");
                     }
                 }
                 //-------------------------------------
@@ -736,14 +790,10 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " de 10 a 20 cigarros\n ");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha)");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros)");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha)");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros)");
                     }
                 }
                 //-------------------------------------
@@ -751,135 +801,145 @@ DefaultTableModel valor = (DefaultTableModel) jTableSaude.getModel();//criando a
                     jFumante.setText(jFumante.getText() + " mais de 20 cigarros \n");
                     if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 1) {
                         jFumante.setText(jFumante.getText() + " Industrializado(s)");
-                    } else {
-                        if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
-                            jFumante.setText(jFumante.getText() + " de Palha");
-                        } else {
-                            if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
-                                jFumante.setText(jFumante.getText() + " do tipo Outros");
-                            }
-                        }
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 2) {
+                        jFumante.setText(jFumante.getText() + " de Palha");
+                    } else if (ListarPesquisa.get(0).getFumoTipodeCigarro() == 3) {
+                        jFumante.setText(jFumante.getText() + " do tipo Outros");
                     }
                 }
             }
             //------------------------------------------------------------------------------------
 
-        }
-        else
+        } else {
             jFumante.setText("Não fuma");
+        }
     }
 
     private void HabitosBebida() throws ClassNotFoundException {
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<sctp2.ClassesdeControle.Habitos> ListarPesquisa = new ArrayList<sctp2.ClassesdeControle.Habitos>();
         ListarPesquisa = acesso.ListarHabitosBebida(iDpaciente);//função que retorna quais necessidades do paciente
-        
-        if (ListarPesquisa.get(0).getBebidaAlcolica()== 1) {
+
+        if (ListarPesquisa.get(0).getBebidaAlcolica() == 1) {
             jBebida.setText("Bebe");
-            if(ListarPesquisa.get(0).getBebidaAlcoolicaHaQuantoTempo()==1){
+            if (ListarPesquisa.get(0).getBebidaAlcoolicaHaQuantoTempo() == 1) {
                 jBebida.setText(" a menos de um ano");
                 //bebe socialmente
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==1){
-                    jBebida.setText(jBebida.getText()+" socialmente");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 1) {
+                    jBebida.setText(jBebida.getText() + " socialmente");
                     //bebida destilada
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
                 //bebe semanalmente
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==2){
-                    jBebida.setText(jBebida.getText()+" semanalmente");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 2) {
+                    jBebida.setText(jBebida.getText() + " semanalmente");
                     //bebida destilada
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
                 //bebe diariamente
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==3){
-                    jBebida.setText(jBebida.getText()+" diariamente");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 3) {
+                    jBebida.setText(jBebida.getText() + " diariamente");
                     //bebida destilada
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
-                
+
             }
             //-------------------------fim ha quanto tempo menos de um ano--------------------------
-            if(ListarPesquisa.get(0).getBebidaAlcoolicaHaQuantoTempo()==2){
+            if (ListarPesquisa.get(0).getBebidaAlcoolicaHaQuantoTempo() == 2) {
                 jBebida.setText(" de 1 a 10 anos");
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==1){
-                    jBebida.setText(jBebida.getText()+" socialmente");
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 1) {
+                    jBebida.setText(jBebida.getText() + " socialmente");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
                 //bebe semanalmente
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==2){
-                    jBebida.setText(jBebida.getText()+" semanalmente");
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 2) {
+                    jBebida.setText(jBebida.getText() + " semanalmente");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
                 //bebe diariamente
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==3){
-                    jBebida.setText(jBebida.getText()+" diariamente");
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 3) {
+                    jBebida.setText(jBebida.getText() + " diariamente");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
-                
+
             }
             //--------fim ha quanto tempo 1 a 10 anos-----------------------------------------
-            if(ListarPesquisa.get(0).getBebidaAlcoolicaHaQuantoTempo()==3){
+            if (ListarPesquisa.get(0).getBebidaAlcoolicaHaQuantoTempo() == 3) {
                 jBebida.setText(" a mais de 10 anos");
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==1){
-                    jBebida.setText(jBebida.getText()+" socialmente");
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 1) {
+                    jBebida.setText(jBebida.getText() + " socialmente");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
                 //bebe semanalmente
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==2){
-                    jBebida.setText(jBebida.getText()+" semanalmente");
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 2) {
+                    jBebida.setText(jBebida.getText() + " semanalmente");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
                 //bebe diariamente
-                if(ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia()==3){
-                    jBebida.setText(jBebida.getText()+" diariamente");
-                    if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==1)jBebida.setText(jBebida.getText()+" bebida destilada");
-                    else
-                        if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==2)jBebida.setText(jBebida.getText()+" bebida Fermentada");
-                    else
-                            if(ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida()==3)jBebida.setText(jBebida.getText()+" bebida destilada e fermentada");
+                if (ListarPesquisa.get(0).getBebidaAlcoolicaFrequencia() == 3) {
+                    jBebida.setText(jBebida.getText() + " diariamente");
+                    if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 1) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 2) {
+                        jBebida.setText(jBebida.getText() + " bebida Fermentada");
+                    } else if (ListarPesquisa.get(0).getBebidaAlcoolicaTipodeBebida() == 3) {
+                        jBebida.setText(jBebida.getText() + " bebida destilada e fermentada");
+                    }
                 }
             }
             //----------fim ha quanto tempo mais de 10 anos
-            
-            
-            
-            
 
-        }
-        else
+        } else {
             jBebida.setText("Não bebe bebidas alcólicas.");
-    
+        }
+
     }
 }

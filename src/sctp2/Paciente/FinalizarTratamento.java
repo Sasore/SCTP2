@@ -29,15 +29,14 @@ public class FinalizarTratamento extends javax.swing.JFrame {
      * Creates new form FinalizarTratamentpo
      */
     private static String rg;
+
     public FinalizarTratamento(String rg) throws ClassNotFoundException, SQLException {
         initComponents();
-         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
-         this.rg=rg;
-         this.setTitle("SCTP: Finalizar Tratamento");
-         MostrarTratamentos(rg);
+        this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
+        this.rg = rg;
+        this.setTitle("SCTP: Finalizar Tratamento");
+        MostrarTratamentos(rg);
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -219,13 +218,13 @@ public class FinalizarTratamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-sctp2.Principal.principal acesso= new sctp2.Principal.principal();
-acesso.setVisible(true);
-this.setVisible(false);
+        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
+        acesso.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-DadosDoPaciente acesso;
+        DadosDoPaciente acesso;
         try {
             acesso = new DadosDoPaciente(rg);
             acesso.setVisible(true);
@@ -233,11 +232,11 @@ DadosDoPaciente acesso;
             Logger.getLogger(FinalizarTratamento.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-System.exit(0);        // TODO add your handling code here:
+        System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -290,7 +289,7 @@ System.exit(0);        // TODO add your handling code here:
                 } catch (SQLException ex) {
                     Logger.getLogger(FinalizarTratamento.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
         });
     }
@@ -311,95 +310,148 @@ System.exit(0);        // TODO add your handling code here:
     // End of variables declaration//GEN-END:variables
 
     private void MostrarTratamentos(String rg) throws ClassNotFoundException, SQLException {
-    ConexaoPacotePesquisar conexao= new ConexaoPacotePesquisar();
-    ArrayList<TratamentosNecessarios> ListarTratamentos= new ArrayList<>();
-   ListarTratamentos=conexao.NecessidadesdoPaciente(rg);//função que retorna quais necessidades do paciente
-   int[] tratamento= new int[27];
-   tratamento[0]=ListarTratamentos.get(0).getProfilaxiaSimples();
-    tratamento[1]=ListarTratamentos.get(0).getRaspagemEPoliCCoronario();
-    tratamento[2]=ListarTratamentos.get(0).getCirugiaPeridontal();
-    tratamento[3]=ListarTratamentos.get(0).getExodontiaSimples();
-    tratamento[4]=ListarTratamentos.get(0).getExodontia3Molar();
-    tratamento[5]=ListarTratamentos.get(0).getExodontiaIncluso();
-    tratamento[6]=ListarTratamentos.get(0).getAmalgama();
-    tratamento[7]=ListarTratamentos.get(0).getResina();
-    tratamento[8]=ListarTratamentos.get(0).getRmf();
-    tratamento[9]=ListarTratamentos.get(0).getEndontiaUnirradicular();
-    tratamento[10]=ListarTratamentos.get(0).getEndodontiaTrirradicular();
-    tratamento[11]=ListarTratamentos.get(0).getCoroaTotal();
-    tratamento[12]=ListarTratamentos.get(0).getPonteFixa3Elementos();
-    tratamento[13]=ListarTratamentos.get(0).getPonteFixa4Elementos();
-    tratamento[14]=ListarTratamentos.get(0).getPonteFixaMaisQue4Elementos();
-    tratamento[15]=ListarTratamentos.get(0).getPpr();
-    tratamento[16]=ListarTratamentos.get(0).getProtesetotal();
-    tratamento[17]=ListarTratamentos.get(0).getProtese_ppr();
-    tratamento[18]=ListarTratamentos.get(0).getProtese();
-    tratamento[19]=ListarTratamentos.get(0).getTerrapiaOeriodDeSuporte();
-    tratamento[20]=ListarTratamentos.get(0).getEndodontiaBirradicular();
-    tratamento[21]=ListarTratamentos.get(0).getDtm();
-    tratamento[22]=ListarTratamentos.get(0).getEstomatologia();
-    tratamento[23]=ListarTratamentos.get(0).getPonteFixa();
-    tratamento[24]=ListarTratamentos.get(0).getPonteFixaMaisQueTresElementos();
-    tratamento[25]=ListarTratamentos.get(0).getRaspagemSub();
-    tratamento[26]=ListarTratamentos.get(0).getRaspagemSupra();
-    DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
-    if(  tratamento[0]==1)valor.addRow((new String[]{"Profilaxia Simples"}));
-if(  tratamento[1]==1)valor.addRow((new String[]{"Raspagem e Poli. Coronário "}));
-if(  tratamento[2]==1)valor.addRow((new String[]{"Cirugia Peridontal "}));
-if(  tratamento[3]==1)valor.addRow((new String[]{"Exodontia Simples"}));
-if(  tratamento[4]==1)valor.addRow((new String[]{"Exodontia 3º Molar"}));
-if(  tratamento[5]==1)valor.addRow((new String[]{"Exodontia Incluso"}));
-if(  tratamento[6]==1)valor.addRow((new String[]{"Amalgama "}));
-if(  tratamento[7]==1)valor.addRow((new String[]{"Resina "}));
-if(  tratamento[8]==1)valor.addRow((new String[]{"RMF"}));
-if(  tratamento[9]==1)valor.addRow((new String[]{"EndontiaUnirradicular"}));
-if(  tratamento[10]==1)valor.addRow((new String[]{"Endodontia Trirradicular"}));
-if(  tratamento[11]==1)valor.addRow((new String[]{"Coroa Total"}));
-if(  tratamento[12]==1)valor.addRow((new String[]{"PonteFixa 3 Elementos"}));
-if(  tratamento[13]==1)valor.addRow((new String[]{"PonteFixa 4 Elementos "}));
-if(  tratamento[14]==1)valor.addRow((new String[]{"PonteFixaMaisQue 4 Elementos "}));
-if(  tratamento[15]==1)valor.addRow((new String[]{"PPR "}));
-if(  tratamento[16]==1)valor.addRow((new String[]{"Protese total "}));
-if(  tratamento[17]==1)valor.addRow((new String[]{"Protese PPR "}));
-if(  tratamento[18]==1)valor.addRow((new String[]{"Protese "}));
-if(  tratamento[19]==1)valor.addRow((new String[]{"Terapia Periodontal "}));
-if(  tratamento[20]==1)valor.addRow((new String[]{" Endodontia Birradicular "}));
-if(  tratamento[21]==1)valor.addRow((new String[]{"DTM "}));
-if(  tratamento[22]==1)valor.addRow((new String[]{"Estomatologia"}));
-if(  tratamento[23]==1)valor.addRow((new String[]{"Ponte Fixa"}));
-if(  tratamento[24]==1)valor.addRow((new String[]{"Ponte Fixa Mais Que Três Elementos"}));
-if(  tratamento[25]==1)valor.addRow((new String[]{"Raspagem Sub"}));
-if(  tratamento[26]==1)valor.addRow((new String[]{"Raspagem Supra"}));
+        sctp2.BancodeDados.conexao conexao = new sctp2.BancodeDados.conexao();
+        ArrayList<TratamentosNecessarios> ListarTratamentos = new ArrayList<>();
+        ListarTratamentos = conexao.NecessidadesdoPaciente(rg);//função que retorna quais necessidades do paciente
+        int[] tratamento = new int[27];
+        tratamento[0] = ListarTratamentos.get(0).getProfilaxiaSimples();
+        tratamento[1] = ListarTratamentos.get(0).getRaspagemEPoliCCoronario();
+        tratamento[2] = ListarTratamentos.get(0).getCirugiaPeridontal();
+        tratamento[3] = ListarTratamentos.get(0).getExodontiaSimples();
+        tratamento[4] = ListarTratamentos.get(0).getExodontia3Molar();
+        tratamento[5] = ListarTratamentos.get(0).getExodontiaIncluso();
+        tratamento[6] = ListarTratamentos.get(0).getAmalgama();
+        tratamento[7] = ListarTratamentos.get(0).getResina();
+        tratamento[8] = ListarTratamentos.get(0).getRmf();
+        tratamento[9] = ListarTratamentos.get(0).getEndontiaUnirradicular();
+        tratamento[10] = ListarTratamentos.get(0).getEndodontiaTrirradicular();
+        tratamento[11] = ListarTratamentos.get(0).getCoroaTotal();
+        tratamento[12] = ListarTratamentos.get(0).getPonteFixa3Elementos();
+        tratamento[13] = ListarTratamentos.get(0).getPonteFixa4Elementos();
+        tratamento[14] = ListarTratamentos.get(0).getPonteFixaMaisQue4Elementos();
+        tratamento[15] = ListarTratamentos.get(0).getPpr();
+        tratamento[16] = ListarTratamentos.get(0).getProtesetotal();
+        tratamento[17] = ListarTratamentos.get(0).getProtese_ppr();
+        tratamento[18] = ListarTratamentos.get(0).getProtese();
+        tratamento[19] = ListarTratamentos.get(0).getTerrapiaOeriodDeSuporte();
+        tratamento[20] = ListarTratamentos.get(0).getEndodontiaBirradicular();
+        tratamento[21] = ListarTratamentos.get(0).getDtm();
+        tratamento[22] = ListarTratamentos.get(0).getEstomatologia();
+        tratamento[23] = ListarTratamentos.get(0).getPonteFixa();
+        tratamento[24] = ListarTratamentos.get(0).getPonteFixaMaisQueTresElementos();
+        tratamento[25] = ListarTratamentos.get(0).getRaspagemSub();
+        tratamento[26] = ListarTratamentos.get(0).getRaspagemSupra();
+        DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
+        if (tratamento[0] == 1) {
+            valor.addRow((new String[]{"Profilaxia Simples"}));
+        }
+        if (tratamento[1] == 1) {
+            valor.addRow((new String[]{"Raspagem e Poli. Coronário "}));
+        }
+        if (tratamento[2] == 1) {
+            valor.addRow((new String[]{"Cirugia Peridontal "}));
+        }
+        if (tratamento[3] == 1) {
+            valor.addRow((new String[]{"Exodontia Simples"}));
+        }
+        if (tratamento[4] == 1) {
+            valor.addRow((new String[]{"Exodontia 3º Molar"}));
+        }
+        if (tratamento[5] == 1) {
+            valor.addRow((new String[]{"Exodontia Incluso"}));
+        }
+        if (tratamento[6] == 1) {
+            valor.addRow((new String[]{"Amalgama "}));
+        }
+        if (tratamento[7] == 1) {
+            valor.addRow((new String[]{"Resina "}));
+        }
+        if (tratamento[8] == 1) {
+            valor.addRow((new String[]{"RMF"}));
+        }
+        if (tratamento[9] == 1) {
+            valor.addRow((new String[]{"EndontiaUnirradicular"}));
+        }
+        if (tratamento[10] == 1) {
+            valor.addRow((new String[]{"Endodontia Trirradicular"}));
+        }
+        if (tratamento[11] == 1) {
+            valor.addRow((new String[]{"Coroa Total"}));
+        }
+        if (tratamento[12] == 1) {
+            valor.addRow((new String[]{"PonteFixa 3 Elementos"}));
+        }
+        if (tratamento[13] == 1) {
+            valor.addRow((new String[]{"PonteFixa 4 Elementos "}));
+        }
+        if (tratamento[14] == 1) {
+            valor.addRow((new String[]{"PonteFixaMaisQue 4 Elementos "}));
+        }
+        if (tratamento[15] == 1) {
+            valor.addRow((new String[]{"PPR "}));
+        }
+        if (tratamento[16] == 1) {
+            valor.addRow((new String[]{"Protese total "}));
+        }
+        if (tratamento[17] == 1) {
+            valor.addRow((new String[]{"Protese PPR "}));
+        }
+        if (tratamento[18] == 1) {
+            valor.addRow((new String[]{"Protese "}));
+        }
+        if (tratamento[19] == 1) {
+            valor.addRow((new String[]{"Terapia Periodontal "}));
+        }
+        if (tratamento[20] == 1) {
+            valor.addRow((new String[]{" Endodontia Birradicular "}));
+        }
+        if (tratamento[21] == 1) {
+            valor.addRow((new String[]{"DTM "}));
+        }
+        if (tratamento[22] == 1) {
+            valor.addRow((new String[]{"Estomatologia"}));
+        }
+        if (tratamento[23] == 1) {
+            valor.addRow((new String[]{"Ponte Fixa"}));
+        }
+        if (tratamento[24] == 1) {
+            valor.addRow((new String[]{"Ponte Fixa Mais Que Três Elementos"}));
+        }
+        if (tratamento[25] == 1) {
+            valor.addRow((new String[]{"Raspagem Sub"}));
+        }
+        if (tratamento[26] == 1) {
+            valor.addRow((new String[]{"Raspagem Supra"}));
+        }
 
     }
 
     private void FinalizaTratamento() throws ClassNotFoundException {
-        conexao acesso= new conexao();
-        int tamanho=(jTable1.getRowCount());
-        int incrementa=0;
+        conexao acesso = new conexao();
+        int tamanho = (jTable1.getRowCount());
+        int incrementa = 0;
         String[] tratamentosNVetor = new String[tamanho];
-        for(int i=0;i<tratamentosNVetor.length;i++)tratamentosNVetor[i]=null;
-    
-         for(int i=0;i< tamanho;i++){
-            final Object  valor=jTable1.getValueAt(i,1 );
-            
-             if(valor==null)    System.out.println("");
-             else
-                 if(valor.toString().isEmpty())System.out.println(" ");
-                 else
-                     //System.out.println("valor "+jTable1.getValueAt(i,0).toString());
-                       tratamentosNVetor[incrementa]=jTable1.getValueAt(i,0).toString();
-                       incrementa++;
-         }
-         acesso.FinalizaTratamento(tratamentosNVetor, rg);
-         
-        
-        
-        
-    
+        for (int i = 0; i < tratamentosNVetor.length; i++) {
+            tratamentosNVetor[i] = null;
+        }
+
+        for (int i = 0; i < tamanho; i++) {
+            final Object valor = jTable1.getValueAt(i, 1);
+
+            if (valor == null) {
+                System.out.println("");
+            } else {
+                if (valor.toString().isEmpty()) {
+                    System.out.println(" ");
+                } else //System.out.println("valor "+jTable1.getValueAt(i,0).toString());
+                {
+                    tratamentosNVetor[incrementa] = jTable1.getValueAt(i, 0).toString();
+                }
+            }
+            incrementa++;
+        }
+        acesso.FinalizaTratamento(tratamentosNVetor, rg);
+
     }
 
-        
 }
-    
-

@@ -642,7 +642,7 @@ public class Prontuario extends javax.swing.JFrame {
         //se o prontuario estiver emprestado este botao irpa recebê-lo, se for o contrário ele irá emprestalo
         if ("Emprestado".equals(jTable1.getValueAt(jTable1.getSelectedRow(), 5))) {
             String id = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);//pega o numero do prontuario
-            sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();//chave de acesso a função de pesquisa
+            sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
             boolean retorno = false;
             try {
                 retorno = acesso.AtualizaStatusProntuario(id);//recebe o prontuario
@@ -667,18 +667,16 @@ public class Prontuario extends javax.swing.JFrame {
             }
             this.setVisible(false);
 
-        } else {
-            if ("Reservado".equals(jTable1.getValueAt(jTable1.getSelectedRow(), 5))) {
-                try {
-                    new sctp2.Prontuarios.ResponsavelProntuario(1, jProntuario.getText()).setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                this.setVisible(false);
-
-            } else {
-                jBprontuario.setEnabled(false);
+        } else if ("Reservado".equals(jTable1.getValueAt(jTable1.getSelectedRow(), 5))) {
+            try {
+                new sctp2.Prontuarios.ResponsavelProntuario(1, jProntuario.getText()).setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
             }
+            this.setVisible(false);
+
+        } else {
+            jBprontuario.setEnabled(false);
         }
     }//GEN-LAST:event_jBprontuarioActionPerformed
 
@@ -711,75 +709,74 @@ public class Prontuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jReservaProntuarioActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-ConexaoPacotePesquisar acesso = new ConexaoPacotePesquisar();
-        LocalDate data1 = null ,data2;
-if(VerificaCampoDataVazia());
-else
-    if(ComparaDataInicialComDataFinal(ConverteDataBD(jDateEmprestimoInicio.getDate()),ConverteDataBD(jDateEmprestimoFim.getDate()))==true)jNotificacao.setText("A data Final deve ser maior do que a data inicial!");
-else
-        if (((ComparaData((ConverteDataBD(jDateEmprestimoInicio.getDate()))))||(ComparaData(ConverteDataBD(jDateEmprestimoFim.getDate()))))==true)jNotificacao.setText("A data de Emprestimo ou devolução é anterior ao dia de hoje!");
-else
-            if(this.reservarOuEmprestrar==1){//Emprestar prontuário
-        if(ListarPesquisa.get(0).getStatus().equals("Disponível")){
-            boolean retorno;
-            try {
-                retorno = acesso.EmprestaProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
-                if (retorno == true) {
-                        jButton3.setEnabled(false);
-                        jButton4.setText("Ocultar");
-                        LimpaTabela();
-                        Pesquisar();
-                        jNotificacao.setText("Prontuário Emprestado");
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+        LocalDate data1 = null, data2;
+        if (VerificaCampoDataVazia()); else {
+            if (ComparaDataInicialComDataFinal(ConverteDataBD(jDateEmprestimoInicio.getDate()), ConverteDataBD(jDateEmprestimoFim.getDate())) == true) {
+                jNotificacao.setText("A data Final deve ser maior do que a data inicial!");
+            } else {
+                if (((ComparaData((ConverteDataBD(jDateEmprestimoInicio.getDate())))) || (ComparaData(ConverteDataBD(jDateEmprestimoFim.getDate())))) == true) {
+                    jNotificacao.setText("A data de Emprestimo ou devolução é anterior ao dia de hoje!");
+                } else {
+                    if (this.reservarOuEmprestrar == 1) {//Emprestar prontuário
+                        if (ListarPesquisa.get(0).getStatus().equals("Disponível")) {
+                            boolean retorno;
+                            try {
+                                retorno = acesso.EmprestaProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
+                                if (retorno == true) {
+                                    jButton3.setEnabled(false);
+                                    jButton4.setText("Ocultar");
+                                    LimpaTabela();
+                                    Pesquisar();
+                                    jNotificacao.setText("Prontuário Emprestado");
+                                }
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                        }//fim da condição prontuário disponível
+                        if (ListarPesquisa.get(0).getStatus().equals("Reservado")) {
+                            System.out.println("reservado");
+                            //Verificar Se o responsável a ser emprestado é o mesmo que está reservado
+                            if ((Integer.parseInt(jCodigoResponsavel.getText()) != ListarPesquisa.get(0).getIdUsuarioReservado()) && (ComparaData(ConverteDataBD(jDateEmprestimoFim.getDate()))) == false) {
+
+                                JOptionPane.showMessageDialog(rootPane, "Você está tentando emprestar um prontuário reservado para uma pessoa diferente da qual ele foi reservado, caso deseje realmente continuar, cancele a reserva antes! ");
+                                jCancelarReserva.setVisible(true);
+                            } else {
+                                boolean retorno;
+                                try {
+                                    retorno = acesso.EmprestaProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
+                                    if (retorno == true) {
+                                        jButton3.setEnabled(false);
+                                        jButton4.setText("Ocultar");
+                                        LimpaTabela();
+                                        Pesquisar();
+                                        jNotificacao.setText("Prontuário Emprestado");
+                                    }
+                                } catch (ClassNotFoundException ex) {
+                                    Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+
+                            }
+
+                        }//fim da condição reservado
+                    } else if (this.reservarOuEmprestrar == 2) {
+                        try {
+                            boolean retorno = acesso.ReservarProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
+                            if (retorno) {
+                                jButton3.setEnabled(false);
+                                jButton4.setText("Ocultar");
+                                LimpaTabela();
+                                Pesquisar();
+                                jNotificacao.setText("Prontuario Reservado");
+                            }
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    
-}//fim da condição prontuário disponível
-            if(ListarPesquisa.get(0).getStatus().equals("Reservado")){
-                System.out.println("reservado");
-        //Verificar Se o responsável a ser emprestado é o mesmo que está reservado
-       if((Integer.parseInt(jCodigoResponsavel.getText())!=ListarPesquisa.get(0).getIdUsuarioReservado())&&(ComparaData(ConverteDataBD(jDateEmprestimoFim.getDate())))==false){
-        
-         JOptionPane.showMessageDialog(rootPane,"Você está tentando emprestar um prontuário reservado para uma pessoa diferente da qual ele foi reservado, caso deseje realmente continuar, cancele a reserva antes! ");
-         jCancelarReserva.setVisible(true);
-         }
-        else
-        {
-            boolean retorno;
-            try {
-                retorno = acesso.EmprestaProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
-                if (retorno == true) {
-                        jButton3.setEnabled(false);
-                        jButton4.setText("Ocultar");
-                        LimpaTabela();
-                        Pesquisar();
-                        jNotificacao.setText("Prontuário Emprestado");
-                    }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }
-           
-                
-        
-    }//fim da condição reservado
-            }
-            else if(this.reservarOuEmprestrar==2){
-                try {
-                   boolean retorno = acesso.ReservarProntuario(jProntuario.getText(), jCodigoResponsavel.getText(), Date.valueOf(ConverteDataBD(jDateEmprestimoInicio.getDate())), Date.valueOf(ConverteDataBD(jDateEmprestimoFim.getDate())));
-                    if (retorno) {
-                        jButton3.setEnabled(false);
-                        jButton4.setText("Ocultar");
-                        LimpaTabela();
-                        Pesquisar();
-                        jNotificacao.setText("Prontuario Reservado");
-                    }
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }
 
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -791,33 +788,32 @@ else
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jCancelarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelarReservaActionPerformed
-int resposta=JOptionPane.showConfirmDialog(rootPane,"você deseja realmente cancelar esta reserva?");
-if(resposta==0){
-    ConexaoPacotePesquisar acesso = new ConexaoPacotePesquisar();
-    int retorno;
-    try {
-        
-        retorno = acesso.CancelaReservaProntuario(ListarPesquisa.get(0).getCodigoProntuario());
-        if (retorno ==1) {
-                        jCancelarReserva.setEnabled(false);
-                        jButton4.setText("Ocultar");
-                        LimpaTabela();
-                        Pesquisar();
-                        jNotificacao.setText("Reserva cancelada com sucesso!");
-                        jCancelarReserva.setVisible(false);
-                    }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao tentar cancelar a reserva, se o erro persistir peça ajuda ao Programador!.");
-            jNotificacao.setText("Não foi possível cancelar a reserva!");
-        }
-    } catch (SQLException ex) {
-        Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
-    }
-                    }
+        int resposta = JOptionPane.showConfirmDialog(rootPane, "você deseja realmente cancelar esta reserva?");
+        if (resposta == 0) {
+            sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+            int retorno;
+            try {
 
-    
+                retorno = acesso.CancelaReservaProntuario(ListarPesquisa.get(0).getCodigoProntuario());
+                if (retorno == 1) {
+                    jCancelarReserva.setEnabled(false);
+                    jButton4.setText("Ocultar");
+                    LimpaTabela();
+                    Pesquisar();
+                    jNotificacao.setText("Reserva cancelada com sucesso!");
+                    jCancelarReserva.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao tentar cancelar a reserva, se o erro persistir peça ajuda ao Programador!.");
+                    jNotificacao.setText("Não foi possível cancelar a reserva!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+
     }//GEN-LAST:event_jCancelarReservaActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -826,10 +822,9 @@ if(resposta==0){
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -916,7 +911,7 @@ this.setVisible(false);
     // End of variables declaration//GEN-END:variables
 
     private void Pesquisar() throws ClassNotFoundException {
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         ListarPesquisa = new ArrayList<PesquisarProntuario>();
         jBprontuario.setEnabled(false);//desativa o botao de emprestar/receber
@@ -992,9 +987,6 @@ this.setVisible(false);
         jPanel3.setVisible(true);
     }
 
-    
-    
-
     private boolean ComparaData(LocalDate data) {
         boolean retorno = data.isBefore(LocalDate.now());
         return retorno;
@@ -1002,67 +994,70 @@ this.setVisible(false);
     }
 
     private void MostraDetalhesProntuario() {
-        if(false==(ListarPesquisa.get(0).getStatus().equals("Disponivel"))){
-         jPanel3.setVisible(true);
-        jPanel4.setVisible(true);
-        label1.setText("Detalhes do Prontuário");
-        label2.setText(ListarPesquisa.get(0).getStatus() + " para:");
-        NomeresponsavelProntuario.setText(ListarPesquisa.get(0).getNome());
-        jDateEmprestimoInicio.setDate(ListarPesquisa.get(0).getDataEmprestimo());
-        jDateEmprestimoFim.setDate(ListarPesquisa.get(0).getDataDevolução());
-        jTelefoneFixo.setText(ListarPesquisa.get(0).getTelefoneFixo());
-        JcelularoAluno.setText(ListarPesquisa.get(0).getTelefone());
-        jLabel3.setVisible(false);
-        jNomeProfessor.setVisible(false);
-        jTelefoneFixoProfessor.setVisible(false);
-        jCelularProfessor.setVisible(false);
-        jButton3.setVisible(false);
-        jButton4.setVisible(false);
-        jDescricaoProntuario.setText(ListarPesquisa.get(0).getInformacoes());
-        jTNprontuario.setText(ListarPesquisa.get(0).getProntuario());
-        jTPaciente.setText(ListarPesquisa.get(0).getPaciente());
-        if(ListarPesquisa.get(0).getStatus().equals("Reservado")){
-        jLStatus.setText("Atualmente reservado para "+ListarPesquisa.get(0).getNome()+" até o dia  "+ConverteDataBrasil(ListarPesquisa.get(0).getDataDevolução()));
-        }
-        else
-            if(ListarPesquisa.get(0).getStatus().equals("Disponível")){
-               jLStatus.setText("Atualmente Disponível para empréstimo");
-            }
-        else
-                if(ListarPesquisa.get(0).getStatus().equals("Emprestado")){
-                    jLStatus.setText("Emprestado para "+PesquisarProntuario.getNome()+" até o dia "+ConverteDataBrasil(ListarPesquisa.get(0).getDataDevolução()));
+        if (false == (ListarPesquisa.get(0).getStatus().equals("Disponivel"))) {
+            jPanel3.setVisible(true);
+            jPanel4.setVisible(true);
+            label1.setText("Detalhes do Prontuário");
+            label2.setText(ListarPesquisa.get(0).getStatus() + " para:");
+            NomeresponsavelProntuario.setText(ListarPesquisa.get(0).getNome());
+            jDateEmprestimoInicio.setDate(ListarPesquisa.get(0).getDataEmprestimo());
+            jDateEmprestimoFim.setDate(ListarPesquisa.get(0).getDataDevolução());
+            jTelefoneFixo.setText(ListarPesquisa.get(0).getTelefoneFixo());
+            JcelularoAluno.setText(ListarPesquisa.get(0).getTelefone());
+            jLabel3.setVisible(false);
+            jNomeProfessor.setVisible(false);
+            jTelefoneFixoProfessor.setVisible(false);
+            jCelularProfessor.setVisible(false);
+            jButton3.setVisible(false);
+            jButton4.setVisible(false);
+            jDescricaoProntuario.setText(ListarPesquisa.get(0).getInformacoes());
+            jTNprontuario.setText(ListarPesquisa.get(0).getProntuario());
+            jTPaciente.setText(ListarPesquisa.get(0).getPaciente());
+            if (ListarPesquisa.get(0).getStatus().equals("Reservado")) {
+                jLStatus.setText("Atualmente reservado para " + ListarPesquisa.get(0).getNome() + " até o dia  " + ConverteDataBrasil(ListarPesquisa.get(0).getDataDevolução()));
+            } else {
+                if (ListarPesquisa.get(0).getStatus().equals("Disponível")) {
+                    jLStatus.setText("Atualmente Disponível para empréstimo");
+                } else {
+                    if (ListarPesquisa.get(0).getStatus().equals("Emprestado")) {
+                        jLStatus.setText("Emprestado para " + PesquisarProntuario.getNome() + " até o dia " + ConverteDataBrasil(ListarPesquisa.get(0).getDataDevolução()));
+                    }
                 }
+            }
+        }
     }
-    }
+
     private boolean ComparaDataInicialComDataFinal(LocalDate dataIni, LocalDate dataF) {
-    if(dataIni.isAfter(dataF)==true)return true;
-    else return false;
+        if (dataIni.isAfter(dataF) == true) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private LocalDate ConverteDataBD(java.util.Date date) {
-     DateFormat formataData = DateFormat.getDateInstance();
-     String DataString = formataData.format(date);//Converte em String
-     String[] dataSeparada = DataString.split("/");
+        DateFormat formataData = DateFormat.getDateInstance();
+        String DataString = formataData.format(date);//Converte em String
+        String[] dataSeparada = DataString.split("/");
         LocalDate dataConvertida = LocalDate.of(Integer.parseInt(dataSeparada[2]), Integer.parseInt(dataSeparada[1]), Integer.parseInt(dataSeparada[0]));
         return dataConvertida;
-     
+
     }
+
     private String ConverteDataBrasil(java.util.Date date) {
-     DateFormat formataData = DateFormat.getDateInstance();
-     String DataString = formataData.format(date);//Converte em String
-     
+        DateFormat formataData = DateFormat.getDateInstance();
+        String DataString = formataData.format(date);//Converte em String
+
         return DataString;
-     
+
     }
 
     private boolean VerificaCampoDataVazia() {
-    if (jDateEmprestimoInicio.getDate() == null || jDateEmprestimoFim.getDate() == null) {
+        if (jDateEmprestimoInicio.getDate() == null || jDateEmprestimoFim.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Os campos de data são obigatórios");
             return true;
         }
-    return false;
+        return false;
     }
-
-    
 
 }

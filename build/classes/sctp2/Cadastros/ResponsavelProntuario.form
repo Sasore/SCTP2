@@ -147,9 +147,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jPesquisa">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Digite o nome do respons&#xe1;vel aqui!"/>
-          </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPesquisaMouseClicked"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPesquisaMouseExited"/>

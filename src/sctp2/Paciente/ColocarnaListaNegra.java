@@ -21,13 +21,15 @@ public class ColocarnaListaNegra extends javax.swing.JFrame {
      * Creates new form ColocarnaListaNegra
      */
     int codigoPaciente;
+
     public ColocarnaListaNegra() {
         initComponents();
         this.setLocation(350, 80);//define a localização da tela
     }
-        public ColocarnaListaNegra(String nome, int id,String rg) {
+
+    public ColocarnaListaNegra(String nome, int id, String rg) {
         initComponents();
-        codigoPaciente=id;
+        codigoPaciente = id;
         jTNome.setText(nome);
         jrg.setText(rg);
         this.setLocation(350, 80);//define a localização da tela
@@ -236,8 +238,8 @@ public class ColocarnaListaNegra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-this.setVisible(false);
-new sctp2.Principal.principal().setVisible(true);
+        this.setVisible(false);
+        new sctp2.Principal.principal().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -250,40 +252,38 @@ new sctp2.Principal.principal().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-if(jTmotivoListaNegra.getText().trim().equals("")){
-    JNotificacao.setText("Preencha a justificativa");
-    jTmotivoListaNegra.setBorder(new LineBorder(Color.red));
-}
-else{
-            
-sctp2.BancodeDados.ConexaoPacotePesquisar acesso= new sctp2.BancodeDados.ConexaoPacotePesquisar();
-        try {
-            boolean retorno;
-            retorno=acesso.MudaStatusListaNegraPaciente(jrg.getText(),jTmotivoListaNegra.getText());
-            if(retorno==true){
-                this.setVisible(false);
-                new sctp2.Paciente.DadosDoPaciente(jrg.getText()).setVisible(true);
+        if (jTmotivoListaNegra.getText().trim().equals("")) {
+            JNotificacao.setText("Preencha a justificativa");
+            jTmotivoListaNegra.setBorder(new LineBorder(Color.red));
+        } else {
+
+            sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+            try {
+                boolean retorno;
+                retorno = acesso.MudaStatusListaNegraPaciente(jrg.getText(), jTmotivoListaNegra.getText());
+                if (retorno == true) {
+                    this.setVisible(false);
+                    new sctp2.Paciente.DadosDoPaciente(jrg.getText()).setVisible(true);
+                } else {
+                    JNotificacao.setText("Algo deu errado, por favor tente novamente!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ColocarnaListaNegra.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ColocarnaListaNegra.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else{
-                JNotificacao.setText("Algo deu errado, por favor tente novamente!");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ColocarnaListaNegra.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ColocarnaListaNegra.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             this.setVisible(false);
             sctp2.Paciente.DadosDoPaciente acesso;
-            acesso=new sctp2.Paciente.DadosDoPaciente(jrg.getText());
+            acesso = new sctp2.Paciente.DadosDoPaciente(jrg.getText());
             acesso.setVisible(true);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ColocarnaListaNegra.class.getName()).log(Level.SEVERE, null, ex);

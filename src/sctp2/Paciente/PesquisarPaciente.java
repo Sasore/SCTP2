@@ -395,7 +395,7 @@ jTPesquisar.setText("");        // TODO add your handling code here:
     // End of variables declaration//GEN-END:variables
 
     private void PassaValoresPesquisa() throws ClassNotFoundException {
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         //-----------------------------------------------------------
         LimpaTabela();

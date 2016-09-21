@@ -32,21 +32,23 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
      * Creates new form ResponsavelProntuario
      */
  
- public ResponsavelProntuario(  String nprontuario) {//int janela: qual janela.componente chamou esta interface
+ public ResponsavelProntuario(  String nprontuario) throws ClassNotFoundException {//int janela: qual janela.componente chamou esta interface
         initComponents();
-        this.setLocation(50, WIDTH);
+        this.setLocation(100, 30);
         codigo=nprontuario;
         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
         jPanelCadastrar.setVisible(false);
+        EfetuaPesquisa();
         
 
     }
-    public ResponsavelProntuario() {
+    public ResponsavelProntuario() throws ClassNotFoundException {
         initComponents();
-        this.setLocation(50, WIDTH);
+        this.setLocation(100, 30);
         sctp2.Cadastros.Prontuario acesso= new sctp2.Cadastros.Prontuario();
         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
         jPanelCadastrar.setVisible(false);
+        EfetuaPesquisa();
     }
 
     /**
@@ -101,7 +103,6 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Adicionar Responsável ao Prontuário");
 
-        jPesquisa.setText("Digite o nome do responsável aqui!");
         jPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPesquisaMouseClicked(evt);
@@ -489,7 +490,7 @@ jPesquisa.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaMouseExited
 
     private void jPesquisaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPesquisaMouseReleased
-if(jPesquisa.getText().trim().equals("")) jPesquisa.setText("Digite o nome do responsável aqui!");        // TODO add your handling code here:        // TODO add your handling code here:
+//if(jPesquisa.getText().trim().equals("")) jPesquisa.setText("Digite o nome do responsável aqui!");        // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaMouseReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -565,7 +566,7 @@ TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:     
     }//GEN-LAST:event_jBDiminuiTamFOnteActionPerformed
 
     private void jPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPesquisaKeyTyped
-if(jPesquisa.getText().trim().equals("Digite o nome do responsável aqui!")) jPesquisa.setText("");        // TODO add your handling code here:        // TODO add your handling code here:
+//if(jPesquisa.getText().trim().equals("Digite o nome do responsável aqui!")) jPesquisa.setText("");        // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaKeyTyped
 
     private void jNovoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNovoAlunoActionPerformed
@@ -620,7 +621,11 @@ jLabel3.setVisible(false);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ResponsavelProntuario().setVisible(true);
+                try {
+                    new ResponsavelProntuario().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -675,7 +680,7 @@ jLabel3.setVisible(false);
     }
     
     private void EfetuaPesquisa() throws ClassNotFoundException {//Esta função faza a pesquisa e popula a tabela com os nomes encontrados
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<Pesquisar> listaPesquisa;//array pra pegar o resultado da pesquisa
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         listaPesquisa = acesso.PesquisarResponsavelProntuario(jPesquisa.getText(),2);

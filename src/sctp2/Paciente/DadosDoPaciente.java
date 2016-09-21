@@ -925,7 +925,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         if (pacientelistaNegra == 1) {
             int resposta = JOptionPane.showConfirmDialog(null, "Tem Certeza que deseja retirar este paciente da lista negra?");
             if (resposta == 0) {
-                sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+                sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
                 boolean retorno;
                 try {
                     retorno = acesso.MudaStatusListaNegraPaciente(rgPaciente);
@@ -971,15 +971,14 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         FinalizarTratamento acesso;
         try {
             acesso = new FinalizarTratamento(rgPaciente);
-             acesso.setVisible(true);
-             this.setVisible(false);
+            acesso.setVisible(true);
+            this.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        
+
 //        int resposta = JOptionPane.showConfirmDialog(rootPane, "Confirma o encerramento deste tratamento?");
 //        if (resposta == 0) {
 //            sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
@@ -1006,7 +1005,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);
         try {
-            new sctp2.Paciente.HistoricoDoPaciente(codigopaciente,jrg.getText()).setVisible(true);
+            new sctp2.Paciente.HistoricoDoPaciente(codigopaciente, jrg.getText()).setVisible(true);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1015,8 +1014,8 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jNovoTratamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNovoTratamentoActionPerformed
-this.setVisible(false);
-new sctp2.NovoTratamento.Prontuario(jrg.getText(),jNome.getText()).setVisible(true);
+        this.setVisible(false);
+        new sctp2.NovoTratamento.Prontuario(jrg.getText(), jNome.getText()).setVisible(true);
     }//GEN-LAST:event_jNovoTratamentoActionPerformed
 
     /**
@@ -1133,7 +1132,7 @@ new sctp2.NovoTratamento.Prontuario(jrg.getText(),jNome.getText()).setVisible(tr
 
     private void SetValoresCampos(String rg) throws ClassNotFoundException {
         //Esta função recebe os dados do banco de dados e carrega tudo nos campos da interface 
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<Pesquisar> ListarPesquisa = new ArrayList<Pesquisar>();
         ListarPesquisa = acesso.DetalhesdoPaciente(rg);
         codigopaciente = ListarPesquisa.get(0).getCodigo();
@@ -1395,7 +1394,7 @@ new sctp2.NovoTratamento.Prontuario(jrg.getText(),jNome.getText()).setVisible(tr
     }
 
     private void PesquisaProntuario() throws ClassNotFoundException {
-        sctp2.BancodeDados.ConexaoPacotePesquisar acesso = new sctp2.BancodeDados.ConexaoPacotePesquisar();
+        sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<PesquisarProntuario> ListarPesquisa = new ArrayList<PesquisarProntuario>();
         ListarPesquisa = acesso.PesquisarProntuariopelorg(jrg.getText());
         System.out.println("codigo rg" + jrg.getText());
@@ -1418,7 +1417,7 @@ new sctp2.NovoTratamento.Prontuario(jrg.getText(),jNome.getText()).setVisible(tr
 
     private void GravaTratamentoNoHistorico() throws ClassNotFoundException, SQLException {
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
-        acesso.GravaNoHistorico(codigopaciente, jresponsavelprontuario.getText(), jrg.getText());
+        acesso.GravaPacienteNoHistorico(codigopaciente, jresponsavelprontuario.getText(), jrg.getText());
         jNotificao.setForeground(Color.blue);
         jNotificao.setText("O Histórico  já está disponível");
     }
