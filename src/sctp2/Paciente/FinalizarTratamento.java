@@ -109,7 +109,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
-        jTable1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -244,6 +244,8 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             FinalizaTratamento();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FinalizarTratamento.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FinalizarTratamento.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -342,14 +344,15 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         tratamento[25] = ListarTratamentos.get(0).getRaspagemSub();
         tratamento[26] = ListarTratamentos.get(0).getRaspagemSupra();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
+        //obs: AO ADICIONAR NOVOS TRATAMENTOS CERTIFIQUE-SE DE NÃO DEIXAR ESPAÇOS SOBRANDO
         if (tratamento[0] == 1) {
             valor.addRow((new String[]{"Profilaxia Simples"}));
         }
         if (tratamento[1] == 1) {
-            valor.addRow((new String[]{"Raspagem e Poli. Coronário "}));
+            valor.addRow((new String[]{"Raspagem e Poli. Coronário"}));
         }
         if (tratamento[2] == 1) {
-            valor.addRow((new String[]{"Cirugia Peridontal "}));
+            valor.addRow((new String[]{"Cirugia Peridontal"}));
         }
         if (tratamento[3] == 1) {
             valor.addRow((new String[]{"Exodontia Simples"}));
@@ -361,10 +364,10 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             valor.addRow((new String[]{"Exodontia Incluso"}));
         }
         if (tratamento[6] == 1) {
-            valor.addRow((new String[]{"Amalgama "}));
+            valor.addRow((new String[]{"Amalgama"}));
         }
         if (tratamento[7] == 1) {
-            valor.addRow((new String[]{"Resina "}));
+            valor.addRow((new String[]{"Resina"}));
         }
         if (tratamento[8] == 1) {
             valor.addRow((new String[]{"RMF"}));
@@ -382,31 +385,31 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             valor.addRow((new String[]{"PonteFixa 3 Elementos"}));
         }
         if (tratamento[13] == 1) {
-            valor.addRow((new String[]{"PonteFixa 4 Elementos "}));
+            valor.addRow((new String[]{"PonteFixa 4 Elementos"}));
         }
         if (tratamento[14] == 1) {
-            valor.addRow((new String[]{"PonteFixaMaisQue 4 Elementos "}));
+            valor.addRow((new String[]{"PonteFixaMaisQue 4 Elementos"}));
         }
         if (tratamento[15] == 1) {
-            valor.addRow((new String[]{"PPR "}));
+            valor.addRow((new String[]{"PPR"}));
         }
         if (tratamento[16] == 1) {
-            valor.addRow((new String[]{"Protese total "}));
+            valor.addRow((new String[]{"Protese total"}));
         }
         if (tratamento[17] == 1) {
-            valor.addRow((new String[]{"Protese PPR "}));
+            valor.addRow((new String[]{"Protese PPR"}));
         }
         if (tratamento[18] == 1) {
-            valor.addRow((new String[]{"Protese "}));
+            valor.addRow((new String[]{"Protese"}));
         }
         if (tratamento[19] == 1) {
-            valor.addRow((new String[]{"Terapia Periodontal "}));
+            valor.addRow((new String[]{"Terapia Periodontal"}));
         }
         if (tratamento[20] == 1) {
-            valor.addRow((new String[]{" Endodontia Birradicular "}));
+            valor.addRow((new String[]{" Endodontia Birradicular"}));
         }
         if (tratamento[21] == 1) {
-            valor.addRow((new String[]{"DTM "}));
+            valor.addRow((new String[]{"DTM"}));
         }
         if (tratamento[22] == 1) {
             valor.addRow((new String[]{"Estomatologia"}));
@@ -426,7 +429,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
 
     }
 
-    private void FinalizaTratamento() throws ClassNotFoundException {
+    private void FinalizaTratamento() throws ClassNotFoundException, SQLException {
         conexao acesso = new conexao();
         int tamanho = (jTable1.getRowCount());
         int incrementa = 0;
@@ -450,8 +453,80 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             }
             incrementa++;
         }
-        acesso.FinalizaTratamento(tratamentosNVetor, rg);
+        for(int i=0;i<tratamentosNVetor.length;i++)System.out.println("tratamento: "+tratamentosNVetor[i]);
+        String[] tratamentoconvertido;
+        //for(int i=0;i<tratamentoconvertido.length;i++)tratamentoconvertido[i]=null;
+        tratamentoconvertido=converteValores(tratamentosNVetor);//Esta função retorna o nome do tratamento na forma que está escrita no banco de dados
+        for(int i=0;i<tratamentoconvertido.length;i++)System.out.println("tc "+tratamentoconvertido[i]);
+        //acesso.FinalizaTratamento(tratamentoconvertido, rg);
 
+    }
+
+    private String[] converteValores(String[] tratamentosNVetor) {
+        //-----------------------------------------------------------
+        String[]tratamentoconvertido= new String[tratamentosNVetor.length];
+        
+        for(int i=0;i<tratamentoconvertido.length;i++)tratamentoconvertido[i]=null;
+        for(int k=0;k<tratamentosNVetor.length;k++){
+            
+            if(tratamentosNVetor[k].trim().equals("Profilaxia Simples"))tratamentoconvertido[k]="nec_ProfilaxiaSimples";
+            else
+                if(tratamentosNVetor[k].trim().equals("Raspagem e Poli. Coronário"))tratamentoconvertido[k]="nec_RaspagemPolimentoCoronario";
+            else
+                    if(tratamentosNVetor[k].trim().equals("Cirugia Peridontal"))tratamentoconvertido[k]="nec_CirurgiaPeriodontal";
+            else
+                        if(tratamentosNVetor[k].trim().equals("Exodontia Simples"))tratamentoconvertido[k]="nec_ExodontiaSimples";
+            else
+                            if(tratamentosNVetor[k].trim().equals("Exodontia 3º Molar"))tratamentoconvertido[k]="nec_ExodontiaMolar";
+            else
+                                if(tratamentosNVetor[k].trim().equals("Exodontia Incluso"))tratamentoconvertido[k]="nec_ExodontiaIncluso";
+            else
+                                    if(tratamentosNVetor[k].trim().equals("Amalgama"))tratamentoconvertido[k]="nec_Amalgama";
+            else
+                                        if(tratamentosNVetor[k].trim().equals("Resina"))tratamentoconvertido[k]="nec_Resina";
+            else
+                                            if(tratamentosNVetor[k].trim().equals("RMF"))tratamentoconvertido[k]="nec_RMF";
+            else
+                                                if(tratamentosNVetor[k].trim().equals("EndontiaUnirradicular"))tratamentoconvertido[k]="nec_Endodontiauniebirradicular";
+            else
+                                                    if(tratamentosNVetor[k].trim().equals("Endodontia Trirradicular"))tratamentoconvertido[k]="nec_EndodontiaTrirradicular";
+            else
+                                                        if(tratamentosNVetor[k].trim().equals("Coroa Total"))tratamentoconvertido[k]="nec_CoroaTotal";
+            else
+                                                            if(tratamentosNVetor[k].trim().equals("PonteFixa 3 Elementos"))tratamentoconvertido[k]="nec_PonteFixa3Elementos";
+            else
+                                                                if(tratamentosNVetor[k].trim().equals("PonteFixa 4 Elementos"))tratamentoconvertido[k]="nec_Pontefixa4elementos";
+            else
+                                                                    if(tratamentosNVetor[k].trim().equals("PonteFixaMaisQue 4 Elementos"))tratamentoconvertido[k]="nec_Pontefixamaisque4elementos";
+            else
+                                                                        if(tratamentosNVetor[k].trim().equals("PPR"))tratamentoconvertido[k]="nec_PPR";
+            else
+                                                                            if(tratamentosNVetor[k].trim().equals("Protese total"))tratamentoconvertido[k]="nec_ProteseTotalPar";
+            else
+                                                                                if(tratamentosNVetor[k].trim().equals("Protese PPR"))tratamentoconvertido[k]="nec_ProtesePPR";
+            else
+                                                                                    if(tratamentosNVetor[k].trim().equals("Protese"))tratamentoconvertido[k]="nec_Protese";
+            else
+                                                                                        if(tratamentosNVetor[k].trim().equals("Terapia Periodontal"))tratamentoconvertido[k]="nec_TerapiaPeriodontal";
+            else
+                                                                                            if(tratamentosNVetor[k].trim().equals("Endodontia Birradicular"))tratamentoconvertido[k]="nec_EndodontiaBirradicular";
+            else
+                                                                                                if(tratamentosNVetor[k].trim().equals("DTM"))tratamentoconvertido[k]="nec_DTM";
+            else
+                                                                                                    if(tratamentosNVetor[k].trim().equals("Estomatologia"))tratamentoconvertido[k]="nec_Estomatologia";
+            else
+                                                                                                    if(tratamentosNVetor[k].trim().equals("Ponte Fixa"))tratamentoconvertido[k]="nec_PonteFixa";
+            else
+                                                                                                    if(tratamentosNVetor[k].trim().equals("Ponte Fixa Mais Que Três Elementos"))tratamentoconvertido[k]="nec_PonteFixaMaisQueTresElementos";
+            else
+                                                                                                    if(tratamentosNVetor[k].trim().equals("Raspagem Sub"))tratamentoconvertido[k]="nec_RaspagemSub";
+            else
+                                                                                                    if(tratamentosNVetor[k].trim().equals("Raspagem Supra"))tratamentoconvertido[k]="nec_RaspagemSupra";
+            
+            
+            
+        }       
+        return tratamentoconvertido;
     }
 
 }

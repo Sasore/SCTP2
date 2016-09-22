@@ -421,9 +421,15 @@ public class Prontuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jNotificacaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sctp2.Cadastros.ResponsavelProntuario acesso = new sctp2.Cadastros.ResponsavelProntuario(Nprontuario.getText());
-        this.setVisible(false);
-        acesso.setVisible(true);
+        sctp2.Cadastros.ResponsavelProntuario acesso;
+        try {
+            acesso = new sctp2.Cadastros.ResponsavelProntuario(Nprontuario.getText());
+            this.setVisible(false);
+            acesso.setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jBAumentaTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAumentaTamFOnteActionPerformed

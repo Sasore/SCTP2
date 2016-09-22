@@ -1299,21 +1299,10 @@ public class conexao {
         return retorno;
     }
 //Tratamento-----------------------------------------------------------------------------------------------------
-    public boolean FinalizaTratamento(String[]tratamentos,String rg) throws ClassNotFoundException {
-        Connection con = null;
-        String sql = ("UPDATE `paciente` SET `pac_Alta`=1, pac_Fim_tratamento=now() WHERE `pac_RG`=?;");
-        try {
-            con = getConnection();
-            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
-            smt.setString(1, rg);
-            smt.executeUpdate();
-            retorno = true;
-            System.out.println("Encerrou tratamento");
-        } catch (SQLException ex) {
-            Logger.getLogger(conexao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeConnection(con);
-        }
+    public boolean FinalizaTratamento(String[]tratamentos,String rg) throws ClassNotFoundException, SQLException {
+    Connection con=null;
+    GravaNoHistoricoNecessidade(rg,tratamentos);
+    
         return retorno;
     }
 //Historico-----------------------------------------------------------------------------------------------------
@@ -1395,7 +1384,7 @@ public class conexao {
             smt.setString(7, rg);
             smt.execute();
             System.out.println("Gravou histórico paciente");
-            GravaNoHistoricoNecessidade(rg, numeroDoTratamento);
+//            GravaNoHistoricoNecessidade(rg, numeroDoTratamento);
         } catch (SQLException ex) {
             Logger.getLogger(conexao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -1404,76 +1393,32 @@ public class conexao {
         return 1;
     }
 
-    public boolean GravaNoHistoricoNecessidade(String rg, int numeroDoTratamento) throws ClassNotFoundException, SQLException {
-        Connection con = null, con2;
-        String sql = "SELECT `nec_Cod`, `nec_ProfilaxiaSimples`, `nec_referencia_rg`, "
-                              + "`nec_RaspagemPolimentoCoronario`, `nec_CirurgiaPeriodontal`, "
-                              + "`nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, "
-                              + "`nec_Amalgama`, `nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, "
-                              + "`nec_EndodontiaTrirradicular`, `nec_CoroaTotal`, `nec_PonteFixa3Elementos`, "
-                              + "`nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, `nec_PPR`,"
-                              + " `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`,"
-                              + " `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`, `nec_PonteFixa`,"
-                              + " `nec_PonteFixaMaisQueTresElementos`, `nec_RaspagemSub`, `nec_RaspagemSupra` "
-                + "FROM `necessidade` WHERE `nec_referencia_rg`=?";
-        try {
-            con = getConnection();
-            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
-            smt.setString(1, rg);
-            ResultSet rs = smt.executeQuery();
-            while (rs.next()) {
-                //-------------------------------copia os dados do paciente na tabela necessidade para a tabela historico necessidade------------------------------------------------------------
-                con2 = getConnection();
-                String sql2 = "INSERT INTO `historiconecessidade`(dataFimTratamento_historicoNecessidade, `nec_referencia_rg`, \n" +
-                                "`nec_ProfilaxiaSimples`, `nec_RaspagemPolimentoCoronario`, \n" +
-                                "`nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`,\n" +
-                                " `nec_ExodontiaIncluso`, `nec_Amalgama`, `nec_Resina`, `nec_RMF`,\n" +
-                                " `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`,\n" +
-                                " `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`,\n" +
-                                " `nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, \n" +
-                                " `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`, \n" +
-                                " `nec_PonteFixa`, `nec_PonteFixaMaisQueTresElementos`, `nec_RaspagemSub`, `nec_RaspagemSupra`, `Historico_codigoTratamento`) \n" +
-                                " VALUES (curdate(),?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?, ?,?,?,?,?,?);";
-                PreparedStatement smt2 = (PreparedStatement) con.prepareStatement(sql2);
-                smt2.setString(1, rg);
-                smt2.setString(2, rs.getString("nec_ProfilaxiaSimples"));
-                smt2.setInt(3, rs.getInt("nec_RaspagemPolimentoCoronario"));
-                smt2.setInt(4, rs.getInt("nec_CirurgiaPeriodontal"));
-                smt2.setInt(5, rs.getInt("nec_ExodontiaSimples"));
-                smt2.setInt(6, rs.getInt("nec_ExodontiaMolar"));
-                smt2.setInt(7, rs.getInt("nec_ExodontiaIncluso"));
-                smt2.setInt(8, rs.getInt("nec_Amalgama"));
-                smt2.setInt(9, rs.getInt("nec_Resina"));
-                smt2.setInt(10, rs.getInt("nec_RMF"));
-                smt2.setInt(11, rs.getInt("nec_Endodontiauniebirradicular"));
-                smt2.setInt(12, rs.getInt("nec_EndodontiaTrirradicular"));
-                smt2.setInt(13, rs.getInt("nec_CoroaTotal"));
-                smt2.setInt(14, rs.getInt("nec_PonteFixa3Elementos"));
-                smt2.setInt(15, rs.getInt("nec_Pontefixa4elementos"));
-                smt2.setInt(16, rs.getInt("nec_Pontefixamaisque4elementos"));
-                smt2.setInt(17, rs.getInt("nec_PPR"));
-                smt2.setInt(18, rs.getInt("nec_ProteseTotalPar"));
-                smt2.setInt(19, rs.getInt("nec_ProtesePPR"));
-                smt2.setInt(20, rs.getInt("nec_Protese"));
-                smt2.setInt(21, rs.getInt("nec_TerapiaPeriodontal"));
-                smt2.setInt(22, rs.getInt("nec_EndodontiaBirradicular"));
-                smt2.setInt(23, rs.getInt("nec_DTM"));
-                smt2.setInt(24, rs.getInt("nec_Estomatologia"));
-                smt2.setInt(25, rs.getInt("nec_PonteFixa"));
-                smt2.setInt(26, rs.getInt("nec_PonteFixaMaisQueTresElementos"));
-                smt2.setInt(27, rs.getInt("nec_RaspagemSub"));
-                smt2.setInt(28, rs.getInt("nec_RaspagemSupra"));
-                smt2.setInt(29, numeroDoTratamento);
-                smt2.execute();
-                System.out.println("gravou historico necessidade");
-                //-------------------------------------------------------------------------------------------------------
+    public boolean GravaNoHistoricoNecessidade(String rg, String[] tratamentos) throws ClassNotFoundException, SQLException {
+        Connection con = null;
+        //---------------------------------Criação do sql dinâmico-------------------------
+        String sql = "INSERT INTO `historiconecessidade`(nec_referencia_rg,";
+        int incrementa = 0;//com esta variavel saberei quantos registros existem dentro do vetor;
+        for (int i = 0; i < tratamentos.length; i++) {
+            if (tratamentos[i] != null) {
+                sql = sql + tratamentos[i];
+                
+                    sql = sql + ",";//para impedir que adicione uma virgula depois do ultimo atributo
+                
+                incrementa++;
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Algo deu errado ao fazer uma busca no banco de dados, tente novamente!");
-            e.printStackTrace();
-        } finally {
-            closeConnection(con);
         }
+        sql=sql+"dataFimTratamento_historicoNecessidade) VALUES("+rg+",";
+        for (int i = 0; i < incrementa; i++) {
+            if (tratamentos[i] != null) {
+                sql = sql + "1";
+                 sql = sql + ",";//para impedir que adicione uma virgula depois do ultimo parâmetro
+            }
+        }
+        sql = sql + "curdate);";
+        System.out.println("sql:: " + sql);
+        //---------------------------------------------------------------------------------
+        
+       
 
         return true;
     }
@@ -1504,6 +1449,7 @@ public class conexao {
                 pesquisarsmt.setNomepaciente(rs.getString("paciente.pac_Nome"));
                 pesquisarsmt.setRgPaciente(rs.getString("Rg_Paciente"));
                 ListarPesquisa.add(pesquisarsmt);
+                
             }
         } catch (SQLException e) {
             Logger.getLogger(conexao.class.getName()).log(Level.SEVERE, null, e);

@@ -421,7 +421,7 @@ private int NovotratamentosNecessarios() throws ClassNotFoundException {
             i++;
         }
          if(acesso.getProtesetotal()==1){
-             tratamentosNVetor[i] ="`nec_Protese`";
+             tratamentosNVetor[i] ="`nec_ProteseTotalPar`";
              i++;
          }
          if(acesso.getProtese_ppr()==1){

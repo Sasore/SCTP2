@@ -13,35 +13,36 @@ package sctp2.ClassesdeControle;
 public class TratamentosNecessarios {
     private static  int codigo;
     private static  String rg;
-    private static  int dtm;
-    private static  int profilaxiaSimples;
-    private static  int exodontiaSimples;
-    private static  int endontiaUnirradicular;
+    private static  int Historico_codigoTratamento;
     private static  int amalgama;
     private static  int coroaTotal;
+    private static  int cirugiaPeridontal;
+    private static  int dtm;
+    private static  int endodontiaBirradicular;
+    private static  int endodontiaTrirradicular;
+    private static  int exodontiaSimples;
+    private static  int exodontia3Molar;
+    private static  int exodontiaIncluso;
+    private static  int endontiaUnirradicular; 
     private static  int estomatologia;
     private static  int ponteFixaMaisQue4Elementos;
-    private static  int protese_ppr;
-    private static  int raspagemEPoliCCoronario;
-    private static  int endodontiaBirradicular;
-    private static  int ppr;
-    private static  int exodontia3Molar;
-    private static  int terrapiaOeriodDeSuporte;
-    private static  int exodontiaIncluso;
-    private static  int ponteFixa4Elementos;
-    private static  int protesetotal;
-    private static  int ponteFixa3Elementos;
+    private static  int profilaxiaSimples;
     private static  int protese;
-    private static  int cirugiaPeridontal;
-    private static  int endodontiaTrirradicular;
-    private static  int rmf;
-    private static  int resina;
-    private static  int Historico_codigoTratamento;
+    private static  int protese_ppr;
     private static int PonteFixa;
     private static int PonteFixaMaisQueTresElementos;
-    private static int raspagemSub;
+    private static  int ponteFixa4Elementos;
+    private static  int protesetotal;
+    private static  int ponteFixa3Elementos;  
+    private static  int ppr;
+    private static  int raspagemEPoliCCoronario;
+     private static int raspagemSub;
     private static int raspagemSupra;
-
+    private static  int resina;
+     private static  int rmf;
+    private static  int terrapiaOeriodDeSuporte;
+   
+   
     public static int getCodigo() {
         return codigo;
     }

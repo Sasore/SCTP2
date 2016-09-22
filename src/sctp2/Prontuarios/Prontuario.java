@@ -15,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import sctp2.BancodeDados.ConexaoPacotePesquisar;
 import sctp2.Pesquisar.PesquisarProntuario;
 
 /**
