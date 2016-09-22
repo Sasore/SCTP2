@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -1299,11 +1300,30 @@ public class conexao {
         return retorno;
     }
 //Tratamento-----------------------------------------------------------------------------------------------------
-    public boolean FinalizaTratamento(String[]tratamentos,String rg) throws ClassNotFoundException, SQLException {
+    public boolean FinalizaTratamento(ArrayList<String>tratamentos,String rg) throws ClassNotFoundException, SQLException {
     Connection con=null;
-    GravaNoHistoricoNecessidade(rg,tratamentos);
-    
-        return retorno;
+    boolean retorno;
+    retorno=GravaNoHistoricoNecessidade(rg,tratamentos);
+    if(retorno==false){
+        String sql="UPDATE `necessidade` SET ";
+        for(int i=0;i<tratamentos.size();i++){
+            sql=sql+tratamentos.get(i)+"=0";
+            if(i<tratamentos.size()-1)sql=sql+",";
+        }
+        sql=sql+" WHERE `nec_referencia_rg`=?";
+        con = getConnection();
+        System.out.println("update "+sql);
+        int retornoUpdate=0;
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setString(1, rg);
+            retornoUpdate=smt.executeUpdate();
+            if(retornoUpdate==0)return true;
+                    else return false;
+        
+        
+        
+    }
+        return false;
     }
 //Historico-----------------------------------------------------------------------------------------------------
     public boolean GravaPacienteNoHistorico(int codigo, String responsavel_tratamento, String rg) throws ClassNotFoundException, SQLException {
@@ -1393,34 +1413,35 @@ public class conexao {
         return 1;
     }
 
-    public boolean GravaNoHistoricoNecessidade(String rg, String[] tratamentos) throws ClassNotFoundException, SQLException {
+    public boolean GravaNoHistoricoNecessidade(String rg, ArrayList<String> tratamentos) throws ClassNotFoundException, SQLException {
         Connection con = null;
         //---------------------------------Criação do sql dinâmico-------------------------
         String sql = "INSERT INTO `historiconecessidade`(nec_referencia_rg,";
         int incrementa = 0;//com esta variavel saberei quantos registros existem dentro do vetor;
-        for (int i = 0; i < tratamentos.length; i++) {
-            if (tratamentos[i] != null) {
-                sql = sql + tratamentos[i];
-                
-                    sql = sql + ",";//para impedir que adicione uma virgula depois do ultimo atributo
-                
+        for (int i = 0; i < tratamentos.size(); i++) {
+            if (tratamentos.get(i) != null) {
+                sql = sql + tratamentos.get(i);
+
+                sql = sql + ",";//para impedir que adicione uma virgula depois do ultimo atributo
+
                 incrementa++;
             }
         }
-        sql=sql+"dataFimTratamento_historicoNecessidade) VALUES("+rg+",";
+        sql = sql + "dataFimTratamento_historicoNecessidade) VALUES(" + rg + ",";
         for (int i = 0; i < incrementa; i++) {
-            if (tratamentos[i] != null) {
+            if (tratamentos.get(i) != null) {
                 sql = sql + "1";
-                 sql = sql + ",";//para impedir que adicione uma virgula depois do ultimo parâmetro
+                sql = sql + ",";//para impedir que adicione uma virgula depois do ultimo parâmetro
             }
         }
-        sql = sql + "curdate);";
-        System.out.println("sql:: " + sql);
-        //---------------------------------------------------------------------------------
+        sql = sql + "CURRENT_DATE);";
+        con = getConnection();
+        PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        System.out.println("sql " + sql);
+        boolean retorno = smt.execute();
         
-       
-
-        return true;
+        
+        return retorno;
     }
     
 

@@ -6,6 +6,7 @@
 package sctp2.Paciente;
 
 import com.toedter.components.JTitlePanel;
+import java.awt.Color;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,12 +50,13 @@ public class FinalizarTratamento extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jFinalizaTratamento = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jNotificacao = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -72,10 +74,14 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Finalizar tratamentos Selecionados");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jFinalizaTratamento.setBackground(new java.awt.Color(255, 255, 255));
+        jFinalizaTratamento.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jFinalizaTratamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fim.png"))); // NOI18N
+        jFinalizaTratamento.setText("Finalizar tratamentos Selecionados");
+        jFinalizaTratamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 255), 1, true));
+        jFinalizaTratamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jFinalizaTratamentoActionPerformed(evt);
             }
         });
 
@@ -87,7 +93,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFinalizaTratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,7 +101,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFinalizaTratamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -137,20 +143,31 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(15);
         }
 
+        jNotificacao.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
+        jNotificacao.setForeground(new java.awt.Color(51, 102, 255));
+        jNotificacao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(274, 274, 274)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(274, 274, 274)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jNotificacao, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -239,7 +256,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jFinalizaTratamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFinalizaTratamentoActionPerformed
         try {
             FinalizaTratamento();
         } catch (ClassNotFoundException ex) {
@@ -247,7 +264,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FinalizarTratamento.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jFinalizaTratamentoActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
@@ -298,12 +315,13 @@ public class FinalizarTratamento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jFinalizaTratamento;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JTextField jNotificacao;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -406,7 +424,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             valor.addRow((new String[]{"Terapia Periodontal"}));
         }
         if (tratamento[20] == 1) {
-            valor.addRow((new String[]{" Endodontia Birradicular"}));
+            valor.addRow((new String[]{"Endodontia Birradicular"}));
         }
         if (tratamento[21] == 1) {
             valor.addRow((new String[]{"DTM"}));
@@ -430,103 +448,106 @@ public class FinalizarTratamento extends javax.swing.JFrame {
     }
 
     private void FinalizaTratamento() throws ClassNotFoundException, SQLException {
-        conexao acesso = new conexao();
-        int tamanho = (jTable1.getRowCount());
-        int incrementa = 0;
-        String[] tratamentosNVetor = new String[tamanho];
-        for (int i = 0; i < tratamentosNVetor.length; i++) {
-            tratamentosNVetor[i] = null;
-        }
-
-        for (int i = 0; i < tamanho; i++) {
+        conexao acesso= new conexao();
+        boolean retorno;
+        int numeroLinhas = jTable1.getRowCount();
+        ArrayList<String> tratamentosList = new ArrayList<>();
+        ArrayList<String> tratamentosConvertidos = new ArrayList<>();
+        for (int i = 0; i < numeroLinhas; i++) {
             final Object valor = jTable1.getValueAt(i, 1);
-
             if (valor == null) {
                 System.out.println("");
-            } else {
-                if (valor.toString().isEmpty()) {
-                    System.out.println(" ");
-                } else //System.out.println("valor "+jTable1.getValueAt(i,0).toString());
-                {
-                    tratamentosNVetor[incrementa] = jTable1.getValueAt(i, 0).toString();
-                }
+            } else if (valor.toString().isEmpty()) {
+                System.out.println(" ");
+            } else //System.out.println("valor "+jTable1.getValueAt(i,0).toString());
+            {
+                tratamentosList.add(jTable1.getValueAt(i, 0).toString());
             }
-            incrementa++;
         }
-        for(int i=0;i<tratamentosNVetor.length;i++)System.out.println("tratamento: "+tratamentosNVetor[i]);
-        String[] tratamentoconvertido;
-        //for(int i=0;i<tratamentoconvertido.length;i++)tratamentoconvertido[i]=null;
-        tratamentoconvertido=converteValores(tratamentosNVetor);//Esta função retorna o nome do tratamento na forma que está escrita no banco de dados
-        for(int i=0;i<tratamentoconvertido.length;i++)System.out.println("tc "+tratamentoconvertido[i]);
-        //acesso.FinalizaTratamento(tratamentoconvertido, rg);
+        tratamentosConvertidos=converteValores(tratamentosList);
+        retorno=acesso.FinalizaTratamento(tratamentosConvertidos, rg);
+        if(retorno==false){
+            jFinalizaTratamento.setEnabled(false);
+            jNotificacao.setText("Tratamentos finalizados com sucesso!");
+            LimpaTabela();
+        }
+        
+        
 
     }
 
-    private String[] converteValores(String[] tratamentosNVetor) {
+    private ArrayList<String> converteValores(ArrayList tratamentos) {
         //-----------------------------------------------------------
-        String[]tratamentoconvertido= new String[tratamentosNVetor.length];
-        
-        for(int i=0;i<tratamentoconvertido.length;i++)tratamentoconvertido[i]=null;
-        for(int k=0;k<tratamentosNVetor.length;k++){
-            
-            if(tratamentosNVetor[k].trim().equals("Profilaxia Simples"))tratamentoconvertido[k]="nec_ProfilaxiaSimples";
+      ArrayList<String> tratamentosConvertidos= new ArrayList<>() ;
+      for(int i=0;i<tratamentos.size();i++){
+          if(tratamentos.get(i).toString().trim().equals("Profilaxia Simples"))tratamentosConvertidos.add("nec_ProfilaxiaSimples");
+          else
+                if(tratamentos.get(i).toString().trim().equals("Raspagem e Poli. Coronário"))tratamentosConvertidos.add("nec_RaspagemPolimentoCoronario");
+          else
+                    if(tratamentos.get(i).toString().trim().equals("Cirugia Peridontal"))tratamentosConvertidos.add("nec_CirurgiaPeriodontal");
             else
-                if(tratamentosNVetor[k].trim().equals("Raspagem e Poli. Coronário"))tratamentoconvertido[k]="nec_RaspagemPolimentoCoronario";
+                        if(tratamentos.get(i).toString().trim().equals("Exodontia Simples"))tratamentosConvertidos.add("nec_ExodontiaSimples");
             else
-                    if(tratamentosNVetor[k].trim().equals("Cirugia Peridontal"))tratamentoconvertido[k]="nec_CirurgiaPeriodontal";
+                            if(tratamentos.get(i).toString().trim().equals("Exodontia 3º Molar"))tratamentosConvertidos.add("nec_ExodontiaMolar");
             else
-                        if(tratamentosNVetor[k].trim().equals("Exodontia Simples"))tratamentoconvertido[k]="nec_ExodontiaSimples";
+                                if(tratamentos.get(i).toString().trim().equals("Exodontia Incluso"))tratamentosConvertidos.add("nec_ExodontiaIncluso");
             else
-                            if(tratamentosNVetor[k].trim().equals("Exodontia 3º Molar"))tratamentoconvertido[k]="nec_ExodontiaMolar";
+                                    if(tratamentos.get(i).toString().trim().equals("Amalgama"))tratamentosConvertidos.add("nec_Amalgama");
             else
-                                if(tratamentosNVetor[k].trim().equals("Exodontia Incluso"))tratamentoconvertido[k]="nec_ExodontiaIncluso";
+                                        if(tratamentos.get(i).toString().trim().equals("Resina"))tratamentosConvertidos.add("nec_Resina");
             else
-                                    if(tratamentosNVetor[k].trim().equals("Amalgama"))tratamentoconvertido[k]="nec_Amalgama";
+                                            if(tratamentos.get(i).toString().trim().equals("RMF"))tratamentosConvertidos.add("nec_RMF");
             else
-                                        if(tratamentosNVetor[k].trim().equals("Resina"))tratamentoconvertido[k]="nec_Resina";
+                                                if(tratamentos.get(i).toString().trim().equals("EndontiaUnirradicular"))tratamentosConvertidos.add("nec_Endodontiauniebirradicular");
             else
-                                            if(tratamentosNVetor[k].trim().equals("RMF"))tratamentoconvertido[k]="nec_RMF";
+                                                    if(tratamentos.get(i).toString().trim().equals("Endodontia Trirradicular"))tratamentosConvertidos.add("nec_EndodontiaTrirradicular");
             else
-                                                if(tratamentosNVetor[k].trim().equals("EndontiaUnirradicular"))tratamentoconvertido[k]="nec_Endodontiauniebirradicular";
+                                                        if(tratamentos.get(i).toString().trim().equals("Coroa Total"))tratamentosConvertidos.add("nec_CoroaTotal");
             else
-                                                    if(tratamentosNVetor[k].trim().equals("Endodontia Trirradicular"))tratamentoconvertido[k]="nec_EndodontiaTrirradicular";
+                                                            if(tratamentos.get(i).toString().trim().equals("PonteFixa 3 Elementos"))tratamentosConvertidos.add("nec_PonteFixa3Elementos");
             else
-                                                        if(tratamentosNVetor[k].trim().equals("Coroa Total"))tratamentoconvertido[k]="nec_CoroaTotal";
+                                                                if(tratamentos.get(i).toString().trim().equals("PonteFixa 4 Elementos"))tratamentosConvertidos.add("nec_Pontefixa4elementos");
             else
-                                                            if(tratamentosNVetor[k].trim().equals("PonteFixa 3 Elementos"))tratamentoconvertido[k]="nec_PonteFixa3Elementos";
+                                                                    if(tratamentos.get(i).toString().trim().equals("PonteFixaMaisQue 4 Elementos"))tratamentosConvertidos.add("nec_Pontefixamaisque4elementos");
             else
-                                                                if(tratamentosNVetor[k].trim().equals("PonteFixa 4 Elementos"))tratamentoconvertido[k]="nec_Pontefixa4elementos";
+                                                                        if(tratamentos.get(i).toString().trim().equals("PPR"))tratamentosConvertidos.add("nec_PPR");
             else
-                                                                    if(tratamentosNVetor[k].trim().equals("PonteFixaMaisQue 4 Elementos"))tratamentoconvertido[k]="nec_Pontefixamaisque4elementos";
+                                                                            if(tratamentos.get(i).toString().trim().equals("Protese total"))tratamentosConvertidos.add("nec_ProteseTotalPar");
             else
-                                                                        if(tratamentosNVetor[k].trim().equals("PPR"))tratamentoconvertido[k]="nec_PPR";
+                                                                                if(tratamentos.get(i).toString().trim().equals("Protese PPR"))tratamentosConvertidos.add("nec_ProtesePPR");
             else
-                                                                            if(tratamentosNVetor[k].trim().equals("Protese total"))tratamentoconvertido[k]="nec_ProteseTotalPar";
+                                                                                    if(tratamentos.get(i).toString().trim().equals("Protese"))tratamentosConvertidos.add("nec_Protese");
             else
-                                                                                if(tratamentosNVetor[k].trim().equals("Protese PPR"))tratamentoconvertido[k]="nec_ProtesePPR";
+                                                                                        if(tratamentos.get(i).toString().trim().equals("Terapia Periodontal"))tratamentosConvertidos.add("nec_TerapiaPeriodontal");
             else
-                                                                                    if(tratamentosNVetor[k].trim().equals("Protese"))tratamentoconvertido[k]="nec_Protese";
+                                                                                            if(tratamentos.get(i).toString().trim().equals("Endodontia Birradicular"))tratamentosConvertidos.add("nec_EndodontiaBirradicular");
             else
-                                                                                        if(tratamentosNVetor[k].trim().equals("Terapia Periodontal"))tratamentoconvertido[k]="nec_TerapiaPeriodontal";
+                                                                                                if(tratamentos.get(i).toString().trim().equals("DTM"))tratamentosConvertidos.add("nec_DTM");
             else
-                                                                                            if(tratamentosNVetor[k].trim().equals("Endodontia Birradicular"))tratamentoconvertido[k]="nec_EndodontiaBirradicular";
+                                                                                                    if(tratamentos.get(i).toString().trim().equals("Estomatologia"))tratamentosConvertidos.add("nec_Estomatologia");
             else
-                                                                                                if(tratamentosNVetor[k].trim().equals("DTM"))tratamentoconvertido[k]="nec_DTM";
+                                                                                                    if(tratamentos.get(i).toString().trim().equals("Ponte Fixa"))tratamentosConvertidos.add("nec_PonteFixa");
             else
-                                                                                                    if(tratamentosNVetor[k].trim().equals("Estomatologia"))tratamentoconvertido[k]="nec_Estomatologia";
+                                                                                                    if(tratamentos.get(i).toString().trim().equals("Ponte Fixa Mais Que Três Elementos"))tratamentosConvertidos.add("nec_PonteFixaMaisQueTresElementos");
             else
-                                                                                                    if(tratamentosNVetor[k].trim().equals("Ponte Fixa"))tratamentoconvertido[k]="nec_PonteFixa";
+                                                                                                    if(tratamentos.get(i).toString().trim().equals("Raspagem Sub"))tratamentosConvertidos.add("nec_RaspagemSub");
             else
-                                                                                                    if(tratamentosNVetor[k].trim().equals("Ponte Fixa Mais Que Três Elementos"))tratamentoconvertido[k]="nec_PonteFixaMaisQueTresElementos";
-            else
-                                                                                                    if(tratamentosNVetor[k].trim().equals("Raspagem Sub"))tratamentoconvertido[k]="nec_RaspagemSub";
-            else
-                                                                                                    if(tratamentosNVetor[k].trim().equals("Raspagem Supra"))tratamentoconvertido[k]="nec_RaspagemSupra";
-            
-            
-            
-        }       
-        return tratamentoconvertido;
+                                                                                                    if(tratamentos.get(i).toString().trim().equals("Raspagem Supra"))tratamentosConvertidos.add("nec_RaspagemSupra");
+          
+          
+      }
+          
+      
+      return tratamentosConvertidos;
+    }
+
+    private void LimpaTabela() {
+        //limpa pesquisas existentes
+        jTable1.setSelectionBackground(Color.BLUE);//defini a cor de seleção da tabela para azul
+        DefaultTableModel tabela;
+        tabela = (DefaultTableModel) jTable1.getModel();
+        tabela.setNumRows(0);
+        //********************************************
     }
 
 }
