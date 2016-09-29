@@ -952,14 +952,19 @@ public class conexao {
         Connection con = null;
 
         String sql = ("insert into necessidade(\n"
-                + "`inicioTratamento_Necessidade`=CURDATE(),`nec_Amalgama`,`nec_CirurgiaPeriodontal`,`nec_CoroaTotal`,`nec_DTM`,`nec_EndodontiaBirradicular`,\n"
+                + "`inicioTratamento_Necessidade`,"
+                + "`nec_Amalgama`,"
+                + "`nec_CirurgiaPeriodontal`,"
+                + "`nec_CoroaTotal`,"
+                + "`nec_DTM`,"
+                + "`nec_EndodontiaBirradicular`,\n"
                 + "`nec_Endodontiauniebirradicular`,`nec_EndodontiaTrirradicular`,`nec_Estomatologia`,`nec_ExodontiaMolar`,\n"
                 + "`nec_ExodontiaIncluso`,`nec_ProfilaxiaSimples`,`nec_PonteFixa3Elementos`,`nec_Pontefixa4elementos`,\n"
                 + "`nec_Pontefixamaisque4elementos`,`nec_Protese`,`nec_ProteseTotalPar`,`nec_ProtesePPR`,`nec_PPR`,\n"
                 + "`nec_RaspagemPolimentoCoronario`,`nec_Resina`,`nec_RMF`,\n"
                 + "`nec_TerapiaPeriodontal`,nec_ExodontiaSimples,`nec_PonteFixa`,`nec_PonteFixaMaisQueTresElementos`,"
                 + "`nec_RaspagemSub`, `nec_RaspagemSupra`,`nec_referencia_rg`)"
-                + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                + "values(CURDATE(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -1317,7 +1322,11 @@ public class conexao {
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, rg);
             retornoUpdate=smt.executeUpdate();
-            if(retornoUpdate==0)return true;
+            if(retornoUpdate==0){
+                boolean retornoH;
+                retornoH=GravaNoHistoricoNecessidade(rg, tratamentos);
+                return retornoH;
+            }
                     else return false;
         
         

@@ -462,9 +462,11 @@ public class TratamentoNecessario extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         SetaValoresTratamentoNecessario();
-        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
-        sctp2.ClassesdeControle.Controle acesso1 = new sctp2.ClassesdeControle.Controle();
         try {
+        sctp2.ClassesdeControle.Prontuario a= new sctp2.ClassesdeControle.Prontuario();
+         sctp2.Paciente.DadosDoPaciente acesso = new sctp2.Paciente.DadosDoPaciente(a.getRgresponsavel());
+        sctp2.ClassesdeControle.Controle acesso1 = new sctp2.ClassesdeControle.Controle();
+        
            acesso1.ProntuarioGravaNovoTratamento();
            acesso.setVisible(true);
            this.setVisible(false);

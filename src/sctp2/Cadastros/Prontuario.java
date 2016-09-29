@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 /**
@@ -375,9 +373,16 @@ public class Prontuario extends javax.swing.JFrame {
             Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
-        }   sctp2.Principal.principal acesso = new sctp2.Principal.principal();
+        }
+        try{
+            sctp2.ClassesdeControle.Paciente pegarg= new sctp2.ClassesdeControle.Paciente();
+        sctp2.Paciente.DadosDoPaciente acesso = new sctp2.Paciente.DadosDoPaciente(pegarg.getRg());
             acesso.setVisible(true);//exibe a tela de cadastro de paciente
             this.setVisible(false);// oculta a tela atual
+        }catch(ClassNotFoundException ex){
+            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
             
             
         }

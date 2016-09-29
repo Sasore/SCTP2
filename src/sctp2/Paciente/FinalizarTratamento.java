@@ -113,7 +113,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Selecione os tratamentos que deseja finalizar");
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jTable1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -143,22 +143,22 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(15);
         }
 
+        jNotificacao.setEditable(false);
+        jNotificacao.setBackground(new java.awt.Color(255, 255, 255));
         jNotificacao.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         jNotificacao.setForeground(new java.awt.Color(51, 102, 255));
         jNotificacao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jNotificacao.setBorder(null);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(274, 274, 274)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
+                    .addComponent(jNotificacao))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -166,9 +166,8 @@ public class FinalizarTratamento extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jNotificacao, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(17, 17, 17)
+                .addComponent(jNotificacao, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -444,6 +443,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         if (tratamento[26] == 1) {
             valor.addRow((new String[]{"Raspagem Supra"}));
         }
+        if(jTable1.getRowCount()==0)jFinalizaTratamento.setEnabled(false);
 
     }
 
@@ -467,9 +467,8 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         tratamentosConvertidos=converteValores(tratamentosList);
         retorno=acesso.FinalizaTratamento(tratamentosConvertidos, rg);
         if(retorno==false){
-            jFinalizaTratamento.setEnabled(false);
-            jNotificacao.setText("Tratamentos finalizados com sucesso!");
-            LimpaTabela();
+            jNotificacao.setText("Tratamento(s) finalizados com sucesso!");
+            AtualizaTabela();
         }
         
         
@@ -548,6 +547,11 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         tabela = (DefaultTableModel) jTable1.getModel();
         tabela.setNumRows(0);
         //********************************************
+    }
+
+    private void AtualizaTabela() throws ClassNotFoundException, SQLException {
+    LimpaTabela();
+    MostrarTratamentos(rg);
     }
 
 }
