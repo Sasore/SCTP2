@@ -53,8 +53,6 @@ public class Prontuario extends javax.swing.JFrame {
         jBDiminuiTamFOnte = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        Nprontuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLNomeAluno = new javax.swing.JLabel();
         NomeresponsavelProntuario = new javax.swing.JTextField();
@@ -164,14 +162,6 @@ public class Prontuario extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cadastro de Prontuário");
 
-        jLabel2.setText("Número do prontuário: ");
-
-        Nprontuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                NprontuarioKeyTyped(evt);
-            }
-        });
-
         jLabel3.setText("Status do Prontuário:");
 
         jLNomeAluno.setText("Nome do Professor/Aluno:");
@@ -250,14 +240,13 @@ public class Prontuario extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLNomeAluno)
-                            .addComponent(jLabel2)
                             .addComponent(jLInformacoesAdicionais)
                             .addComponent(jLTelefoneAluno23, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -268,9 +257,7 @@ public class Prontuario extends javax.swing.JFrame {
                                                 .addComponent(NomeresponsavelProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jCodigoResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(38, 38, 38))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Nprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -288,8 +275,6 @@ public class Prontuario extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Nprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboStatusProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelIconeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -405,14 +390,6 @@ public class Prontuario extends javax.swing.JFrame {
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void NprontuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NprontuarioKeyTyped
-        //Função para impedir a digitação de letras e caracteres especiais no campo de número do prontuário
-        String caracteres = "0987654321";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_NprontuarioKeyTyped
-
     private void NomeresponsavelProntuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeresponsavelProntuarioKeyTyped
         //Função para impedir a digitação de letras e caracteres especiais no campo de número do prontuário
         String caracteres = "0987654321";
@@ -428,7 +405,7 @@ public class Prontuario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         sctp2.Cadastros.ResponsavelProntuario acesso;
         try {
-            acesso = new sctp2.Cadastros.ResponsavelProntuario(Nprontuario.getText());
+            acesso = new sctp2.Cadastros.ResponsavelProntuario();
             this.setVisible(false);
             acesso.setVisible(true);
         } catch (ClassNotFoundException ex) {
@@ -497,7 +474,6 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JcelularoAluno;
     private javax.swing.JTextField NomeresponsavelProntuario;
-    private javax.swing.JTextField Nprontuario;
     private javax.swing.JTextPane ProntuarioInformacoesAdicionais;
     private javax.swing.JButton Voltar;
     private javax.swing.JButton jBAumentaTamFOnte;
@@ -509,7 +485,6 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
     private javax.swing.JLabel jLNomeAluno;
     private javax.swing.JLabel jLTelefoneAluno23;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelIconeStatus;
     private javax.swing.JMenu jMenu1;
@@ -529,7 +504,6 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
 //Esta classe Seta os valores para a classe de prontuario
     private void PassaValores() {
         sctp2.ClassesdeControle.Prontuario acesso = new sctp2.ClassesdeControle.Prontuario();
-        acesso.setNumeroProntuario(Nprontuario.getText());
         acesso.setNomeresponsavelProntuario(NomeresponsavelProntuario.getText());
         acesso.setStatusProntuario((String) jComboStatusProntuario.getSelectedItem());
         acesso.setTelefoneResponsavelProntuario(JcelularoAluno.getText());
@@ -542,8 +516,10 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
 
     private boolean VerificaCampos() {//função que verifica se os campos obrigatórios foram preenchidos
         boolean retorno = true;
-        if (Nprontuario.getText().trim().equals("")) {
-            Nprontuario.setBorder(new LineBorder(Color.red));
+        if (NomeresponsavelProntuario.getText().trim().equals("")||NomeresponsavelProntuario.getText().trim().equals("Clique no botão adicionar")) {
+            NomeresponsavelProntuario.setBorder(new LineBorder(Color.red));
+            NomeresponsavelProntuario.setText("Clique no botão adicionar");
+            
             retorno = false;
         }
 
@@ -556,7 +532,7 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
 
     }
     public void Recebe(String codigo,String nome,String celular, String fixo,String idResponsavel){
-        Nprontuario.setText(codigo);
+
         NomeresponsavelProntuario.setText(nome);
         JcelularoAluno.setText(celular);
         jTelefonefixo.setText(fixo);
@@ -569,7 +545,6 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
         if((this.tamanhoFonte<24) && (this.tamanhoFonte>15)){
         jBDiminuiTamFOnte.setEnabled(true);
         jBAumentaTamFOnte.setEnabled(true);
-        jLabel2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
         jLabel3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
         jButton1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
         jCodigoResponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));

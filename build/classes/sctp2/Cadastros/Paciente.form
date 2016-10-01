@@ -520,6 +520,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jrg">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Somente N&#xfa;meros"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrgMouseExited"/>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jrgPropertyChange"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jrgKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLNaturalidade">
           <Properties>

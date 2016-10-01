@@ -531,10 +531,11 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
             jNotificacao.setText("Não há histórico para este usuário!");
         } else {
 
+
             for (int i = 0; i < ListarPesquisa.size(); i++) {
-                String iniciotratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(i).getIniciotratamento());
+                //String iniciotratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(i).getIniciotratamento());
                 String fimtratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(i).getFimtratamento());
-                valor.addRow((new String[]{iniciotratamento + " a " + fimtratamento}));
+                valor.addRow((new String[]{fimtratamento}));
             }
             jNotificacao.setText("Clique na data do tratamento na tabela 'Período do Tratamento' para ver os detalhes!");
         }

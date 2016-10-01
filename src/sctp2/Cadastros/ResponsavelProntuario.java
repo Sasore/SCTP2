@@ -88,10 +88,10 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jButton3 = new javax.swing.JButton();
         jNovoAluno = new javax.swing.JButton();
         jNovoProfessor = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jBAumentaTamFOnte = new javax.swing.JButton();
         jBDiminuiTamFOnte = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar responsável");
@@ -192,10 +192,15 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jOutdoor.setText("Pesquise pelo Aluno ou Professor antes de cadastrar um novo, caso ele não exista, você pode cadastrar um Aluno e seu Professor ou Apenas o Professor.");
         jScrollPane2.setViewportView(jOutdoor);
 
+        jPanelCadastrar.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 1, true));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 102, 255));
         jLabel2.setText("Aluno /Responsável");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
         jLabel3.setText("Professor:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -330,28 +335,27 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
                 .addGap(14, 14, 14))
         );
 
+        jNovoAluno.setBackground(new java.awt.Color(255, 255, 255));
+        jNovoAluno.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jNovoAluno.setForeground(new java.awt.Color(0, 0, 250));
+        jNovoAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/novo contato pequeno.png"))); // NOI18N
         jNovoAluno.setText("Novo Aluno ");
+        jNovoAluno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 250), 1, true));
         jNovoAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jNovoAlunoActionPerformed(evt);
             }
         });
 
+        jNovoProfessor.setBackground(new java.awt.Color(255, 255, 255));
+        jNovoProfessor.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jNovoProfessor.setForeground(new java.awt.Color(0, 0, 250));
+        jNovoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/novo contato pequeno.png"))); // NOI18N
         jNovoProfessor.setText("Novo Professor");
+        jNovoProfessor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 250), 1, true));
         jNovoProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jNovoProfessorActionPerformed(evt);
-            }
-        });
-
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setForeground(new java.awt.Color(0, 50, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/exit.png"))); // NOI18N
-        jButton4.setText("Cancelar");
-        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 50, 255), 1, true));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
             }
         });
 
@@ -379,16 +383,12 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jNovoAluno)
-                        .addGap(18, 18, 18)
-                        .addComponent(jNovoProfessor))
+                        .addComponent(jNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jNovoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE))
                 .addGap(0, 12, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,16 +409,14 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jNovoAluno)
-                            .addComponent(jNovoProfessor))
+                            .addComponent(jNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jNovoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(95, 95, 95))
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 102, 255));
@@ -441,25 +439,39 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setForeground(new java.awt.Color(0, 50, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/exit.png"))); // NOI18N
+        jButton4.setText("Cancelar");
+        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 50, 255), 1, true));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(225, 225, 225)
+                .addGap(40, 40, 40)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jBAumentaTamFOnte)
                 .addGap(18, 18, 18)
                 .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(897, Short.MAX_VALUE))
+                .addContainerGap(899, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAumentaTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -727,6 +739,7 @@ sctp2.ClassesdeControle.Controle acesso= new sctp2.ClassesdeControle.Controle();
 
     envia= new Prontuario();
     envia.setVisible(true);
+    //envia é uma referencia para a tela prontuário que chama a função recebe, esta irá receber os valores que foram registrados nesta tela
     envia.Recebe(codigo,nomeresponsavel.getText(),jFTelefoneFixo.getText(),jFTelefoneFixo.getText(),Idresponsavel);
     this.setVisible(false);//envia os dados adicionados para a internface Prontuario e fecha esta tela
 

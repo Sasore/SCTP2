@@ -272,6 +272,30 @@ public class conexao {
         }
         return ListarPesquisa;
     }
+    public boolean VerificaRgCpf(String rgCpf) throws ClassNotFoundException {
+        Connection con = null;
+        String sql = "SELECT `pac_Cod` FROM `paciente` WHERE `pac_RG`=?";
+        try {
+            con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setString(1, rgCpf);
+            ResultSet rs = smt.executeQuery();
+            int resultado=0;
+            while(rs.next())resultado++;
+            if(resultado>=1)return true;
+            
+                
+            
+        }catch (SQLException e) {
+            //System.out.println("Ocorreu um erro ao carrega a lista");
+            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos!");
+            e.printStackTrace();
+
+        } finally {
+            closeConnection(con);
+        }
+     return false;
+    }
     public boolean MudaStatusListaNegraPaciente(String codigoPaciente) throws SQLException, ClassNotFoundException {//retira o usuario da lista negra
         //esta funcao tira o paciente da lista negra
         Connection con = null;
@@ -1560,6 +1584,8 @@ public class conexao {
     
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
+
+    
 
     
 }

@@ -219,9 +219,11 @@ private int tamanhoFonte=20;
                 .addContainerGap())
         );
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
         jMenu1.setText("menu");
+        jMenu1.setActionCommand("Menu");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente branco.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

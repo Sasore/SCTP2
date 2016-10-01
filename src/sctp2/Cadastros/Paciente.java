@@ -7,6 +7,8 @@ package sctp2.Cadastros;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -190,6 +192,23 @@ public class Paciente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jrg.setToolTipText("Somente Números");
+        jrg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jrgMouseExited(evt);
+            }
+        });
+        jrg.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jrgPropertyChange(evt);
+            }
+        });
+        jrg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jrgKeyTyped(evt);
+            }
+        });
 
         jLNaturalidade.setText("Nat:");
 
@@ -534,10 +553,25 @@ public class Paciente extends javax.swing.JFrame {
 
     private void jBAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvancarActionPerformed
         boolean retorno;
+        boolean  verificaRgCpf=true;
+        try {
+             verificaRgCpf=VerificaRgCpf();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("veir "+verificaRgCpf);
         retorno = VerificaCampos();//função quer verifica se os campos obrigatorios foram preenchidos
         if (retorno == false) {
             jNotificao.setText("Corrija ou preencha os campos em vermelho para continuar.");
         }
+        else
+            if(verificaRgCpf==true){
+                jNotificao.setText("Já existe um paciente cadastrado com este Rg/Cpf.");
+                
+            }
+            else {
+            
+        
         if(!jlistaNegraJustificativa.getText().trim().equals("")){
                 int resposta=JOptionPane.showConfirmDialog(rootPane, "Você esta colocando o paciente na lista negra, confirma?");
                 if(resposta==1){
@@ -554,6 +588,7 @@ public class Paciente extends javax.swing.JFrame {
             acesso.setVisible(true);//exibe a proxima tela;
             this.setVisible(false);
         }
+            }
     }//GEN-LAST:event_jBAvancarActionPerformed
 
     private void jBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVoltarActionPerformed
@@ -611,6 +646,21 @@ TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:
     private void jcidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcidadeActionPerformed
+
+    private void jrgKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jrgKeyTyped
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jrgKeyTyped
+
+    private void jrgMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrgMouseExited
+
+    }//GEN-LAST:event_jrgMouseExited
+
+    private void jrgPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jrgPropertyChange
+
+    }//GEN-LAST:event_jrgPropertyChange
 
     /**
      * @param args the command line arguments
@@ -808,6 +858,13 @@ TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:
                 jBDiminuiTamFOnte.setEnabled(false);
                 jBAumentaTamFOnte.setEnabled(true);
                 }
+    }
+
+    private boolean VerificaRgCpf() throws ClassNotFoundException {
+        sctp2.BancodeDados.conexao acesso= new sctp2.BancodeDados.conexao();
+        //Se o retorno for true já existe um usuario com este rg/cpf
+        boolean retorno=acesso.VerificaRgCpf(jrg.getText());
+        return retorno;
     }
 
     

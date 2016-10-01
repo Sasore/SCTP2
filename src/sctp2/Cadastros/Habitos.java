@@ -379,9 +379,10 @@ public class Habitos extends javax.swing.JFrame {
                 .addContainerGap(97, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Arquivo");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
+        jMenu1.setText("Menu");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente.png"))); // NOI18N
         jMenuItem2.setText("Menu Principal");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -494,28 +495,28 @@ public class Habitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBebidaAlcoolicaItemStateChanged
 
     private void jCFumaHaQuantoTempoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCFumaHaQuantoTempoItemStateChanged
-        jCFumaHaQuantoTempo.setBackground(Color.gray);
+        jCFumaHaQuantoTempo.setBackground(Color.lightGray);
 
     }//GEN-LAST:event_jCFumaHaQuantoTempoItemStateChanged
 
     private void jCFumoQuantidadePorDiaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCFumoQuantidadePorDiaItemStateChanged
-        jCFumoQuantidadePorDia.setBackground(Color.gray);        // TODO add your handling code here:
+        jCFumoQuantidadePorDia.setBackground(Color.lightGray);
     }//GEN-LAST:event_jCFumoQuantidadePorDiaItemStateChanged
 
     private void jCTipodeCigarroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCTipodeCigarroItemStateChanged
-        jCTipodeCigarro.setBackground(Color.gray);        // TODO add your handling code here:
+        jCTipodeCigarro.setBackground(Color.lightGray);
     }//GEN-LAST:event_jCTipodeCigarroItemStateChanged
 
     private void jCBebidaAlcoolicaHaQuantoTempoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBebidaAlcoolicaHaQuantoTempoItemStateChanged
-        jCBebidaAlcoolicaHaQuantoTempo.setBackground(Color.gray);        // TODO add your handling code here:
+        jCBebidaAlcoolicaHaQuantoTempo.setBackground(Color.lightGray);
     }//GEN-LAST:event_jCBebidaAlcoolicaHaQuantoTempoItemStateChanged
 
     private void jcBebidaAlcoolicaFrequenciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcBebidaAlcoolicaFrequenciaItemStateChanged
-        jcBebidaAlcoolicaFrequencia.setBackground(Color.gray);        // TODO add your handling code here:
+        jcBebidaAlcoolicaFrequencia.setBackground(Color.lightGray);
     }//GEN-LAST:event_jcBebidaAlcoolicaFrequenciaItemStateChanged
 
     private void jCbebidaAlcoolicaTipodeBebidaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbebidaAlcoolicaTipodeBebidaItemStateChanged
-        jCbebidaAlcoolicaTipodeBebida.setBackground(Color.gray);        // TODO add your handling code here:
+        jCbebidaAlcoolicaTipodeBebida.setBackground(Color.lightGray);
     }//GEN-LAST:event_jCbebidaAlcoolicaTipodeBebidaItemStateChanged
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
