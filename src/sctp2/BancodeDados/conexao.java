@@ -420,7 +420,7 @@ public class conexao {
         return resposta;
     }
      public ArrayList<PesquisarProntuario> PesquisarProntuario(String codigo) throws ClassNotFoundException {
-        String sql = "SELECT "
+         String sql = "SELECT "
                 + "`pront_cod`, `pront_Numero`, `referencia_RG_PAC`, `pront_Status`,"
                 + " `pront_AlunoEmprestado`, `pront_TelefoneAluno`, `pront_Informacoes`,DataEmprestimo_Prontuario,DataDevolver_Prontuario, "
                 + "`pront_responsavel_prontuario`, `reservadopara_Prontuario`, paciente.pac_Nome\n"
@@ -465,6 +465,49 @@ public class conexao {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos ou verifique a conexao!");
             e.printStackTrace();
+        } finally {
+            closeConnection(con);
+        }
+        return ListarPesquisa;
+    }
+     public ArrayList<PesquisarProntuario> PesquisarProntuarioporNomePaciente(String nomePaciente) throws ClassNotFoundException {
+        Connection con = null;
+        ArrayList<PesquisarProntuario> ListarPesquisa=new ArrayList();//array que recebera o resultado da pesquisa
+   String sql = "SELECT `pront_cod`, `pront_Numero`, "
+                + "`referencia_RG_PAC`, `pront_Status`, "
+                + "`pront_AlunoEmprestado`, `pront_TelefoneAluno`, "
+                + "`pront_Informacoes`, `pront_responsavel_prontuario`, "
+                + "`reservadopara_Prontuario`, `DataEmprestimo_Prontuario`, "
+                + "`DataDevolver_Prontuario`,paciente.pac_Nome FROM `prontuario`"
+                + " JOIN paciente ON paciente.pac_RG=prontuario.referencia_RG_PAC "
+                + "WHERE paciente.pac_Nome LIKE ?";
+        try {
+            con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+             smt.setString(1, nomePaciente+"%");
+            ResultSet rs = smt.executeQuery();
+            while (rs.next()) {
+                sctp2.Pesquisar.PesquisarProntuario pesquisarsmt = new sctp2.Pesquisar.PesquisarProntuario();
+                String verificavazio = "";
+                pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
+                pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
+                pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
+                pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
+                pesquisarsmt.setInformacoes(rs.getString("pront_Informacoes"));
+                pesquisarsmt.setIdUsuarioReservado(rs.getInt("reservadopara_Prontuario"));
+                pesquisarsmt.setPaciente(rs.getString("paciente.pac_Nome"));//Para não ter que criar um novo campo utilizei pai para receber o nome do paciente
+                pesquisarsmt.setStatus(rs.getInt("pront_Status"));
+                pesquisarsmt.setDataEmprestimo(rs.getDate("DataEmprestimo_Prontuario"));
+                pesquisarsmt.setDataDevolução(rs.getDate("DataDevolver_Prontuario"));
+                pesquisarsmt.setPront_AlunoEmprestado(rs.getInt("pront_AlunoEmprestado"));
+                pesquisarsmt.setResponsavelProntuario(rs.getInt("pront_responsavel_prontuario"));
+                ListarPesquisa.add(pesquisarsmt);
+            }
+        } catch (SQLException e) {
+            //System.out.println("Ocorreu um erro ao carrega a lista");
+            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos!");
+            e.printStackTrace();
+
         } finally {
             closeConnection(con);
         }
