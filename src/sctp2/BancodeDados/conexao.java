@@ -24,6 +24,7 @@ import sctp2.ClassesdeControle.TratamentosNecessarios;
 import sctp2.Paciente.HistoricoDetratamentos;
 import sctp2.Paciente.HistoricoPaciente;
 import sctp2.Pesquisar.Pesquisar;
+import sctp2.Pesquisar.PesquisarProntuarioStatico;
 import sctp2.Pesquisar.PesquisarProntuario;
 
 /**
@@ -395,7 +396,7 @@ public class conexao {
             closeConnection(con);
         }
         return retorno;
-    }//Fim da função PesquisarProntuario
+    }//Fim da função PesquisarProntuarioStatico
      //private ArrayList<PesquisarProntuario> PesquisaResponsavelProtuario(int id) throws ClassNotFoundException {
     private String[] PesquisaResponsavelProtuario(int id) throws ClassNotFoundException {
         Connection con = null;
@@ -435,8 +436,9 @@ public class conexao {
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, codigo);
             ResultSet rs = smt.executeQuery();
-            PesquisarProntuario pesquisarsmt = new PesquisarProntuario();
+            
             while (rs.next()) {
+                PesquisarProntuario pesquisarsmt = new PesquisarProntuario();
                 String verificavazio = "";
                 pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
                 pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
@@ -501,6 +503,16 @@ public class conexao {
                 pesquisarsmt.setDataDevolução(rs.getDate("DataDevolver_Prontuario"));
                 pesquisarsmt.setPront_AlunoEmprestado(rs.getInt("pront_AlunoEmprestado"));
                 pesquisarsmt.setResponsavelProntuario(rs.getInt("pront_responsavel_prontuario"));
+                
+                //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
+                verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
+                if (verificavazio == null || verificavazio.trim().equals("")) {
+                    String[] resposta = new String[3];//recebera o retorno da função
+                    resposta = PesquisaResponsavelProtuario(rs.getInt("pront_responsavel_prontuario"));
+                    pesquisarsmt.setNome(resposta[0]);
+                    pesquisarsmt.setTelefone(resposta[1]);
+                    pesquisarsmt.setTelefoneFixo(resposta[1]);
+                };
                 ListarPesquisa.add(pesquisarsmt);
             }
         } catch (SQLException e) {
@@ -621,18 +633,18 @@ public class conexao {
         return retorno;
 
     }
-     public ArrayList<PesquisarProntuario> PesquisarProntuariopelorg(String rg) throws ClassNotFoundException {
+     public ArrayList<PesquisarProntuarioStatico> PesquisarProntuariopelorg(String rg) throws ClassNotFoundException {
         String sql = "SELECT pront_Numero,pront_AlunoEmprestado,pront_TelefoneAluno,pront_Status,pront_responsavel_prontuario, paciente.pac_Nome, pront_Informacoes "
                 + "FROM prontuario join paciente where paciente.pac_RG=referencia_RG_PAC and prontuario.referencia_RG_PAC=?;";
         Connection con = null;
-        ArrayList<PesquisarProntuario> ListarPesquisa;//array que recebera o resultado da pesquisa
-        ListarPesquisa = new ArrayList<PesquisarProntuario>();//criando novo array
+        ArrayList<PesquisarProntuarioStatico> ListarPesquisa;//array que recebera o resultado da pesquisa
+        ListarPesquisa = new ArrayList<PesquisarProntuarioStatico>();//criando novo array
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, rg);
             ResultSet rs = smt.executeQuery();
-            PesquisarProntuario pesquisarsmt = new PesquisarProntuario();
+            PesquisarProntuarioStatico pesquisarsmt = new PesquisarProntuarioStatico();
             while (rs.next()) {
                 String verificavazio = "";
                 pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
@@ -1295,6 +1307,9 @@ public class conexao {
                 pesquisarsmt.setNome(rs.getString("nome_ResponsavelPeloProntuario"));
                 pesquisarsmt.setTelefone(rs.getString("celular_ResponsavelPeloProntuario"));
                 pesquisarsmt.setTelefonefixo(rs.getString("telefoneFixo_ResponsavelPeloProntuario"));
+                pesquisarsmt.setNomeProfessor(rs.getString("nomeProfessor_ResponsavelPeloProntuario"));
+                pesquisarsmt.setTelefoneFixoProfessor(rs.getString("TelefoneProfessor_ResponsavelPeloProntuario"));
+                pesquisarsmt.setCelularProfessor(rs.getString("celularProfessor_ResponsavelPeloProntuario"));
                 ListarPesquisa.add(pesquisarsmt);
             }
 

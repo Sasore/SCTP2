@@ -14,39 +14,38 @@ import java.time.LocalDate;
  */
 public class PesquisarProntuario {
 
-    public static String getNome() {
+    public  String getNome() {
         return nome;
     }
 
-    public static void setNome(String nome) {
-        PesquisarProntuario.nome = nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public static String getTelefone() {
-        return telefone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public static void setTelefone(String telefone) {
-        PesquisarProntuario.telefone = telefone;
-    }
-
-    public static String getProntuario() {
+    
+    public  String getProntuario() {
         return prontuario;
     }
 
-    public static void setProntuario(String prontuario) {
-        PesquisarProntuario.prontuario = prontuario;
-    }
 
-    public static String getPaciente() {
+    public  String getPaciente() {
         return paciente;
     }
 
-    public static void setPaciente(String paciente) {
-        PesquisarProntuario.paciente = paciente;
+    public void setProntuario(String prontuario) {
+        this.prontuario = prontuario;
     }
 
-    public static String getStatus() {
+    public void setPaciente(String paciente) {
+        this.paciente = paciente;
+    }
+
+
+    public  String getStatus() {
         if (status == 0) {
             return "Disponível";
         } else {
@@ -62,20 +61,22 @@ public class PesquisarProntuario {
         }
     }
 
-    public static String getTelefoneFixo() {
+    public  String getTelefoneFixo() {
         return telefoneFixo;
     }
 
-    public static void setTelefoneFixo(String telefoneFixo) {
-        PesquisarProntuario.telefoneFixo = telefoneFixo;
+    public void setTelefoneFixo(String telefoneFixo) {
+        this.telefoneFixo = telefoneFixo;
     }
 
-    public static void setStatus(int status) {
-        PesquisarProntuario.status = status;
+    public void setStatus(int status) {
+        this.status = status;
     }
+
+    
      
 
-    public static String getInformacoes() {
+    public  String getInformacoes() {
         return informacoes;
     }
 
@@ -102,12 +103,10 @@ public class PesquisarProntuario {
     public int getResponsavelProntuario() {
         return responsavelProntuario;
     }
-    
 
-    public static void setInformacoes(String informacoes) {
-        PesquisarProntuario.informacoes = informacoes;
+    public void setInformacoes(String informacoes) {
+        this.informacoes = informacoes;
     }
-
     public void setDataEmprestimo(Date dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
@@ -133,16 +132,16 @@ public class PesquisarProntuario {
     }
     
     
-    private static String nome;
-    private static String telefone;
-    private static String telefoneFixo;
-    private static String prontuario;
-    private static String paciente;
-    private static String informacoes;
+    private  String nome;
+    private  String telefone;
+    private  String telefoneFixo;
+    private  String prontuario;
+    private  String paciente;
+    private  String informacoes;
     private Date     dataEmprestimo;
     private Date     dataDevolução;
     private int           codigoProntuario;
-    private static int    status;
+    private  int    status;
     private int          idUsuarioReservado;
     private int          pront_AlunoEmprestado;
     private int          responsavelProntuario;

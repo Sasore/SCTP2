@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import sctp2.Cadastros.CadastroResponsavel;
 import sctp2.ClassesdeControle.Prontuario;
 import sctp2.Pesquisar.Pesquisar;
-import sctp2.Pesquisar.PesquisarProntuario;
+import sctp2.Pesquisar.PesquisarProntuarioStatico;
 
 /**
  *
@@ -26,7 +26,7 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
      * Creates new form ProntuarioPorAluno
      */
     ArrayList<sctp2.Pesquisar.ResponsavelProntuario> listarPesquisa = new ArrayList<>();
-    ArrayList<PesquisarProntuario> ListarProntuarioPaciente;//array que recebera o resultado da pesquisa
+    ArrayList<PesquisarProntuarioStatico> ListarProntuarioPaciente;//array que recebera o resultado da pesquisa
 
     public ProntuarioPorResponsavel() throws ClassNotFoundException {
         initComponents();
@@ -558,7 +558,7 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
 
     private void ExibeDetalhesProntuario(String rgPaciente) throws ClassNotFoundException {
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
-        ArrayList<PesquisarProntuario> detalhesProntuario;
+        ArrayList<PesquisarProntuarioStatico> detalhesProntuario;
         detalhesProntuario = acesso.PesquisarProntuariopelorg(rgPaciente);
         System.out.println("rg " + rgPaciente);
         jNumeroProntuario.setText(listarPesquisa.get(jTableProntuario.getSelectedRow()).getNumeroProntuario());

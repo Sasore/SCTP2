@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import sctp2.Pesquisar.Pesquisar;
-import sctp2.Pesquisar.PesquisarProntuario;
+import sctp2.Pesquisar.PesquisarProntuarioStatico;
 
 /**
  *
@@ -1395,7 +1395,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
 
     private void PesquisaProntuario() throws ClassNotFoundException {
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
-        ArrayList<PesquisarProntuario> ListarPesquisa = new ArrayList<PesquisarProntuario>();
+        ArrayList<PesquisarProntuarioStatico> ListarPesquisa = new ArrayList<PesquisarProntuarioStatico>();
         ListarPesquisa = acesso.PesquisarProntuariopelorg(jrg.getText());
         System.out.println("codigo rg" + jrg.getText());
         if (ListarPesquisa.size() == 0) {

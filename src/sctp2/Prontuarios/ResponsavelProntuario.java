@@ -171,14 +171,14 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "codigo", "Nome", "Telefone", "Fixo"
+                "codigo", "Nome", "Telefone", "Fixo", "Professor", "Telefone", "celular"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -515,9 +515,6 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 //    boolean retorno = false;
-
-        System.out.println("Codigo da janela " + Codigojanela);
-
         if (Codigojanela == 1) {
             try {
                 AdicionarResponsaveleChamaTelaPesquisarProntuario();
@@ -745,7 +742,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
 
             for (int i = 0; i < listaPesquisa.size(); i++) {
                 //System.out.println("::" + listaPesquisa.get(i).getNome());
-                valor.addRow(new String[]{Integer.toString(listaPesquisa.get(i).getCodigo()), listaPesquisa.get(i).getNome(), listaPesquisa.get(i).getTelefone(), listaPesquisa.get(i).getTelefonefixo()});
+                valor.addRow(new String[]{Integer.toString(listaPesquisa.get(i).getCodigo()), listaPesquisa.get(i).getNome(), listaPesquisa.get(i).getTelefone(), listaPesquisa.get(i).getTelefonefixo(),listaPesquisa.get(i).getNomeProfessor(),listaPesquisa.get(i).getTelefoneFixoProfessor(),listaPesquisa.get(i).getCelularProfessor()});
                 //System.out.println("valor ta linha: "+listaPesquisa.get(i).getNome()+" "+listaPesquisa.get(i).getTelefone()+" "+listaPesquisa.get(i).getTelefonefixo());
                 jNotificacao.setForeground(Color.blue);
                 jNotificacao.setText("Clique no nome desejado ou utilize o campo de pesquisa!");
@@ -787,7 +784,6 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         if(Codigojanela==1){
         if (envia == null) {
             envia = new Prontuario();
-            envia.setVisible(true);
             envia.Recebe(codigo, nomeresponsavel.getText(), jFTelefoneFixo.getText(), jFTelefoneFixo.getText(), Idresponsavel, nomeProfessorResponsavel.getText(), jFTelefoneFixoProfessor.getText(), jFTelefoneCelularProfessor.getText());
             this.setVisible(false);//envia os dados adicionados para a internface Prontuario e fecha esta tela
         } else {
@@ -839,12 +835,12 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         if (enviar == null) {//se for igual a null significa que nao existe nehuma chave para acessar a interface prontuario
             enviar = new Prontuario();//nova chave para o objeto
             enviar.setVisible(true);
-            enviar.Recebe(codigo, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0), null, null, null);
+            enviar.Recebe(codigo, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 4), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 6));
             this.setVisible(false);
         } else {
             enviar.setVisible(true);
             enviar.setState(Prontuario.NORMAL);
-            enviar.Recebe(codigo, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0), null, null, null);
+            enviar.Recebe(codigo, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 4), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 6));
             this.setVisible(false);
         }
     }
@@ -887,12 +883,12 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         if (enviar == null) {//se for igual a null significa que nao existe nehuma chave para acessar a interface prontuario
             enviar = new Prontuario();//nova chave para o objeto
             enviar.setVisible(true);
-            enviar.RecebeReservadeProntuario(codigo, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0), null, null, null);
+            enviar.RecebeReservadeProntuario(codigo, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0),(String) jTable1.getValueAt(jTable1.getSelectedRow(), 4), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 6));
             this.setVisible(false);
         } else {
             enviar.setVisible(true);
             enviar.setState(Prontuario.NORMAL);
-            enviar.RecebeReservadeProntuario(codigo, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0), null, null, null);
+            enviar.RecebeReservadeProntuario(codigo, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 4), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5), (String) jTable1.getValueAt(jTable1.getSelectedRow(), 6));
             this.setVisible(false);
         }
     }

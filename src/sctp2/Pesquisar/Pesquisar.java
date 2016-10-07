@@ -34,6 +34,9 @@ public class Pesquisar {
     private int pacienteAlta;
     private int listaNegra;
     private String motivoListaNegra;
+    private String nomeProfessor;
+    private String telefoneFixoProfessor;
+    private String celularProfessor;
 
     
 
@@ -76,6 +79,31 @@ public class Pesquisar {
     public void setProcedencia(int procedencia) {
         this.procedencia = procedencia;
     }
+
+    public String getNomeProfessor() {
+        return nomeProfessor;
+    }
+
+    public void setNomeProfessor(String nomeProfessor) {
+        this.nomeProfessor = nomeProfessor;
+    }
+
+    public String getTelefoneFixoProfessor() {
+        return telefoneFixoProfessor;
+    }
+
+    public void setTelefoneFixoProfessor(String telefoneFixoProfessor) {
+        this.telefoneFixoProfessor = telefoneFixoProfessor;
+    }
+
+    public String getCelularProfessor() {
+        return celularProfessor;
+    }
+
+    public void setCelularProfessor(String celularProfessor) {
+        this.celularProfessor = celularProfessor;
+    }
+    
 
     public String getMae() {
         return mae;
