@@ -256,7 +256,7 @@ public class Controle {
 
         return true;
     }
-    public void GravaResponsavelProntuario() throws ClassNotFoundException{//Esta Função normalmente sera chamada pela interface Cadastro de Aluno/Responsavel
+    public boolean GravaResponsavelProntuario() throws ClassNotFoundException{//Esta Função normalmente sera chamada pela interface Cadastro de Aluno/Responsavel
         sctp2.ClassesdeControle.responsavelprontuario acesso= new sctp2.ClassesdeControle.responsavelprontuario();
         sctp2.BancodeDados.conexao conecta= new sctp2.BancodeDados.conexao();
         //----------------------------------------------------------------
@@ -266,17 +266,9 @@ public class Controle {
         String nomeProfessor=acesso.getNomeProfessorResponsavel();
         String celularProfessor=acesso.getTelefoneCelularProfessor();
         String telefonefixoProfessor=acesso.getTelefoneFixoProfessor();
-        //int retorno;
-        //----------------------------------------------------------------
-        
-        //retorno=
-                conecta.GravaresponsavelProntuario(nome,celular,telefonefixo,nomeProfessor,telefonefixoProfessor,celularProfessor);
-        //if(retorno==true){
-        sctp2.Principal.principal telaprincipal= new  sctp2.Principal.principal();
-        //telaprincipal.setVisible(retorno);
-        //}
-        
-        
+        int retorno=conecta.GravaresponsavelProntuario(nome,celular,telefonefixo,nomeProfessor,telefonefixoProfessor,celularProfessor);
+        if(retorno!=0)return true;
+        else return false;
         
     }
      public void AtualizaResponsavelProntuario() throws ClassNotFoundException{//Esta Função normalmente sera chamada pela interface Cadastro de Aluno/Responsavel

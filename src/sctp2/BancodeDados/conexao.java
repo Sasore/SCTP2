@@ -116,6 +116,33 @@ public class conexao {
 
         return false;
     }
+    public ArrayList<Pesquisar> PesquisarPorPacientePorCPFRG(String cpfRg) throws ClassNotFoundException {
+        Connection con = null;
+        ArrayList<Pesquisar> ListarPesquisa = new ArrayList<Pesquisar>();
+        String sql = "select pac_Cod,pac_Nome,pac_Telefone,pac_RG from paciente where pac_RG=?;";
+        try {
+            con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setString(1,cpfRg);
+            ResultSet rs = smt.executeQuery();
+            while (rs.next()) {
+                Pesquisar pesquisarsmt = new Pesquisar();
+                pesquisarsmt.setCodigo(rs.getInt("pac_Cod"));
+                pesquisarsmt.setNome(rs.getString("pac_Nome"));
+                pesquisarsmt.setTelefone(rs.getString("pac_Telefone"));
+                pesquisarsmt.setRg(rs.getString("pac_RG"));
+                ListarPesquisa.add(pesquisarsmt);
+            }
+        } catch (SQLException e) {
+            //System.out.println("Ocorreu um erro ao carrega a lista");
+            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos!");
+            e.printStackTrace();
+
+        } finally {
+            closeConnection(con);
+        }
+        return ListarPesquisa;
+    }
     public ArrayList<Pesquisar> PesquisarPorPaciente(String nome) throws ClassNotFoundException {
         Connection con = null;
         ArrayList<Pesquisar> ListarPesquisa = new ArrayList<Pesquisar>();
@@ -160,7 +187,10 @@ public class conexao {
                 pesquisarsmt.setCodigo(rs.getInt("Id"));
                 pesquisarsmt.setNome(rs.getString("nome_ResponsavelPeloProntuario"));
                 pesquisarsmt.setTelefone(rs.getString("celular_ResponsavelPeloProntuario"));
-                pesquisarsmt.setTelefonefixo(rs.getString("celular_ResponsavelPeloProntuario"));
+                pesquisarsmt.setTelefonefixo(rs.getString("telefoneFixo_ResponsavelPeloProntuario"));
+                pesquisarsmt.setNomeProfessor(rs.getString("nomeProfessor_ResponsavelPeloProntuario"));
+                pesquisarsmt.setTelefoneFixoProfessor(rs.getString("TelefoneProfessor_ResponsavelPeloProntuario"));
+                pesquisarsmt.setCelularProfessor(rs.getString("celularProfessor_ResponsavelPeloProntuario"));
                 ListarPesquisa.add(pesquisarsmt);
             }
 
@@ -1416,6 +1446,61 @@ public class conexao {
     }
         return false;
     }
+    public boolean VerificaAlta(String rg) throws ClassNotFoundException, SQLException {
+        //Se o paciente terminar todos os tratamentos ele ganha alta.
+        Connection con = null,con2=null;
+            String sql="SELECT * FROM `necessidade` WHERE \n" +
+                                "`nec_ProfilaxiaSimples`=0 AND\n" +
+                                "`nec_RaspagemPolimentoCoronario`=0 AND\n" +
+                                "`nec_CirurgiaPeriodontal`=0 AND\n" +
+                                "`nec_ExodontiaSimples`=0 AND\n" +
+                                "`nec_ExodontiaMolar`=0 AND\n" +
+                                "`nec_ExodontiaIncluso`=0 AND\n" +
+                                "`nec_Amalgama`=0 AND\n" +
+                                "`nec_Resina`=0 AND\n" +
+                                "`nec_RMF`=0 AND\n" +
+                                "`nec_Endodontiauniebirradicular`=0 AND\n" +
+                                "`nec_EndodontiaTrirradicular`=0 AND\n" +
+                                "`nec_CoroaTotal`=0 AND\n" +
+                                "`nec_PonteFixa3Elementos`=0 AND\n" +
+                                "`nec_Pontefixa4elementos`=0 AND\n" +
+                                "`nec_Pontefixamaisque4elementos`=0 AND\n" +
+                                "`nec_PPR`=0 AND\n" +
+                                "`nec_ProteseTotalPar`=0 AND\n" +
+                                "`nec_ProtesePPR`=0 AND\n" +
+                                "`nec_Protese`=0 AND\n" +
+                                "`nec_TerapiaPeriodontal`=0 AND\n" +
+                                "`nec_EndodontiaBirradicular`=0 AND\n" +
+                                "`nec_DTM`=0 AND\n" +
+                                "`nec_Estomatologia`=0 AND\n" +
+                                "`nec_PonteFixa`=0 AND\n" +
+                                "`nec_PonteFixaMaisQueTresElementos`=0 AND\n" +
+                                "`nec_RaspagemSub`=0 AND\n" +
+                                "`nec_RaspagemSupra`=0 AND\n" +
+                                "\n" +
+                                "`nec_referencia_rg`=?";
+             con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setString(1, rg);
+            ResultSet rs = smt.executeQuery();
+            int result=0;
+            while(rs.next())result++;
+            if(result>0){
+                try{
+                String sqlAlta="UPDATE `paciente` SET `pac_Alta`=1  WHERE `pac_RG`=?;";
+                con2=getConnection();
+                PreparedStatement smt2 = (PreparedStatement) con.prepareStatement(sqlAlta);
+                smt2.setString(1, rg);
+                int resultado= smt2.executeUpdate();
+                if(resultado==0)return  true;
+                }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, "Algo deu errado ao Atualizar o status do paciente!");
+            }
+            }
+            System.out.println("resultado da alta: "+result);
+            return false;
+            
+    }
 //Historico-----------------------------------------------------------------------------------------------------
     public boolean GravaPacienteNoHistorico(int codigo, String responsavel_tratamento, String rg) throws ClassNotFoundException, SQLException {
         boolean retorno = false;
@@ -1642,6 +1727,10 @@ public class conexao {
     
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
+
+    
+
+    
 
     
 

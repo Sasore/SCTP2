@@ -5,17 +5,13 @@
  */
 package sctp2.Paciente;
 
-import com.toedter.components.JTitlePanel;
+
 import java.awt.Color;
-import java.awt.event.ItemListener;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import sctp2.BancodeDados.*;
 import sctp2.ClassesdeControle.TratamentosNecessarios;
@@ -467,6 +463,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         tratamentosConvertidos=converteValores(tratamentosList);
         retorno=acesso.FinalizaTratamento(tratamentosConvertidos, rg);
         if(retorno==false){
+            retorno=acesso.VerificaAlta(rg);
             jNotificacao.setText("Tratamento(s) finalizados com sucesso!");
             AtualizaTabela();
         }

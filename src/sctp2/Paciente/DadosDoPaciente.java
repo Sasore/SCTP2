@@ -144,7 +144,6 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         jBVoltar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBVoltar.setForeground(new java.awt.Color(0, 0, 255));
         jBVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/left-arrow.png"))); // NOI18N
-        jBVoltar.setText("Voltar");
         jBVoltar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 50, 255), 1, true));
         jBVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

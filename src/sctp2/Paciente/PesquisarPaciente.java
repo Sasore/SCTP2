@@ -401,9 +401,10 @@ jTPesquisar.setText("");        // TODO add your handling code here:
         LimpaTabela();
         ArrayList<Pesquisar> listaPesquisa;
         listaPesquisa = acesso.PesquisarPorPaciente(jTPesquisar.getText());
-        if (listaPesquisa.isEmpty()) {
-            jTNotificacao.setText("Nenhum paciente encontrado");
-        } else {
+        if (listaPesquisa.isEmpty()) listaPesquisa = acesso.PesquisarPorPacientePorCPFRG(jTPesquisar.getText());
+        if(listaPesquisa.size()==0)jTNotificacao.setText("Nenhum paciente encontrado");
+            
+         else {
       //      int codigoProntuario = 0;
             for (int i = 0; i < listaPesquisa.size(); i++) {
                 int[] retorno = acesso.PesquisarProntuarioPaciente(listaPesquisa.get(i).getRg());
