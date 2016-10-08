@@ -6,10 +6,13 @@
 package sctp2.NovoTratamento;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
+import sctp2.Pesquisar.Pesquisar;
+import sctp2.Pesquisar.PesquisarProntuarioStatico;
 
 /**
  *
@@ -23,18 +26,17 @@ public class Prontuario extends javax.swing.JFrame {
      * @param rg
      * @param nome
      */
-    public Prontuario(String rg,String nome) {
+    public Prontuario(String rg) throws ClassNotFoundException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
         NomeresponsavelProntuario.enable(false);
         jTelefonefixo.enable(false);
         JcelularoAluno.enable(false);
-        System.out.println("rg "+rg);
         jRG.setText(rg);
-        jPaciente.setText(nome);
+        BuscaProntuario(rg);
 
     }
-     public Prontuario(String prontuario,String rg,String nome) {
+     public Prontuario(String prontuario,String rg,String nome) throws ClassNotFoundException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
         NomeresponsavelProntuario.enable(false);
@@ -44,6 +46,7 @@ public class Prontuario extends javax.swing.JFrame {
         System.out.println("rg "+rg);
         jRG.setText(rg);
         jPaciente.setText(nome);
+        BuscaProntuario(rg);
 
     }
 
@@ -397,7 +400,7 @@ public class Prontuario extends javax.swing.JFrame {
         if (retorno == false) {
             jNotificacao.setText(" Preencha os campos em vermelho");
         } else if (retorno == true) {
-            sctp2.NovoTratamento.Anamnese acesso = new sctp2.NovoTratamento.Anamnese();
+            sctp2.NovoTratamento.Anamnese acesso = new sctp2.NovoTratamento.Anamnese(jRG.getText());
             acesso.setVisible(true);//exibe a tela de cadastro de paciente
             this.setVisible(false);// oculta a tela atual
             PassaValores();
@@ -585,6 +588,20 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
         jRG.setText(rg);
         jPaciente.setText(nomepaciente);
         
+    }
+
+    private void BuscaProntuario(String rg) throws ClassNotFoundException {
+    sctp2.BancodeDados.conexao acesso= new sctp2.BancodeDados.conexao();
+    ArrayList<PesquisarProntuarioStatico> listarPesquisa;
+    listarPesquisa=acesso.PesquisarProntuariopelorg(rg);
+    ProntuarioInformacoesAdicionais.setText(listarPesquisa.get(0).getInformacoes());
+    Nprontuario.setText(listarPesquisa.get(0).getProntuario());
+    NomeresponsavelProntuario.setText(listarPesquisa.get(0).getNome());
+    JcelularoAluno.setText(listarPesquisa.get(0).getTelefone());
+    jTelefonefixo.setText(listarPesquisa.get(0).getTelefoneFixo());
+    jPaciente.setText(listarPesquisa.get(0).getPaciente());
+    jCodigoResponsavel.setText(Integer.toString(listarPesquisa.get(0).getCodigoProntuario()));
+            
     }
 
 }

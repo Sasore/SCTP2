@@ -7,6 +7,10 @@ package sctp2.NovoTratamento;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +23,21 @@ public class Anamnese extends javax.swing.JFrame {
      * Creates new form Anamnese
      */
     private int tamanhoFonte=15;//DEFINE O TAMANHO DA FONTE DESTA TELA
+    private String rg;
     public Anamnese() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
         DesabilitaCampos();
         TamanhoDaFonte(tamanhoFonte);//função que aumenta/diminui o tamanho da fonte da tela
+
+    }
+    public Anamnese(String rg) throws ClassNotFoundException, SQLException {
+        initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
+        DesabilitaCampos();
+        TamanhoDaFonte(tamanhoFonte);//função que aumenta/diminui o tamanho da fonte da tela
+        this.rg=rg;
+        ExibeAnamnese();
 
     }
 
@@ -347,6 +361,11 @@ public class Anamnese extends javax.swing.JFrame {
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancelar pequeno.png"))); // NOI18N
         jMenuItem3.setText("Sair");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -393,9 +412,15 @@ public class Anamnese extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sctp2.NovoTratamento.Prontuario acesso = new sctp2.NovoTratamento.Prontuario();
-        this.setVisible(false);
-        acesso.setVisible(true);
+        sctp2.NovoTratamento.Prontuario acesso;
+        try {
+            acesso = new sctp2.NovoTratamento.Prontuario(rg);
+            this.setVisible(false);
+            acesso.setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Anamnese.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -498,6 +523,10 @@ public class Anamnese extends javax.swing.JFrame {
     private void jBDiminuiTamFOnteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiminuiTamFOnteActionPerformed
         TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:
     }//GEN-LAST:event_jBDiminuiTamFOnteActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -649,5 +678,36 @@ public class Anamnese extends javax.swing.JFrame {
                 jBDiminuiTamFOnte.setEnabled(false);
                 jBAumentaTamFOnte.setEnabled(true);
                 }
+    }
+
+    private void ExibeAnamnese() throws ClassNotFoundException, SQLException {
+        sctp2.BancodeDados.conexao acesso= new sctp2.BancodeDados.conexao();
+        ArrayList<sctp2.ClassesdeControle.Anamnese> ListarPesquisa;
+        ListarPesquisa=acesso.ListarAnamnese(rg);
+        jPrincipalQueixa.setText(ListarPesquisa.get(0).getPrincipalQueixa());
+        if(ListarPesquisa.get(0).isSofreAlgumaDoenca()==true){
+            jCSofredoenca.setSelected(true);
+        }
+        if(ListarPesquisa.get(0).isSofreAlgumaDoenca()==true){
+            jCSofredoenca.setSelected(true);
+            jTSofreAlgumaDoencaDescricao.setText(ListarPesquisa.get(0).getSofreAlgumaDoencaDescricao());
+        }
+        if(ListarPesquisa.get(0).isEmTratamentoMedico()==true){
+            jCEmtratamentoMedico.setSelected(true);
+            jEmtratamentoMedicoDescricao.setText(ListarPesquisa.get(0).getEmTratamentoMedicoDescricao());
+        }
+        if(ListarPesquisa.get(0).isUsoDeAlgumaMedicacao()==true){
+            jCUsodeMedicacao.setSelected(true);
+            jUsodeMedicacaoDescricao.setText(ListarPesquisa.get(0).getUsoDeAlgumaMedicacaoDescricao());
+        }
+        if(ListarPesquisa.get(0).isPossuiAlergias()==true){
+            jCPossuiAlergias.setSelected(true);
+            jPossuiAlergiaDescricao.setText(ListarPesquisa.get(0).getPossuiAlergiasDescricao());
+        }
+        if(ListarPesquisa.get(0).isProblemasComCicatrizacao()==true)jProblemasComCicatrizacao.setSelected(true);
+        if(ListarPesquisa.get(0).isGravidez()==true)jgravidez.setSelected(true);
+        if(ListarPesquisa.get(0).isProblemasComAnestesia()==true)jprobelmasComAnestesia.setSelected(true);
+        if(ListarPesquisa.get(0).isProblemasComHemorragia()==true)jCProblemasComHemorragia.setSelected(true);
+            
     }
 }

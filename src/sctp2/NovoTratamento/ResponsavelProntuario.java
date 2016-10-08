@@ -355,7 +355,11 @@ private String nomepaciente;
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         this.setVisible(false);        // TODO add your handling code here:
+    try {
         new sctp2.NovoTratamento.Prontuario(codigo,rgresponsavel,paciente).setVisible(true);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
@@ -375,7 +379,11 @@ jPesquisa.setText("");        // TODO add your handling code here:
 //    boolean retorno = false;
 
 
-if(Codigojanela!=1)AdicionaNovoResponsavelChamaTelaProntuario();
+if(Codigojanela!=1)try {
+    AdicionaNovoResponsavelChamaTelaProntuario();
+} catch (ClassNotFoundException ex) {
+    Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+}
 else
 if(Codigojanela==1)try {
     AdicionarResponsaveleChamaTelaPesquisarProntuario();
@@ -405,11 +413,19 @@ if(Codigojanela==1)try {
     }//GEN-LAST:event_jPesquisaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-ChamaProntuario();
+    try {
+        ChamaProntuario();
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-ChamaProntuario();
+    try {
+        ChamaProntuario();
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -515,7 +531,7 @@ ChamaProntuario();
         
     }
 
-    private void ChamaProntuario() {
+    private void ChamaProntuario() throws ClassNotFoundException {
             if(envia==null){//se for igual a null significa que nao existe nehuma chave para acessar a interface prontuario
         envia= new Prontuario(codigo,rgresponsavel,nomepaciente);//nova chave para o objeto
     envia.setVisible(true);
@@ -529,7 +545,7 @@ ChamaProntuario();
 }
     }
 
-    private void AdicionaNovoResponsavelChamaTelaProntuario() {
+    private void AdicionaNovoResponsavelChamaTelaProntuario() throws ClassNotFoundException {
         try {
         PassaValoresResponsavel();
     } catch (ClassNotFoundException ex) {

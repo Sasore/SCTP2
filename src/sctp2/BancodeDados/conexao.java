@@ -1353,6 +1353,41 @@ public class conexao {
         }
         return ListarPesquisa;
     }
+    public ArrayList<Pesquisar> PesquisarResponsavelProntuario(int id) throws ClassNotFoundException {
+        String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, "
+                + "        `telefoneFixo_ResponsavelPeloProntuario`, `nomeProfessor_ResponsavelPeloProntuario`, "
+                + "         `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario` "
+                + "FROM `responsavelpeloprontuario` WHERE Id= ?;";
+        Connection con = null;
+        ArrayList<Pesquisar> ListarPesquisa;//array que recebera o resultado da pesquisa
+        ListarPesquisa = new ArrayList<>();//criando novo array
+        try {
+            con = getConnection();//criando variavel de conexao
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setInt(1, id);
+            ResultSet rs = smt.executeQuery();//efetuando a busca
+            while (rs.next()) {
+                Pesquisar pesquisarsmt = new Pesquisar();
+                pesquisarsmt.setCodigo(rs.getInt("id"));
+                pesquisarsmt.setNome(rs.getString("nome_ResponsavelPeloProntuario"));
+                pesquisarsmt.setTelefone(rs.getString("celular_ResponsavelPeloProntuario"));
+                pesquisarsmt.setTelefonefixo(rs.getString("telefoneFixo_ResponsavelPeloProntuario"));
+                pesquisarsmt.setNomeProfessor(rs.getString("nomeProfessor_ResponsavelPeloProntuario"));
+                pesquisarsmt.setTelefoneFixoProfessor(rs.getString("TelefoneProfessor_ResponsavelPeloProntuario"));
+                pesquisarsmt.setCelularProfessor(rs.getString("celularProfessor_ResponsavelPeloProntuario"));
+                ListarPesquisa.add(pesquisarsmt);
+            }
+
+        } catch (SQLException e) {
+            //System.out.println("Ocorreu um erro ao carrega a lista");
+            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos ou verifique a conexao!");
+            e.printStackTrace();
+
+        } finally {
+            closeConnection(con);
+        }
+        return ListarPesquisa;
+    }
 //Cadastro-----------------------------------------------------------------------------------------------------------------
     public boolean ExcluiCadastro(String codigoPaciente) throws ClassNotFoundException {
         Connection con = null;

@@ -1014,7 +1014,11 @@ public class DadosDoPaciente extends javax.swing.JFrame {
 
     private void jNovoTratamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNovoTratamentoActionPerformed
         this.setVisible(false);
-        new sctp2.NovoTratamento.Prontuario(jrg.getText(), jNome.getText()).setVisible(true);
+        try {
+            new sctp2.NovoTratamento.Prontuario(jrg.getText()).setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jNovoTratamentoActionPerformed
 
     /**
