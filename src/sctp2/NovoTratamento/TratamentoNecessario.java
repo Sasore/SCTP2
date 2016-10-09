@@ -19,12 +19,18 @@ public class TratamentoNecessario extends javax.swing.JFrame {
     /**
      * Creates new form TratamentoNecessario
      */
+    private String rg;
     public TratamentoNecessario() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
 
     }
+ public TratamentoNecessario(String rg) {
+        initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
+        this.rg=rg;
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -417,7 +423,7 @@ public class TratamentoNecessario extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
         jMenu1.setText("Menu");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente branco.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -459,9 +465,17 @@ public class TratamentoNecessario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sctp2.NovoTratamento.Anamnese acesso = new sctp2.NovoTratamento.Anamnese();
-        this.setVisible(false);
-        acesso.setVisible(true);
+        sctp2.NovoTratamento.Anamnese acesso;
+        try {
+            acesso = new sctp2.NovoTratamento.Anamnese(rg);
+            this.setVisible(false);
+            acesso.setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TratamentoNecessario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

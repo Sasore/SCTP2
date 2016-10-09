@@ -580,7 +580,7 @@ public class conexao {
                 + "FROM `prontuario` AS t1\n"
                 + "INNER JOIN responsavelpeloprontuario AS t2\n"
                 + "ON t2.Id=t1.pront_responsavel_prontuario\n"
-                + "WHERE `pront_Status`='1' AND t2.Id=?";
+                + "WHERE  t2.Id=?";
         Connection con = null;
         ArrayList<sctp2.Pesquisar.ResponsavelProntuario> ListarPesquisa = new ArrayList<>();//array que recebera o resultado da pesquisa
         

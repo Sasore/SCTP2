@@ -349,7 +349,7 @@ public class Anamnese extends javax.swing.JFrame {
         jMenu1.setText("Menu");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, 0));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente.png"))); // NOI18N
         jMenuItem2.setText("Voltar para o Início");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -406,7 +406,7 @@ public class Anamnese extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         SetValoresAnamnese();//passa os valores para a classe Anamenese
-        sctp2.NovoTratamento.TratamentoNecessario acesso = new sctp2.NovoTratamento.TratamentoNecessario();//chama a proxima tela
+        sctp2.NovoTratamento.TratamentoNecessario acesso = new sctp2.NovoTratamento.TratamentoNecessario(rg);//chama a proxima tela
         this.setVisible(false);
         acesso.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -691,23 +691,39 @@ public class Anamnese extends javax.swing.JFrame {
         if(ListarPesquisa.get(0).isSofreAlgumaDoenca()==true){
             jCSofredoenca.setSelected(true);
             jTSofreAlgumaDoencaDescricao.setText(ListarPesquisa.get(0).getSofreAlgumaDoencaDescricao());
+            jTSofreAlgumaDoencaDescricao.setEnabled(true);
+            jTSofreAlgumaDoencaDescricao.setBackground(Color.WHITE);
         }
         if(ListarPesquisa.get(0).isEmTratamentoMedico()==true){
             jCEmtratamentoMedico.setSelected(true);
             jEmtratamentoMedicoDescricao.setText(ListarPesquisa.get(0).getEmTratamentoMedicoDescricao());
+            jEmtratamentoMedicoDescricao.setEnabled(true);
+            jEmtratamentoMedicoDescricao.setBackground(Color.WHITE);
         }
         if(ListarPesquisa.get(0).isUsoDeAlgumaMedicacao()==true){
             jCUsodeMedicacao.setSelected(true);
             jUsodeMedicacaoDescricao.setText(ListarPesquisa.get(0).getUsoDeAlgumaMedicacaoDescricao());
+            jUsodeMedicacaoDescricao.setEnabled(true);
+            jUsodeMedicacaoDescricao.setBackground(Color.WHITE);
         }
         if(ListarPesquisa.get(0).isPossuiAlergias()==true){
             jCPossuiAlergias.setSelected(true);
             jPossuiAlergiaDescricao.setText(ListarPesquisa.get(0).getPossuiAlergiasDescricao());
+            jPossuiAlergiaDescricao.setEnabled(true);
+            jPossuiAlergiaDescricao.setBackground(Color.WHITE);
+        }
+        if(ListarPesquisa.get(0).isJaFoiOperado()==true){
+            jCJafoiOperado.setSelected(true);
+            jJaFoiOperadoDescricao.setText(ListarPesquisa.get(0).getJaFoiOperadoDescricao());
+            jJaFoiOperadoDescricao.setEnabled(true);
+            jJaFoiOperadoDescricao.setBackground(Color.WHITE);
+            
         }
         if(ListarPesquisa.get(0).isProblemasComCicatrizacao()==true)jProblemasComCicatrizacao.setSelected(true);
         if(ListarPesquisa.get(0).isGravidez()==true)jgravidez.setSelected(true);
         if(ListarPesquisa.get(0).isProblemasComAnestesia()==true)jprobelmasComAnestesia.setSelected(true);
         if(ListarPesquisa.get(0).isProblemasComHemorragia()==true)jCProblemasComHemorragia.setSelected(true);
+        
             
     }
 }

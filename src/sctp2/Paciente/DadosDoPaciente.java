@@ -794,7 +794,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         jMenu1.setText("Menu");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, 0));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente branco.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1196,7 +1196,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
             jTratamento.setText("Em tratamento");
             jNovoTratamento.setEnabled(true);
         } else if (statusdotratamento == 1) {
-            jTratamento.setText("Tratamento finalizado.");
+            jTratamento.setText("Paciente com Alta");
             jButton1.setEnabled(false);
             jNovoTratamento.setVisible(true);
             jNovoTratamento.setEnabled(true);
