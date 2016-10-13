@@ -62,6 +62,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/left-arrow.png"))); // NOI18N
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +190,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         jMenu1.setText("Menu");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, 0));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente branco.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,7 +457,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
                 System.out.println("");
             } else if (valor.toString().isEmpty()) {
                 System.out.println(" ");
-            } else //System.out.println("valor "+jTable1.getValueAt(i,0).toString());
+            } else 
             {
                 tratamentosList.add(jTable1.getValueAt(i, 0).toString());
             }

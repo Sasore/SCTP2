@@ -12,8 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/NovoTratamento/Anamnese.java</file>
-            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/ClassesdeControle/Prontuario.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Paciente/DadosDoPaciente.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Paciente/FinalizarTratamento.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Pesquisar/PesquisarProntuarioStatico.java</file>
+            <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/Paciente/PesquisarPaciente.java</file>
             <file>file:/E:/NetBeansProjects/SCTP2/src/sctp2/BancodeDados/conexao.java</file>
         </group>
     </open-files>

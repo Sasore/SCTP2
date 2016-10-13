@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import sctp2.Cadastros.Prontuario;
 import sctp2.ClassesdeControle.Anamnese;
 import sctp2.ClassesdeControle.DoencasSistemicas;
 import sctp2.ClassesdeControle.Habitos;
@@ -26,6 +27,7 @@ import sctp2.Paciente.HistoricoPaciente;
 import sctp2.Pesquisar.Pesquisar;
 import sctp2.Pesquisar.PesquisarProntuarioStatico;
 import sctp2.Pesquisar.PesquisarProntuario;
+import sctp2.Pesquisar.ResponsavelProntuario;
 
 /**
  *
@@ -430,7 +432,7 @@ public class conexao {
      //private ArrayList<PesquisarProntuario> PesquisaResponsavelProtuario(int id) throws ClassNotFoundException {
     private String[] PesquisaResponsavelProtuario(int id) throws ClassNotFoundException {
         Connection con = null;
-        String[] resposta = new String[3];
+        String[] resposta = new String[4];
         String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, `telefoneFixo_ResponsavelPeloProntuario`, `nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario` FROM `responsavelpeloprontuario` WHERE `Id`=?";
         try {
             con = getConnection();//criando variavel de conexao
@@ -441,6 +443,7 @@ public class conexao {
                 resposta[0] = rs.getString("nome_ResponsavelPeloProntuario");
                 resposta[1] = rs.getString("celular_ResponsavelPeloProntuario");
                 resposta[2] = rs.getString("telefoneFixo_ResponsavelPeloProntuario");
+                resposta[3] = Integer.toString(rs.getInt("Id"));
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos ou verifique a conexao!");
@@ -687,11 +690,12 @@ public class conexao {
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
                 if (verificavazio == null || verificavazio.trim().equals("")) {
-                    String[] resposta = new String[3];//recebera o retorno da função
+                    String[] resposta = new String[4];//recebera o retorno da função
                     resposta = PesquisaResponsavelProtuario(rs.getInt("pront_responsavel_prontuario"));
                     pesquisarsmt.setNome(resposta[0]);
                     pesquisarsmt.setTelefone(resposta[1]);
                     pesquisarsmt.setTelefoneFixo(resposta[1]);
+                    pesquisarsmt.setResponsavelProntuario(Integer.parseInt(resposta[3]));
                 };
                 ListarPesquisa.add(pesquisarsmt);
             }
@@ -889,7 +893,7 @@ public class conexao {
         }
         return ListarPesquisa;
     }
-      public ArrayList<Anamnese> ListarAnamnese(String iDpaciente) throws ClassNotFoundException, SQLException {
+      public ArrayList<Anamnese> ListarAnamnese(String rg) throws ClassNotFoundException, SQLException {
         Connection con = null;
         boolean retorno = false;
         ArrayList<sctp2.ClassesdeControle.Anamnese> ListarPesquisa;
@@ -901,7 +905,7 @@ public class conexao {
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
-            smt.setString(1, iDpaciente);
+            smt.setString(1, rg);
             ResultSet rs = smt.executeQuery();
             sctp2.ClassesdeControle.Anamnese pesquisarsmt = new sctp2.ClassesdeControle.Anamnese();
             while (rs.next()) {
@@ -1626,6 +1630,16 @@ public class conexao {
 
     public boolean GravaNoHistoricoNecessidade(String rg, ArrayList<String> tratamentos) throws ClassNotFoundException, SQLException {
         Connection con = null;
+        ArrayList<Anamnese> ListaAnamnese;
+        ArrayList<PesquisarProntuarioStatico> ListaProntuario;
+        ArrayList<Pesquisar> ListaResponsavelProntuario;
+        ListaAnamnese=ListarAnamnese(rg);//pega os dados da anamnese atual do paciente
+        ListaProntuario=PesquisarProntuariopelorg(rg);
+        
+        System.out.println("prontuario "+ListaProntuario.get(0).getResponsavelProntuario());
+        //ListaResponsavelProntuario=PesquisarResponsavelProntuario(ListaProntuario.get(0).getPront_AlunoEmprestado());
+        //System.out.println("codigo responsavel  "+ListaResponsavelProntuario.get(0).getCodigo());
+        
         //---------------------------------Criação do sql dinâmico-------------------------
         String sql = "INSERT INTO `historiconecessidade`(nec_referencia_rg,";
         int incrementa = 0;//com esta variavel saberei quantos registros existem dentro do vetor;
@@ -1638,16 +1652,20 @@ public class conexao {
                 incrementa++;
             }
         }
-        sql = sql + "dataFimTratamento_historicoNecessidade) VALUES(" + rg + ",";
+        sql = sql + "dataFimTratamento_historicoNecessidade,queixa_historicoTratamento,responsavel_historicoTratamento) VALUES(" + rg + ",";
         for (int i = 0; i < incrementa; i++) {
             if (tratamentos.get(i) != null) {
                 sql = sql + "1";
                 sql = sql + ",";//para impedir que adicione uma virgula depois do ultimo parâmetro
             }
         }
-        sql = sql + "CURRENT_DATE);";
+        sql = sql + "CURRENT_DATE,?,?);";
         con = getConnection();
         PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        //smt.setString(1, ListaAnamnese.get(0).getPrincipalQueixa());
+        //smt.setString(2, ListaResponsavelProntuario.get(0).getNome());
+        smt.setString(1, ListaAnamnese.get(0).getPrincipalQueixa());
+        smt.setInt(2,ListaProntuario.get(0).getResponsavelProntuario());
         System.out.println("sql " + sql);
         boolean retorno = smt.execute();
         
@@ -1695,14 +1713,18 @@ public class conexao {
     
 
     public ArrayList<HistoricoDetratamentos> PesquisarHistóricoTratamentos(String rg) throws ClassNotFoundException {
-        String sql = "SELECT `nec_Cod`, `nec_referencia_rg`, `nec_ProfilaxiaSimples`, `nec_RaspagemPolimentoCoronario`,"
-                + " `nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`,"
-                + " `nec_Amalgama`, `nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, "
-                + "`nec_CoroaTotal`, `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, "
-                + "`nec_PPR`, `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`,"
-                + " `nec_EndodontiaBirradicular`, `nec_DTM`, `nec_Estomatologia`, `Historico_codigoTratamento`,"
-                + " `nec_PonteFixa`, `nec_PonteFixaMaisQueTresElementos`, `nec_RaspagemSub`, `nec_RaspagemSupra` "
-                + "FROM `historiconecessidade` WHERE `nec_referencia_rg`=?";
+        String sql = "SELECT `nec_Cod`, `nec_referencia_rg`, `queixa_historicoTratamento`, "
+                + "`responsavel_historicoTratamento`,responsavelpeloprontuario.nome_ResponsavelPeloProntuario, "
+                + "`dataFimTratamento_historicoNecessidade`, `nec_ProfilaxiaSimples`, `nec_RaspagemPolimentoCoronario`, "
+                + "`nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, `nec_Amalgama`, "
+                + "`nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`,"
+                + " `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, `nec_PPR`,"
+                + " `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`, "
+                + "`nec_DTM`, `nec_Estomatologia`, `Historico_codigoTratamento`, `nec_PonteFixa`, `nec_PonteFixaMaisQueTresElementos`, `"
+                + "nec_RaspagemSub`, `nec_RaspagemSupra` FROM `historiconecessidade`\n" +
+                    "JOIN responsavelpeloprontuario\n" +
+                    "ON historiconecessidade.responsavel_historicoTratamento=responsavelpeloprontuario.Id\n" +
+                    "WHERE `nec_referencia_rg`=?";
         Connection con = null;
         sctp2.Paciente.HistoricoDetratamentos pesquisarsmt;
         ArrayList<sctp2.Paciente.HistoricoDetratamentos> ListarPesquisa;
@@ -1715,6 +1737,9 @@ public class conexao {
             while (rs.next()) {
                 pesquisarsmt = new sctp2.Paciente.HistoricoDetratamentos();
                 pesquisarsmt.setCodigo(rs.getInt("nec_Cod"));
+                pesquisarsmt.setIdResponsavelPeloTratamento(rs.getInt("responsavel_historicoTratamento"));
+                pesquisarsmt.setResponsavelPeloTratamento(rs.getString("responsavelpeloprontuario.nome_ResponsavelPeloProntuario"));
+                pesquisarsmt.setQueixa(rs.getString("queixa_historicoTratamento"));
                 pesquisarsmt.setProfilaxiaSimples(rs.getInt("nec_ProfilaxiaSimples"));
                 pesquisarsmt.setRg(rs.getString("nec_referencia_rg"));
                 pesquisarsmt.setRaspagemEPoliCCoronario(rs.getInt("nec_RaspagemPolimentoCoronario"));
@@ -1744,6 +1769,7 @@ public class conexao {
                 pesquisarsmt.setRaspagemSub(rs.getInt("nec_RaspagemSub"));
                 pesquisarsmt.setRaspagemSupra(rs.getInt("nec_RaspagemSupra"));
                 pesquisarsmt.setHistorico_codigoTratamento(rs.getInt("Historico_codigoTratamento"));
+                pesquisarsmt.setFimTratamento(rs.getDate("dataFimTratamento_historicoNecessidade"));
                 ListarPesquisa.add(pesquisarsmt);
             }
         } catch (SQLException e) {

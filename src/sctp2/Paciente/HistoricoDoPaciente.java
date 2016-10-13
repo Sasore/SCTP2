@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import sctp2.SCTP2;
 
 /**
  *
@@ -21,6 +22,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
 
     ArrayList<sctp2.Paciente.HistoricoPaciente> ListarPesquisa;
     ArrayList<HistoricoDetratamentos> ListarTratamentos;
+    private String rg;
 
     /**
      * Creates new form HistoricoDoPaciente
@@ -28,8 +30,10 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
     public HistoricoDoPaciente(int codigoPaciente, String rg) throws ClassNotFoundException, SQLException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
+        this.rg=rg;
+        PesquisaPaciente();
         PesquisaHistorico(codigoPaciente, rg);
-        jrg.setText(rg);
+        
 
     }
 
@@ -52,22 +56,19 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jNome = new javax.swing.JTextField();
-        jResponsavel = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jInicioTratamento = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jFimtratamento = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jQueixaPrincipal = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jNotificacao = new javax.swing.JTextField();
-        jrg = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jQueixaPrincipal = new javax.swing.JTextPane();
+        jLabel4 = new javax.swing.JLabel();
+        jResponsavel = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jNome = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jFimtratamento = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -85,6 +86,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Histórico de tratamento do paciente");
 
+        jTable1.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -107,27 +109,6 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-
-        jLabel2.setText("Nome: ");
-
-        jLabel3.setText("Responsável pelo tratamento:");
-
-        jLabel4.setText("Principal Queixa:");
-
-        jNome.setEditable(false);
-
-        jResponsavel.setEditable(false);
-
-        jLabel5.setText("Início tratamento:");
-
-        jInicioTratamento.setEditable(false);
-
-        jLabel6.setText("Fim tratamento: ");
-
-        jFimtratamento.setEditable(false);
-
-        jQueixaPrincipal.setEditable(false);
-        jScrollPane2.setViewportView(jQueixaPrincipal);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,9 +134,86 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         jNotificacao.setForeground(new java.awt.Color(51, 51, 145));
         jNotificacao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jrg.setEditable(false);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
 
-        jLabel7.setText("RG paciente: ");
+        jQueixaPrincipal.setEditable(false);
+        jScrollPane2.setViewportView(jQueixaPrincipal);
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Principal Queixa:");
+
+        jResponsavel.setEditable(false);
+
+        jLabel6.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Fim tratamento: ");
+
+        jNome.setEditable(false);
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Responsável pelo tratamento:");
+
+        jFimtratamento.setEditable(false);
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Paciente");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFimtratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                                .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFimtratamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,31 +223,13 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jNome)
-                            .addComponent(jResponsavel)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                            .addComponent(jInicioTratamento)
-                            .addComponent(jFimtratamento))
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jrg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(130, Short.MAX_VALUE)
                 .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
         );
@@ -199,38 +239,10 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jInicioTratamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFimtratamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(jLabel4)))
-                        .addGap(63, 63, 63))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -255,7 +267,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1137, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +332,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         try {
-            new sctp2.Paciente.DadosDoPaciente(jrg.getText()).setVisible(true);
+            new sctp2.Paciente.DadosDoPaciente(rg).setVisible(true);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(HistoricoDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -328,17 +340,19 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int linha = jTable1.getSelectedRow();
-        String iniciotratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(linha).getIniciotratamento());
-        String fimtratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(linha).getFimtratamento());
-        jNome.setText(ListarPesquisa.get(linha).getNomepaciente());
-        jInicioTratamento.setText(iniciotratamento);
-        jFimtratamento.setText(fimtratamento);
-        jResponsavel.setText(ListarPesquisa.get(linha).getResponsaveltratamento());
-        jQueixaPrincipal.setText(ListarPesquisa.get(linha).getQueixa());
+//        String iniciotratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(linha).getIniciotratamento());
+        String fimtratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarTratamentos.get(linha).getFimTratamento());
+        //jInicioTratamento.setText(iniciotratamento);
+//        jFimtratamento.setText(fimtratamento);
+//        jResponsavel.setText(ListarPesquisa.get(linha).getResponsaveltratamento());
+//        jQueixaPrincipal.setText(ListarPesquisa.get(linha).getQueixa());
         LimpaTabela();//limpa a tabela de tratamentos
 //        //---------------------------Lista os tratamentos-------------------------------------------------------------------
         int[] tratamento = new int[27];
         System.out.println("linha: " + linha);
+        jQueixaPrincipal.setText(ListarTratamentos.get(linha).getQueixa());
+        jFimtratamento.setText(ListarTratamentos.get(linha).getFimTratamento().toString());
+        jResponsavel.setText(ListarTratamentos.get(linha).getResponsavelPeloTratamento());
         tratamento[0] = ListarTratamentos.get(linha).getProfilaxiaSimples();
         tratamento[1] = ListarTratamentos.get(linha).getRaspagemEPoliCCoronario();
         tratamento[2] = ListarTratamentos.get(linha).getCirugiaPeridontal();
@@ -491,14 +505,11 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JTextField jFimtratamento;
-    private javax.swing.JTextField jInicioTratamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -507,6 +518,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField jNotificacao;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextPane jQueixaPrincipal;
     private javax.swing.JTextField jResponsavel;
     private javax.swing.JScrollPane jScrollPane1;
@@ -514,7 +526,6 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jrg;
     // End of variables declaration//GEN-END:variables
 
     private void PesquisaHistorico(int codigoPaciente, String rg) throws ClassNotFoundException, SQLException {
@@ -524,17 +535,18 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         //--------------------------------------------------
         ListarPesquisa = acesso.PesquisarHistórico(codigoPaciente);
         ListarTratamentos = acesso.PesquisarHistóricoTratamentos(rg);
+        if(!ListarPesquisa.isEmpty())  jNome.setText(ListarPesquisa.get(0).getNomepaciente());
         //-----------------------------------------------
 
         //-----------------------------------------------
-        if (ListarPesquisa.size() == 0) {
+        if (ListarTratamentos.size() == 0) {
             jNotificacao.setText("Não há histórico para este usuário!");
         } else {
 
 
-            for (int i = 0; i < ListarPesquisa.size(); i++) {
+            for (int i = 0; i < ListarTratamentos.size(); i++) {
                 //String iniciotratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(i).getIniciotratamento());
-                String fimtratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(i).getFimtratamento());
+                String fimtratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarTratamentos.get(i).getFimTratamento());
                 valor.addRow((new String[]{fimtratamento}));
             }
             jNotificacao.setText("Clique na data do tratamento na tabela 'Período do Tratamento' para ver os detalhes!");
@@ -548,5 +560,12 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         tabela = (DefaultTableModel) jTable2.getModel();
         tabela.setNumRows(0);
         //********************************************
+    }
+
+    private void PesquisaPaciente() throws ClassNotFoundException {
+    sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
+    ArrayList<sctp2.Pesquisar.Pesquisar> ListaPesquisa;
+    ListaPesquisa=acesso.PesquisarPorPacientePorCPFRG(rg);
+    jNome.setText(ListaPesquisa.get(0).getNome());
     }
 }

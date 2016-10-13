@@ -5,6 +5,8 @@
  */
 package sctp2.Paciente;
 
+import java.sql.Date;
+
 /**
  *
  * @author Adriano Local
@@ -12,6 +14,10 @@ package sctp2.Paciente;
 public class HistoricoDetratamentos {
     private   int codigo;
     private   String rg;
+    private   int idResponsavelPeloTratamento;
+    private   String ResponsavelPeloTratamento;
+    private   String queixa;
+    private   Date fimTratamento;
     private   int dtm;
     private   int profilaxiaSimples;
     private   int exodontiaSimples;
@@ -57,6 +63,30 @@ public class HistoricoDetratamentos {
         this.codigo = codigo;
     }
 
+    public int getIdResponsavelPeloTratamento() {
+        return idResponsavelPeloTratamento;
+    }
+
+    public void setIdResponsavelPeloTratamento(int idResponsavelPeloTratamento) {
+        this.idResponsavelPeloTratamento = idResponsavelPeloTratamento;
+    }
+
+    public String getResponsavelPeloTratamento() {
+        return ResponsavelPeloTratamento;
+    }
+
+    public void setResponsavelPeloTratamento(String ResponsavelPeloTratamento) {
+        this.ResponsavelPeloTratamento = ResponsavelPeloTratamento;
+    }
+
+    public String getQueixa() {
+        return queixa;
+    }
+
+    public void setQueixa(String queixa) {
+        this.queixa = queixa;
+    }
+
     public String getRg() {
         return rg;
     }
@@ -75,6 +105,14 @@ public class HistoricoDetratamentos {
 
     public int getProfilaxiaSimples() {
         return profilaxiaSimples;
+    }
+
+    public Date getFimTratamento() {
+        return fimTratamento;
+    }
+
+    public void setFimTratamento(Date fimTratamento) {
+        this.fimTratamento = fimTratamento;
     }
 
     public void setProfilaxiaSimples(int profilaxiaSimples) {

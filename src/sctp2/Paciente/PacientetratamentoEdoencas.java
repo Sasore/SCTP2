@@ -128,6 +128,7 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 102, 255));
         jLabel2.setText("Doenças:  ");
 
+        jTableDoencas.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jTableDoencas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -180,6 +181,7 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Tratamento atual:");
 
+        jTable1.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -230,6 +232,8 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
 
         jNome.setEditable(false);
         jNome.setBackground(new java.awt.Color(204, 204, 204));
+        jNome.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        jNome.setForeground(new java.awt.Color(255, 255, 255));
         jNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -243,9 +247,11 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
 
         jPrincipalQueixa.setEditable(false);
         jPrincipalQueixa.setColumns(20);
+        jPrincipalQueixa.setFont(new java.awt.Font("Monospaced", 0, 15)); // NOI18N
         jPrincipalQueixa.setRows(5);
         jScrollPane3.setViewportView(jPrincipalQueixa);
 
+        jTableSaude.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jTableSaude.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -270,11 +276,13 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
 
         jBebida.setEditable(false);
         jBebida.setColumns(20);
+        jBebida.setFont(new java.awt.Font("Monospaced", 0, 15)); // NOI18N
         jBebida.setRows(5);
         jScrollPane5.setViewportView(jBebida);
 
         jFumante.setEditable(false);
         jFumante.setColumns(20);
+        jFumante.setFont(new java.awt.Font("Monospaced", 0, 15)); // NOI18N
         jFumante.setRows(5);
         jScrollPane6.setViewportView(jFumante);
 
