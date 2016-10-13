@@ -506,10 +506,6 @@ jPesquisa.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaMouseReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//    boolean retorno = false;
-
-
-
     try {
         AdicionaNovoResponsavelChamaTelaProntuario();
     } catch (ClassNotFoundException ex) {
@@ -740,7 +736,7 @@ sctp2.ClassesdeControle.Controle acesso= new sctp2.ClassesdeControle.Controle();
     envia= new Prontuario();
     envia.setVisible(true);
     //envia é uma referencia para a tela prontuário que chama a função recebe, esta irá receber os valores que foram registrados nesta tela
-    envia.Recebe(codigo,nomeresponsavel.getText(),jFTelefoneFixo.getText(),jFTelefoneFixo.getText(),Idresponsavel);
+    envia.Recebe(codigo,nomeresponsavel.getText(),jFTelefoneFixo.getText(),jFTelefoneFixo.getText(),Idresponsavel.toString());
     this.setVisible(false);//envia os dados adicionados para a internface Prontuario e fecha esta tela
 
 

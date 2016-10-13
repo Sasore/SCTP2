@@ -946,7 +946,7 @@ public class Prontuario extends javax.swing.JFrame {
                 jBprontuario.setText("Emprestar Prontuário");
             }
             for (int i = 0; i < ListarPesquisa.size(); i++) {
-                valor.addRow((new String[]{(ListarPesquisa.get(i).getProntuario()), ListarPesquisa.get(i).getNome(), ListarPesquisa.get(i).getTelefoneFixo(), ListarPesquisa.get(i).getTelefoneFixo(), ListarPesquisa.get(i).getPaciente(), ListarPesquisa.get(i).getStatus()}));//
+                valor.addRow((new String[]{(Integer.toString(ListarPesquisa.get(i).getCodigoProntuario())), ListarPesquisa.get(i).getNome(), ListarPesquisa.get(i).getTelefoneFixo(), ListarPesquisa.get(i).getTelefoneFixo(), ListarPesquisa.get(i).getPaciente(), ListarPesquisa.get(i).getStatus()}));//
                 jTNotificacao.setForeground(Color.BLUE);
                 jTNotificacao.setText("Selecione o prontuario para emprestar ou devolvê-lo.");
             }
@@ -1033,7 +1033,7 @@ public class Prontuario extends javax.swing.JFrame {
             jButton3.setVisible(false);
             jButton4.setVisible(false);
             jDescricaoProntuario.setText(ListarPesquisa.get(linha).getInformacoes());
-            jTNprontuario.setText(ListarPesquisa.get(linha).getProntuario());
+            jTNprontuario.setText(Integer.toString(ListarPesquisa.get(linha).getCodigoProntuario()));
             jTPaciente.setText(ListarPesquisa.get(linha).getPaciente());
             if (ListarPesquisa.get(linha).getStatus().equals("Reservado")) {//Se o prontuario estiver Reservado
                 jLStatus.setText("Atualmente reservado para " + ListarPesquisa.get(linha).getNome() + " até o dia  " + ConverteDataBrasil(ListarPesquisa.get(linha).getDataDevolução()));
@@ -1099,7 +1099,7 @@ public class Prontuario extends javax.swing.JFrame {
                 jBprontuario.setText("Emprestar Prontuário");
             }
             for (int i = 0; i < ListarPesquisa.size(); i++) {
-                valor.addRow((new String[]{(ListarPesquisa.get(i).getProntuario()), ListarPesquisa.get(i).getNome(), ListarPesquisa.get(i).getTelefoneFixo(), ListarPesquisa.get(i).getTelefoneFixo(), ListarPesquisa.get(i).getPaciente(), ListarPesquisa.get(i).getStatus()}));//
+                valor.addRow((new String[]{(Integer.toString(ListarPesquisa.get(i).getCodigoProntuario())), ListarPesquisa.get(i).getNome(), ListarPesquisa.get(i).getTelefoneFixo(), ListarPesquisa.get(i).getTelefoneFixo(), ListarPesquisa.get(i).getPaciente(), ListarPesquisa.get(i).getStatus()}));//
                 jTNotificacao.setForeground(Color.BLUE);
                 jTNotificacao.setText("Selecione o prontuario para emprestar ou devolvê-lo.");
             }

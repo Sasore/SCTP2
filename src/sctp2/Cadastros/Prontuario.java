@@ -510,7 +510,7 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
         acesso.setInformacoesProntuario(ProntuarioInformacoesAdicionais.getText());
         if(jCodigoResponsavel.getText().trim().equals(""))acesso.setIdResponsavelProntuario("0");
         else
-            if(jCodigoResponsavel.getText().trim().equals(""))acesso.setIdResponsavelProntuario(jCodigoResponsavel.getText());
+            if(!jCodigoResponsavel.getText().trim().equals(""))acesso.setIdResponsavelProntuario(jCodigoResponsavel.getText());
 
     }
 

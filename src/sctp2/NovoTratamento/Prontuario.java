@@ -6,6 +6,7 @@
 package sctp2.NovoTratamento;
 
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -399,11 +400,19 @@ public class Prontuario extends javax.swing.JFrame {
         retorno = VerificaCampos();//função para vetificar os campos que não podem ficar em branco
         if (retorno == false) {
             jNotificacao.setText(" Preencha os campos em vermelho");
+            
         } else if (retorno == true) {
-            sctp2.NovoTratamento.Anamnese acesso = new sctp2.NovoTratamento.Anamnese(jRG.getText());
-            acesso.setVisible(true);//exibe a tela de cadastro de paciente
-            this.setVisible(false);// oculta a tela atual
-            PassaValores();
+            try {
+                sctp2.NovoTratamento.Anamnese acesso;
+                acesso = new sctp2.NovoTratamento.Anamnese(jRG.getText());
+                acesso.setVisible(true);//exibe a tela de cadastro de paciente
+                this.setVisible(false);// oculta a tela atual
+                PassaValores();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
     }//GEN-LAST:event_proximaetapaActionPerformed
@@ -556,11 +565,6 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
 
     private boolean VerificaCampos() {//função que verifica se os campos obrigatórios foram preenchidos
         boolean retorno = true;
-        if (Nprontuario.getText().trim().equals("")) {
-            Nprontuario.setBorder(new LineBorder(Color.red));
-            retorno = false;
-        }
-
         if (NomeresponsavelProntuario.getText().trim().equals("")) {
             NomeresponsavelProntuario.setBorder(new LineBorder(Color.red));
             retorno = false;
@@ -595,7 +599,7 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
     ArrayList<PesquisarProntuarioStatico> listarPesquisa;
     listarPesquisa=acesso.PesquisarProntuariopelorg(rg);
     ProntuarioInformacoesAdicionais.setText(listarPesquisa.get(0).getInformacoes());
-    Nprontuario.setText(listarPesquisa.get(0).getProntuario());
+    Nprontuario.setText(Integer.toString(listarPesquisa.get(0).getCodigoProntuario()));
     NomeresponsavelProntuario.setText(listarPesquisa.get(0).getNome());
     JcelularoAluno.setText(listarPesquisa.get(0).getTelefone());
     jTelefonefixo.setText(listarPesquisa.get(0).getTelefoneFixo());

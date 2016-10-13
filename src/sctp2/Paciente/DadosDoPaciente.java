@@ -1408,7 +1408,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
                 jsituacaoprontuario.setText("Disponível");
             }
 
-            jprontuario.setText(ListarPesquisa.get(0).getProntuario());
+            jprontuario.setText(Integer.toString(ListarPesquisa.get(0).getCodigoProntuario()));
             jresponsavelprontuario.setText(ListarPesquisa.get(0).getNome());
             jcelularprontuario.setText(ListarPesquisa.get(0).getTelefone());
             jtelefonfixoprontuario.setText(ListarPesquisa.get(0).getTelefoneFixo());

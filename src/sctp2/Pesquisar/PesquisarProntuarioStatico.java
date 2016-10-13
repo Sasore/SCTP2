@@ -6,7 +6,6 @@
 package sctp2.Pesquisar;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  *
