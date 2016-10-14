@@ -152,7 +152,7 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="21">
+              <StringArray count="27">
                 <StringItem index="0" value="Profilaxia Simples"/>
                 <StringItem index="1" value="Raspagem E Polimento Coron&#xe1;rio"/>
                 <StringItem index="2" value="Cirurgia Periodontal"/>
@@ -174,6 +174,12 @@
                 <StringItem index="18" value="Pr&#xf3;tese + PPR"/>
                 <StringItem index="19" value="Pr&#xf3;tese (1)"/>
                 <StringItem index="20" value="Terapia Periodontal de Suporte"/>
+                <StringItem index="21" value="Ponte Fixa"/>
+                <StringItem index="22" value="Ponte Fixa mais que tr&#xea;s elementos"/>
+                <StringItem index="23" value="Raspagem Supra"/>
+                <StringItem index="24" value="Raspagem Sub"/>
+                <StringItem index="25" value=" "/>
+                <StringItem index="26" value=" "/>
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -185,6 +191,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jComboNecessidadeMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboNecessidadeActionPerformed"/>
           </Events>
         </Component>

@@ -306,7 +306,8 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 102, 255));
         jLabel2.setText("Sexo: ");
 
-        jsexo.setForeground(new java.awt.Color(0, 0, 255));
+        jsexo.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jsexo.setForeground(new java.awt.Color(0, 51, 51));
         jsexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Masculino", "Feminino" }));
         jsexo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
 
@@ -314,7 +315,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 102, 255));
         jLabel3.setText("Procedência: ");
 
-        jprocedencia.setForeground(new java.awt.Color(0, 0, 255));
+        jprocedencia.setForeground(new java.awt.Color(51, 0, 51));
         jprocedencia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zona Urbana", "Zona Rural" }));
         jprocedencia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
 
@@ -322,7 +323,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 102, 255));
         jLabel4.setText("Estado civil: ");
 
-        jestadocivil.setForeground(new java.awt.Color(0, 0, 255));
+        jestadocivil.setForeground(new java.awt.Color(51, 0, 51));
         jestadocivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Solteiro", "Casado", "Viúvo", "Divorciado" }));
         jestadocivil.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         jestadocivil.addActionListener(new java.awt.event.ActionListener() {
@@ -569,7 +570,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
                                                     .addComponent(jNome, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                                                     .addComponent(jocupação)
                                                     .addComponent(jpai)
-                                                    .addComponent(jsexo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(jsexo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGap(10, 10, 10)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -759,7 +760,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)

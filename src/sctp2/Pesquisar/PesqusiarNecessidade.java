@@ -67,8 +67,13 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
         jLabel2.setText("Selecione uma necessidade");
 
         jComboNecessidade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboNecessidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Profilaxia Simples", "Raspagem E Polimento Coronário", "Cirurgia Periodontal", "Exodontia Simples", "Exodontia 3º Molar", "Exodontia Incluso", "Amálgama", "Resina", "RMF", "Endodontia Unirradicular", "Endodontia Birradicular", "Endodontia Trirradicular", "Coroa Total", "Ponte Fixa 3 Elementos", "Ponte Fixa 4 Elementos", "Ponte Fixa Mais que 4 Elementos", "PPR", "Prótese total (Par)", "Prótese + PPR", "Prótese (1)", "Terapia Periodontal de Suporte" }));
+        jComboNecessidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Profilaxia Simples", "Raspagem E Polimento Coronário", "Cirurgia Periodontal", "Exodontia Simples", "Exodontia 3º Molar", "Exodontia Incluso", "Amálgama", "Resina", "RMF", "Endodontia Unirradicular", "Endodontia Birradicular", "Endodontia Trirradicular", "Coroa Total", "Ponte Fixa 3 Elementos", "Ponte Fixa 4 Elementos", "Ponte Fixa Mais que 4 Elementos", "PPR", "Prótese total (Par)", "Prótese + PPR", "Prótese (1)", "Terapia Periodontal de Suporte", "Ponte Fixa", "Ponte Fixa mais que três elementos", "Raspagem Supra", "Raspagem Sub", " ", " " }));
         jComboNecessidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jComboNecessidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboNecessidadeMouseClicked(evt);
+            }
+        });
         jComboNecessidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboNecessidadeActionPerformed(evt);
@@ -284,6 +289,10 @@ PesquisarPorNecessidade();        // TODO add your handling code here:
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jComboNecessidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboNecessidadeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboNecessidadeMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -404,6 +413,18 @@ PesquisarPorNecessidade();        // TODO add your handling code here:
                 break;
             case 20:
                 verificaNecessidade = "nec_TerapiaPeriodontal";
+                break;
+            case 21:
+                verificaNecessidade="nec_PonteFixa";
+                break;
+            case 22:
+                verificaNecessidade="nec_PonteFixaMaisQueTresElementos";
+                break;
+            case 23:
+                verificaNecessidade="nec_RaspagemSupra";
+                break;
+            case 24:
+                verificaNecessidade="nec_RaspagemSub";
                 break;
             default:
                 verificaNecessidade = "Errado";
