@@ -13,6 +13,23 @@ import java.time.LocalDate;
  * @author Adriano Local
  */
 public class PesquisarProntuario {
+    private int   idResponsavel;
+    private  String nome;
+    private  String telefone;
+    private  String telefoneFixo;
+    private  String prontuario;
+    private  String paciente;
+    private  String informacoes;
+    private Date     dataEmprestimo;
+    private Date     dataDevolução;
+    private int           codigoProntuario;
+    private  int    status;
+    private int          idUsuarioReservado;
+    private int          pront_AlunoEmprestado;
+    private int          responsavelProntuario;
+    private String      nomeProfessor;
+    private String      TelefoneProfessor;
+    private String      celularProfessor;
 
     public  String getNome() {
         return nome;
@@ -22,13 +39,19 @@ public class PesquisarProntuario {
         this.nome = nome;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+   
 
     
     public  String getProntuario() {
         return prontuario;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
 
@@ -42,6 +65,14 @@ public class PesquisarProntuario {
 
     public void setPaciente(String paciente) {
         this.paciente = paciente;
+    }
+
+    public int getIdResponsavel() {
+        return idResponsavel;
+    }
+
+    public void setIdResponsavel(int idResponsavel) {
+        this.idResponsavel = idResponsavel;
     }
 
 
@@ -130,20 +161,32 @@ public class PesquisarProntuario {
     public void setResponsavelProntuario(int responsavelProntuario) {
         this.responsavelProntuario = responsavelProntuario;
     }
+
+    public String getNomeProfessor() {
+        return nomeProfessor;
+    }
+
+    public void setNomeProfessor(String nomeProfessor) {
+        this.nomeProfessor = nomeProfessor;
+    }
+
+    public String getTelefoneProfessor() {
+        return TelefoneProfessor;
+    }
+
+    public void setTelefoneProfessor(String TelefoneProfessor) {
+        this.TelefoneProfessor = TelefoneProfessor;
+    }
+
+    public String getCelularProfessor() {
+        return celularProfessor;
+    }
+
+    public void setCelularProfessor(String celularProfessor) {
+        this.celularProfessor = celularProfessor;
+    }
     
     
-    private  String nome;
-    private  String telefone;
-    private  String telefoneFixo;
-    private  String prontuario;
-    private  String paciente;
-    private  String informacoes;
-    private Date     dataEmprestimo;
-    private Date     dataDevolução;
-    private int           codigoProntuario;
-    private  int    status;
-    private int          idUsuarioReservado;
-    private int          pront_AlunoEmprestado;
-    private int          responsavelProntuario;
+    
 
 }

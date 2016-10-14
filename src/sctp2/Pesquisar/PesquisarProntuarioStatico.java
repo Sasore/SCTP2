@@ -130,6 +130,30 @@ public class PesquisarProntuarioStatico {
     public void setResponsavelProntuario(int responsavelProntuario) {
         this.responsavelProntuario = responsavelProntuario;
     }
+
+    public String getNomeProfessor() {
+        return nomeProfessor;
+    }
+
+    public void setNomeProfessor(String nomeProfessor) {
+        this.nomeProfessor = nomeProfessor;
+    }
+
+    public String getTelefoneProfessor() {
+        return TelefoneProfessor;
+    }
+
+    public void setTelefoneProfessor(String TelefoneProfessor) {
+        this.TelefoneProfessor = TelefoneProfessor;
+    }
+
+    public String getCelularProfessor() {
+        return celularProfessor;
+    }
+
+    public void setCelularProfessor(String celularProfessor) {
+        this.celularProfessor = celularProfessor;
+    }
     
     
     private static String nome;
@@ -145,5 +169,8 @@ public class PesquisarProntuarioStatico {
     private int          idUsuarioReservado;
     private int          pront_AlunoEmprestado;
     private int          responsavelProntuario;
+    private String      nomeProfessor;
+    private String      TelefoneProfessor;
+    private String      celularProfessor;
 
 }

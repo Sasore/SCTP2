@@ -1026,10 +1026,13 @@ public class Prontuario extends javax.swing.JFrame {
             jDateEmprestimoFim.setDate(ListarPesquisa.get(linha).getDataDevolução());
             jTelefoneFixo.setText(ListarPesquisa.get(linha).getTelefoneFixo());
             JcelularoAluno.setText(ListarPesquisa.get(linha).getTelefoneFixo());
+            jNomeProfessor.setText(ListarPesquisa.get(linha).getNomeProfessor());
+            jCelularProfessor.setText(ListarPesquisa.get(linha).getCelularProfessor());
+            jTelefoneFixoProfessor.setText(ListarPesquisa.get(linha).getTelefoneProfessor());
             jLabel3.setVisible(false);
-            jNomeProfessor.setVisible(false);
-            jTelefoneFixoProfessor.setVisible(false);
-            jCelularProfessor.setVisible(false);
+            jNomeProfessor.setVisible(true);
+            jTelefoneFixoProfessor.setVisible(true);
+            jCelularProfessor.setVisible(true);
             jButton3.setVisible(false);
             jButton4.setVisible(false);
             jDescricaoProntuario.setText(ListarPesquisa.get(linha).getInformacoes());

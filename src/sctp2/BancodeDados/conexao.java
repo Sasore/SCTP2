@@ -430,20 +430,28 @@ public class conexao {
         return retorno;
     }//Fim da função PesquisarProntuarioStatico
      //private ArrayList<PesquisarProntuario> PesquisaResponsavelProtuario(int id) throws ClassNotFoundException {
-    private String[] PesquisaResponsavelProtuario(int id) throws ClassNotFoundException {
+   
+     private ArrayList<PesquisarProntuario> PesquisaResponsavelProtuario(String id) throws ClassNotFoundException {
         Connection con = null;
-        String[] resposta = new String[4];
-        String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, `telefoneFixo_ResponsavelPeloProntuario`, `nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario` FROM `responsavelpeloprontuario` WHERE `Id`=?";
+        ArrayList<PesquisarProntuario> listarPesquisa = new ArrayList<>();
+        String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, `telefoneFixo_ResponsavelPeloProntuario`,"
+                + " `nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario` FROM `responsavelpeloprontuario` WHERE `Id`=?";
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
-            smt.setInt(1, id);
+            smt.setString(1, id);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {
-                resposta[0] = rs.getString("nome_ResponsavelPeloProntuario");
-                resposta[1] = rs.getString("celular_ResponsavelPeloProntuario");
-                resposta[2] = rs.getString("telefoneFixo_ResponsavelPeloProntuario");
-                resposta[3] = Integer.toString(rs.getInt("Id"));
+                PesquisarProntuario pesquisasmt= new PesquisarProntuario();
+                pesquisasmt.setNome(rs.getString("nome_ResponsavelPeloProntuario"));
+                pesquisasmt.setCelularProfessor(rs.getString("celular_ResponsavelPeloProntuario"));
+                pesquisasmt.setTelefoneFixo(rs.getString("telefoneFixo_ResponsavelPeloProntuario"));
+                pesquisasmt.setIdResponsavel(rs.getInt("Id"));
+                pesquisasmt.setNomeProfessor(rs.getString("nomeProfessor_ResponsavelPeloProntuario"));
+                pesquisasmt.setTelefoneProfessor(rs.getString("TelefoneProfessor_ResponsavelPeloProntuario"));
+                pesquisasmt.setCelularProfessor(rs.getString("celularProfessor_ResponsavelPeloProntuario"));
+                listarPesquisa.add(pesquisasmt);
+                
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos ou verifique a conexao!");
@@ -451,7 +459,7 @@ public class conexao {
         } finally {
             closeConnection(con);
         }
-        return resposta;
+        return listarPesquisa;
     }
      public ArrayList<PesquisarProntuario> PesquisarProntuario(String codigo) throws ClassNotFoundException {
          String sql = "SELECT "
@@ -489,11 +497,15 @@ public class conexao {
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
                 if (verificavazio == null || verificavazio.trim().equals("")) {
-                    String[] resposta = new String[3];//recebera o retorno da função
-                    resposta = PesquisaResponsavelProtuario(rs.getInt("pront_responsavel_prontuario"));
-                    pesquisarsmt.setNome(resposta[0]);
-                    pesquisarsmt.setTelefone(resposta[1]);
-                    pesquisarsmt.setTelefoneFixo(resposta[1]);
+                    ArrayList<PesquisarProntuario> ListarPesquisaAuxiliar= new ArrayList<>();
+                    ListarPesquisaAuxiliar = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    pesquisarsmt.setNome(ListarPesquisaAuxiliar.get(0).getNome());
+                    pesquisarsmt.setTelefone(ListarPesquisaAuxiliar.get(0).getTelefoneFixo());
+                    pesquisarsmt.setTelefoneFixo(ListarPesquisaAuxiliar.get(0).getTelefoneFixo());
+                    pesquisarsmt.setNomeProfessor(ListarPesquisaAuxiliar.get(0).getNomeProfessor());
+                    pesquisarsmt.setTelefoneProfessor(ListarPesquisaAuxiliar.get(0).getTelefoneProfessor());
+                    pesquisarsmt.setCelularProfessor(ListarPesquisaAuxiliar.get(0).getCelularProfessor());
+                    
                 };
                 ListarPesquisa.add(pesquisarsmt);
             }
@@ -540,11 +552,15 @@ public class conexao {
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
                 if (verificavazio == null || verificavazio.trim().equals("")) {
-                    String[] resposta = new String[3];//recebera o retorno da função
-                    resposta = PesquisaResponsavelProtuario(rs.getInt("pront_responsavel_prontuario"));
-                    pesquisarsmt.setNome(resposta[0]);
-                    pesquisarsmt.setTelefone(resposta[1]);
-                    pesquisarsmt.setTelefoneFixo(resposta[1]);
+                    ArrayList<PesquisarProntuario> ListarPesquisaAux= new ArrayList<>();
+                    ListarPesquisaAux = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    pesquisarsmt.setNome(ListarPesquisaAux.get(0).getNome());
+                    pesquisarsmt.setTelefone(ListarPesquisaAux.get(0).getTelefone());
+                    pesquisarsmt.setTelefoneFixo(ListarPesquisaAux.get(0).getTelefoneFixo());
+                    pesquisarsmt.setNomeProfessor(ListarPesquisaAux.get(0).getNomeProfessor());
+                    pesquisarsmt.setTelefoneProfessor(ListarPesquisaAux.get(0).getTelefoneProfessor());
+                    pesquisarsmt.setCelularProfessor(ListarPesquisaAux.get(0).getCelularProfessor());
+                    
                 };
                 ListarPesquisa.add(pesquisarsmt);
             }
@@ -691,11 +707,15 @@ public class conexao {
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
                 if (verificavazio == null || verificavazio.trim().equals("")) {
-                    String[] resposta = new String[4];//recebera o retorno da função
-                    resposta = PesquisaResponsavelProtuario(rs.getInt("pront_responsavel_prontuario"));
-                    pesquisarsmt.setNome(resposta[0]);
-                    pesquisarsmt.setTelefone(resposta[1]);
-                    pesquisarsmt.setTelefoneFixo(resposta[1]);
+                    ArrayList<PesquisarProntuario> ListarPesquisaAux= new ArrayList<>();
+                    ListarPesquisaAux = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    pesquisarsmt.setNome(ListarPesquisaAux.get(0).getNome());
+                    pesquisarsmt.setTelefone(ListarPesquisaAux.get(0).getTelefone());
+                    pesquisarsmt.setTelefoneFixo(ListarPesquisaAux.get(0).getTelefoneFixo());
+                    pesquisarsmt.setResponsavelProntuario(ListarPesquisaAux.get(0).getIdResponsavel());
+                    pesquisarsmt.setNomeProfessor(ListarPesquisaAux.get(0).getNomeProfessor());
+                    pesquisarsmt.setCelularProfessor(ListarPesquisaAux.get(0).getCelularProfessor());
+                    pesquisarsmt.setTelefoneProfessor(ListarPesquisaAux.get(0).getTelefoneProfessor());
                   
                 };
                 ListarPesquisa.add(pesquisarsmt);
@@ -735,13 +755,16 @@ public class conexao {
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
                 if (verificavazio == null || verificavazio.trim().equals("")) {
-                    String[] resposta = new String[4];//recebera o retorno da função
-                    resposta = PesquisaResponsavelProtuario(rs.getInt("pront_responsavel_prontuario"));
-                    pesquisarsmt.setNome(resposta[0]);
-                    pesquisarsmt.setTelefone(resposta[1]);
-                    pesquisarsmt.setTelefoneFixo(resposta[1]);
-                    System.out.println("resposta 3 "+resposta[3]);
-                    pesquisarsmt.setResponsavelProntuario(Integer.parseInt(resposta[3]));
+                    ArrayList<PesquisarProntuario> ListarPesquisaAux= new ArrayList<>();
+                    ListarPesquisaAux = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    pesquisarsmt.setNome(ListarPesquisaAux.get(0).getNome());
+                    pesquisarsmt.setTelefone(ListarPesquisaAux.get(0).getTelefone());
+                    pesquisarsmt.setTelefoneFixo(ListarPesquisaAux.get(0).getTelefoneFixo());
+                    pesquisarsmt.setResponsavelProntuario(ListarPesquisaAux.get(0).getIdResponsavel());
+                    pesquisarsmt.setNomeProfessor(ListarPesquisaAux.get(0).getNomeProfessor());
+                    pesquisarsmt.setCelularProfessor(ListarPesquisaAux.get(0).getCelularProfessor());
+                    pesquisarsmt.setTelefoneProfessor(ListarPesquisaAux.get(0).getTelefoneProfessor());
+                    
                   
                 };
                 ListarPesquisa.add(pesquisarsmt);
