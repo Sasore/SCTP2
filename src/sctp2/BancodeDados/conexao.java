@@ -148,7 +148,7 @@ public class conexao {
     public ArrayList<Pesquisar> PesquisarPorPaciente(String nome) throws ClassNotFoundException {
         Connection con = null;
         ArrayList<Pesquisar> ListarPesquisa = new ArrayList<Pesquisar>();
-        String sql = "select pac_Cod,pac_Nome,pac_Telefone,pac_RG from paciente where pac_Nome like ?;";
+        String sql = "select pac_Cod,pac_Nome,pac_Telefone,pac_RG from paciente where pac_Nome like ? limit 50;";
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);

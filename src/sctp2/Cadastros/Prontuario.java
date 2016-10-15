@@ -162,24 +162,31 @@ public class Prontuario extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cadastro de Prontuário");
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLabel3.setText("Status do Prontuário:");
 
+        jLNomeAluno.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLNomeAluno.setText("Nome do Professor/Aluno:");
 
         NomeresponsavelProntuario.setEditable(false);
         NomeresponsavelProntuario.setBackground(new java.awt.Color(255, 255, 255));
+        NomeresponsavelProntuario.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         NomeresponsavelProntuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NomeresponsavelProntuarioKeyTyped(evt);
             }
         });
 
+        jLTelefoneAluno23.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLTelefoneAluno23.setText("Telefone do Aluno:");
 
+        jLInformacoesAdicionais.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLInformacoesAdicionais.setText("Informações Adicionais:");
 
+        ProntuarioInformacoesAdicionais.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jScrollPane1.setViewportView(ProntuarioInformacoesAdicionais);
 
+        jComboStatusProntuario.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jComboStatusProntuario.setForeground(new java.awt.Color(0, 51, 255));
         jComboStatusProntuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponível", "Emprestado", "Reservado" }));
         jComboStatusProntuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
@@ -195,6 +202,7 @@ public class Prontuario extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
         jButton1.setText("Adicionar....");
@@ -218,10 +226,12 @@ public class Prontuario extends javax.swing.JFrame {
 
         jTelefonefixo.setEditable(false);
         jTelefonefixo.setBackground(new java.awt.Color(255, 255, 255));
+        jTelefonefixo.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jTelefonefixo.setToolTipText("Celular");
 
         JcelularoAluno.setEditable(false);
         JcelularoAluno.setBackground(new java.awt.Color(255, 255, 255));
+        JcelularoAluno.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         JcelularoAluno.setToolTipText("Telefone fixo");
 
         jCodigoResponsavel.setEditable(false);
@@ -240,10 +250,10 @@ public class Prontuario extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 80, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLNomeAluno)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLNomeAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLInformacoesAdicionais)
-                            .addComponent(jLTelefoneAluno23, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLTelefoneAluno23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,7 +309,7 @@ public class Prontuario extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
