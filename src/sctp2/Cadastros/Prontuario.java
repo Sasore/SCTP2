@@ -224,6 +224,8 @@ public class Prontuario extends javax.swing.JFrame {
         JcelularoAluno.setBackground(new java.awt.Color(255, 255, 255));
         JcelularoAluno.setToolTipText("Telefone fixo");
 
+        jCodigoResponsavel.setEditable(false);
+
         jLabelIconeStatus.setBackground(new java.awt.Color(255, 255, 255));
         jLabelIconeStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disponivel.png"))); // NOI18N
 

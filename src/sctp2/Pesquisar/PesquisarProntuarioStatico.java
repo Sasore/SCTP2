@@ -29,11 +29,11 @@ public class PesquisarProntuarioStatico {
         PesquisarProntuarioStatico.telefone = telefone;
     }
 
-    public static String getProntuario() {
+    public static int getProntuario() {
         return prontuario;
     }
 
-    public static void setProntuario(String prontuario) {
+    public static void setProntuario(int prontuario) {
         PesquisarProntuarioStatico.prontuario = prontuario;
     }
 
@@ -159,7 +159,7 @@ public class PesquisarProntuarioStatico {
     private static String nome;
     private static String telefone;
     private static String telefoneFixo;
-    private static String prontuario;
+    private static int prontuario;
     private static String paciente;
     private static String informacoes;
     private Date     dataEmprestimo;

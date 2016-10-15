@@ -9,10 +9,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sctp2.Cadastros.CadastroResponsavel;
-import sctp2.ClassesdeControle.Prontuario;
 import sctp2.Pesquisar.Pesquisar;
 import sctp2.Pesquisar.PesquisarProntuarioStatico;
 
@@ -178,7 +176,7 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
 
             },
             new String [] {
-                "número", "Paciente"
+                "Prontuario", "Paciente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -549,7 +547,7 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
             DefaultTableModel valor = (DefaultTableModel) jTableProntuario.getModel();//criando a chave valor para o objeto tabela
             for (int i = 0; i < listarPesquisa.size(); i++) {
                 ListarProntuarioPaciente = acesso.PesquisarProntuariopelorg(listarPesquisa.get(i).getRgPaciente());
-                valor.addRow((new String[]{listarPesquisa.get(i).getNumeroProntuario(), ListarProntuarioPaciente.get(0).getPaciente()}));
+                valor.addRow((new String[]{Integer.toString(ListarProntuarioPaciente.get(0).getCodigoProntuario()), ListarProntuarioPaciente.get(0).getPaciente()}));
                 jNotificacao2.setText("Clique no número do prontuario  para ver mais detalhes");
             }
         }

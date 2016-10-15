@@ -20,6 +20,7 @@ public class ResponsavelProntuario {
     private  String telefoneCelularProfessor;
     private  String telefoneFixoProfessor;
      private   String NumeroProntuario;
+     private   String idProntuario;
     private   String NomeresponsavelProntuario;
     private   int StatusProntuario;
     private   String InformacoesProntuario;
@@ -29,6 +30,16 @@ public class ResponsavelProntuario {
     private   Date  dataEmprestimo;
     private   Date dataDevolucao;
 
+    public String getIdProntuario() {
+        return idProntuario;
+    }
+
+    public void setIdProntuario(String idProntuario) {
+        this.idProntuario = idProntuario;
+    }
+
+    
+    
     public int getIdResponsavel() {
         return idResponsavel;
     }

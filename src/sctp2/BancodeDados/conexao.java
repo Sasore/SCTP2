@@ -381,16 +381,15 @@ public class conexao {
         //---------------------------------------------------------------------------------------------------------------------------------==//
 
         String InsereProntuario = "INSERT INTO prontuario (referencia_RG_PAC ,pront_Status ,"
-                + "  pront_Numero ,pront_Informacoes,pront_responsavel_prontuario) VALUES(?,?,?,?,?)";
+                + "  pront_Informacoes,pront_responsavel_prontuario) VALUES(?,?,?,?)";
         Connection con = null;
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(InsereProntuario);
             smt.setString(1, ProntuarioList.get(0));//rg             
             smt.setInt(2, StatusProntuario);//status
-            smt.setString(3, ProntuarioList.get(1));//numero pront
-            smt.setString(4, ProntuarioList.get(4));//informac
-            smt.setInt(5, idResponsavelProntuario);//id do responsavel
+            smt.setString(3, ProntuarioList.get(4));//informac
+            smt.setInt(4, idResponsavelProntuario);//id do responsavel
             smt.execute();
             System.out.println("Gravou prontuario");
         } catch (SQLException e) {
@@ -463,7 +462,7 @@ public class conexao {
     }
      public ArrayList<PesquisarProntuario> PesquisarProntuario(String codigo) throws ClassNotFoundException {
          String sql = "SELECT "
-                + "`pront_cod`, `pront_Numero`, `referencia_RG_PAC`, `pront_Status`,"
+                + "`pront_cod`,  `referencia_RG_PAC`, `pront_Status`,"
                 + " `pront_AlunoEmprestado`, `pront_TelefoneAluno`, `pront_Informacoes`,DataEmprestimo_Prontuario,DataDevolver_Prontuario, "
                 + "`pront_responsavel_prontuario`, `reservadopara_Prontuario`, paciente.pac_Nome\n"
                 + "FROM `prontuario` \n"
@@ -482,7 +481,6 @@ public class conexao {
                 PesquisarProntuario pesquisarsmt = new PesquisarProntuario();
                 String verificavazio = "";
                 pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
-                pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
                 pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
                 pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
                 pesquisarsmt.setInformacoes(rs.getString("pront_Informacoes"));
@@ -520,7 +518,7 @@ public class conexao {
      public ArrayList<PesquisarProntuario> PesquisarProntuarioporNomePaciente(String nomePaciente) throws ClassNotFoundException {
         Connection con = null;
         ArrayList<PesquisarProntuario> ListarPesquisa=new ArrayList();//array que recebera o resultado da pesquisa
-   String sql = "SELECT `pront_cod`, `pront_Numero`, "
+   String sql = "SELECT `pront_cod`,  "
                 + "`referencia_RG_PAC`, `pront_Status`, "
                 + "`pront_AlunoEmprestado`, `pront_TelefoneAluno`, "
                 + "`pront_Informacoes`, `pront_responsavel_prontuario`, "
@@ -537,7 +535,6 @@ public class conexao {
                 sctp2.Pesquisar.PesquisarProntuario pesquisarsmt = new sctp2.Pesquisar.PesquisarProntuario();
                 String verificavazio = "";
                 pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
-                pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
                 pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
                 pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
                 pesquisarsmt.setInformacoes(rs.getString("pront_Informacoes"));
@@ -578,7 +575,6 @@ public class conexao {
     public ArrayList<sctp2.Pesquisar.ResponsavelProntuario> PesquisarTodosProntuariosResponsavel(String idResponsavel) throws ClassNotFoundException {
         String sql = "SELECT \n"
                 + "t1.pront_cod, \n"
-                + "t1.pront_Numero, \n"
                 + "t1.referencia_RG_PAC,\n"
                 + "t1.pront_Status,\n"
                 + "t1.pront_AlunoEmprestado, \n"
@@ -610,7 +606,6 @@ public class conexao {
             ResultSet rs = smt.executeQuery();//efetuando a busca
             while (rs.next()) {
                 sctp2.Pesquisar.ResponsavelProntuario responsavelsmt = new sctp2.Pesquisar.ResponsavelProntuario();
-                responsavelsmt.setNumeroProntuario(rs.getString("pront_Numero"));
                 responsavelsmt.setInformacoesProntuario(rs.getString("pront_Informacoes"));
                 responsavelsmt.setNomeresponsavelProntuario(rs.getString("pront_AlunoEmprestado"));
                 responsavelsmt.setStatusProntuario(rs.getString("pront_Status"));
@@ -683,7 +678,7 @@ public class conexao {
 
     }
      public ArrayList<PesquisarProntuarioStatico> PesquisarProntuariopelorg(String rg) throws ClassNotFoundException {
-        String sql = "SELECT  pront_cod,pront_Numero,pront_AlunoEmprestado,pront_TelefoneAluno,pront_Status,pront_responsavel_prontuario, paciente.pac_Nome, pront_Informacoes "
+        String sql = "SELECT  pront_cod,pront_AlunoEmprestado,pront_TelefoneAluno,pront_Status,pront_responsavel_prontuario, paciente.pac_Nome, pront_Informacoes "
                 + "FROM prontuario join paciente where paciente.pac_RG=referencia_RG_PAC and prontuario.referencia_RG_PAC=?;";
         Connection con = null;
         ArrayList<PesquisarProntuarioStatico> ListarPesquisa;//array que recebera o resultado da pesquisa
@@ -697,7 +692,6 @@ public class conexao {
             while (rs.next()) {
                 String verificavazio = "";
                 pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
-                pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
                 pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
                 pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
                 pesquisarsmt.setPaciente(rs.getString("paciente.pac_Nome"));//Para não ter que criar um novo campo utilizei pai para receber o nome do paciente
@@ -730,7 +724,7 @@ public class conexao {
     }
      private ArrayList<PesquisarProntuarioStatico> PesquisarProntuarioRg(String rg) throws ClassNotFoundException {
          //A diferença desta função para a de cima é que ela retorna o id do responsavel
-       String sql = "SELECT pront_Numero,pront_AlunoEmprestado,pront_TelefoneAluno,pront_Status,"
+       String sql = "SELECT pront_Cod,pront_AlunoEmprestado,pront_TelefoneAluno,pront_Status,"
                + "pront_responsavel_prontuario, paciente.pac_Nome, pront_Informacoes "
                 + "FROM prontuario join paciente where paciente.pac_RG=referencia_RG_PAC and prontuario.referencia_RG_PAC=?;";
         Connection con = null;
@@ -744,7 +738,7 @@ public class conexao {
             PesquisarProntuarioStatico pesquisarsmt = new PesquisarProntuarioStatico();
             while (rs.next()) {
                 String verificavazio = "";
-                pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
+                pesquisarsmt.setCodigoProntuario(rs.getInt("pront_Cod"));
                 pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
                 pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
                 pesquisarsmt.setPaciente(rs.getString("paciente.pac_Nome"));//Para não ter que criar um novo campo utilizei pai para receber o nome do paciente
@@ -809,7 +803,7 @@ public class conexao {
     }
         public boolean VerificaProntuariosAtrasados(String idResponsavel) throws ClassNotFoundException, SQLException {
         String sql = "SELECT "
-                + "`pront_cod`, `pront_Numero`, "
+                + "`pront_cod`,  "
                 + "`referencia_RG_PAC`, `pront_Status`, "
                 + "`pront_AlunoEmprestado`, `pront_TelefoneAluno`, "
                 + "`pront_Informacoes`, `pront_responsavel_prontuario`, "
