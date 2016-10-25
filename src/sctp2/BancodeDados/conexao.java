@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import sctp2.Cadastros.Prontuario;
 import sctp2.ClassesdeControle.Anamnese;
 import sctp2.ClassesdeControle.DoencasSistemicas;
 import sctp2.ClassesdeControle.Habitos;
@@ -27,7 +26,6 @@ import sctp2.Paciente.HistoricoPaciente;
 import sctp2.Pesquisar.Pesquisar;
 import sctp2.Pesquisar.PesquisarProntuarioStatico;
 import sctp2.Pesquisar.PesquisarProntuario;
-import sctp2.Pesquisar.ResponsavelProntuario;
 
 /**
  *
@@ -148,7 +146,7 @@ public class conexao {
     public ArrayList<Pesquisar> PesquisarPorPaciente(String nome) throws ClassNotFoundException {
         Connection con = null;
         ArrayList<Pesquisar> ListarPesquisa = new ArrayList<Pesquisar>();
-        String sql = "select pac_Cod,pac_Nome,pac_Telefone,pac_RG from paciente where pac_Nome like ? limit 50;";
+        String sql = "select pac_Cod,pac_Nome,pac_Telefone,pac_RG from paciente where pac_Nome like ? order by pac_Cod desc limit 10;";
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -430,11 +428,12 @@ public class conexao {
     }//Fim da função PesquisarProntuarioStatico
      //private ArrayList<PesquisarProntuario> PesquisaResponsavelProtuario(int id) throws ClassNotFoundException {
    
-     private ArrayList<PesquisarProntuario> PesquisaResponsavelProtuario(String id) throws ClassNotFoundException {
+     public ArrayList<PesquisarProntuario> PesquisaResponsavelProtuario(String id) throws ClassNotFoundException {
         Connection con = null;
         ArrayList<PesquisarProntuario> listarPesquisa = new ArrayList<>();
         String sql = "SELECT `Id`, `nome_ResponsavelPeloProntuario`, `celular_ResponsavelPeloProntuario`, `telefoneFixo_ResponsavelPeloProntuario`,"
-                + " `nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, `celularProfessor_ResponsavelPeloProntuario` FROM `responsavelpeloprontuario` WHERE `Id`=?";
+                + " `nomeProfessor_ResponsavelPeloProntuario`, `TelefoneProfessor_ResponsavelPeloProntuario`, "
+                + "`celularProfessor_ResponsavelPeloProntuario` FROM `responsavelpeloprontuario` WHERE `Id`=?";
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -658,12 +657,14 @@ public class conexao {
         return retorno;
     }
      public boolean AtualizaStatusProntuario(String id) throws SQLException, ClassNotFoundException {
-        String sql = "update prontuario set pront_Status=0 where pront_cod=?;";
+        String sql = "update prontuario set pront_Status=0,pront_AlunoEmprestado=?,pront_TelefoneAluno=? where pront_cod=?;";
         Connection con = null;
         boolean retorno = false;
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setString(1, "");
+            smt.setString(2, "");
             smt.setString(1, id);
             smt.executeUpdate();
             retorno = true;
@@ -690,7 +691,8 @@ public class conexao {
             ResultSet rs = smt.executeQuery();
             PesquisarProntuarioStatico pesquisarsmt = new PesquisarProntuarioStatico();
             while (rs.next()) {
-                String verificavazio = "";
+                String verificavazio;
+                System.out.println("codigo "+rs.getInt("pront_cod"));
                 pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
                 pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
                 pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
@@ -700,9 +702,11 @@ public class conexao {
 
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
-                if (verificavazio == null || verificavazio.trim().equals("")) {
+                if (verificavazio == null || verificavazio.trim().equals("") || verificavazio.isEmpty()) {
                     ArrayList<PesquisarProntuario> ListarPesquisaAux= new ArrayList<>();
                     ListarPesquisaAux = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    System.out.println("tam lista "+ListarPesquisaAux.size());
+                    if(!ListarPesquisaAux.isEmpty()){
                     pesquisarsmt.setNome(ListarPesquisaAux.get(0).getNome());
                     pesquisarsmt.setTelefone(ListarPesquisaAux.get(0).getTelefone());
                     pesquisarsmt.setTelefoneFixo(ListarPesquisaAux.get(0).getTelefoneFixo());
@@ -710,6 +714,7 @@ public class conexao {
                     pesquisarsmt.setNomeProfessor(ListarPesquisaAux.get(0).getNomeProfessor());
                     pesquisarsmt.setCelularProfessor(ListarPesquisaAux.get(0).getCelularProfessor());
                     pesquisarsmt.setTelefoneProfessor(ListarPesquisaAux.get(0).getTelefoneProfessor());
+                    }
                   
                 };
                 ListarPesquisa.add(pesquisarsmt);
@@ -1325,7 +1330,6 @@ public class conexao {
             smt2.setString(1, nome);
             smt2.setString(2, celular);
             rs = smt2.executeQuery();
-            System.out.println("chegou aqui");
             while (rs.next()) {
                 id = rs.getInt("id");
             }
@@ -1776,18 +1780,28 @@ public class conexao {
     
 
     public ArrayList<HistoricoDetratamentos> PesquisarHistóricoTratamentos(String rg) throws ClassNotFoundException {
-        String sql = "SELECT `nec_Cod`, `nec_referencia_rg`, `queixa_historicoTratamento`, "
-                + "`responsavel_historicoTratamento`,responsavelpeloprontuario.nome_ResponsavelPeloProntuario, "
-                + "`dataFimTratamento_historicoNecessidade`, `nec_ProfilaxiaSimples`, `nec_RaspagemPolimentoCoronario`, "
-                + "`nec_CirurgiaPeriodontal`, `nec_ExodontiaSimples`, `nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, `nec_Amalgama`, "
-                + "`nec_Resina`, `nec_RMF`, `nec_Endodontiauniebirradicular`, `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`,"
-                + " `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`, `nec_Pontefixamaisque4elementos`, `nec_PPR`,"
-                + " `nec_ProteseTotalPar`, `nec_ProtesePPR`, `nec_Protese`, `nec_TerapiaPeriodontal`, `nec_EndodontiaBirradicular`, "
-                + "`nec_DTM`, `nec_Estomatologia`, `Historico_codigoTratamento`, `nec_PonteFixa`, `nec_PonteFixaMaisQueTresElementos`, `"
-                + "nec_RaspagemSub`, `nec_RaspagemSupra` FROM `historiconecessidade`\n" +
-                    "JOIN responsavelpeloprontuario\n" +
-                    "ON historiconecessidade.responsavel_historicoTratamento=responsavelpeloprontuario.Id\n" +
-                    "WHERE `nec_referencia_rg`=?";
+        String sql = "SELECT "
+                            + "`nec_Cod`, `nec_referencia_rg`,"
+                            + " `queixa_historicoTratamento`,"
+                            + " `responsavel_historicoTratamento`, "
+                            + "`dataFimTratamento_historicoNecessidade`, "
+                            + "`nec_ProfilaxiaSimples`, "
+                            + "`nec_RaspagemPolimentoCoronario`,"
+                            + " `nec_CirurgiaPeriodontal`,"
+                            + " `nec_ExodontiaSimples`, "
+                            + "`nec_ExodontiaMolar`, `nec_ExodontiaIncluso`, "
+                            + "`nec_Amalgama`, `nec_Resina`, "
+                            + "`nec_RMF`, `nec_Endodontiauniebirradicular`,"
+                            + " `nec_EndodontiaTrirradicular`, `nec_CoroaTotal`,"
+                            + " `nec_PonteFixa3Elementos`, `nec_Pontefixa4elementos`,"
+                            + " `nec_Pontefixamaisque4elementos`, `nec_PPR`,"
+                            + " `nec_ProteseTotalPar`, `nec_ProtesePPR`, "
+                            + "`nec_Protese`, `nec_TerapiaPeriodontal`, "
+                            + "`nec_EndodontiaBirradicular`, `nec_DTM`,"
+                            + " `nec_Estomatologia`, `Historico_codigoTratamento`, "
+                            + "`nec_PonteFixa`, `nec_PonteFixaMaisQueTresElementos`, "
+                            + "`nec_RaspagemSub`, `nec_RaspagemSupra`"
+                + " FROM `historiconecessidade` WHERE `nec_referencia_rg`=?";
         Connection con = null;
         sctp2.Paciente.HistoricoDetratamentos pesquisarsmt;
         ArrayList<sctp2.Paciente.HistoricoDetratamentos> ListarPesquisa;
@@ -1801,7 +1815,7 @@ public class conexao {
                 pesquisarsmt = new sctp2.Paciente.HistoricoDetratamentos();
                 pesquisarsmt.setCodigo(rs.getInt("nec_Cod"));
                 pesquisarsmt.setIdResponsavelPeloTratamento(rs.getInt("responsavel_historicoTratamento"));
-                pesquisarsmt.setResponsavelPeloTratamento(rs.getString("responsavelpeloprontuario.nome_ResponsavelPeloProntuario"));
+                //pesquisarsmt.setResponsavelPeloTratamento(rs.getString("responsavelpeloprontuario.nome_ResponsavelPeloProntuario"));
                 pesquisarsmt.setQueixa(rs.getString("queixa_historicoTratamento"));
                 pesquisarsmt.setProfilaxiaSimples(rs.getInt("nec_ProfilaxiaSimples"));
                 pesquisarsmt.setRg(rs.getString("nec_referencia_rg"));
@@ -1843,6 +1857,7 @@ public class conexao {
         return ListarPesquisa;
 
     }
+    
     //-------------------------------------------FUNÇÕES DE ATUALIZAÇÃO--------------------------------------------------------------------------
    
    

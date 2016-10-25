@@ -6,12 +6,15 @@
 package sctp2.Paciente;
 
 import java.awt.Color;
+import static java.sql.JDBCType.NULL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import sctp2.BancodeDados.conexao;
+import sctp2.Pesquisar.PesquisarProntuario;
 import sctp2.SCTP2;
 
 /**
@@ -178,16 +181,15 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jFimtratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jFimtratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,7 +287,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
         jMenu1.setText("Menu");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente branco.png"))); // NOI18N
         jMenuItem1.setText("Menu principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -352,6 +354,11 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
 //        jResponsavel.setText(ListarPesquisa.get(linha).getResponsaveltratamento());
 //        jQueixaPrincipal.setText(ListarPesquisa.get(linha).getQueixa());
         LimpaTabela();//limpa a tabela de tratamentos
+        try {
+            MostraResponsavelTratamento(ListarTratamentos.get(linha).getResponsavelPeloTratamento());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HistoricoDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //        //---------------------------Lista os tratamentos-------------------------------------------------------------------
         int[] tratamento = new int[27];
         System.out.println("linha: " + linha);
@@ -542,7 +549,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         //-----------------------------------------------
 
         //-----------------------------------------------
-        if (ListarTratamentos.size() == 0) {
+        if (ListarTratamentos.isEmpty()) {
             jNotificacao.setText("Não há histórico para este usuário!");
         } else {
 
@@ -570,5 +577,16 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
     ArrayList<sctp2.Pesquisar.Pesquisar> ListaPesquisa;
     ListaPesquisa=acesso.PesquisarPorPacientePorCPFRG(rg);
     jNome.setText(ListaPesquisa.get(0).getNome());
+    }
+
+    private void MostraResponsavelTratamento(String idResponsavel) throws ClassNotFoundException {
+        System.out.println("codigo rsspo "+idResponsavel);
+        if(!(idResponsavel.equals("")||idResponsavel.isEmpty()||idResponsavel.equals("0"))||idResponsavel.equals(NULL)){
+            ArrayList<PesquisarProntuario> listarPesquisa;
+            conexao acesso= new conexao();
+            listarPesquisa=acesso.PesquisaResponsavelProtuario(idResponsavel);
+            if(!listarPesquisa.isEmpty())jResponsavel.setText(listarPesquisa.get(0).getNome());
+        }
+     
     }
 }

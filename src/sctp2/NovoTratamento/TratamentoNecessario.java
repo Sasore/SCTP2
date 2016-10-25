@@ -600,8 +600,6 @@ public class TratamentoNecessario extends javax.swing.JFrame {
 
     private void SetaValoresTratamentoNecessario() {
         sctp2.ClassesdeControle.TratamentosNecessarios acesso = new sctp2.ClassesdeControle.TratamentosNecessarios();//chave para acessa a classe tratamentos
-
-        
         acesso.setAmalgama( jCAmalga.isSelected()?1:0);
         acesso.setCirugiaPeridontal(jCCirugiaPeriodontal.isSelected()?1:0);
         acesso.setCoroaTotal(jCCoroaTotal.isSelected()?1:0);

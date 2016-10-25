@@ -949,9 +949,10 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jRetiraListaNegraActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.setVisible(false);
+        
         try {
             new sctp2.Paciente.PacientetratamentoEdoencas(rgPaciente, jNome.getText()).setVisible(true);
+            this.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1003,9 +1004,10 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.setVisible(false);
+        
         try {
             new sctp2.Paciente.HistoricoDoPaciente(codigopaciente, jrg.getText()).setVisible(true);
+            this.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DadosDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

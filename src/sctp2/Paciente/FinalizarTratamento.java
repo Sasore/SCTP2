@@ -330,6 +330,7 @@ public class FinalizarTratamento extends javax.swing.JFrame {
         sctp2.BancodeDados.conexao conexao = new sctp2.BancodeDados.conexao();
         ArrayList<TratamentosNecessarios> ListarTratamentos = new ArrayList<>();
         ListarTratamentos = conexao.NecessidadesdoPaciente(rg);//função que retorna quais necessidades do paciente
+        if(ListarTratamentos.isEmpty())jNotificacao.setText("Não há tratamentos sendo feitos no momento!");
         int[] tratamento = new int[27];
         tratamento[0] = ListarTratamentos.get(0).getProfilaxiaSimples();
         tratamento[1] = ListarTratamentos.get(0).getRaspagemEPoliCCoronario();
