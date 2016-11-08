@@ -488,7 +488,6 @@ public class conexao {
                 pesquisarsmt.setStatus(rs.getInt("pront_Status"));
                 pesquisarsmt.setDataEmprestimo(rs.getDate("DataEmprestimo_Prontuario"));
                 pesquisarsmt.setDataDevolução(rs.getDate("DataDevolver_Prontuario"));
-                pesquisarsmt.setPront_AlunoEmprestado(rs.getInt("pront_AlunoEmprestado"));
                 pesquisarsmt.setResponsavelProntuario(rs.getInt("pront_responsavel_prontuario"));
 
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
@@ -496,13 +495,16 @@ public class conexao {
                 if (verificavazio == null || verificavazio.trim().equals("")) {
                     ArrayList<PesquisarProntuario> ListarPesquisaAuxiliar= new ArrayList<>();
                     ListarPesquisaAuxiliar = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    //pesquisarsmt.setNome(ListarPesquisaAuxiliar.get(0).getNome());
+                    if(!ListarPesquisaAuxiliar.isEmpty()){
                     pesquisarsmt.setNome(ListarPesquisaAuxiliar.get(0).getNome());
+                    pesquisarsmt.setIdResponsavel(ListarPesquisaAuxiliar.get(0).getIdResponsavel());
                     pesquisarsmt.setTelefone(ListarPesquisaAuxiliar.get(0).getTelefoneFixo());
                     pesquisarsmt.setTelefoneFixo(ListarPesquisaAuxiliar.get(0).getTelefoneFixo());
                     pesquisarsmt.setNomeProfessor(ListarPesquisaAuxiliar.get(0).getNomeProfessor());
                     pesquisarsmt.setTelefoneProfessor(ListarPesquisaAuxiliar.get(0).getTelefoneProfessor());
                     pesquisarsmt.setCelularProfessor(ListarPesquisaAuxiliar.get(0).getCelularProfessor());
-                    
+                    }
                 };
                 ListarPesquisa.add(pesquisarsmt);
             }
@@ -542,7 +544,6 @@ public class conexao {
                 pesquisarsmt.setStatus(rs.getInt("pront_Status"));
                 pesquisarsmt.setDataEmprestimo(rs.getDate("DataEmprestimo_Prontuario"));
                 pesquisarsmt.setDataDevolução(rs.getDate("DataDevolver_Prontuario"));
-                pesquisarsmt.setPront_AlunoEmprestado(rs.getInt("pront_AlunoEmprestado"));
                 pesquisarsmt.setResponsavelProntuario(rs.getInt("pront_responsavel_prontuario"));
                 
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
@@ -550,13 +551,15 @@ public class conexao {
                 if (verificavazio == null || verificavazio.trim().equals("")) {
                     ArrayList<PesquisarProntuario> ListarPesquisaAux= new ArrayList<>();
                     ListarPesquisaAux = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    if(!ListarPesquisaAux.isEmpty()){
                     pesquisarsmt.setNome(ListarPesquisaAux.get(0).getNome());
+                    pesquisarsmt.setIdResponsavel(ListarPesquisaAux.get(0).getIdResponsavel());
                     pesquisarsmt.setTelefone(ListarPesquisaAux.get(0).getTelefone());
                     pesquisarsmt.setTelefoneFixo(ListarPesquisaAux.get(0).getTelefoneFixo());
                     pesquisarsmt.setNomeProfessor(ListarPesquisaAux.get(0).getNomeProfessor());
                     pesquisarsmt.setTelefoneProfessor(ListarPesquisaAux.get(0).getTelefoneProfessor());
                     pesquisarsmt.setCelularProfessor(ListarPesquisaAux.get(0).getCelularProfessor());
-                    
+                    }
                 };
                 ListarPesquisa.add(pesquisarsmt);
             }
@@ -656,16 +659,45 @@ public class conexao {
 
         return retorno;
     }
-     public boolean AtualizaStatusProntuario(String id) throws SQLException, ClassNotFoundException {
-        String sql = "update prontuario set pront_Status=0,pront_AlunoEmprestado=?,pront_TelefoneAluno=? where pront_cod=?;";
+     public boolean AtualizaStatusProntuario(String id, int responsavel) throws SQLException, ClassNotFoundException {
+         System.out.println("AtualizaStatusProntuario "+responsavel+" id" +id);
+        String sql = "update prontuario set pront_Status=0,pront_AlunoEmprestado=?,pront_TelefoneAluno=?,pront_responsavel_prontuario=? where pront_cod=?;";
         Connection con = null;
         boolean retorno = false;
+         System.out.println("responsaveç "+responsavel+" id "+id);
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, "");
             smt.setString(2, "");
-            smt.setString(1, id);
+            smt.setInt(3, responsavel);
+            smt.setString(4, id);
+            smt.executeUpdate();
+            retorno = true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "(2) Não foi possível gravar no Banco de dados os dados do Paciente , tente novamente em breve.");
+            e.printStackTrace();
+        } finally {
+            closeConnection(con);
+        }
+
+        return retorno;
+
+    }
+     public boolean AtualizaStatusProntuario(String id, int responsavel,String informacao) throws SQLException, ClassNotFoundException {
+         System.out.println("AtualizaStatusProntuario "+responsavel+" id" +id);
+        String sql = "update prontuario set pront_Status=0,pront_AlunoEmprestado=?,pront_TelefoneAluno=?,pront_responsavel_prontuario=?,pront_Informacoes=? where pront_cod=?;";
+        Connection con = null;
+        boolean retorno = false;
+         System.out.println("responsaveç "+responsavel+" id "+id);
+        try {
+            con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+            smt.setString(1, "");
+            smt.setString(2, "");
+            smt.setInt(3, responsavel);
+            smt.setString(4,informacao);
+            smt.setString(5, id);
             smt.executeUpdate();
             retorno = true;
         } catch (SQLException e) {
@@ -756,6 +788,7 @@ public class conexao {
                 if (verificavazio == null || verificavazio.trim().equals("")) {
                     ArrayList<PesquisarProntuario> ListarPesquisaAux= new ArrayList<>();
                     ListarPesquisaAux = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    if(!ListarPesquisaAux.isEmpty()){
                     pesquisarsmt.setNome(ListarPesquisaAux.get(0).getNome());
                     pesquisarsmt.setTelefone(ListarPesquisaAux.get(0).getTelefone());
                     pesquisarsmt.setTelefoneFixo(ListarPesquisaAux.get(0).getTelefoneFixo());
@@ -764,7 +797,7 @@ public class conexao {
                     pesquisarsmt.setCelularProfessor(ListarPesquisaAux.get(0).getCelularProfessor());
                     pesquisarsmt.setTelefoneProfessor(ListarPesquisaAux.get(0).getTelefoneProfessor());
                     
-                  
+                    }
                 };
                 ListarPesquisa.add(pesquisarsmt);
             }

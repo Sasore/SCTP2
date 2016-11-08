@@ -476,6 +476,7 @@ private int NovotratamentosNecessarios() throws ClassNotFoundException {
         NovaAmnase();//Esta função prepara os dados para serem gravados no banco de dados
         NovotratamentosNecessarios();
         sctp2.BancodeDados.conexao acesso=new sctp2.BancodeDados.conexao();
+        acesso.AtualizaStatusProntuario(Prontuario.getNumeroProntuario(),Prontuario.getIdResponsavelProntuario(),Prontuario.getInformacoesProntuario());
         acesso.NovoTratamentodoPaciente(rg,0);//retira o paciente da alta
         
     }

@@ -507,8 +507,11 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
         //limpa todos os campos
         jTableResultado.setSelectionBackground(Color.BLUE);//defini a cor de seleção da tabela para azul
         jTableResultado.setSelectionForeground(Color.white);
-        DefaultTableModel tabela, tabelaProntuario;
+        DefaultTableModel tabela, tabelaResultado;
         tabela = (DefaultTableModel) jTableResultado.getModel();
+        tabelaResultado=(DefaultTableModel) jTableResultado.getModel();
+        tabela.setNumRows(0);
+        tabelaResultado.setNumRows(0);
         //********************************************
 
     }

@@ -9,9 +9,11 @@ import java.awt.Color;
 import static java.sql.JDBCType.NULL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import sctp2.BancodeDados.conexao;
 import sctp2.Pesquisar.PesquisarProntuario;
@@ -65,12 +67,12 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jQueixaPrincipal = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
-        jResponsavel = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jNome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jFimtratamento = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jResponsavel = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -147,9 +149,6 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Principal Queixa:");
 
-        jResponsavel.setEditable(false);
-        jResponsavel.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
-
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Fim tratamento: ");
@@ -168,6 +167,9 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Paciente");
 
+        jResponsavel.setEditable(false);
+        jResponsavel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -183,13 +185,12 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
                                 .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                                 .addComponent(jFimtratamento, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jResponsavel))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +205,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,11 +233,11 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
         );
@@ -246,10 +247,10 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -347,24 +348,20 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int linha = jTable1.getSelectedRow();
+        jResponsavel.setText("");
 //        String iniciotratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarPesquisa.get(linha).getIniciotratamento());
         String fimtratamento = new SimpleDateFormat("dd/MM/yyyy").format(ListarTratamentos.get(linha).getFimTratamento());
-        //jInicioTratamento.setText(iniciotratamento);
-//        jFimtratamento.setText(fimtratamento);
-//        jResponsavel.setText(ListarPesquisa.get(linha).getResponsaveltratamento());
-//        jQueixaPrincipal.setText(ListarPesquisa.get(linha).getQueixa());
         LimpaTabela();//limpa a tabela de tratamentos
         try {
-            MostraResponsavelTratamento(ListarTratamentos.get(linha).getResponsavelPeloTratamento());
+            MostraResponsavelTratamento(ListarTratamentos.get(linha).getIdResponsavelPeloTratamento());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(HistoricoDoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
 //        //---------------------------Lista os tratamentos-------------------------------------------------------------------
         int[] tratamento = new int[27];
-        System.out.println("linha: " + linha);
         jQueixaPrincipal.setText(ListarTratamentos.get(linha).getQueixa());
         jFimtratamento.setText(ListarTratamentos.get(linha).getFimTratamento().toString());
-        jResponsavel.setText(ListarTratamentos.get(linha).getResponsavelPeloTratamento());
+
         tratamento[0] = ListarTratamentos.get(linha).getProfilaxiaSimples();
         tratamento[1] = ListarTratamentos.get(linha).getRaspagemEPoliCCoronario();
         tratamento[2] = ListarTratamentos.get(linha).getCirugiaPeridontal();
@@ -579,14 +576,15 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
     jNome.setText(ListaPesquisa.get(0).getNome());
     }
 
-    private void MostraResponsavelTratamento(String idResponsavel) throws ClassNotFoundException {
-        System.out.println("codigo rsspo "+idResponsavel);
-        if(!(idResponsavel.equals("")||idResponsavel.isEmpty()||idResponsavel.equals("0"))||idResponsavel.equals(NULL)){
-            ArrayList<PesquisarProntuario> listarPesquisa;
-            conexao acesso= new conexao();
-            listarPesquisa=acesso.PesquisaResponsavelProtuario(idResponsavel);
-            if(!listarPesquisa.isEmpty())jResponsavel.setText(listarPesquisa.get(0).getNome());
+    private void MostraResponsavelTratamento(int idResponsavel) throws ClassNotFoundException {
+        conexao acesso= new conexao();
+        ArrayList<PesquisarProntuario> listarPesquisa;       
+        if(idResponsavel!=0){
+        listarPesquisa=acesso.PesquisaResponsavelProtuario(Integer.toString( idResponsavel));
+            System.out.println(listarPesquisa.get(0).getNome());
+            jResponsavel.setText(listarPesquisa.get(0).getNome());
         }
+        
      
     }
 }

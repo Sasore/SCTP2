@@ -404,10 +404,11 @@ public class Prontuario extends javax.swing.JFrame {
         } else if (retorno == true) {
             try {
                 sctp2.NovoTratamento.Anamnese acesso;
+                PassaValores();
                 acesso = new sctp2.NovoTratamento.Anamnese(jRG.getText());
                 acesso.setVisible(true);//exibe a tela de cadastro de paciente
                 this.setVisible(false);// oculta a tela atual
-                PassaValores();
+                
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Prontuario.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

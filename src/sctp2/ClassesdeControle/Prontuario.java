@@ -27,11 +27,11 @@ public class Prontuario {
         Prontuario.IdResponsavelProntuario = valor;
     }
 
-    public String getInformacoesProntuario() {
+    public static String getInformacoesProntuario() {
         return InformacoesProntuario;
     }
 
-    public String getNumeroProntuario() {
+    public static String getNumeroProntuario() {
         return NumeroProntuario;
     }
 

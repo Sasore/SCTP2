@@ -335,7 +335,6 @@ public class Prontuario extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("a");
 
-        jDateEmprestimoFim.setDateFormatString("dd/MM/yyyy");
         jDateEmprestimoFim.setMinSelectableDate(new java.util.Date(-62135755121000L));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
@@ -643,13 +642,13 @@ public class Prontuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jBprontuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBprontuarioActionPerformed
-        //se o prontuario estiver emprestado este botao irpa recebê-lo, se for o contrário ele irá emprestalo
+        //se o prontuario estiver emprestado este botao irpa recebê-lo, se for o contrário ele irá empresta-lo
         if ("Emprestado".equals(jTable1.getValueAt(jTable1.getSelectedRow(), 5))) {
             String id = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);//pega o numero do prontuario
             sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
             boolean retorno = false;
             try {
-                retorno = acesso.AtualizaStatusProntuario(id);//recebe o prontuario
+                retorno = acesso.AtualizaStatusProntuario(id,ListarPesquisa.get(jTable1.getSelectedRow()).getIdResponsavel());//recebe o prontuario
                 if (retorno == true) {
                     LimpaTabela();
                     jPanel3.setVisible(false);
@@ -927,7 +926,7 @@ public class Prontuario extends javax.swing.JFrame {
     private boolean PesquisarPorNumeroProntuario() throws ClassNotFoundException {
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
-        ListarPesquisa = new ArrayList<PesquisarProntuario>();
+        ListarPesquisa = new ArrayList<>();
         
         jBprontuario.setEnabled(false);//desativa o botao de emprestar/receber
         ListarPesquisa = acesso.PesquisarProntuario(jProntuario.getText());
@@ -1043,7 +1042,8 @@ public class Prontuario extends javax.swing.JFrame {
             } else if (ListarPesquisa.get(linha).getStatus().equals("Disponível")) {
                 jLStatus.setText("Atualmente Disponível para empréstimo");
             } else if (ListarPesquisa.get(linha).getStatus().equals("Emprestado")) {
-                jLStatus.setText("Emprestado para " + PesquisarProntuarioStatico.getNome() + " até o dia " + ConverteDataBrasil(ListarPesquisa.get(linha).getDataDevolução()));
+                
+                jLStatus.setText("Emprestado para " + ListarPesquisa.get(jTable1.getSelectedRow()).getNome() + " até o dia " +ConverteDataBrasil(ListarPesquisa.get(linha).getDataDevolução()));
             }
         }
     }

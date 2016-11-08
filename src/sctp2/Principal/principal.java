@@ -200,6 +200,7 @@ public class principal extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Sobre (2).png"))); // NOI18N
+        jButton7.setToolTipText("Sobre o SCTP");
         jButton7.setBorder(null);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
