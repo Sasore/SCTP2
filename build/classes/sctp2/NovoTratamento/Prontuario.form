@@ -227,13 +227,13 @@
                                       </Group>
                                       <Component id="jCodigoResponsavel" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="NomeresponsavelProntuario" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jPaciente" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="JcelularoAluno" min="-2" pref="163" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="jTelefonefixo" min="-2" pref="152" max="-2" attributes="0"/>
+                                              <Component id="JcelularoAluno" pref="186" max="32767" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jTelefonefixo" min="-2" pref="148" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="NomeresponsavelProntuario" alignment="0" pref="344" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -284,14 +284,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLNomeAluno" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NomeresponsavelProntuario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NomeresponsavelProntuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLTelefoneAluno23" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTelefonefixo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JcelularoAluno" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JcelularoAluno" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jTelefonefixo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -303,7 +303,7 @@
                           <Component id="jScrollPane1" min="-2" pref="208" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jNotificacao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
@@ -335,6 +335,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="Nprontuario">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NprontuarioKeyTyped"/>
           </Events>
@@ -354,17 +357,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nome do Professor/Aluno:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="NomeresponsavelProntuario">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="15" style="1"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NomeresponsavelProntuarioKeyTyped"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLTelefoneAluno23">
           <Properties>
@@ -465,24 +457,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jNotificacaoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTelefonefixo">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="15" style="1"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Celular"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="JcelularoAluno">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="15" style="1"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Telefone fixo"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="jCodigoResponsavel">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
@@ -499,8 +473,16 @@
         <Component class="javax.swing.JTextField" name="jRG">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="15" style="0"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
             </Property>
           </Properties>
         </Component>
@@ -515,6 +497,9 @@
         <Component class="javax.swing.JTextField" name="jPaciente">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="15" style="1"/>
             </Property>
@@ -524,6 +509,27 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/disponivel.png"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="NomeresponsavelProntuario">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="15" style="1"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="JcelularoAluno">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="15" style="1"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTelefonefixo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="15" style="1"/>
             </Property>
           </Properties>
         </Component>
