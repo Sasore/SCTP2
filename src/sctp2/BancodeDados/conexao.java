@@ -44,7 +44,7 @@ public class conexao {
 
     private boolean retorno = false;
 
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
         con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/sctp", "root", "");

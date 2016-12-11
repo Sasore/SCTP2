@@ -314,9 +314,10 @@ public class Prontuario extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/detalhes.png"))); // NOI18N
         jMenu1.setText("Menu");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/house pequena.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dente.png"))); // NOI18N
         jMenuItem1.setText("Menu Principal");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
