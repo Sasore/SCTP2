@@ -102,7 +102,7 @@ public class relatorio extends javax.swing.JFrame {
             sctp2.BancodeDados.conexao con= new sctp2.BancodeDados.conexao();
             HashMap filtro= new HashMap();
             filtro.put("codigoDoProntuario", 98);
-          String path= new File("E:/NetBeansProjects/SCTP2/build/classes/sctp2/relatorios/report/prontuarios.jasper").getCanonicalPath();
+          String path= new File("E:\\NetBeansProjects\\SCTP2\\build\\classes\\sctp2\\relatorios\\report/prontuariosAtrasados.jasper").getCanonicalPath();
             System.out.println("caminho do jasper: "+path);
             JasperPrint print= JasperFillManager.fillReport(path, filtro,con.getConnection());
             JasperViewer viewer = new JasperViewer(print,true);

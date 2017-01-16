@@ -466,7 +466,7 @@ public class conexao {
                 + "`pront_responsavel_prontuario`, `reservadopara_Prontuario`, paciente.pac_Nome\n"
                 + "FROM `prontuario` \n"
                 + "JOIN paciente\n"
-                + "WHERE paciente.pac_RG=referencia_RG_PAC and prontuario.pront_cod=?";
+                + "WHERE paciente.pac_RG=referencia_RG_PAC and prontuario.pront_cod=? limit 30";
         Connection con = null;
         ArrayList<PesquisarProntuario> ListarPesquisa;//array que recebera o resultado da pesquisa
         ListarPesquisa = new ArrayList<PesquisarProntuario>();//criando novo array
@@ -526,7 +526,7 @@ public class conexao {
                 + "`reservadopara_Prontuario`, `DataEmprestimo_Prontuario`, "
                 + "`DataDevolver_Prontuario`,paciente.pac_Nome FROM `prontuario`"
                 + " JOIN paciente ON paciente.pac_RG=prontuario.referencia_RG_PAC "
-                + "WHERE paciente.pac_Nome LIKE ?";
+                + "WHERE paciente.pac_Nome LIKE ? limit 30";
         try {
             con = getConnection();
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -1626,7 +1626,7 @@ public class conexao {
             while(rs.next())result++;
             if(result>0){
                 try{
-                String sqlAlta="UPDATE `paciente` SET `pac_Alta`=1  WHERE `pac_RG`=?;";
+                String sqlAlta="UPDATE `paciente` SET `pac_Alta`=1,pac_Fim_tratamento=now()  WHERE `pac_RG`=?;";
                 con2=getConnection();
                 PreparedStatement smt2 = (PreparedStatement) con.prepareStatement(sqlAlta);
                 smt2.setString(1, rg);

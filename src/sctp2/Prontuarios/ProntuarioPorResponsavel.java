@@ -404,7 +404,8 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
 
     private void jTableProntuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProntuarioMouseClicked
         try {
-            ExibeDetalhesProntuario(listarPesquisa.get(jTableProntuario.getSelectedRow()).getRgPaciente());
+            String numeroProntuario=String.valueOf(jTableProntuario.getValueAt(jTableProntuario.getSelectedRow(),0));
+            ExibeDetalhesProntuario(listarPesquisa.get(jTableProntuario.getSelectedRow()).getRgPaciente(),numeroProntuario);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProntuarioPorResponsavel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -557,12 +558,11 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
 
     }
 
-    private void ExibeDetalhesProntuario(String rgPaciente) throws ClassNotFoundException {
+    private void ExibeDetalhesProntuario(String rgPaciente,String numeroProntuario) throws ClassNotFoundException {
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         ArrayList<PesquisarProntuarioStatico> detalhesProntuario;
         detalhesProntuario = acesso.PesquisarProntuariopelorg(rgPaciente);
-        System.out.println("rg " + rgPaciente);
-        jNumeroProntuario.setText(listarPesquisa.get(jTableProntuario.getSelectedRow()).getNumeroProntuario());
+        jNumeroProntuario.setText(numeroProntuario);
         jStatusProntuario.setText(detalhesProntuario.get(0).getStatus());
         jDescricaoProntuario.setText(detalhesProntuario.get(0).getInformacoes());
         jPaciente.setText(detalhesProntuario.get(0).getPaciente());
