@@ -281,7 +281,7 @@ else
         }
             System.out.println("caminho do jasper: "+path);
             JasperPrint print= JasperFillManager.fillReport(path,null,con.getConnection());
-            JasperViewer viewer = new JasperViewer(print,true);
+            JasperViewer viewer = new JasperViewer(print,false);
             viewer.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(Prontuarios.class.getName()).log(Level.SEVERE, null, ex);

@@ -123,6 +123,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Adicionar Responsável ao Prontuário");
 
+        jPesquisa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jPesquisa.setText("Digite o nome do responsável aqui!");
         jPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -212,6 +213,9 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         jOutdoor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jOutdoor.setText("Pesquise pelo Aluno ou Professor antes de cadastrar um novo, caso ele não exista, você pode cadastrar um Aluno e seu Professor ou Apenas o Professor.");
         jScrollPane2.setViewportView(jOutdoor);
+
+        jPanelCadastrar.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 1, true));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Aluno /Responsável");
@@ -351,14 +355,22 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        jNovoAluno.setBackground(new java.awt.Color(255, 255, 255));
+        jNovoAluno.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jNovoAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/novo contato pequeno.png"))); // NOI18N
         jNovoAluno.setText("Novo Aluno ");
+        jNovoAluno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 204), 1, true));
         jNovoAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jNovoAlunoActionPerformed(evt);
             }
         });
 
+        jNovoProfessor.setBackground(new java.awt.Color(255, 255, 255));
+        jNovoProfessor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jNovoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/novo contato pequeno.png"))); // NOI18N
         jNovoProfessor.setText("Novo Professor");
+        jNovoProfessor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 204), 1, true));
         jNovoProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jNovoProfessorActionPerformed(evt);
@@ -389,11 +401,11 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jNovoAluno)
-                        .addGap(18, 18, 18)
-                        .addComponent(jNovoProfessor))
+                        .addComponent(jNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jNovoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -415,8 +427,8 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jNovoAluno)
-                            .addComponent(jNovoProfessor))
+                            .addComponent(jNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jNovoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -467,7 +479,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
                 .addComponent(jBAumentaTamFOnte)
                 .addGap(18, 18, 18)
                 .addComponent(jBDiminuiTamFOnte, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(897, Short.MAX_VALUE))
+                .addContainerGap(899, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

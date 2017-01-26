@@ -120,6 +120,7 @@ public class PesquisarPaciente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -323,6 +324,8 @@ public class PesquisarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTPesquisarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+jTable1.setSelectionBackground(Color.lightGray);
+        if(evt.getClickCount()==2){
         String rg= (String) jTable1.getValueAt(jTable1.getSelectedRow(),4);
         sctp2.Paciente.DadosDoPaciente acesso;
         try {
@@ -332,7 +335,8 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PesquisarPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+ 
+}
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -402,7 +406,7 @@ jTPesquisar.setText("");        // TODO add your handling code here:
         ArrayList<Pesquisar> listaPesquisa;
         listaPesquisa = acesso.PesquisarPorPaciente(jTPesquisar.getText());
         if (listaPesquisa.isEmpty()) listaPesquisa = acesso.PesquisarPorPacientePorCPFRG(jTPesquisar.getText());
-        if(listaPesquisa.size()==0)jTNotificacao.setText("Nenhum paciente encontrado");
+        if(listaPesquisa.isEmpty())jTNotificacao.setText("Nenhum paciente encontrado");
             
          else {
       //      int codigoProntuario = 0;
@@ -410,7 +414,7 @@ jTPesquisar.setText("");        // TODO add your handling code here:
                 int[] retorno = acesso.PesquisarProntuarioPaciente(listaPesquisa.get(i).getRg());
                 
                 valor.addRow((new String[]{  Integer.toString(listaPesquisa.get(i).getCodigo()),String.valueOf(retorno[0]),listaPesquisa.get(i).getNome(), listaPesquisa.get(i).getTelefone(), listaPesquisa.get(i).getRg(),String.valueOf(retorno[1])}));
-                jTNotificacao.setText("Clique no nome para ver mais detalhes");
+                jTNotificacao.setText("Dê um duplo clique no nome para ver mais detalhes");
             }
         }
 
