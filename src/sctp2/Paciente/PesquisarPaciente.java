@@ -402,7 +402,7 @@ jTPesquisar.setText("");        // TODO add your handling code here:
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
         //-----------------------------------------------------------
-        LimpaTabela();
+        LimpaTabela(); 
         ArrayList<Pesquisar> listaPesquisa;
         listaPesquisa = acesso.PesquisarPorPaciente(jTPesquisar.getText());
         if (listaPesquisa.isEmpty()) listaPesquisa = acesso.PesquisarPorPacientePorCPFRG(jTPesquisar.getText());

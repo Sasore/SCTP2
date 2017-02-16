@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import sctp2.Pesquisar.Pesquisar;
@@ -36,6 +35,7 @@ int tamanhoDaFonte=15;
         jEditar.setVisible(false);
         jExcluir.setVisible(false);
         jNovoResponsavel.setVisible(true);
+        jPanel3.setVisible(false);
         jnotificacao2.setText("Cadastrar um novo responsável!");    
         TamanhoDaFonte(tamanhoDaFonte);//define o tamanho da fonte no sistema
         EfetuaPesquisa();
@@ -308,6 +308,7 @@ int tamanhoDaFonte=15;
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 204), 1, true));
 
         try {
@@ -390,8 +391,8 @@ int tamanhoDaFonte=15;
                     .addComponent(jLabel3)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(44, 44, 44)
-                        .addComponent(jnotificacao2, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59)
+                        .addComponent(jnotificacao2, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jinformacaodoconteine, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel3Layout.createSequentialGroup()
@@ -554,9 +555,7 @@ int tamanhoDaFonte=15;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -671,6 +670,7 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
             JTelefoneProfessor.setText(listaPesquisa.get(0).getTelefoneFixoProfessor());
             jCelularProfessor.setText(listaPesquisa.get(0).getCelularProfessor());
             jnotificacao2.setText("Atualizar Dados.");
+            jPanel3.setVisible(true);
             BloqueiaCampos(false);//impedir que o usuario altere os campos
             jinformacaodoconteine.setText("Clique no botão Editar para alterar os dados!");
             jEditar.setEnabled(true);//ativa o botao de editar
@@ -703,6 +703,7 @@ if(jPesquisa.getText().equals("Pesquisar responsável"))jPesquisa.setText("");  
         jNovoResponsavel.enable(false);
         jNovoResponsavel.setVisible(false);
         jnotificacao2.setText("Cadastrar novo Responsável");
+        jPanel3.setVisible(true);
 
     }//GEN-LAST:event_jNovoResponsavelActionPerformed
 
