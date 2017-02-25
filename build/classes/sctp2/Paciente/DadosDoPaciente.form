@@ -70,10 +70,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanel2" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -101,15 +98,15 @@
                   <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                   <Component id="jBVoltar" min="-2" pref="84" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jbCancelaEdicao" min="-2" pref="111" max="-2" attributes="0"/>
+                  <Component id="jbCancelaEdicao" min="-2" pref="146" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jBEditar" min="-2" pref="118" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton2" min="-2" pref="109" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jRetiraListaNegra" min="-2" pref="207" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
-                  <Component id="jBSalvar" min="-2" pref="161" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="234" max="-2" attributes="0"/>
+                  <Component id="jBSalvar" min="-2" pref="257" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -303,70 +300,53 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="jLOcupacao" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLPai" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLNome" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="jLOcupacao" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLPai" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLNome" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel2" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="jNome" pref="242" max="32767" attributes="0"/>
                                               <Component id="jocupação" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jpai" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jsexo" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                                              <Component id="jsexo" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jLMae" max="32767" attributes="0"/>
-                                                  <Component id="jLRG" alignment="1" max="32767" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="jLNasc" pref="80" max="32767" attributes="0"/>
+                                                      <Component id="jLRG" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="jLNasc" min="-2" pref="80" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jLMae" max="32767" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Component id="jnascimento" min="-2" pref="121" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jLNaturalidade" min="-2" pref="74" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jLNaturalidade" min="-2" pref="33" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jnaturalidade" min="-2" pref="129" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jrg" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jMae" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLCep" min="-2" pref="51" max="-2" attributes="0"/>
-                                              <Component id="jLTelContato1" min="-2" pref="51" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jcep" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                              <Component id="jnumeroDoEndereco" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jtelefone" min="-2" pref="102" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                  <Component id="jLTelContato" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                                  <Component id="jTelefoneFixo" min="-2" pref="132" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="jrg" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="jMae" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLConjuge" min="-2" pref="55" max="-2" attributes="0"/>
-                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jLabel3" max="32767" attributes="0"/>
+                                              <Component id="jLConjuge" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
@@ -383,80 +363,107 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLRua" min="-2" pref="60" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jrua" min="-2" pref="224" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLBairro" max="32767" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jbairro" min="-2" pref="224" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLCidade" min="-2" pref="46" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jcidade" min="-2" pref="224" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="jSeparator1" alignment="0" min="-2" pref="705" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                                  <Component id="jNotificao" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jScrollPane2" alignment="1" min="-2" pref="379" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jLTelContato1" min="-2" pref="74" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="1" attributes="0">
+                                                              <Component id="jLCep" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                                              <Component id="jLabel6" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jcep" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      <Component id="jnumeroDoEndereco" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="jtelefone" min="-2" pref="102" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="jLTelContato" min="-2" pref="46" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                                          <Component id="jTelefoneFixo" min="-2" pref="158" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLRua" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jrua" min="-2" pref="224" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jLBairro" max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jbairro" min="-2" pref="224" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jLCidade" min="-2" pref="46" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jcidade" min="-2" pref="224" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jNotificao" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jsituacaoprontuario" min="-2" pref="96" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jprontuario" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jLabel10" min="-2" pref="76" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jprontuario" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jsituacaoprontuario" min="-2" pref="96" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="jtelefonfixoprontuario" max="32767" attributes="0"/>
+                                              <Component id="jcelularprontuario" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jtelefonfixoprontuario" max="32767" attributes="0"/>
-                                                      <Component id="jcelularprontuario" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jLabel12" min="-2" pref="78" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jresponsavelprontuario" min="-2" pref="237" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="jLabel12" min="-2" pref="78" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jresponsavelprontuario" min="-2" pref="237" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" pref="379" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="460" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -508,11 +515,13 @@
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLPai" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jpai" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLMae" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jMae" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLPai" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jpai" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLMae" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jMae" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -775,11 +784,7 @@
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder roundedCorners="true">
-                  <Color PropertyName="color" blue="ff" green="0" red="0" type="rgb"/>
-                </LineBorder>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
         </Component>
@@ -806,11 +811,7 @@
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder roundedCorners="true">
-                  <Color PropertyName="color" blue="ff" green="0" red="0" type="rgb"/>
-                </LineBorder>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
         </Component>
@@ -839,11 +840,7 @@
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder roundedCorners="true">
-                  <Color PropertyName="color" blue="ff" green="0" red="0" type="rgb"/>
-                </LineBorder>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
           <Events>
@@ -868,6 +865,9 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jconjugeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -910,6 +910,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="66" red="33" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Cidade:"/>
           </Properties>
         </Component>

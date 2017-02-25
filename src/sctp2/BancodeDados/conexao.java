@@ -1251,8 +1251,8 @@ public class conexao {
            return 0;
     }
        public ArrayList<Pesquisar> PesquisarNecessidade(String necessidade, boolean selected) throws ClassNotFoundException {
-        String sql = "SELECT pac_Cod,pac_Nome,pac_Telefone ,pac_listaNegra FROM paciente  join necessidade where " + necessidade + "=1 and necessidade.nec_referencia_rg=paciente.pac_RG and pac_listaNegra=0  ;";
-        String sqlComListaNegra = "SELECT pac_Cod,pac_Nome,pac_Telefone ,pac_listaNegra FROM paciente  join necessidade where " + necessidade + "=1 and necessidade.nec_referencia_rg=paciente.pac_RG ;";
+        String sql = "SELECT pac_Cod,pac_Nome,pac_Telefone,pac_TelefoneFixo ,pac_listaNegra FROM paciente  join necessidade where " + necessidade + "=1 and necessidade.nec_referencia_rg=paciente.pac_RG and pac_listaNegra=0  ;";
+        String sqlComListaNegra = "SELECT pac_Cod,pac_Nome,pac_TelefoneFixo,pac_Telefone ,pac_listaNegra FROM paciente  join necessidade where " + necessidade + "=1 and necessidade.nec_referencia_rg=paciente.pac_RG ;";
         if (selected == true) {
             sql = sqlComListaNegra;
         }
@@ -1269,6 +1269,7 @@ public class conexao {
                 pesquisarsmt.setCodigo(rs.getInt("pac_Cod"));
                 pesquisarsmt.setNome(rs.getString("pac_Nome"));
                 pesquisarsmt.setTelefone(rs.getString("pac_Telefone"));
+                pesquisarsmt.setTelefonefixo(rs.getString("pac_TelefoneFixo"));
                 pesquisarsmt.setListaNegra(rs.getInt("pac_listaNegra"));
                 ListarPesquisa.add(pesquisarsmt);
             }
@@ -1517,7 +1518,7 @@ public class conexao {
                 + ", pac_Naturalidade=?, pac_Sexo=?, pac_Ocupacao=?, pac_Procedencia=?"
                 + ", pac_Mae=?,pac_Pai=?, pac_EstadoCivil=?, pac_Conjuge=?, pac_Cidade=?"
                 + ", pac_Rua=?, pac_Bairro=?, pac_NumeroCasa=?, pac_Cep=?, pac_Telefone=?, pac_Alta=?"
-                + ",pac_listaNegra=?, pac_motivoLista=? where pac_Cod=?;");
+                + ",pac_listaNegra=?, pac_motivoLista=?,pac_TelefoneFixo=? where pac_Cod=?;");
         Connection con = null;
         retorno = false;
         try {
@@ -1544,7 +1545,9 @@ public class conexao {
             smt.setInt(19, Pacientevetor[4]);
             smt.setString(20, PacienteList.get(14));//motivo da lista negra  
             smt.setInt(21, Pacientevetor[5]);
-            smt.executeUpdate();
+            smt.setString(22, PacienteList.get(15));
+            smt.execute();
+            System.out.println("Gravou ");
             retorno = true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "(2) Não foi possível gravar no Banco de dados os dados do Paciente , tente novamente em breve.");

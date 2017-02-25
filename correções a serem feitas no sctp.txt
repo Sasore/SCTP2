@@ -1,3 +1,9 @@
+*adicionar campo de pesquisa na tela de pesquisar por necessidade.
+*adicionar campo : localização fisica do prontuário
+* verificar se a pesquisa por necessidade verifica se o paciente está ativo ou inativo.
+
+
+
 * Adicionar verificação do numero do prontuario na tela de cadastro de prontuário, no caso
 se já existe um prontuario com aquele número.
 
@@ -10,3 +16,24 @@ para a tela de pesquisa de prontuario
 * o colocar na lista negra do cadastro na ta funcionando
 
 * na tela de detalhes do paciente não exibe o telefone do paciente e o nome da janela é cadastro mudar pa detalhes
+* na tela tratamento atual do paciente alterar as barras de rolagem para horizontal.
+* Adicionar atalho ao menu para pesquisar paciente e prontuario
+//prontuários
+*Adicionar telefone celular, prontuário,cpf na tela pesquisar necessidades.
+* Passagem de parâmetro errada: Ao retornar da tela responsável pelo prontuário para prontuários, o telefone celular aparece no lugar de telefone fixo e telefone fixo não aparece..
+* Verificar limite de alunos carregados na tela ver responsável pelo prontuário, pois pode craschar o sistema com o tempo.
+* Ao chamar a tela adicionar responsável bloquear o botão adicioanar 
+//Aluno responsável pelo prontuário
+* O sistema não está limpando o campo telefone fixo, ao clicar em um novo aluno o telefone antigo permanece, caso nãpo exista do novo aluno (Solução: adicioar um limpador para o campo telefone fixo);.
+* Alterar texto quando para "A data final deve ser maior ou igual a data inicial".
+* Retirar status do prontuário da tela de cadastro
+* Mudar cor dos elementos select na tela detalhes do paciente.
+*Aumentar espaçamento dos itens na tela detalhes do paciente, alguns labels estão cortando o texto pela metade
+* Em histórico não aparece o responsável pelo tratamento.
+*Adicionar data de cadastro na tela detalhes do paciente
+*Adicionar  depressão no questionário de saúde.
+* verificar se o sistema obriga a colocar pelo menos uma necessidade no cadastro de tratamentos
+*Retirar o gerador automatico de prontuários.
+* Exondontia uniradicular não aparece nos tratamentos atuais.
+*Corrigir visualização do numero de prontuario (acho que to mostrando o id do prontuario)
+*Adicionar click em pesqusiar por necessidades para mostrar detalhes do paciente.

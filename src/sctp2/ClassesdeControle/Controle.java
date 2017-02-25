@@ -110,6 +110,7 @@ public class Controle {
         Pacientevetor[4] = acesso.getListaNegra();//lista negra (0 ou 1)
         PacienteList.add(acesso.getListaNegraJustificativa());
         Pacientevetor[5]=acesso.getCodigo();//codigo do paciente
+        PacienteList.add(Paciente.getTelefoneFixo());
         retorno = acessoConexao.AtualizaPaciente(PacienteList, Pacientevetor);
 
         return retorno;

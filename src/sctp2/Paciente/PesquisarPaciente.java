@@ -56,6 +56,7 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -102,7 +103,7 @@ public class PesquisarPaciente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "codigo", "Prontuário", "Nome", "Telefone", "RG", "Status Prontuario"
+                "codigo", "Prontuário", "Nome", "Celular", "RG", "Status Prontuario"
             }
         ) {
             Class[] types = new Class [] {
@@ -203,6 +204,17 @@ public class PesquisarPaciente extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1471413504_house.png"))); // NOI18N
+        jButton3.setText("Menu Inicial");
+        jButton3.setActionCommand("meniu inicial");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -210,13 +222,19 @@ public class PesquisarPaciente extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -343,6 +361,13 @@ jTable1.setSelectionBackground(Color.lightGray);
 jTPesquisar.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        sctp2.Principal.principal acesso = new sctp2.Principal.principal();
+        acesso.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +407,7 @@ jTPesquisar.setText("");        // TODO add your handling code here:
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -399,11 +425,13 @@ jTPesquisar.setText("");        // TODO add your handling code here:
     // End of variables declaration//GEN-END:variables
 
     private void PassaValoresPesquisa() throws ClassNotFoundException {
+        //------Chaves de acesso a estruras-----------------------------------
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
+        ArrayList<Pesquisar> listaPesquisa;
         //-----------------------------------------------------------
         LimpaTabela(); 
-        ArrayList<Pesquisar> listaPesquisa;
+        //----------------------------------------------------------
         listaPesquisa = acesso.PesquisarPorPaciente(jTPesquisar.getText());
         if (listaPesquisa.isEmpty()) listaPesquisa = acesso.PesquisarPorPacientePorCPFRG(jTPesquisar.getText());
         if(listaPesquisa.isEmpty())jTNotificacao.setText("Nenhum paciente encontrado");
