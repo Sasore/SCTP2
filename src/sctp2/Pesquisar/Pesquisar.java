@@ -37,7 +37,17 @@ public class Pesquisar {
     private String nomeProfessor;
     private String telefoneFixoProfessor;
     private String celularProfessor;
+    private String prontuario;
 
+    public String getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(String prontuario) {
+        this.prontuario = prontuario;
+    }
+
+    
     
 
     public String getDataNascimento() {

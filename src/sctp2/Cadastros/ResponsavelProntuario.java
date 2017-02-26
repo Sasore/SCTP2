@@ -38,6 +38,7 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         codigo=nprontuario;
         TamanhoDaFonte(tamanhoFonte);//Esta função define o tamanho da fonte da tela e deve ser chamada em todos os construtoress da classe
         jPanelCadastrar.setVisible(false);
+        jAdicionarResponsavel.setEnabled(false);
         EfetuaPesquisa();
         
 
@@ -64,7 +65,7 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
         jLabel1 = new javax.swing.JLabel();
         jPesquisa = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jAdicionarResponsavel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jNotificacao = new javax.swing.JTextField();
@@ -133,14 +134,14 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 51, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
-        jButton2.setText("Adicionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jAdicionarResponsavel.setBackground(new java.awt.Color(255, 255, 255));
+        jAdicionarResponsavel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jAdicionarResponsavel.setForeground(new java.awt.Color(0, 51, 255));
+        jAdicionarResponsavel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
+        jAdicionarResponsavel.setText("Adicionar");
+        jAdicionarResponsavel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jAdicionarResponsavelActionPerformed(evt);
             }
         });
 
@@ -365,7 +366,7 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
+                    .addComponent(jAdicionarResponsavel)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(10, 10, 10)
@@ -415,7 +416,7 @@ private int tamanhoFonte=15;//varialve que armazena o tamanho da fonte da tela a
                         .addComponent(jPanelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jAdicionarResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
         );
 
@@ -531,7 +532,7 @@ jPesquisa.setText("");        // TODO add your handling code here:
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jAdicionarResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdicionarResponsavelActionPerformed
 
 
     try {
@@ -540,10 +541,11 @@ jPesquisa.setText("");        // TODO add your handling code here:
         Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jAdicionarResponsavelActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-    try {
+if(evt.getClickCount()==2){
+        try {
         ChamaCadastroProntuario();
         
         
@@ -552,6 +554,7 @@ jPesquisa.setText("");        // TODO add your handling code here:
     } catch (ClassNotFoundException ex) {
         Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jNotificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNotificacaoActionPerformed
@@ -639,10 +642,10 @@ jLabel3.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jAdicionarResponsavel;
     private javax.swing.JButton jBAumentaTamFOnte;
     private javax.swing.JButton jBDiminuiTamFOnte;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JFormattedTextField jFTelefoneCelular;
@@ -696,7 +699,7 @@ jLabel3.setVisible(false);
         if (listaPesquisa.size() == 0) {
             jNotificacao.setText("Sem resultados");
         } else {
-
+            jAdicionarResponsavel.setEnabled(true);
             for (int i = 0; i < listaPesquisa.size(); i++) {
                 //System.out.println("::" + listaPesquisa.get(i).getNome());
                 valor.addRow(new String[]{Integer.toString(listaPesquisa.get(i).getCodigo()),listaPesquisa.get(i).getNome(), listaPesquisa.get(i).getTelefone(),listaPesquisa.get(i).getTelefonefixo()});
@@ -754,7 +757,7 @@ sctp2.ClassesdeControle.Controle acesso= new sctp2.ClassesdeControle.Controle();
         jButton1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
         jPanel1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
         jNotificacao.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-        jButton2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+        jAdicionarResponsavel.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
         jButton3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
         jButton4.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
         jFTelefoneCelular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));

@@ -48,6 +48,7 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jTNotificacao = new javax.swing.JTextField();
         jPesquisa = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -104,18 +105,18 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "paciente", "telefone", "Lista Negra", "Celular"
+                "Código", "Paciente", "Prontuario", "Celular", "Fixo", "Lista Negra"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setGridColor(new java.awt.Color(204, 204, 204));
         jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -129,8 +130,8 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
             jTable1.getColumnModel().getColumn(1).setMinWidth(100);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(10);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(10);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(10);
         }
 
         jTNotificacao.setEditable(false);
@@ -151,25 +152,42 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/reload32-32.png"))); // NOI18N
+        jButton3.setToolTipText("Recarregar");
+        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPesquisa)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboNecessidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCBListaNegra, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTNotificacao, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jTNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jComboNecessidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCBListaNegra, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(131, 131, 131)))))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -183,12 +201,17 @@ public class PesqusiarNecessidade extends javax.swing.JFrame {
                     .addComponent(jCBListaNegra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPesquisa))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -295,14 +318,17 @@ PesquisarPorNecessidade();        // TODO add your handling code here:
     }//GEN-LAST:event_jComboNecessidadeActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if(evt.getClickCount()==2){
         String id= (String) jTable1.getValueAt(jTable1.getSelectedRow(),0);
                 sctp2.Paciente.DadosDoPaciente acesso;
         try {
+            System.out.println("id do paciente: "+id);
             acesso = new sctp2.Paciente.DadosDoPaciente(id);
               acesso.setVisible(true);
             this.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PesquisarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -317,6 +343,10 @@ PesquisarPorNecessidade();        // TODO add your handling code here:
     private void jPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPesquisaActionPerformed
 FiltrarPacientes();
     }//GEN-LAST:event_jPesquisaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+PesquisarPorNecessidade();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,6 +386,7 @@ FiltrarPacientes();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCBListaNegra;
     private javax.swing.JComboBox jComboNecessidade;
     private javax.swing.JLabel jLabel1;
@@ -472,7 +503,7 @@ FiltrarPacientes();
         //----------------------------------------------------------------------------------------------------------
         conexao acesso = new conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
-        String necessidade = Necessidade();
+        String necessidade = Necessidade();//A função necessidade retorna qual é a necessidade selecionada
         ArrayList<Pesquisar> ListarPesquisa = new ArrayList();
         LimpaTabela();
         //----------------------------------------------------------------------------------------------------------
@@ -484,8 +515,8 @@ FiltrarPacientes();
             } else {
                 for (int i = 0; i < ListarPesquisa.size(); i++) {
                     int[] retorno = acesso.PesquisarProntuarioPaciente(ListarPesquisa.get(i).getRg());
-                    if(ListarPesquisa.get(i).getListaNegra()==0)valor.addRow((new String[]{Integer.toString(ListarPesquisa.get(i).getCodigo()), ListarPesquisa.get(i).getNome(), ListarPesquisa.get(i).getTelefone(), "Não",ListarPesquisa.get(i).getTelefonefixo()}));
-                    if(ListarPesquisa.get(i).getListaNegra()==1)valor.addRow((new String[]{Integer.toString(ListarPesquisa.get(i).getCodigo()), ListarPesquisa.get(i).getNome(), ListarPesquisa.get(i).getTelefone(), "Sim",ListarPesquisa.get(i).getTelefonefixo()}));
+                    if(ListarPesquisa.get(i).getListaNegra()==0)valor.addRow((new String[]{ListarPesquisa.get(i).getRg(), ListarPesquisa.get(i).getNome(),ListarPesquisa.get(i).getProntuario(), ListarPesquisa.get(i).getTelefone(),ListarPesquisa.get(i).getTelefonefixo(), "Não"}));
+                    if(ListarPesquisa.get(i).getListaNegra()==1)valor.addRow((new String[]{ListarPesquisa.get(i).getRg(), ListarPesquisa.get(i).getNome(),ListarPesquisa.get(i).getProntuario(), ListarPesquisa.get(i).getTelefone(),ListarPesquisa.get(i).getTelefonefixo(), "Sim"}));
                     jTNotificacao.setForeground(Color.BLUE);
                     jTNotificacao.setText("Clique no nome para ver mais detalhes");
                 }
@@ -496,21 +527,29 @@ FiltrarPacientes();
     }
 
     private void FiltrarPacientes() {
-            DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
-            ArrayList<Pesquisar> FiltraPesquisa = new ArrayList<Pesquisar>();
-            Pesquisar filtraPesquisa= new Pesquisar();
-            for(int i=0;i<valor.getRowCount();i++){
-                System.out.println("percorrendo a linha ("+i+")::["+jPesquisa.getText()+"]");
-                if(valor.getValueAt(i,0).equals(jPesquisa.getText())){
-                    filtraPesquisa.setCodigo((int) valor.getValueAt(i,0));
-                    filtraPesquisa.setNome((String) valor.getValueAt(i,1));
-                    filtraPesquisa.setTelefone((String) valor.getValueAt(i,2));
-                    filtraPesquisa.setListaNegra((int) valor.getValueAt(i,3));
-                    valor.addRow((new String[]{Integer.toString(filtraPesquisa.getCodigo()), filtraPesquisa.getNome(), filtraPesquisa.getTelefone(), "Sim"}));
-                LimpaTabela();     
+          //----------------------------------------------------------------------------------------------------------
+          if(!jPesquisa.getText().equals("")){
+        conexao acesso = new conexao();
+        DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
+        String necessidade = Necessidade();//A função necessidade retorna qual é a necessidade selecionada
+        ArrayList<Pesquisar> ListarPesquisa = new ArrayList();
+        LimpaTabela();
+        //----------------------------------------------------------------------------------------------------------
+        try {
+            ListarPesquisa = acesso.PesquisarNecessidade(necessidade, jPesquisa.getText());//necessidade() é uma função que retorna a string paraconsulta no banco de dados
+            if (ListarPesquisa.isEmpty()) {
+                jTNotificacao.setForeground(Color.red);
+                jTNotificacao.setText("Nenhum paciente encontrado");
+            } else {
+                for (int i = 0; i < ListarPesquisa.size(); i++) {
+                     valor.addRow((new String[]{ListarPesquisa.get(i).getRg(), ListarPesquisa.get(i).getNome(),ListarPesquisa.get(i).getProntuario(), ListarPesquisa.get(i).getTelefone(),ListarPesquisa.get(i).getTelefonefixo(), "Não"}));
+                    jTNotificacao.setForeground(Color.BLUE);
+                    jTNotificacao.setText("Clique no nome para ver mais detalhes");
                 }
-                
-                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PesqusiarNecessidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
-    }
+    }}
 }

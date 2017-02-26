@@ -79,6 +79,8 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,7 +122,7 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 102, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Tratamento Atual do paciente");
+        jLabel1.setText("Tratamento atual do paciente");
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -372,6 +374,24 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconSearch.png"))); // NOI18N
+        jMenuItem4.setText("Pesquisar paciente");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconSearch.png"))); // NOI18N
+        jMenuItem3.setText("Pesquisar prontuário");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fechar.png"))); // NOI18N
         jMenuItem2.setText("Sair");
@@ -421,6 +441,16 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
         this.setVisible(false);        // TODO add your handling code here:
         new sctp2.Principal.principal().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        this.setVisible(false);        // TODO add your handling code here:
+        new sctp2.Prontuarios.Prontuario().setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+this.setVisible(false);        // TODO add your handling code here:
+new sctp2.Paciente.PesquisarPaciente().setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,6 +504,8 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JTextField jNome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -587,7 +619,7 @@ public class PacientetratamentoEdoencas extends javax.swing.JFrame {
             valor.addRow((new String[]{"Terapia Periodontal "}));
         }
         if (tratamento[20] == 1) {
-            valor.addRow((new String[]{" Endodontia Birradicular "}));
+            valor.addRow((new String[]{"Endodontia Birradicular "}));
         }
         if (tratamento[21] == 1) {
             valor.addRow((new String[]{"DTM "}));
