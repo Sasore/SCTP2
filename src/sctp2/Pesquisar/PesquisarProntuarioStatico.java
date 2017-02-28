@@ -154,6 +154,15 @@ public class PesquisarProntuarioStatico {
     public void setCelularProfessor(String celularProfessor) {
         this.celularProfessor = celularProfessor;
     }
+
+    public String getLocalizacaoProntuario() {
+        return localizacaoProntuario;
+    }
+
+    public void setLocalizacaoProntuario(String localizacaoProntuario) {
+        this.localizacaoProntuario = localizacaoProntuario;
+    }
+    
     
     
     private static String nome;
@@ -172,5 +181,6 @@ public class PesquisarProntuarioStatico {
     private String      nomeProfessor;
     private String      TelefoneProfessor;
     private String      celularProfessor;
+    private String      localizacaoProntuario;
 
 }

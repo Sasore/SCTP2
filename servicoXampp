@@ -1,0 +1,19 @@
+#!/bin/bash
+# MyAppXampp
+#
+# description: Inicialização do XAMPP
+
+case $1 in
+    start)
+        /opt/lampp/lampp start
+    ;;
+    stop)
+        /opt/lampp/lampp stop
+    ;;
+    restart)
+        /opt/lampp/lampp stop
+	sleep 5
+        /opt/lampp/lampp start
+    ;;
+esac
+exit 0

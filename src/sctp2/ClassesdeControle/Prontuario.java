@@ -21,6 +21,17 @@ public class Prontuario {
     protected static String rgPaciente;
     protected static  Date  dataEmprestimo;
     protected static  Date dataDevolucao;
+    protected static String localizacaoProntuario;
+
+    public static String getLocalizacaoProntuario() {
+        return localizacaoProntuario;
+    }
+
+    public static void setLocalizacaoProntuario(String localizacaoProntuario) {
+        Prontuario.localizacaoProntuario = localizacaoProntuario;
+    }
+    
+    
 
     public static void setIdResponsavelProntuario(String IdResponsavelProntuario) {
         int valor= Integer.parseInt(IdResponsavelProntuario);

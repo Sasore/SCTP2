@@ -132,6 +132,7 @@ public class Controle {
         ProntuarioList.add(acesso.getInformacoesProntuario());
         StatusProntuario = acesso.getStatusProntuario();
         idresponsavelprontuario=acesso.getIdResponsavelProntuario();
+        ProntuarioList.add(acesso.getLocalizacaoProntuario());
         acessoCon.GravaProntuario(ProntuarioList, StatusProntuario,idresponsavelprontuario);
         return retorno;
     }

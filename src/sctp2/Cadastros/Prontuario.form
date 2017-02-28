@@ -265,24 +265,13 @@
                               <Component id="jLNomeAluno" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLInformacoesAdicionais" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLTelefoneAluno23" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="JcelularoAluno" min="-2" pref="163" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="jTelefonefixo" min="-2" pref="152" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="NomeresponsavelProntuario" min="-2" pref="344" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                          <Component id="jButton1" min="-2" pref="158" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="jNotificacao" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
@@ -290,6 +279,24 @@
                               <Group type="102" attributes="0">
                                   <Component id="jNumeroProntuario" min="-2" pref="141" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="JcelularoAluno" min="-2" pref="163" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                          <Component id="jTelefonefixo" min="-2" pref="152" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="jlocalizacaoProntuario" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="NomeresponsavelProntuario" alignment="0" pref="344" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Component id="jButton1" min="-2" pref="158" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -309,29 +316,31 @@
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jNumeroProntuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jlocalizacaoProntuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLNomeAluno" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="NomeresponsavelProntuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLNomeAluno" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NomeresponsavelProntuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLTelefoneAluno23" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTelefonefixo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JcelularoAluno" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTelefonefixo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jLInformacoesAdicionais" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="208" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLInformacoesAdicionais" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="208" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="83" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
                   <Component id="jNotificacao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
@@ -491,6 +500,16 @@
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jNumeroProntuarioKeyTyped"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jlocalizacaoProntuario">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="15" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Localiza&#xe7;&#xe3;o f&#xed;sica do prontu&#xe1;rio:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

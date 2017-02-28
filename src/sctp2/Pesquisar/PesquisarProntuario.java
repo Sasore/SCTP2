@@ -29,6 +29,7 @@ public class PesquisarProntuario {
     private String      nomeProfessor;
     private String      TelefoneProfessor;
     private String      celularProfessor;
+    private String      localizacaoProntuario;
 
     public  String getNome() {
         return nome;
@@ -183,6 +184,14 @@ public class PesquisarProntuario {
 
     public void setCelularProfessor(String celularProfessor) {
         this.celularProfessor = celularProfessor;
+    }
+
+    public String getLocalizacaoProntuario() {
+        return localizacaoProntuario;
+    }
+
+    public void setLocalizacaoProntuario(String localizacaoProntuario) {
+        this.localizacaoProntuario = localizacaoProntuario;
     }
     
     

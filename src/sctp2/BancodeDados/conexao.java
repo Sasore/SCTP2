@@ -372,11 +372,11 @@ public class conexao {
         //---------------------------------------------------------------------------------------------------------------------------- -\\
         // A partir da versão 2.0 do sctp os responsaveis pelo prontuario passaram a ser gravados em uma tabela separada, sendo assim     \\
         //   existem duas funções, uma que grava o responsável pelo prontuario e outra que grava o prontuario, esta grava o prontuario e a  \\
-        // id do responsável, sendo assim o responsável pode  ser desvinculada do prontuario sem maiores problemas.                          //
+        // id do responsável, sendo assim o responsável pode  ser desvinculado do prontuario sem maiores problemas.                          //
         //---------------------------------------------------------------------------------------------------------------------------------==//
 
         String InsereProntuario = "INSERT INTO prontuario (referencia_RG_PAC,pront_Numero ,pront_Status ,"
-                + "  pront_Informacoes,pront_responsavel_prontuario) VALUES(?,?,?,?,?)";
+                + "  pront_Informacoes,pront_responsavel_prontuario,localizacaoFisica_Prontuario) VALUES(?,?,?,?,?,?)";
         Connection con = null;
         try {
             con = getConnection();
@@ -386,6 +386,7 @@ public class conexao {
             smt.setInt(3, StatusProntuario);//status
             smt.setString(4, ProntuarioList.get(4));//informac
             smt.setInt(5, idResponsavelProntuario);//id do responsavel
+            smt.setString(6,ProntuarioList.get(5));//Localização fisica
             smt.execute();
             System.out.println("Gravou prontuario");
         } catch (SQLException e) {
@@ -460,14 +461,14 @@ public class conexao {
      public ArrayList<PesquisarProntuario> PesquisarProntuario(String codigo) throws ClassNotFoundException {
          String sql = "SELECT "
                 + "`pront_cod`,pront_Numero,  `referencia_RG_PAC`, `pront_Status`,"
-                + " `pront_AlunoEmprestado`, `pront_TelefoneAluno`, `pront_Informacoes`,DataEmprestimo_Prontuario,DataDevolver_Prontuario, "
-                + "`pront_responsavel_prontuario`, `reservadopara_Prontuario`, paciente.pac_Nome\n"
-                + "FROM `prontuario` \n"
-                + "JOIN paciente\n"
+                + " `pront_AlunoEmprestado`, `pront_TelefoneAluno`,localizacaoFisica_Prontuario, `pront_Informacoes`,DataEmprestimo_Prontuario,DataDevolver_Prontuario, "
+                + "`pront_responsavel_prontuario`, `reservadopara_Prontuario`, paciente.pac_Nome "
+                + "FROM `prontuario` "
+                + "JOIN paciente "
                 + "WHERE paciente.pac_RG=referencia_RG_PAC and prontuario.pront_Numero=? limit 30";
         Connection con = null;
         ArrayList<PesquisarProntuario> ListarPesquisa;//array que recebera o resultado da pesquisa
-        ListarPesquisa = new ArrayList<PesquisarProntuario>();//criando novo array
+        ListarPesquisa = new ArrayList<>();//criando novo array
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -488,6 +489,7 @@ public class conexao {
                 pesquisarsmt.setDataEmprestimo(rs.getDate("DataEmprestimo_Prontuario"));
                 pesquisarsmt.setDataDevolução(rs.getDate("DataDevolver_Prontuario"));
                 pesquisarsmt.setResponsavelProntuario(rs.getInt("pront_responsavel_prontuario"));
+                pesquisarsmt.setLocalizacaoProntuario(rs.getString("localizacaoFisica_Prontuario"));
 
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
@@ -519,7 +521,7 @@ public class conexao {
         Connection con = null;
         ArrayList<PesquisarProntuario> ListarPesquisa=new ArrayList();//array que recebera o resultado da pesquisa
    String sql = "SELECT `pront_cod`,  "
-                + "`referencia_RG_PAC`, `pront_Status`, "
+                + "`referencia_RG_PAC`,pront_Numero, `pront_Status`, "
                 + "`pront_AlunoEmprestado`, `pront_TelefoneAluno`, "
                 + "`pront_Informacoes`, `pront_responsavel_prontuario`, "
                 + "`reservadopara_Prontuario`, `DataEmprestimo_Prontuario`, "
@@ -535,6 +537,7 @@ public class conexao {
                 sctp2.Pesquisar.PesquisarProntuario pesquisarsmt = new sctp2.Pesquisar.PesquisarProntuario();
                 String verificavazio = "";
                 pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
+                pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
                 pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
                 pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
                 pesquisarsmt.setInformacoes(rs.getString("pront_Informacoes"));
@@ -710,11 +713,11 @@ public class conexao {
 
     }
      public ArrayList<PesquisarProntuarioStatico> PesquisarProntuariopelorg(String rg) throws ClassNotFoundException {
-        String sql = "SELECT  pront_cod,pront_Numero,pront_AlunoEmprestado,pront_TelefoneAluno,pront_Status,pront_responsavel_prontuario, paciente.pac_Nome, pront_Informacoes "
+        String sql = "SELECT  pront_cod,pront_Numero,pront_AlunoEmprestado,pront_TelefoneAluno,pront_Status,localizacaoFisica_Prontuario,pront_responsavel_prontuario, paciente.pac_Nome, pront_Informacoes "
                 + "FROM prontuario join paciente where paciente.pac_RG=referencia_RG_PAC and prontuario.referencia_RG_PAC=?;";
         Connection con = null;
         ArrayList<PesquisarProntuarioStatico> ListarPesquisa;//array que recebera o resultado da pesquisa
-        ListarPesquisa = new ArrayList<PesquisarProntuarioStatico>();//criando novo array
+        ListarPesquisa = new ArrayList<>();//criando novo array
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -730,6 +733,7 @@ public class conexao {
                 pesquisarsmt.setPaciente(rs.getString("paciente.pac_Nome"));//Para não ter que criar um novo campo utilizei pai para receber o nome do paciente
                 pesquisarsmt.setStatus(rs.getInt("pront_Status"));
                 pesquisarsmt.setInformacoes(rs.getString("pront_Informacoes"));
+                pesquisarsmt.setLocalizacaoProntuario(rs.getString("localizacaoFisica_Prontuario"));
 
                 //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
                 verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario

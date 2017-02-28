@@ -107,6 +107,7 @@ public class Prontuario extends javax.swing.JFrame {
         jTNprontuario = new javax.swing.JTextField();
         jTPaciente = new javax.swing.JTextField();
         jLStatus = new javax.swing.JLabel();
+        jLocalizacaoProntuario = new javax.swing.JTextField();
         jCancelarReserva = new javax.swing.JButton();
         jProntuario = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -426,6 +427,9 @@ public class Prontuario extends javax.swing.JFrame {
 
         jTPaciente.setEditable(false);
 
+        jLocalizacaoProntuario.setEditable(false);
+        jLocalizacaoProntuario.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jDetalhesProntuarioLayout = new javax.swing.GroupLayout(jDetalhesProntuario);
         jDetalhesProntuario.setLayout(jDetalhesProntuarioLayout);
         jDetalhesProntuarioLayout.setHorizontalGroup(
@@ -437,16 +441,20 @@ public class Prontuario extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDetalhesProntuarioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 68, Short.MAX_VALUE)
                         .addGroup(jDetalhesProntuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jDetalhesProntuarioLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jDetalhesProntuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTNprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jDetalhesProntuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jDetalhesProntuarioLayout.createSequentialGroup()
+                                        .addGroup(jDetalhesProntuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTNprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(126, 126, 126))
+                                    .addComponent(jLocalizacaoProntuario))))
                         .addGap(23, 23, 23))))
         );
         jDetalhesProntuarioLayout.setVerticalGroup(
@@ -458,13 +466,15 @@ public class Prontuario extends javax.swing.JFrame {
                 .addGroup(jDetalhesProntuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTNprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLocalizacaoProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
 
         jCancelarReserva.setBackground(new java.awt.Color(255, 204, 204));
@@ -493,7 +503,7 @@ public class Prontuario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,10 +558,11 @@ public class Prontuario extends javax.swing.JFrame {
                                 .addComponent(jBprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jReservaProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jCancelarReserva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDetalhesProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
@@ -706,7 +717,6 @@ public class Prontuario extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         linhaSelecionada=jTable1.getSelectedRow();
-        System.out.println("libnha selecionada "+linhaSelecionada);
         MostraDetalhesProntuario();
         jBprontuario.setEnabled(true);        // TODO add your handling code here:
         jTable1.setSelectionForeground(Color.lightGray);
@@ -918,6 +928,7 @@ public class Prontuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField jLocalizacaoProntuario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -962,7 +973,7 @@ public class Prontuario extends javax.swing.JFrame {
         
         jBprontuario.setEnabled(false);//desativa o botao de emprestar/receber
         ListarPesquisa = acesso.PesquisarProntuario(jProntuario.getText());
-        if (ListarPesquisa.size() == 0) {
+        if (ListarPesquisa.isEmpty()) {
             jTNotificacao.setForeground(Color.red);
             jTNotificacao.setText("Nenhum prontuário encontrado!");
         } else {
@@ -1067,8 +1078,9 @@ public class Prontuario extends javax.swing.JFrame {
             jButton3.setVisible(false);
             jButton4.setVisible(false);
             jDescricaoProntuario.setText(ListarPesquisa.get(linha).getInformacoes());
-            jTNprontuario.setText(Integer.toString(ListarPesquisa.get(linha).getCodigoProntuario()));
+            jTNprontuario.setText(ListarPesquisa.get(linha).getProntuario());
             jTPaciente.setText(ListarPesquisa.get(linha).getPaciente());
+            jLocalizacaoProntuario.setText("Localização física: "+ListarPesquisa.get(linha).getLocalizacaoProntuario());
             if (ListarPesquisa.get(linha).getStatus().equals("Reservado")) {//Se o prontuario estiver Reservado
                 jLStatus.setText("Atualmente reservado para " + ListarPesquisa.get(linha).getNome() + " até o dia  " + ConverteDataBrasil(ListarPesquisa.get(linha).getDataDevolução()));
             } else if (ListarPesquisa.get(linha).getStatus().equals("Disponível")) {
@@ -1116,10 +1128,10 @@ public class Prontuario extends javax.swing.JFrame {
     private boolean PesquisarProntuarioPorNomePaciente() throws ClassNotFoundException {
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
         DefaultTableModel valor = (DefaultTableModel) jTable1.getModel();//criando a chave valor para o objeto tabela
-        ListarPesquisa = new ArrayList<PesquisarProntuario>();
+        ListarPesquisa = new ArrayList<>();
         jBprontuario.setEnabled(false);//desativa o botao de emprestar/receber
         ListarPesquisa = acesso.PesquisarProntuarioporNomePaciente(jProntuario.getText());
-        if (ListarPesquisa.size() == 0) {
+        if (ListarPesquisa.isEmpty()) {
             jTNotificacao.setForeground(Color.red);
             jTNotificacao.setText("Nenhum prontuário encontrado!");
         } else {
