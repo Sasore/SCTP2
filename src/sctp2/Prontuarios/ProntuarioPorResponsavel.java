@@ -25,11 +25,13 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
      */
     ArrayList<sctp2.Pesquisar.ResponsavelProntuario> listarPesquisa = new ArrayList<>();
     ArrayList<PesquisarProntuarioStatico> ListarProntuarioPaciente;//array que recebera o resultado da pesquisa
-
+    int codigoProtuario;
     public ProntuarioPorResponsavel() throws ClassNotFoundException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);//inicia a janela maximizada
         EfetuaPesquisa();
+        codigoProtuario=-1;
+        jEditarProntuario.setEnabled(false);
 
     }
 
@@ -47,6 +49,7 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
         menu2 = new java.awt.Menu();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jEditarProntuario = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPesquisa = new javax.swing.JTextField();
@@ -94,20 +97,35 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
             }
         });
 
+        jEditarProntuario.setBackground(new java.awt.Color(255, 255, 255));
+        jEditarProntuario.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jEditarProntuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/clipboard.png"))); // NOI18N
+        jEditarProntuario.setText("Editar prontuário selecionado");
+        jEditarProntuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        jEditarProntuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditarProntuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jEditarProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jEditarProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(21, 21, 21))
         );
 
@@ -441,6 +459,19 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
         new sctp2.Prontuarios.Prontuario().setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jEditarProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditarProntuarioActionPerformed
+if(codigoProtuario!=-1){
+    try {
+        EditarProntuario editar= new EditarProntuario(codigoProtuario);
+        editar.setVisible(true);
+        this.setVisible(false);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ProntuarioPorResponsavel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+}
+    }//GEN-LAST:event_jEditarProntuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -485,6 +516,7 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JTextPane jDescricaoProntuario;
+    private javax.swing.JButton jEditarProntuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -598,5 +630,7 @@ public class ProntuarioPorResponsavel extends javax.swing.JFrame {
         jStatusProntuario.setText(detalhesProntuario.get(0).getStatus());
         jDescricaoProntuario.setText(detalhesProntuario.get(0).getInformacoes());
         jPaciente.setText(detalhesProntuario.get(0).getPaciente());
+        codigoProtuario=detalhesProntuario.get(0).getCodigoProntuario();
+        jEditarProntuario.setEnabled(true);
     }
 }

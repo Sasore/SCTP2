@@ -7,6 +7,7 @@ package sctp2.Paciente;
 
 import java.awt.Color;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -132,6 +133,8 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLocalizacaoProntuario = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jDataCadastroPaciente = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -576,6 +579,12 @@ public class DadosDoPaciente extends javax.swing.JFrame {
 
         jLocalizacaoProntuario.setBorder(null);
 
+        jLabel15.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        jLabel15.setText("Data de Cadastro: ");
+
+        jDataCadastroPaciente.setEditable(false);
+        jDataCadastroPaciente.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -708,10 +717,18 @@ public class DadosDoPaciente extends javax.swing.JFrame {
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(427, 427, 427)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(19, 19, 19))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDataCadastroPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -825,7 +842,11 @@ public class DadosDoPaciente extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15)
+                            .addComponent(jDataCadastroPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)))
                 .addContainerGap())
         );
 
@@ -1005,7 +1026,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jRetiraListaNegraActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+
         try {
             new sctp2.Paciente.PacientetratamentoEdoencas(rgPaciente, jNome.getText()).setVisible(true);
             this.setVisible(false);
@@ -1060,7 +1081,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+
         try {
             new sctp2.Paciente.HistoricoDoPaciente(codigopaciente, jrg.getText()).setVisible(true);
             this.setVisible(false);
@@ -1142,6 +1163,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JTextField jDataCadastroPaciente;
     private javax.swing.JLabel jLBairro;
     private javax.swing.JLabel jLCep;
     private javax.swing.JLabel jLCidade;
@@ -1162,6 +1184,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1217,13 +1240,16 @@ public class DadosDoPaciente extends javax.swing.JFrame {
     private void SetValoresCampos(String rg) throws ClassNotFoundException {
         //Esta função recebe os dados do banco de dados e carrega tudo nos campos da interface 
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
-        ArrayList<Pesquisar> ListarPesquisa = new ArrayList<Pesquisar>();
+        ArrayList<Pesquisar> ListarPesquisa = new ArrayList<>();
         ListarPesquisa = acesso.DetalhesdoPaciente(rg);
         codigopaciente = ListarPesquisa.get(0).getCodigo();
         jNome.setText(ListarPesquisa.get(0).getNome());
         jocupação.setText(ListarPesquisa.get(0).getOcupação());
         jpai.setText(ListarPesquisa.get(0).getPai());
         jMae.setText(ListarPesquisa.get(0).getMae());
+        if (ListarPesquisa.get(0).getDataCadastro() != null) {
+            jDataCadastroPaciente.setText(ConverteDataBrasil(ListarPesquisa.get(0).getDataCadastro()));
+        }
         if (ListarPesquisa.get(0).getSexo() == 0) {
             jsexo.setSelectedIndex(1);//Masculino
         }
@@ -1349,7 +1375,7 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         jcidade.setBackground(Color.white);
         //---------------Naturalidade---------------
         jnaturalidade.setBorder(null);
-       // jnaturalidade.setEditable(false);
+        // jnaturalidade.setEditable(false);
         jnaturalidade.setBackground(Color.white);
         //----------RG--------------------;
         jrg.setBorder(null);
@@ -1476,9 +1502,9 @@ public class DadosDoPaciente extends javax.swing.JFrame {
 
     private void PesquisaProntuario() throws ClassNotFoundException {
         sctp2.BancodeDados.conexao acesso = new sctp2.BancodeDados.conexao();
-        ArrayList<PesquisarProntuarioStatico> ListarPesquisa = new ArrayList<PesquisarProntuarioStatico>();
+        ArrayList<PesquisarProntuarioStatico> ListarPesquisa = new ArrayList<>();
         ListarPesquisa = acesso.PesquisarProntuariopelorg(jrg.getText());
-        if (ListarPesquisa.size() == 0) {
+        if (ListarPesquisa.isEmpty()) {
             jNotificao.setText("Nenhum prontuário encontrado para este paciente!");
         } else {
             if (ListarPesquisa.get(0).getStatus().equals("Disponível")) {
@@ -1501,5 +1527,12 @@ public class DadosDoPaciente extends javax.swing.JFrame {
         acesso.GravaPacienteNoHistorico(codigopaciente, jresponsavelprontuario.getText(), jrg.getText());
         jNotificao.setForeground(Color.blue);
         jNotificao.setText("O Histórico  já está disponível");
+    }
+
+    private String ConverteDataBrasil(java.util.Date date) {
+        DateFormat formataData = DateFormat.getDateInstance();
+        String DataString = formataData.format(date);//Converte em String
+        return DataString;
+
     }
 }

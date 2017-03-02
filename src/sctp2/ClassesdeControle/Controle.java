@@ -78,6 +78,7 @@ public class Controle {
         PacienteList.add(acesso.getTelefone());
         Pacientevetor[4] = acesso.getListaNegra();//lista negra (0 ou 1)
         PacienteList.add(acesso.getListaNegraJustificativa());
+        PacienteList.add(acesso.getTelefoneFixo());
         retorno = acessoConexao.GravaNovoPaciente(PacienteList, Pacientevetor);
 
         return retorno;

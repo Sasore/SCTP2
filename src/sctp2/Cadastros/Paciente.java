@@ -85,6 +85,8 @@ public class Paciente extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         notificacao2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jtelefoneFixo = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -246,12 +248,18 @@ public class Paciente extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Endereço");
 
+        jLRua.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLRua.setText("Rua:");
 
+        jLBairro.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLBairro.setText("Bairro:");
 
+        jLCidade.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLCidade.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLCidade.setText("Cidade:");
 
+        jLTelContato.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLTelContato.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLTelContato.setText("Telefone Celular: ");
 
         jcidade.addActionListener(new java.awt.event.ActionListener() {
@@ -266,8 +274,12 @@ public class Paciente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Número:");
 
+        jLCep.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLCep.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLCep.setText("CEP:");
 
         try {
@@ -315,6 +327,16 @@ public class Paciente extends javax.swing.JFrame {
         notificacao2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         notificacao2.setForeground(new java.awt.Color(0, 51, 255));
         notificacao2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Telefone fixo:");
+
+        try {
+            jtelefoneFixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -373,20 +395,6 @@ public class Paciente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLCep, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLTelContato, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(10, 10, 10)))
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jnumeroDoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jcep, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jLMae, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -407,7 +415,26 @@ public class Paciente extends javax.swing.JFrame {
                                         .addGap(26, 26, 26)
                                         .addComponent(jLNaturalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jnaturalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jnaturalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(16, 16, 16)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLTelContato, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(37, 37, 37)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLCep, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jnumeroDoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jcep, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jtelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                                            .addComponent(jtelefoneFixo))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jNotificao))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -499,7 +526,11 @@ public class Paciente extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addComponent(jCPacieteComAlta))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 82, Short.MAX_VALUE)
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jtelefoneFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addComponent(jNotificao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -753,6 +784,7 @@ TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -782,6 +814,7 @@ TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:
     private javax.swing.JTextField jrua;
     private javax.swing.JComboBox jsexo;
     private javax.swing.JFormattedTextField jtelefone;
+    private javax.swing.JFormattedTextField jtelefoneFixo;
     private javax.swing.JLabel notificacao2;
     // End of variables declaration//GEN-END:variables
 
@@ -803,6 +836,7 @@ TamanhoDaFonte(tamanhoFonte-1);        // TODO add your handling code here:
         acesso.setNumeroEndereco(jnumeroDoEndereco.getText());
         acesso.setCep(jcep.getText());
         acesso.setTelefone(jtelefone.getText());
+        sctp2.ClassesdeControle.Paciente.setTelefoneFixo(jtelefoneFixo.getText());
         acesso.setListaNegraJustificativa(jlistaNegraJustificativa.getText());
         acesso.setPacienteComAlta(jCPacieteComAlta.isSelected());
         acesso.setNaturalidade(jnaturalidade.getText());

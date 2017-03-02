@@ -5,6 +5,8 @@
  */
 package sctp2.Pesquisar;
 
+import java.sql.Date;
+
 /**
  *
  * @author Adriano
@@ -38,6 +40,7 @@ public class Pesquisar {
     private String telefoneFixoProfessor;
     private String celularProfessor;
     private String prontuario;
+    private Date   dataCadastro;
 
     public String getProntuario() {
         return prontuario;
@@ -259,5 +262,15 @@ public class Pesquisar {
     public void setRg(String rg) {
         this.rg = rg;
     }
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    
 
 }

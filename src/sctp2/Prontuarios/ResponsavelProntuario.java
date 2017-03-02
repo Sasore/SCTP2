@@ -84,7 +84,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPesquisa = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBAdicionar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jNotificacao = new javax.swing.JTextField();
@@ -155,14 +155,15 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 51, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
-        jButton2.setText("Adicionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBAdicionar.setBackground(new java.awt.Color(255, 255, 255));
+        jBAdicionar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBAdicionar.setForeground(new java.awt.Color(0, 51, 255));
+        jBAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
+        jBAdicionar.setText("Adicionar");
+        jBAdicionar.setEnabled(false);
+        jBAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBAdicionarActionPerformed(evt);
             }
         });
 
@@ -383,7 +384,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
+                    .addComponent(jBAdicionar)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(10, 10, 10)
@@ -433,7 +434,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
                         .addComponent(jPanelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
         );
 
@@ -562,7 +563,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jPesquisaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicionarActionPerformed
         //CodigoJanela=1 Emprestar prontuário, codigojanela=2 reservar prontuário
         if (Codigojanela == 1) {
             try {
@@ -581,10 +582,11 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
                 }
             }
         }//fim do else
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBAdicionarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 //CodigoJanela=1 Emprestar prontuário, codigojanela=2 reservar prontuário
+jBAdicionar.setEnabled(true);
         if (Codigojanela == 1) {
             try {
                 ChamaTelaPesquisarProntuario();
@@ -694,10 +696,10 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAdicionar;
     private javax.swing.JButton jBAumentaTamFOnte;
     private javax.swing.JButton jBDiminuiTamFOnte;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JFormattedTextField jFTelefoneCelular;
@@ -859,7 +861,6 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
 
     private void TamanhoDaFonte(int tamanhoFonte) {
         this.tamanhoFonte = tamanhoFonte;
-        System.out.println("tam " + tamanhoFonte);
         if ((this.tamanhoFonte < 20) && (this.tamanhoFonte > 15)) {
             jBDiminuiTamFOnte.setEnabled(true);
             jBAumentaTamFOnte.setEnabled(true);
@@ -868,7 +869,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
             jButton1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
             jPanel1.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
             jNotificacao.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
-            jButton2.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
+            jBAdicionar.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
             jButton3.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
             jButton4.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
             jFTelefoneCelular.setFont(new Font("Times new Roman", Font.BOLD, tamanhoFonte));
@@ -890,7 +891,6 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
     }
 
     private void ChamaTelaPesquisarProntuarioReservar() throws ClassNotFoundException {
-        System.out.println("chamando tela reservar prontuario");
 
         if (enviar == null) {//se for igual a null significa que nao existe nehuma chave para acessar a interface prontuario
             enviar = new Prontuario();//nova chave para o objeto
