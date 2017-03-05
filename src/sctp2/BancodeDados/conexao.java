@@ -579,6 +579,64 @@ public class conexao {
         }
         return ListarPesquisa;
     }
+     public ArrayList<PesquisarProntuario> PesquisarProntuarioporRG(String rg) throws ClassNotFoundException {
+        Connection con = null;
+        ArrayList<PesquisarProntuario> ListarPesquisa=new ArrayList();//array que recebera o resultado da pesquisa
+   String sql = "SELECT `pront_cod`,  "
+                + "`referencia_RG_PAC`,pront_Numero, `pront_Status`, "
+                + "`pront_AlunoEmprestado`, `pront_TelefoneAluno`, "
+                + "`pront_Informacoes`, `pront_responsavel_prontuario`, "
+                + "`reservadopara_Prontuario`, `DataEmprestimo_Prontuario`, "
+                + "`DataDevolver_Prontuario`,paciente.pac_Nome FROM `prontuario`"
+                + " JOIN paciente ON paciente.pac_RG=prontuario.referencia_RG_PAC "
+                + "WHERE paciente.pac_RG= ? limit 30";
+        try {
+            con = getConnection();
+            PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
+             smt.setString(1,rg);
+            ResultSet rs = smt.executeQuery();
+            while (rs.next()) {
+                sctp2.Pesquisar.PesquisarProntuario pesquisarsmt = new sctp2.Pesquisar.PesquisarProntuario();
+                String verificavazio = "";
+                pesquisarsmt.setCodigoProntuario(rs.getInt("pront_cod"));
+                pesquisarsmt.setProntuario(rs.getString("pront_Numero"));
+                pesquisarsmt.setNome(rs.getString("pront_AlunoEmprestado"));
+                pesquisarsmt.setTelefone(rs.getString("pront_TelefoneAluno"));
+                pesquisarsmt.setInformacoes(rs.getString("pront_Informacoes"));
+                pesquisarsmt.setIdUsuarioReservado(rs.getInt("reservadopara_Prontuario"));
+                pesquisarsmt.setPaciente(rs.getString("paciente.pac_Nome"));//Para não ter que criar um novo campo utilizei pai para receber o nome do paciente
+                pesquisarsmt.setStatus(rs.getInt("pront_Status"));
+                pesquisarsmt.setDataEmprestimo(rs.getDate("DataEmprestimo_Prontuario"));
+                pesquisarsmt.setDataDevolução(rs.getDate("DataDevolver_Prontuario"));
+                pesquisarsmt.setResponsavelProntuario(rs.getInt("pront_responsavel_prontuario"));
+                
+                //Caso o nome do aluno esteja vazio ele será preenchido no if abaixo
+                verificavazio = rs.getString("pront_AlunoEmprestado");//se o nome estiver vazio será chamado a função para pesquisar na tabela responsavelpeloprontuario
+                if (verificavazio == null || verificavazio.trim().equals("")) {
+                    ArrayList<PesquisarProntuario> ListarPesquisaAux= new ArrayList<>();
+                    ListarPesquisaAux = PesquisaResponsavelProtuario(Integer.toString(rs.getInt("pront_responsavel_prontuario")));
+                    if(!ListarPesquisaAux.isEmpty()){
+                    pesquisarsmt.setNome(ListarPesquisaAux.get(0).getNome());
+                    pesquisarsmt.setIdResponsavel(ListarPesquisaAux.get(0).getIdResponsavel());
+                    pesquisarsmt.setTelefone(ListarPesquisaAux.get(0).getTelefone());
+                    pesquisarsmt.setTelefoneFixo(ListarPesquisaAux.get(0).getTelefoneFixo());
+                    pesquisarsmt.setNomeProfessor(ListarPesquisaAux.get(0).getNomeProfessor());
+                    pesquisarsmt.setTelefoneProfessor(ListarPesquisaAux.get(0).getTelefoneProfessor());
+                    pesquisarsmt.setCelularProfessor(ListarPesquisaAux.get(0).getCelularProfessor());
+                    }
+                };
+                ListarPesquisa.add(pesquisarsmt);
+            }
+        } catch (SQLException e) {
+            //System.out.println("Ocorreu um erro ao carrega a lista");
+            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao conectar com o banco de dados, tente novamente em alguns minutos!");
+            e.printStackTrace();
+
+        } finally {
+            closeConnection(con);
+        }
+        return ListarPesquisa;
+    }//fim da função
      public ArrayList<PesquisarProntuario> PesquisarProntuarioporNomePaciente(String nomePaciente) throws ClassNotFoundException {
         Connection con = null;
         ArrayList<PesquisarProntuario> ListarPesquisa=new ArrayList();//array que recebera o resultado da pesquisa
@@ -636,7 +694,7 @@ public class conexao {
             closeConnection(con);
         }
         return ListarPesquisa;
-    }
+    }//fim da função
       //Esta função retorna todos os prontuários emprestados para uma pessoa
     public ArrayList<sctp2.Pesquisar.ResponsavelProntuario> PesquisarTodosProntuariosResponsavel(String idResponsavel) throws ClassNotFoundException {
         String sql = "SELECT \n"
@@ -702,9 +760,10 @@ public class conexao {
         boolean retorno = false;
         String sql = "update prontuario set pront_Status=1,"
                 + " pront_responsavel_prontuario=?,DataEmprestimo_Prontuario=?,DataDevolver_Prontuario=?,"
-                + "pront_AlunoEmprestado='',pront_TelefoneAluno=''  where pront_cod=?;";
+                + "pront_AlunoEmprestado='',pront_TelefoneAluno=''  where pront_Numero=?;";
 
         try {
+            System.out.println("prontuario "+prontuario);
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
             smt.setString(1, idResponsavel);
@@ -712,7 +771,7 @@ public class conexao {
             smt.setDate(3, dataDevolver);
             smt.setString(4, prontuario);
             smt.executeUpdate();
-            System.out.println("executou");
+            System.out.println("Emprestou prontuario");
             retorno = true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "(2) Não foi possível gravar no Banco de dados os dados do Paciente , tente novamente em breve.");
@@ -725,7 +784,7 @@ public class conexao {
     }
      public boolean AtualizaStatusProntuario(String id, int responsavel) throws SQLException, ClassNotFoundException {
          System.out.println("AtualizaStatusProntuario "+responsavel+" id" +id);
-        String sql = "update prontuario set pront_Status=0,pront_AlunoEmprestado=?,pront_TelefoneAluno=?,pront_responsavel_prontuario=? where pront_cod=?;";
+        String sql = "update prontuario set pront_Status=0,pront_AlunoEmprestado=?,pront_TelefoneAluno=?,pront_responsavel_prontuario=? where pront_Numero=?;";
         Connection con = null;
         boolean retorno = false;
          System.out.println("responsaveç "+responsavel+" id "+id);
@@ -961,7 +1020,7 @@ public class conexao {
                 + "`pront_responsavel_prontuario`=?,"
                 + "`reservadopara_Prontuario`=?, `DataEmprestimo_Prontuario`=?, "
                 + "`DataDevolver_Prontuario`=?\n"
-                + "WHERE `pront_cod`=?";
+                + "WHERE `pront_Numero`=?";
         try {
             con = getConnection();//criando variavel de conexao
             PreparedStatement smt = (PreparedStatement) con.prepareStatement(sql);
@@ -1502,7 +1561,7 @@ public class conexao {
                 pesquisarsmt.setAmalgama(rs.getInt("nec_Amalgama"));
                 pesquisarsmt.setResina(rs.getInt("nec_Resina"));
                 pesquisarsmt.setRmf(rs.getInt("nec_RMF"));
-                pesquisarsmt.setEndontiaUnirradicular(rs.getInt("nec_EndodontiaTrirradicular"));
+                pesquisarsmt.setEndontiaUnirradicular(rs.getInt("nec_Endodontiauniebirradicular"));
                 pesquisarsmt.setEndodontiaTrirradicular(rs.getInt("nec_EndodontiaTrirradicular"));
                 pesquisarsmt.setCoroaTotal(rs.getInt("nec_CoroaTotal"));
                 pesquisarsmt.setPonteFixa3Elementos(rs.getInt("nec_PonteFixa3Elementos"));

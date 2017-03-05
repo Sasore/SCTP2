@@ -170,6 +170,7 @@ public class Prontuario extends javax.swing.JFrame {
         NomeresponsavelProntuario.setEditable(false);
         NomeresponsavelProntuario.setBackground(new java.awt.Color(255, 255, 255));
         NomeresponsavelProntuario.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        NomeresponsavelProntuario.setBorder(null);
         NomeresponsavelProntuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NomeresponsavelProntuarioKeyTyped(evt);
@@ -212,11 +213,13 @@ public class Prontuario extends javax.swing.JFrame {
         jTelefonefixo.setBackground(new java.awt.Color(255, 255, 255));
         jTelefonefixo.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jTelefonefixo.setToolTipText("Celular");
+        jTelefonefixo.setBorder(null);
 
         JcelularoAluno.setEditable(false);
         JcelularoAluno.setBackground(new java.awt.Color(255, 255, 255));
         JcelularoAluno.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         JcelularoAluno.setToolTipText("Telefone fixo");
+        JcelularoAluno.setBorder(null);
 
         jCodigoResponsavel.setEditable(false);
         jCodigoResponsavel.setBackground(new java.awt.Color(255, 255, 255));
@@ -305,7 +308,7 @@ public class Prontuario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLInformacoesAdicionais)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );

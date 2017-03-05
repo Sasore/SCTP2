@@ -180,7 +180,7 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -585,8 +585,9 @@ public class ResponsavelProntuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAdicionarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        jBAdicionar.setEnabled(true);
+        if(evt.getClickCount()==2){
 //CodigoJanela=1 Emprestar prontuário, codigojanela=2 reservar prontuário
-jBAdicionar.setEnabled(true);
         if (Codigojanela == 1) {
             try {
                 ChamaTelaPesquisarProntuario();
@@ -603,6 +604,7 @@ jBAdicionar.setEnabled(true);
                     Logger.getLogger(ResponsavelProntuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }
         }
     }//GEN-LAST:event_jTable1MouseClicked
 

@@ -78,14 +78,12 @@ public class Prontuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Nprontuario = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLNomeAluno = new javax.swing.JLabel();
         NomeresponsavelProntuario = new javax.swing.JTextField();
         jLTelefoneAluno23 = new javax.swing.JLabel();
         jLInformacoesAdicionais = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProntuarioInformacoesAdicionais = new javax.swing.JTextPane();
-        jComboStatusProntuario = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jNotificacao = new javax.swing.JTextField();
         jTelefonefixo = new javax.swing.JTextField();
@@ -95,7 +93,6 @@ public class Prontuario extends javax.swing.JFrame {
         jRG = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jPaciente = new javax.swing.JTextField();
-        jLabelIconeStatus = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -178,14 +175,13 @@ public class Prontuario extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
-        jLabel3.setText("Status do Prontuário:");
-
         jLNomeAluno.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLNomeAluno.setText("Nome do Professor/Aluno:");
 
         NomeresponsavelProntuario.setEditable(false);
+        NomeresponsavelProntuario.setBackground(new java.awt.Color(255, 255, 255));
         NomeresponsavelProntuario.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        NomeresponsavelProntuario.setBorder(null);
         NomeresponsavelProntuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NomeresponsavelProntuarioKeyTyped(evt);
@@ -201,26 +197,11 @@ public class Prontuario extends javax.swing.JFrame {
         ProntuarioInformacoesAdicionais.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jScrollPane1.setViewportView(ProntuarioInformacoesAdicionais);
 
-        jComboStatusProntuario.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jComboStatusProntuario.setForeground(new java.awt.Color(51, 51, 51));
-        jComboStatusProntuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponível", "Emprestado", "Reservado" }));
-        jComboStatusProntuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 50, 255), 1, true));
-        jComboStatusProntuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboStatusProntuarioMouseClicked(evt);
-            }
-        });
-        jComboStatusProntuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboStatusProntuarioActionPerformed(evt);
-            }
-        });
-
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
-        jButton1.setText("Adicionar....");
+        jButton1.setText("Adicionar responsável");
         jButton1.setToolTipText("Adicione um  responsável pelo prontuário");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,14 +221,20 @@ public class Prontuario extends javax.swing.JFrame {
         });
 
         jTelefonefixo.setEditable(false);
+        jTelefonefixo.setBackground(new java.awt.Color(255, 255, 255));
         jTelefonefixo.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
         jTelefonefixo.setToolTipText("Celular");
+        jTelefonefixo.setBorder(null);
 
         JcelularoAluno.setEditable(false);
+        JcelularoAluno.setBackground(new java.awt.Color(255, 255, 255));
         JcelularoAluno.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
         JcelularoAluno.setToolTipText("Telefone fixo");
+        JcelularoAluno.setBorder(null);
 
         jCodigoResponsavel.setEditable(false);
+        jCodigoResponsavel.setBackground(new java.awt.Color(255, 255, 255));
+        jCodigoResponsavel.setBorder(null);
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLabel4.setText("Paciente RG: ");
@@ -261,8 +248,6 @@ public class Prontuario extends javax.swing.JFrame {
         jPaciente.setEditable(false);
         jPaciente.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
 
-        jLabelIconeStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disponivel.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -274,42 +259,38 @@ public class Prontuario extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 80, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLNomeAluno)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLNomeAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2)
                             .addComponent(jLInformacoesAdicionais)
                             .addComponent(jLTelefoneAluno23, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jNotificacao)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jPaciente, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(Nprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(71, 71, 71)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelIconeStatus))
-                                    .addComponent(jCodigoResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jPaciente, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(JcelularoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTelefonefixo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(NomeresponsavelProntuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboStatusProntuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jRG, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jNotificacao))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jCodigoResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(236, 236, 236))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(JcelularoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(84, 84, 84)
+                                        .addComponent(jTelefonefixo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(NomeresponsavelProntuario))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(256, 256, 256))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -319,17 +300,13 @@ public class Prontuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCodigoResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelIconeStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(Nprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboStatusProntuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Nprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -487,20 +464,6 @@ public class Prontuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboStatusProntuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboStatusProntuarioMouseClicked
-
-
-    }//GEN-LAST:event_jComboStatusProntuarioMouseClicked
-
-    private void jComboStatusProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboStatusProntuarioActionPerformed
-ImageIcon disponivel = new ImageIcon("src\\Imagens\\disponivel.png");
-ImageIcon emprestado = new ImageIcon("src\\Imagens\\emprestado.png");
-ImageIcon reservado = new ImageIcon("src\\Imagens\\reservado.png");
-if(jComboStatusProntuario.getSelectedItem().equals("Disponível"))jLabelIconeStatus.setIcon(disponivel);
-if(jComboStatusProntuario.getSelectedItem().equals("Emprestado"))jLabelIconeStatus.setIcon(emprestado);
-if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatus.setIcon(reservado);
-    }//GEN-LAST:event_jComboStatusProntuarioActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         this.setVisible(false);        // TODO add your handling code here:
         new sctp2.Paciente.PesquisarPaciente().setVisible(true);
@@ -555,16 +518,13 @@ if(jComboStatusProntuario.getSelectedItem().equals("Reservado"))jLabelIconeStatu
     private javax.swing.JButton Voltar;
     private javax.swing.JButton jButton1;
     private javax.swing.JTextField jCodigoResponsavel;
-    private javax.swing.JComboBox jComboStatusProntuario;
     private javax.swing.JLabel jLInformacoesAdicionais;
     private javax.swing.JLabel jLNomeAluno;
     private javax.swing.JLabel jLTelefoneAluno23;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelIconeStatus;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

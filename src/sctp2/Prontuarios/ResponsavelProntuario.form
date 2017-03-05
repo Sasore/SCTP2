@@ -212,8 +212,8 @@
                     <Column editable="false" title="Telefone" type="java.lang.String"/>
                     <Column editable="false" title="Fixo" type="java.lang.String"/>
                     <Column editable="false" title="Professor" type="java.lang.String"/>
-                    <Column editable="true" title="Telefone" type="java.lang.Object"/>
-                    <Column editable="true" title="celular" type="java.lang.Object"/>
+                    <Column editable="false" title="Telefone" type="java.lang.Object"/>
+                    <Column editable="false" title="celular" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Respons&#xe1;veis j&#xe1; existentes"/>
