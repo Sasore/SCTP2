@@ -6,9 +6,11 @@
 package sctp2.Paciente;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sctp2.Pesquisar.Pesquisar;
 
@@ -46,6 +48,8 @@ public class PesquisarPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMouseTabela = new javax.swing.JPopupMenu();
+        jMenuAbrir = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jTPesquisar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -65,6 +69,19 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+
+        jMenuAbrir.setText("Abrir");
+        jMenuAbrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuAbrirMouseClicked(evt);
+            }
+        });
+        jMenuAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAbrirActionPerformed(evt);
+            }
+        });
+        jPopupMouseTabela.add(jMenuAbrir);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pesquisar Paciente");
@@ -127,6 +144,9 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -398,6 +418,46 @@ this.setVisible(false);        // TODO add your handling code here:
 new sctp2.Prontuarios.Prontuario().setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+if(evt.isPopupTrigger()){
+    Point point= evt.getPoint();
+    int linhaSelecionada=jTable1.rowAtPoint(point);
+    jTable1.setRowSelectionInterval(linhaSelecionada,linhaSelecionada);
+    jPopupMouseTabela.show(this, (int) point.getX(), (int) point.getY());
+}
+    }//GEN-LAST:event_jTable1MouseReleased
+
+    private void jMenuAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAbrirMouseClicked
+
+        jTable1.setSelectionBackground(Color.lightGray);
+        String rg= (String) jTable1.getValueAt(jTable1.getSelectedRow(),4);
+        sctp2.Paciente.DadosDoPaciente acesso;
+        try {
+            acesso = new sctp2.Paciente.DadosDoPaciente(rg);
+              acesso.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PesquisarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jMenuAbrirMouseClicked
+
+    private void jMenuAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAbrirActionPerformed
+
+        jTable1.setSelectionBackground(Color.lightGray);
+        String rg= (String) jTable1.getValueAt(jTable1.getSelectedRow(),4);
+        sctp2.Paciente.DadosDoPaciente acesso;
+        try {
+            acesso = new sctp2.Paciente.DadosDoPaciente(rg);
+              acesso.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PesquisarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jMenuAbrirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,6 +501,7 @@ new sctp2.Prontuarios.Prontuario().setVisible(true);
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuAbrir;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -450,6 +511,7 @@ new sctp2.Prontuarios.Prontuario().setVisible(true);
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMouseTabela;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTNotificacao;
     private javax.swing.JTextField jTPesquisar;
