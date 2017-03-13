@@ -270,33 +270,29 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jNotificacao" alignment="1" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
                                   <Component id="jNumeroProntuario" min="-2" pref="141" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="JcelularoAluno" min="-2" pref="163" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Component id="jTelefonefixo" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="482" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="JcelularoAluno" min="-2" pref="163" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                          <Component id="jTelefonefixo" min="-2" pref="152" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                               <Component id="jlocalizacaoProntuario" alignment="0" max="32767" attributes="0"/>
                                               <Component id="NomeresponsavelProntuario" alignment="0" pref="344" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Component id="jButton1" min="-2" pref="158" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jButton1" min="-2" pref="181" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jNotificacao" alignment="1" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -434,7 +430,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/add3.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Adicionar...."/>
+            <Property name="text" type="java.lang.String" value="Respons&#xe1;vel"/>
             <Property name="toolTipText" type="java.lang.String" value="Adicione um  respons&#xe1;vel pelo prontu&#xe1;rio"/>
           </Properties>
           <Events>

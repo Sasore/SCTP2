@@ -10,9 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
-import sctp2.Pesquisar.Pesquisar;
 import sctp2.Pesquisar.PesquisarProntuarioStatico;
 
 /**
@@ -201,7 +199,7 @@ public class Prontuario extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add3.png"))); // NOI18N
-        jButton1.setText("Adicionar responsável");
+        jButton1.setText(" Responsável");
         jButton1.setToolTipText("Adicione um  responsável pelo prontuário");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +255,7 @@ public class Prontuario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 80, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLNomeAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,8 +287,8 @@ public class Prontuario extends javax.swing.JFrame {
                                         .addGap(84, 84, 84)
                                         .addComponent(jTelefonefixo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(NomeresponsavelProntuario))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(256, 256, 256))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -548,7 +546,7 @@ public class Prontuario extends javax.swing.JFrame {
         sctp2.ClassesdeControle.Prontuario acesso = new sctp2.ClassesdeControle.Prontuario();
         acesso.setNumeroProntuario(Nprontuario.getText());
         acesso.setNomeresponsavelProntuario(NomeresponsavelProntuario.getText());
-        acesso.setStatusProntuario((String) jComboStatusProntuario.getSelectedItem());
+        acesso.setStatusProntuario("Disponível");
         acesso.setTelefoneResponsavelProntuario(JcelularoAluno.getText());
         acesso.setInformacoesProntuario(ProntuarioInformacoesAdicionais.getText());
         acesso.setIdResponsavelProntuario(jCodigoResponsavel.getText());

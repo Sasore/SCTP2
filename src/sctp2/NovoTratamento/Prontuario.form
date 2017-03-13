@@ -225,7 +225,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" pref="1036" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -265,8 +265,8 @@
                                       </Group>
                                       <Component id="NomeresponsavelProntuario" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButton1" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                                  <Component id="jButton1" min="-2" pref="225" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
@@ -422,7 +422,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/add3.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Adicionar respons&#xe1;vel"/>
+            <Property name="text" type="java.lang.String" value=" Respons&#xe1;vel"/>
             <Property name="toolTipText" type="java.lang.String" value="Adicione um  respons&#xe1;vel pelo prontu&#xe1;rio"/>
           </Properties>
           <Events>

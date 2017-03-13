@@ -545,7 +545,7 @@ public class HistoricoDoPaciente extends javax.swing.JFrame {
 
         //-----------------------------------------------
         if (ListarTratamentos.isEmpty()) {
-            jNotificacao.setText("Não há histórico para este usuário!");
+            jNotificacao.setText("Não há histórico para este paciente!");
         } else {
 
 //Preenche a tabela Período do tratamento
